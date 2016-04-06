@@ -102,7 +102,7 @@ folder instead of downloading all of them to reduce the load. -->
                       <a href="<?php echo site_url('admin_profil'); ?>" class="btn btn-default btn-flat">Profile</a>
                     </div>
                     <div class="pull-right">
-                      <a href="<?php echo site_url('admin_login/logout'); ?>" class="btn btn-default btn-flat">Sign out</a>
+                      <a href="<?php echo site_url('login/logout_admin'); ?>" class="btn btn-default btn-flat">Sign out</a>
                     </div>
                   </li>
 					  </ul>

@@ -1,130 +1,64 @@
-<?php 
-$userdata = $this->session->userdata('login');
-?>
+
 
 <!DOCTYPE html>
-<html>
-	<head>
-	  <meta charset="utf-8">
-	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	  <title><?php echo $title ?></title>
-    <!-- Tell the browser to be responsive to screen width -->
-	  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.5 -->
-	  <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css'); ?>">
-    <!-- Font Awesome -->
-	  <link rel="stylesheet" href="<?php echo base_url('assets/font-awesome/css/font-awesome.min.css'); ?>">
-    <!-- Ionicons -->
-    <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
-    <!-- Theme style -->
-	  <link rel="stylesheet" href="<?php echo base_url('assets/dist/css/AdminLTE.min.css'); ?>">
-	  
-	  <link rel="stylesheet" href="<?php echo base_url('assets/plugins/select2/select2.min.css'); ?>">
-        
-       <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrapValidator.min.css">
+<html lang="en">
 
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-folder instead of downloading all of them to reduce the load. -->
-	  <link rel="stylesheet" href="<?php echo base_url('assets/dist/css/skins/_all-skins.min.css'); ?>">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <title>Biro Jasa </title>
 
+  <!-- Bootstrap core CSS -->
 
+  <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
 
+  <link href="<?php echo base_url(); ?>assets/fonts/css/font-awesome.min.css" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>assets/css/animate.min.css" rel="stylesheet">
 
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-dialog.min.css">
+  <!-- Custom styling plus plugins -->
+  <link href="<?php echo base_url(); ?>assets/css/custom.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/maps/jquery-jvectormap-2.0.3.css" />
+  <link href="<?php echo base_url(); ?>assets/css/icheck/flat/green.css" rel="stylesheet" />
+  <link href="<?php echo base_url(); ?>assets/css/floatexamples.css" rel="stylesheet" type="text/css" />
 
+  <script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/js/nprogress.js"></script>
 
-    
-    <!-- jQuery 2.1.4 -->
-    <script src="<?php echo base_url('assets/plugins/jQuery/jQuery-2.1.4.min.js'); ?>"></script>
-    <!-- Bootstrap 3.3.5 -->
-    <script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js'); ?>"></script>
-        <!-- mask -->
-    <script src="<?php echo base_url(); ?>assets/plugins/input-mask/jquery.inputmask.js"></script>
-    <script src="<?php echo base_url(); ?>assets/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-    <script src="<?php echo base_url(); ?>assets/plugins/input-mask/jquery.inputmask.extensions.js"></script>
-    <!-- SlimScroll -->
-    <script src="<?php echo base_url('assets/plugins/slimScroll/jquery.slimscroll.min.js'); ?>"></script>
-    <!-- FastClick -->
-    <script src="<?php echo base_url('assets/plugins/fastclick/fastclick.min.js'); ?>"></script>
-    <!-- AdminLTE App -->
-    <script src="<?php echo base_url('assets/dist/js/app.min.js'); ?>"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="<?php echo base_url('assets/dist/js/demo.js'); ?>"></script>
-    <script src="<?php echo base_url(); ?>assets/js/bootstrapValidator.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/bootstrap-dialog.min.js"></script>
+  <!--[if lt IE 9]>
+        <script src="../assets/js/ie8-responsive-file-warning.js"></script>
+        <![endif]-->
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+   
+
+  <!-- flot js -->
+  <!--[if lte IE 8]><script type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
+
+</head>
 
 
+<body class="nav-md">
 
-	</head>
-	<body class="hold-transition skin-blue sidebar-mini">
-	  <!-- Site wrapper -->
-	  <div class="wrapper"> 
-
-		<header class="main-header">
-        <!-- Logo -->
-		  <a href="<?php echo site_url('user'); ?>" class="logo">
-          <!-- mini logo for sidebar mini 50x50 pixels -->
-			<span class="logo-mini"><b>B</b>NN</span>
-			<!-- logo for regular state and mobile devices -->
-			<span class="logo-lg"><b>Biaya</b> Balik Nama</span>
-		  </a>
-        <!-- Header Navbar: style can be found in header.less -->
-		  <nav class="navbar navbar-static-top" role="navigation">
-          <!-- Sidebar toggle button-->
-			<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-            <span class="sr-only">Toggle navigation</span>
-			  <span class="icon-bar"></span>
-			  <span class="icon-bar"></span>
-			  <span class="icon-bar"></span>
-			</a>
-			<div class="navbar-custom-menu">
-			  <ul class="nav navbar-nav">
-				  <!-- User Acount -->
-				  <li class="dropdown user user-menu">
-				  	<a href="#" class="dropdown-toggle" data-toggle = "dropdown"><i class="glyphicon glyphicon-user"></i><span class="hidden-xs"><?php echo $userdata['nama'] ?></span></a>
-				  	<ul class="dropdown-menu">
-					  <li class="user-header">
-							<p><?php echo $userdata['nama'] ?>
-						  	<small><?php echo $userdata['email'] ?></small>
-								</p>
-							<p><h2 style="color: white;">Users</h2></p>
-						</li>	
-                  <!-- Menu Footer-->
-                  <li class="user-footer">
-                    <div class="pull-left">
-                      <a href="<?php echo site_url('profil'); ?>" class="btn btn-default btn-flat">Profile</a>
-                    </div>
-                    <div class="pull-right">
-                      <a href="<?php echo site_url('login/logout'); ?>" class="btn btn-default btn-flat">Sign out</a>
-                    </div>
-                  </li>
-					  </ul>
-				  </li>
-				  
-						
-				  <!-- Control Sidebar Toggle Button -->
-				  <li>
-					<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-				  </li>
-			  </ul>
-			</div>
-		  </nav>
-		</header>
-
-      <!-- =============================================== -->
-
-      <!-- Left side column. contains the sidebar -->
+  <div class="container body">
 
 
-      <!-- =============================================== -->
+    <div class="main_container">
 
-      <!-- Content Wrapper. Contains page content -->
+      <div class="col-md-3 left_col">
+        <div class="left_col scroll-view">
 
-      
+          <div class="navbar nav_title" style="border: 0;">
+            <a href="#" class="site_title"><i class="fa fa-home"></i> <span>User</span></a>
+          </div>
+          <div class="clearfix"></div>
+
+
+

@@ -8,7 +8,7 @@ class admin_controller extends CI_Controller {
 		$datalogin = $this->session->userdata("admin_login");
 
 		if( $datalogin['login'] == false ) {
-			redirect('admin_login');
+			redirect('login');
 		} 
 
 		

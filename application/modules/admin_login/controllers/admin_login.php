@@ -11,7 +11,9 @@ class admin_login extends CI_Controller {
 	
 	function index(){
 
-		$this->load->view("admin_login_view");
+
+
+		// $this->load->view("admin_login_view");
 	}
 
  
@@ -62,7 +64,7 @@ class admin_login extends CI_Controller {
 		 function logout(){
 
 		 	$this->session->unset_userdata("admin_login",true);
-		 	$this->load->view('admin_login_view');
+		 	redirect('login');
 		 }
 
 	

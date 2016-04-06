@@ -1,47 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Sistem Informasi Biaya Balik Nama</title>
+  <title>Biro Jasa | </title>
 
-        <!-- CSS -->
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/font-awesome/css/font-awesome.min.css">
-		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/form-elements.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
-		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrapValidator.min.css">
+  <!-- Bootstrap core CSS -->
+  
 
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <link href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="<?php echo base_url(); ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>assets/css/animate.min.css" rel="stylesheet">
+
+  <!-- Custom styling plus plugins -->
+  <link href="<?php echo base_url(); ?>assets/css/custom.css" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>assets/css/icheck/flat/green.css" rel="stylesheet">
+
+  
+
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-dialog.min.css">
+
+  <!--[if lt IE 9]>
+        <script src="../assets/js/ie8-responsive-file-warning.js"></script>
         <![endif]-->
 
-        <!-- Favicon and touch icons -->
-        <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/ico/favicon.png">
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?php echo base_url(); ?>assets/ico/apple-touch-icon-144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo base_url(); ?>assets/ico/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo base_url(); ?>assets/ico/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="<?php echo base_url(); ?>assets/ico/apple-touch-icon-57-precomposed.png">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
 
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-dialog.min.css">
+</head>
 
- 
+<body style="background:#F7F7F7;" class="hold-transition login-page">
 
-    </head>
-
-    <body>
-
-
-
-
-<div class="modal fade bs-example-modal-sm" id="myPleaseWait" tabindex="-1"
+  <div class="modal fade bs-example-modal-sm" id="myPleaseWait" tabindex="-1"
     role="dialog" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -62,174 +61,90 @@
         </div>
     </div>
 </div>
-<!-- Modal ends Here -->
 
 
 
+  <div class="">
+    <a class="hiddenanchor" id="toregister"></a>
+    <a class="hiddenanchor" id="tologin"></a>
 
-
-        <!-- Top content -->
-      <div class="top-content">
-        	
-            <div class="inner-bg">
-                <div class="container">
-                	
-                    <div class="row">
-                        <div class="col-sm-8 col-sm-offset-2 text">
-                            <h1><strong>SISFO BBN</strong> Login &amp; Pendaftaran </h1>
-                            <div class="description">
-                            	<p>Sistem Informasi Biaya Balik Nama Kendaraan</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-sm-5">
-                        	
-                        	<div class="form-box">
-	                        	<div class="form-top">
-	                        		<div class="form-top-left">
-	                        			<h3>Login </h3>
-	                            		<p>Masukkan username dan password untuk masuk:</p>
-	                        		</div>
-	                        		<div class="form-top-right">
-	                        			<i class="fa fa-key"></i>
-	                        		</div>
-	                            </div>
-	                            <div class="form-bottom">
-				                    <form role="form" action="" method="post" class="login-form">
-				                    	<div class="form-group">
-				                    		<label class="sr-only" for="form-username">Username</label>
-				                        	<input type="text" name="form-username" placeholder="Username..." class="form-username form-control" id="form-username">
-				                        </div>
-				                        <div class="form-group">
-				                        	<label class="sr-only" for="form-password">Password</label>
-				                        	<input type="password" name="form-password" placeholder="Password..." class="form-password form-control" id="form-password">
-				                        
-                                        <input type="hidden" id="mask" name="mask" />
-                                        
-                                        </div>
-				                        <button type="submit" class="btn">Sign In!</button>
-                                       <a href="<?php echo site_url('lupa_password'); ?>"><u>Lupa Password</u></a>
-                                      
-				                    </form>
-			                    </div>
-		                    </div>
-		                
-		                	<!-- <div class="social-login">
-	                        	<h3>...or login with:</h3>
-	                        	<div class="social-login-buttons">
-		                        	<a class="btn btn-link-1 btn-link-1-facebook" href="#">
-		                        		<i class="fa fa-facebook"></i> Facebook
-		                        	</a>
-		                        	<a class="btn btn-link-1 btn-link-1-twitter" href="#">
-		                        		<i class="fa fa-twitter"></i> Twitter
-		                        	</a>
-		                        	<a class="btn btn-link-1 btn-link-1-google-plus" href="#">
-		                        		<i class="fa fa-google-plus"></i> Google Plus
-		                        	</a>
-	                        	</div>
-	                        </div> -->
-	                        
-                        </div>
-                        
-                        <div class="col-sm-1 middle-border"></div>
-                        <div class="col-sm-1"></div>
-                        	
-                        <div class="col-sm-5">
-                        	
-                        	<div class="form-box">
-                        		<div class="form-top">
-	                        		<div class="form-top-left">
-	                        			<h3>Daftar Sekarang</h3>
-	                            		<p>Masukkan formulir berikut :</p>
-	                        		</div>
-	                        		<div class="form-top-right">
-	                        			<i class="fa fa-pencil"></i>
-	                        		</div>
-	                            </div>
-	                            <div class="form-bottom">
-				                    <form id="frm_registrasi" role="form" action="" method="post" class="registration-form">
-				                    	<div class="form-group">
-			                    		  <label class="sr-only" for="nama">First name</label>
-			                    		  <input type="text" name="nama" placeholder="Nama" class="nama form-control" id="nama">
-				                        </div>
-                                        
-                                         <div class="form-group">
-				                        	<label class="sr-only" for="alamat">Alamat</label>
-				                        	<textarea name="alamat" placeholder="Alamat" 
-				                        				class="alamat form-control" id="alamat"></textarea>
-				                        </div>
-                                        
-				                        <div class="form-group">
-				                        	<label class="sr-only" for="nomor_ktp">Nomor KTP</label>
-				                        	<input type="text" name="nomor_ktp" placeholder="Nomor KTP" class="nomor_ktp form-control" id="nomor_ktp">
-				                        </div>
-                                        
-                                     <div class="form-group">
-				                        	<label class="sr-only" for="nomor_hp">Nomor HP</label>
-				                        	<input type="text" name="nomor_hp" placeholder="HP" class="form-last-name form-control" id="nomor_hp">
-				                        </div>     
-                                        
-                                        
-				                        <div class="form-group">
-				                        	<label class="sr-only" for="email">Email</label>
-				                        	<input type="text" name="email" placeholder="Email" class="email form-control" id="email">
-				                        </div>
-
-                                         <div class="form-group">
-                                            <label class="sr-only" for="password">Password</label>
-                                            <input type="password" name="password" placeholder="Password" class="email form-control" id="password">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="sr-only" for="password2">Ulangi Password</label>
-                                            <input type="password" name="password2" placeholder="Ulangi Password" class="email form-control" id="password2">
-                                        </div>
-				                       
-				                        <button type="submit" class="btn">Daftar Sekarang!</button>
-				                    </form>
-			                    </div>
-                        	</div>
-                        	
-                        </div>
-                    </div>
-                    
-                </div>
+    <div id="wrapper">
+      <div id="login" class="animate form">
+        <section class="login_content">
+          <form role="form" action="login/ceklogin" method="post" class="login-form">
+            <h1>Login</h1>
+            <div>
+              <input name="form-username" id="form-username" type="text" class="form-username form-control" placeholder="Username" />
             </div>
-            
-        </div>
+            <div>
+              <input name="form-password" id="form-password" type="password" class="form-password form-control" placeholder="Password" />
+              <input type="hidden" id="mask" name="mask" />
+            </div>
+            <div>
+            <button type="submit" class="btn btn-primary">Log in</button>
+              
+            </div>
+            <div class="clearfix"></div>
+            <div class="separator">
 
-        <!-- Footer -->
-        <footer>
-        	<div class="container">
-        		<div class="row">
-        			
-        			<div class="col-sm-8 col-sm-offset-2">
-        				<div class="footer-border"></div>
-        				<p>Dikelola oleh <a href="http://tigapilarmandiri.com" target="_blank"><strong>TIGA PILAR MAJU MANDIRI</strong></a> 
-        					hak cipta dilindungi undang undang. </p>
-        			</div>
-        			
-        		</div>
-        	</div>
-        </footer>
+              <p class="change_link">Kesalahan
+                <a href="#toregister" class="to_register"> Lupa password? </a>
+              </p>
+              <div class="clearfix"></div>
+              <br />
+              <div>
+                <h1></i> Biro Jasa!</h1>
 
-        <!-- Javascript -->
-        <script src="<?php echo base_url(); ?>assets/js/jquery-1.11.1.min.js"></script>
-        <script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="<?php echo base_url(); ?>assets/js/jquery.backstretch.min.js"></script>
-        <script src="<?php echo base_url(); ?>assets/js/jquery.md5.js"></script>
-		<script src="<?php echo base_url(); ?>assets/js/bootstrapValidator.min.js"></script>
-        <script src="<?php echo base_url(); ?>assets/js/bootstrap-dialog.min.js"></script>
-        
+                <p>Dikelola oleh TIGA PILAR MAJU MANDIRI hak cipta dilindungi undang undang. </p>
+              </div>
+            </div>
+          </form>
+          <!-- form -->
+        </section>
+        <!-- content -->
+      </div>
+      <div id="register" class="animate form">
+        <section class="login_content">
+          <form>
+            <h1>Lupa Password</h1>
+            <div>
+              <input name="email" id="email" type="text" class="form-control" placeholder="Email" required="" />
+            </div>
+            <div>
+              <a class="btn btn-default submit" >Submit</a>
+            </div>
+            <div class="clearfix"></div>
+            <div class="separator">
+
+              <p class="change_link">Ingat Password ?
+                <a href="#tologin" class="to_register"> Log in </a>
+              </p>
+              <div class="clearfix"></div>
+              <br />
+              <div>
+                <h1></i> Biro Jasa!</h1>
+
+                <p>Dikelola oleh TIGA PILAR MAJU MANDIRI hak cipta dilindungi undang undang. </p>
+              </div>
+            </div>
+          </form>
+          <!-- form -->
+        </section>
+        <!-- content -->
+      </div>
+    </div>
+  </div>
+
+    <script src="<?php echo base_url(); ?>assets/js/jquery-1.11.1.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/jquery.md5.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/bootstrap-dialog.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/jquery.backstretch.min.js"></script>
+     
+
         <?php 
         $this->load->view("login_view_js");
-        ?>        
-        <!--[if lt IE 10]>
-            <script src="<?php echo base_url(); ?>assets/js/placeholder.js"></script>
-        <![endif]-->
+        ?>    
 
-    </body>
+</body>
 
 </html>

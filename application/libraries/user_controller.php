@@ -5,11 +5,11 @@ class user_controller extends CI_Controller {
 	function user_controller() {
 		parent::__construct();  
 
-		$datalogin = $this->session->userdata("login");
+		 $datalogin = $this->session->userdata("user_login");
 
-		if( $datalogin['login'] == false ) {
-			redirect('login/');
-		} 
+		 if( $datalogin['login'] == false ) {
+		 	redirect('login/');
+		 } 
 		
 	 
 		// sleep(1);

@@ -19,16 +19,6 @@
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
               </a>
             </li>
-            <li class="treeview">
-              <a href="<?php echo site_url('admin_data_list'); ?>">
-                <i class="fa fa-pencil"></i> <span>Data</span></i>
-              </a>
-            </li>
-            <li class="treeview">
-              <a href="<?php echo site_url('admin_profil'); ?>">
-                <i class="fa fa-user"></i> <span>Data</span></i>
-              </a>
-            </li>
           </ul>
         </section>
         <!-- /.sidebar -->

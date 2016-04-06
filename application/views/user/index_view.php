@@ -1,31 +1,21 @@
-      <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-          <h1>
-            Dashboard
-            <small>Welcome</small>
-          </h1>
-        </section>
-
-        <!-- Main content -->
-        <section class="content">
-
-          <!-- Default box -->
-          <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">Dashboard</h3>
-              <div class="box-tools pull-right">
-                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-                <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+      <div class="right_col" role="main">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="dashboard_graph">
+              <div class="row x_title">
+                <div class="col-md-6">
+                  <h3>Dashboard User</h3>
+                </div>
               </div>
-            </div>
-            <div class="box-body">
-              Welcome
-            </div><!-- /.box-body -->
-            <div class="box-footer">
-            	footer
-            </div><!-- /.box-footer-->
-          </div><!-- /.box -->
+              <div>
+              <!-- Start Page -->
 
-        </section><!-- /.content -->
-      </div><!-- /.content-wrapper -->
+                <h1>Wellcome</h1>
+                <!-- End Page -->
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+        
