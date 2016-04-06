@@ -19,15 +19,9 @@ $userdata = $this->session->userdata('bj_login');
             <div class="menu_section">
               <h3>General</h3>
               <ul class="nav side-menu">
-                <li><a><i class="fa fa-dashboard"></i> Home <span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu" style="display: none">
-                    <li><a href="index.html">Dashboard</a>
-                    </li>
-                    <li><a href="index2.html">Dashboard2</a>
-                    </li>
-                    <li><a href="index3.html">Dashboard3</a>
-                    </li>
-                  </ul>
+                <li><a href="<?php echo site_url('/'); ?>biro_jasa"><i class="fa fa-dashboard"></i> Home </a>
+                </li>
+                <li><a href="<?php echo site_url('/'); ?>bj_profil"><i class="fa fa-user"></i> Profil </span></a>
                 </li>
               </ul>
             </div>
@@ -70,7 +64,7 @@ $userdata = $this->session->userdata('bj_login');
                   <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-                  <li><a href="javascript:;">  Profile</a>
+                  <li><a href="<?php echo site_url(); ?>/bj_profil">Profile</a>
                   </li>
                   <li><a href="<?php echo site_url(); ?>/login/logout_bj"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                   </li>

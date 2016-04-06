@@ -1,25 +1,33 @@
-<?php
-class admin_profil extends admin_controller{
+<?php 
+
+
+class bj_profil extends biro_jasa_controller {
+	
 	var $controller;
-	function admin_profil(){
-		$this->controller = get_class($this);
+	public function bj_profil(){
 		parent::__construct();
+		$this->controller = get_class($this);
 	}
 	
-	
-	function index(){
+		function index(){
+
 		$data_array=array();
 		$content = $this->load->view($this->controller."_view",$data_array,true);
-
-		$this->set_subtitle("Profil");
-		$this->set_title("profil");
+			
+		$this->set_subtitle("Biro Jasa");
+		$this->set_title("DASHBOARD");
 		$this->set_content($content);
 		$this->cetak();
+
+
+				
+			
+		
 	}
 
 	 function cek_password($password){
 
-		$userdata = $this->session->userdata('admin_login');
+		$userdata = $this->session->userdata('bj_login');
 
 		
 		$pswd = md5($password);
@@ -68,7 +76,7 @@ class admin_profil extends admin_controller{
 
 			$data = array('password' => $password_baru);
 
-			$login = $this->session->userdata("admin_login");
+			$login = $this->session->userdata("bj_login");
 			$user_id = $login['id_user'];
 
 			$this->db->where('id', $user_id);
@@ -78,7 +86,6 @@ class admin_profil extends admin_controller{
 			}
 			else {
 				$ret = array("error"=>false,"message"=>"Password Berhasil Di Ubah");
-
 
 			}
 		}

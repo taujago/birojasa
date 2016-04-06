@@ -37,7 +37,7 @@ folder instead of downloading all of them to reduce the load. -->
 
 
 
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-dialog.min.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap/bootstrap-dialog.min.css">
 
 
     
@@ -58,7 +58,7 @@ folder instead of downloading all of them to reduce the load. -->
     <!-- AdminLTE for demo purposes -->
     <script src="<?php echo base_url('assets/dist/js/demo.js'); ?>"></script>
     <script src="<?php echo base_url(); ?>assets/js/bootstrapValidator.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/bootstrap-dialog.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/bootstrap/bootstrap-dialog.min.js"></script>
 
 
 
@@ -71,9 +71,9 @@ folder instead of downloading all of them to reduce the load. -->
         <!-- Logo -->
 		  <a href="<?php echo site_url('user'); ?>" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-			<span class="logo-mini"><b>B</b>NN</span>
+			<span class="logo-mini"><b>S</b>A</span>
 			<!-- logo for regular state and mobile devices -->
-			<span class="logo-lg"><b>Biaya</b> Balik Nama</span>
+			<span class="logo-lg"><b>Super </b>Admin</span>
 		  </a>
         <!-- Header Navbar: style can be found in header.less -->
 		  <nav class="navbar navbar-static-top" role="navigation">

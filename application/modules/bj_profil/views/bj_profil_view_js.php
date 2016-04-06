@@ -1,9 +1,5 @@
 <script type="text/javascript">
-
-
-
-
-$(document).on('click', '#tombolsubmit', function(){
+	$(document).on('click', '#tombolsubmit', function(){
     // $('#form_data').submit();
     // return false;
 
@@ -25,7 +21,7 @@ $(document).on('click', '#tombolsubmit', function(){
             
                             }
                             );
-                             
+                            location.href='<?php echo site_url("user"); ?>'; 
                 }
                 else {
                     BootstrapDialog.alert({
@@ -46,8 +42,5 @@ $(document).on('click', '#tombolsubmit', function(){
             
 
 });
-
-    
-
 
 </script>

@@ -19,6 +19,11 @@
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
               </a>
             </li>
+            <li class="treeview">
+              <a href="<?php echo site_url('sa_add_bj'); ?>">
+                <i class="fa fa-user"></i> <span>Tambah Biro Jasa</span></i>
+              </a>
+            </li>
           </ul>
         </section>
         <!-- /.sidebar -->

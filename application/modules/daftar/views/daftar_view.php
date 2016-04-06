@@ -39,7 +39,7 @@
 		
 			<!--form-->
 
-			           <form id="form_data" class="form-horizontal" method="post" action="<?php echo site_url('cari_data/simpan'); ?>" role="form">     
+		<form id="form_data" class="form-horizontal" method="post" action="<?php echo site_url('cari_data/simpan'); ?>" role="form">     
 			<div class="box box-primary" id="bagian_form">
             <div class="box-header with-border">
               <h3 class="box-title">Data</h3>

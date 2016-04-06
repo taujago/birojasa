@@ -24,9 +24,12 @@
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/maps/jquery-jvectormap-2.0.3.css" />
   <link href="<?php echo base_url(); ?>assets/css/icheck/flat/green.css" rel="stylesheet" />
   <link href="<?php echo base_url(); ?>assets/css/floatexamples.css" rel="stylesheet" type="text/css" />
+   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap/bootstrap-dialog.min.css">
 
   <script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/nprogress.js"></script>
+ 
+  <script src="<?php echo base_url(); ?>assets/js/bootstrap/bootstrap-dialog.min.js"></script>
 
   <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>
