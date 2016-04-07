@@ -71,9 +71,9 @@ folder instead of downloading all of them to reduce the load. -->
         <!-- Logo -->
 		  <a href="<?php echo site_url('user'); ?>" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-			<span class="logo-mini"><b>S</b>A</span>
+			<span class="logo-mini"><b>B</b>J</span>
 			<!-- logo for regular state and mobile devices -->
-			<span class="logo-lg"><b>Super </b>Admin</span>
+			<span class="logo-lg"><b>Administrator</b></span>
 		  </a>
         <!-- Header Navbar: style can be found in header.less -->
 		  <nav class="navbar navbar-static-top" role="navigation">
