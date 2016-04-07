@@ -15,7 +15,7 @@ class admin extends admin_controller {
 
 
 		$data_array=array();
-		$content = $this->load->view("admin/index_view",$data_array,true);
+		$content = "WELCOME MR. ADMIN "; //$this->load->view("admin/index_view",$data_array,true);
 			
 		$this->set_subtitle("DASHBOARD");
 		$this->set_title("DASHBOARD");

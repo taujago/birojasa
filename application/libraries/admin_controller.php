@@ -28,9 +28,9 @@ class admin_controller extends CI_Controller {
 	
 	function cetak(){
 		$arr = array();	
-		$this->load->view('admin/header_view',$this->content);
-		$this->load->view("admin/side_bar_view",$this->content);
-		$this->load->view("admin/footer_view", $this->content);
+		$this->load->view('admin/admin_theme',$this->content);
+		// $this->load->view("admin/side_bar_view",$this->content);
+		// $this->load->view("admin/footer_view", $this->content);
 		
 	}
 
