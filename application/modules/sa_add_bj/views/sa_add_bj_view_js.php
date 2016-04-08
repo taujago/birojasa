@@ -27,28 +27,6 @@ $('#form_data').bootstrapValidator({
                         }
                     },
 
-                    password: {
-                        validators: {
-                            notEmpty: {
-                                message : 'Password tidak boleh kosong' 
-                            },
-                            stringLength: {
-                                min: 6, 
-                                message: 'Panjang minimal 6 karakter'
-                            }
-                        }
-                    },
-                    re_password: {
-                        validators: {
-                            notEmpty: {
-                                message: 'tidak boleh kosong'
-                            },
-                            identical: {
-                                field: 'password',
-                                message: 'passwod yang anda masukkan tidak sesuai'
-                            }
-                        }
-                    }, 
                     email: {
                         validators: {
                             notEmpty: {
@@ -60,11 +38,51 @@ $('#form_data').bootstrapValidator({
                             remote: {
                                 type: 'POST',
                                 url: "<?php echo site_url('sa_add_bj/cekEmail'); ?>",
-                                message: 'Email ini sudah terdaftar',
+                                message: 'Biro jasa dengan email ini sudah terdaftar',
+                                delay: 2000
+                            }
+                        }
+                    },
+                    no_siup: {
+                        validators: {
+                            notEmpty: {
+                                message : 'Email tidak boleh kosong'    
+                            },
+                            remote: {
+                                type: 'POST',
+                                url: "<?php echo site_url('sa_add_bj/ceksiup'); ?>",
+                                message: 'Biro jasa dengan nomor SIUP ini sudah terdaftar',
+                                delay: 2000
+                            }
+                        }
+                    },
+                    no_tdp: {
+                        validators: {
+                            notEmpty: {
+                                message : 'No. TDP tidak boleh kosong'    
+                            },
+                            remote: {
+                                type: 'POST',
+                                url: "<?php echo site_url('sa_add_bj/cektdp'); ?>",
+                                message: 'Biro jasa dengan nomor TDP ini sudah terdaftar',
+                                delay: 2000
+                            }
+                        }
+                    },
+                    no_npwp: {
+                        validators: {
+                            notEmpty: {
+                                message : 'Email tidak boleh kosong'    
+                            },
+                            remote: {
+                                type: 'POST',
+                                url: "<?php echo site_url('sa_add_bj/ceknpwp'); ?>",
+                                message: 'Biro jasa dengan nomor NPWP ini sudah terdaftar',
                                 delay: 2000
                             }
                         }
                     }
+
 
                     
                 }

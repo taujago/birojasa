@@ -14,6 +14,7 @@ class admin_controller extends CI_Controller {
 		
 	}
 
+
 	function set_content($str) {
 		$this->content['content'] = $str;
 	}

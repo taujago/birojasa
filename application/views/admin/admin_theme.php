@@ -150,8 +150,8 @@ folder instead of downloading all of them to reduce the load. -->
               </a>
             </li>
             <li class="treeview">
-              <a href="<?php echo site_url('sa_add_bj'); ?>">
-                <i class="fa fa-user"></i> <span>Tambah Biro Jasa</span></i>
+              <a href="<?php echo site_url('sa_birojasa'); ?>">
+                <i class="fa fa-user"></i> <span>Biro Jasa</span></i>
               </a>
             </li>
           </ul>

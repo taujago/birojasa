@@ -23,12 +23,14 @@ function index(){
 		$this->set_content($content);
 		$this->cetak();
 }
+	
+
 
 	function cekEmail(){
 		$email = $this->input->post('email');
 		$valid = true;
 		$this->db->where('email', $email);
-		$jumlah = $this->db->get("pengguna")->num_rows();	
+		$jumlah = $this->db->get("biro_jasa")->num_rows();	
 		if($jumlah == 1) {
 			$valid = false;
 		}
@@ -37,17 +39,59 @@ function index(){
 	
 	}
 
+	function ceksiup(){
+		$no_siup = $this->input->post('no_siup');
+		$valid = true;
+		$this->db->where('no_siup', $no_siup);
+		$jumlah = $this->db->get("biro_jasa")->num_rows();	
+		if($jumlah == 1) {
+			$valid = false;
+		}
+		
+		echo json_encode(array('valid' => $valid));
+	}
+
+		function ceknpwp(){
+		$no_npwp = $this->input->post('no_npwp');
+		$valid = true;
+		$this->db->where('no_npwp', $no_npwp);
+		$jumlah = $this->db->get("biro_jasa")->num_rows();	
+		if($jumlah == 1) {
+			$valid = false;
+		}
+		
+		echo json_encode(array('valid' => $valid));
+	}
+
+		function cektdp(){
+		$no_tdp = $this->input->post('no_tdp');
+		$valid = true;
+		$this->db->where('no_tdp', $no_tdp);
+		$jumlah = $this->db->get("biro_jasa")->num_rows();	
+		if($jumlah == 1) {
+			$valid = false;
+		}
+		
+		echo json_encode(array('valid' => $valid));
+	}
+
 	function simpan(){
 		$post = $this->input->post();
 		$password = md5($post['password']);
-		$data = array('nama' => $post['nama'],
+		$data = array(  'nama' => $post['nama'],
 						'email' => $post['email'],
 						'alamat' => $post['alamat'],
-						'password' => $password,
-						'level' => 2);
-		$this->db->insert('pengguna', $data); 
+						'no_siup' => $post['no_siup'],
+						'no_npwp' => $post['no_npwp'],
+						'no_tdp' => $post['no_tdp'],
+						'telp' => $post['telp'],
+						'hp' => $post['hp'],
 
-		redirect('sa_add_bj');
+
+						);
+		$this->db->insert('biro_jasa', $data); 
+
+		redirect('sa_birojasa');
 	}
 
 
