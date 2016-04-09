@@ -12,19 +12,7 @@ class sa_birojasa extends admin_controller{
 		
 	}
 
-	function simpanberhasil(){
-		
-		$data_array=array();
-		$content = $this->load->view($this->controller."_view",$data_array,true);
-		
-		
 
-		// $ket = '<div class="callout callout-info"><h4>Succes</h4><p>Data Biro Jasa Anda Berhasil Dimasukkan</p></div>';
-		$this->set_subtitle("Biro Jasa");
-		$this->set_title("Biro Jasa");
-		$this->set_content($content);
-		$this->cetak();
-	}
 
 
 
@@ -84,19 +72,18 @@ function index(){
         $arr_data = array();
         foreach($result as $row) : 
 		// $daft_id = $row['daft_id'];
-        	 
+        $id = $row['id'];
+        $hapus = "<a href ='sa_birojasa/hapusdata?id=$id' class='btn btn-app'><i class='fa fa-trash'></i>Hapus</a><a href ='sa_birojasa/editdata?id=$id' class='btn btn-app'><i class='fa fa-edit'></i>Edit</a>";
         	
-        
-
         	 
         	$arr_data[] = array(
         		$row['id'],
-        		$row['nama'], 
+        		$row['nama'],
         		$row['alamat'],
-        		$row['no_siup'],
         		$row['telp'],
         		$row['hp'],
         		$row['email'],
+        		$hapus
         		
          			 
         		  				);
@@ -109,6 +96,75 @@ function index(){
         	);
          
         echo json_encode($responce); 
+    }
+
+    function editsimpan(){
+    	
+    	$post = $this->input->post();
+    	$id = $post['id'];
+
+    	$data = array(  'id' => $post['id'],
+						'nama' => $post['nama'],
+						'email' => $post['email'],
+						'alamat' => $post['alamat'],
+						'no_siup' => $post['no_siup'],
+						'no_npwp' => $post['no_npwp'],
+						'no_tdp' => $post['no_tdp'],
+						'telp' => $post['telp'],
+						'hp' => $post['hp'],
+
+
+						);
+    	
+
+    	$this->db->where('id', $id);
+    	$this->db->update('biro_jasa', $data);
+    	redirect('sa_birojasa');
+
+    }
+
+    function editdata(){
+    	 $get = $this->input->get(); 
+    	 $id = $get['id'];
+
+    	 $this->db->where('id',$id);
+    	 $biro_jasa = $this->db->get('biro_jasa');
+    	 $data = $biro_jasa->row();
+    	 
+		
+
+    	$data_array=array(
+    			'id' => $data->id,
+    			'nama' => $data->nama,
+    			'no_siup' => $data->no_siup,
+    			'no_npwp' => $data->no_npwp,
+    			'no_tdp' => $data->no_tdp,
+    			'telp' => $data->telp,
+    			'alamat' => $data->alamat,
+    			'email' => $data->email,
+    			'hp' => $data->hp,
+
+    		);
+		$content = $this->load->view("sa_edit_birojasa_view",$data_array,true);
+
+		$this->set_subtitle("Edit Biro Jasa");
+		$this->set_title("Edit Biro Jasa");
+		$this->set_content($content);
+		$this->cetak();
+
+    }
+
+
+
+
+    function hapusdata(){
+    	$get = $this->input->get();
+    	$id = $get['id'];
+
+    	$data = array('id' => $id, );
+
+    	$this->db->delete('biro_jasa', $data);
+    	redirect('sa_birojasa');
     }
 
 

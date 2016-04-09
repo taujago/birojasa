@@ -77,7 +77,7 @@ function index(){
 
 	function simpan(){
 		$post = $this->input->post();
-		$password = md5($post['password']);
+		
 		$data = array(  'nama' => $post['nama'],
 						'email' => $post['email'],
 						'alamat' => $post['alamat'],

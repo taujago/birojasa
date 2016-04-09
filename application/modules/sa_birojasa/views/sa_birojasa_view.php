@@ -56,14 +56,15 @@
 <thead>
   <tr  >
 
+
         
         <th width="5%">ID</th>
         <th width="15%">Nama</th>
         <th width="16%">Alamat </th>
-        <th width="10%">No. SIUP</th>
         <th width="5%">Telpon</th>
         <th width="5%">Hp</th>
         <th width="8%">Email</th>
+        <th width="8%">#</th>
     </tr>
   
 </thead>

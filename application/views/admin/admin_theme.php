@@ -118,15 +118,6 @@ folder instead of downloading all of them to reduce the load. -->
 		  </nav>
 		</header>
 
-      <!-- =============================================== -->
-
-      <!-- Left side column. contains the sidebar -->
-
-
-      <!-- =============================================== -->
-
-      <!-- Content Wrapper. Contains page content -->
-
       
       <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
