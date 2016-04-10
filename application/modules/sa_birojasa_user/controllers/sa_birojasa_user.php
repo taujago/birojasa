@@ -1,11 +1,12 @@
 <?php 
-class sa_birojasa extends admin_controller{
+class sa_birojasa_user extends admin_controller{
 	var $controller;
-	function sa_birojasa(){
+	function sa_birojasa_user(){
 		parent::__construct();
 
 		$this->controller = get_class($this);
-		$this->load->model('biro_jasa_model','dm');
+		$this->load->model('bju_model','dm');
+        $this->load->model("core_model","cm");
 		
 		//$this->load->helper("serviceurl");
 		
@@ -22,8 +23,8 @@ function index(){
 		$data_array=array();
 		$content = $this->load->view($this->controller."_view",$data_array,true);
 
-		$this->set_subtitle("Biro Jasa");
-		$this->set_title("Biro Jasa");
+		$this->set_subtitle("User Biro Jasa");
+		$this->set_title("User Biro Jasa");
 		$this->set_content($content);
 		$this->cetak();
 }
@@ -33,10 +34,13 @@ function baru(){
         $data_array=array();
 
         $data_array['action'] = 'simpan';
+
+        $data_array['arr_birojasa'] = $this->cm->arr_dropdown("biro_jasa", "id", "nama", "nama");
+
         $content = $this->load->view($this->controller."_form_view",$data_array,true);
 
-        $this->set_subtitle("Tambah Biro Jasa");
-        $this->set_title("Tambah Biro Jasa");
+        $this->set_subtitle("Tambah Pengguna Biro  Jasa");
+        $this->set_title("Tambah Pengguna Biro Jasa");
         $this->set_content($content);
         $this->cetak();
 }
@@ -61,7 +65,7 @@ function simpan(){
 
 
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('no_npwp','NPWP','required');    
+        $this->form_validation->set_rules('nama','NPWP','required');    
         $this->form_validation->set_rules('no_siup','SIUP','required');    
         $this->form_validation->set_rules('email','Email','callback_cek_email');    
         // $this->form_validation->set_rules('pelaksana_nip','NIP','required');         
@@ -78,12 +82,11 @@ if($this->form_validation->run() == TRUE ) {
 
         
         $res = $this->db->insert('biro_jasa', $post); 
-        
         if($res){
-            $arr = array("error"=>true,'message'=>"BERHASIL DISIMPAN");
+            $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
         }
         else {
-             $arr = array("error"=>false,'message'=>"GAGAL  DISIMPAN");
+             $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
         }
 }
 else {
@@ -129,47 +132,6 @@ if($this->form_validation->run() == TRUE ) {
 else {
     $arr = array("error"=>true,'message'=>validation_errors());
 }
-        echo json_encode($arr);
-}
-
-
-
-function update(){
-
-    $post = $this->input->post();
-   
-       
-
-
-        $this->load->library('form_validation');
-        $this->form_validation->set_rules('no_npwp','NPWP','required');    
-        $this->form_validation->set_rules('no_siup','SIUP','required');    
-        // $this->form_validation->set_rules('email','Email','callback_cek_email');    
-        // $this->form_validation->set_rules('pelaksana_nip','NIP','required');         
-         
-        $this->form_validation->set_message('required', ' %s Harus diisi ');
-        
-        $this->form_validation->set_error_delimiters('', '<br>');
-
-     
-
-        //show_array($data);
-
-if($this->form_validation->run() == TRUE ) { 
-
-        $this->db->where("id",$post['id']);
-        $res = $this->db->update('biro_jasa', $post); 
-        if($res){
-            $arr = array("error"=>false,'message'=>"BERHASIL DIUPDATE");
-        }
-        else {
-             $arr = array("error"=>true,'message'=>"GAGAL  DIUPDATE");
-        }
-}
-else {
-    $arr = array("error"=>true,'message'=>validation_errors());
-}
-
         echo json_encode($arr);
 }
 
@@ -219,16 +181,15 @@ else {
 		// $daft_id = $row['daft_id'];
         $id = $row['id'];
         $hapus = "<a href ='#' onclick=\"hapus('$id')\" class='btn btn-danger btn-xs'><i class='fa fa-trash'></i>Hapus</a>
-        <a href ='sa_birojasa/editdata?id=$id' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i>Edit</a>";
+        <a href ='$this->controller/editdata?id=$id' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i>Edit</a>";
         	
         	 
         	$arr_data[] = array(
         		$row['id'],
         		$row['nama'],
-        		$row['alamat'],
-        		$row['telp'],
-        		$row['hp'],
         		$row['email'],
+        		$row['nomor_hp'],
+        		$row['birojasa'],        		 
         		$hapus
         		
          			 
@@ -266,7 +227,7 @@ else {
 
     	$this->db->where('id', $id);
     	$this->db->update('biro_jasa', $data);
-    	redirect('sa_birojasa');
+    	redirect('sa_birojasa_user');
 
     }
 
@@ -295,7 +256,7 @@ else {
     	// 		'hp' => $data->hp,
 
     	// 	);
-		$content = $this->load->view("sa_birojasa_form_edit_view",$data,true);
+		$content = $this->load->view("sa_birojasa_user_form_edit_view",$data,true);
 
          // $content = $this->load->view($this->controller."_form_view",$data,true);
 
@@ -322,7 +283,7 @@ else {
         else {
             $arr = array("error"=>true,"message"=>"DATA GAGAL DIHAPUS ".mysql_error());
         }
-    	//redirect('sa_birojasa');
+    	//redirect('sa_birojasa_user');
         echo json_encode($arr);
     }
 
@@ -336,9 +297,9 @@ else {
 	// 					'alamat' => $post['alamat'],
 	// 					'password' => $password,
 	// 					'level' => 2);
-	// 	$this->db->insert('sa_birojasa', $data); 
+	// 	$this->db->insert('sa_birojasa_user', $data); 
 
-	// 	redirect('sa_birojasa');
+	// 	redirect('sa_birojasa_user');
 	// }
 
 
