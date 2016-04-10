@@ -1,5 +1,7 @@
  <link href="<?php echo base_url("assets") ?>/css/datepicker.css" rel="stylesheet">
 <script src="<?php echo base_url("assets") ?>/js/bootstrap-datepicker.js"></script>
+<script src="<?php echo base_url("assets") ?>/js/jquery.dataTables.min.js"></script>
+
  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.dataTables.min.css">
 
 
@@ -23,7 +25,7 @@
             <div class="col-md-3 pull-right">
               <div class="form-group">
                 <label></label>
-                <a href="<?php echo site_url('sa_add_bj'); ?>"><button type="button" class="btn btn-primary form-control"><i class="fa fa fa-plus-circle "></i> Tambah Biro Jasa</button></a>
+                <a href="<?php echo site_url("$this->controller/baru"); ?>"><button type="button" class="btn btn-primary form-control"><i class="fa fa fa-plus-circle "></i> Tambah Biro Jasa</button></a>
               </div>
             </div>
             </div>
@@ -58,13 +60,13 @@
 
 
         
-        <th width="5%">ID</th>
-        <th width="15%">Nama</th>
-        <th width="16%">Alamat </th>
-        <th width="5%">Telpon</th>
-        <th width="5%">Hp</th>
-        <th width="8%">Email</th>
-        <th width="8%">#</th>
+        <th width="7%">ID</th>
+        <th width="23%">Nama</th>
+        <th width="21%">Alamat </th>
+        <th width="11%">Telpon</th>
+        <th width="10%">Hp</th>
+        <th width="14%">Email</th>
+        <th width="14%">#</th>
     </tr>
   
 </thead>

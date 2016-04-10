@@ -1,5 +1,4 @@
 <?php 
-
 class sa_birojasa extends admin_controller{
 	var $controller;
 	function sa_birojasa(){
@@ -28,6 +27,37 @@ function index(){
 		$this->set_content($content);
 		$this->cetak();
 }
+
+
+function baru(){
+        $data_array=array();
+
+        $data_array['action'] = 'simpan';
+        $content = $this->load->view($this->controller."_form_view",$data_array,true);
+
+        $this->set_subtitle("Tambah Biro Jasa");
+        $this->set_title("Tambah Biro Jasa");
+        $this->set_content($content);
+        $this->cetak();
+}
+
+function simpan(){
+
+
+    $post = $this->input->post();
+    unset($post['id']);
+       
+        
+        $res = $this->db->insert('biro_jasa', $post); 
+        if($res){
+            $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
+        }
+        else {
+             $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
+        }
+        echo json_encode($arr);
+}
+
 
     function get_data() {
 
@@ -73,7 +103,8 @@ function index(){
         foreach($result as $row) : 
 		// $daft_id = $row['daft_id'];
         $id = $row['id'];
-        $hapus = "<a href ='sa_birojasa/hapusdata?id=$id' class='btn btn-app'><i class='fa fa-trash'></i>Hapus</a><a href ='sa_birojasa/editdata?id=$id' class='btn btn-app'><i class='fa fa-edit'></i>Edit</a>";
+        $hapus = "<a href ='#' onclick=\"hapus('$id')\" class='btn btn-danger btn-xs'><i class='fa fa-trash'></i>Hapus</a>
+        <a href ='sa_birojasa/editdata?id=$id' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i>Edit</a>";
         	
         	 
         	$arr_data[] = array(
@@ -103,6 +134,7 @@ function index(){
     	$post = $this->input->post();
     	$id = $post['id'];
 
+
     	$data = array(  'id' => $post['id'],
 						'nama' => $post['nama'],
 						'email' => $post['email'],
@@ -129,23 +161,28 @@ function index(){
 
     	 $this->db->where('id',$id);
     	 $biro_jasa = $this->db->get('biro_jasa');
-    	 $data = $biro_jasa->row();
+    	 $data = $biro_jasa->row_array();
+
+         $data['action'] = 'update';
+         // show_array($data); exit;
     	 
 		
 
-    	$data_array=array(
-    			'id' => $data->id,
-    			'nama' => $data->nama,
-    			'no_siup' => $data->no_siup,
-    			'no_npwp' => $data->no_npwp,
-    			'no_tdp' => $data->no_tdp,
-    			'telp' => $data->telp,
-    			'alamat' => $data->alamat,
-    			'email' => $data->email,
-    			'hp' => $data->hp,
+    	// $data_array=array(
+    	// 		'id' => $data->id,
+    	// 		'nama' => $data->nama,
+    	// 		'no_siup' => $data->no_siup,
+    	// 		'no_npwp' => $data->no_npwp,
+    	// 		'no_tdp' => $data->no_tdp,
+    	// 		'telp' => $data->telp,
+    	// 		'alamat' => $data->alamat,
+    	// 		'email' => $data->email,
+    	// 		'hp' => $data->hp,
 
-    		);
-		$content = $this->load->view("sa_edit_birojasa_view",$data_array,true);
+    	// 	);
+		$content = $this->load->view("sa_birojasa_form_edit_view",$data,true);
+
+         // $content = $this->load->view($this->controller."_form_view",$data,true);
 
 		$this->set_subtitle("Edit Biro Jasa");
 		$this->set_title("Edit Biro Jasa");
@@ -158,13 +195,20 @@ function index(){
 
 
     function hapusdata(){
-    	$get = $this->input->get();
+    	$get = $this->input->post();
     	$id = $get['id'];
 
     	$data = array('id' => $id, );
 
-    	$this->db->delete('biro_jasa', $data);
-    	redirect('sa_birojasa');
+    	$res = $this->db->delete('biro_jasa', $data);
+        if($res){
+            $arr = array("error"=>false,"message"=>"DATA BERHASIL DIHAPUS");
+        }
+        else {
+            $arr = array("error"=>true,"message"=>"DATA GAGAL DIHAPUS ".mysql_error());
+        }
+    	//redirect('sa_birojasa');
+        echo json_encode($arr);
     }
 
 

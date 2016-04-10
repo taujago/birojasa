@@ -78,17 +78,18 @@ function index(){
 	function simpan(){
 		$post = $this->input->post();
 		
-		$data = array(  'nama' => $post['nama'],
+		$data = array(	'nama' => $post['nama'],
 						'email' => $post['email'],
 						'alamat' => $post['alamat'],
 						'no_siup' => $post['no_siup'],
 						'no_npwp' => $post['no_npwp'],
 						'no_tdp' => $post['no_tdp'],
 						'telp' => $post['telp'],
-						'hp' => $post['hp'],
+						'hp' => $post['hp']
 
 
 						);
+		
 		$this->db->insert('biro_jasa', $data); 
 
 		redirect('sa_birojasa');
