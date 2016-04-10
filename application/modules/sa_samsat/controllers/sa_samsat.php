@@ -1,11 +1,12 @@
 <?php 
-class sa_birojasa extends admin_controller{
+class sa_samsat extends admin_controller{
 	var $controller;
-	function sa_birojasa(){
+	function sa_samsat(){
 		parent::__construct();
 
 		$this->controller = get_class($this);
-		$this->load->model('biro_jasa_model','dm');
+		$this->load->model('samsat_model','dm');
+        $this->load->model("coremodel","cm");
 		
 		//$this->load->helper("serviceurl");
 		
@@ -22,8 +23,8 @@ function index(){
 		$data_array=array();
 		$content = $this->load->view($this->controller."_view",$data_array,true);
 
-		$this->set_subtitle("Biro Jasa");
-		$this->set_title("Biro Jasa");
+		$this->set_subtitle("Data Samsat");
+		$this->set_title("Data Samsat");
 		$this->set_content($content);
 		$this->cetak();
 }
@@ -33,10 +34,12 @@ function baru(){
         $data_array=array();
 
         $data_array['action'] = 'simpan';
+
+        $data_array['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
         $content = $this->load->view($this->controller."_form_view",$data_array,true);
 
-        $this->set_subtitle("Tambah Biro Jasa");
-        $this->set_title("Tambah Biro Jasa");
+        $this->set_subtitle("Tambah Samsat");
+        $this->set_title("Tambah Samsat");
         $this->set_content($content);
         $this->cetak();
 }
@@ -61,9 +64,9 @@ function simpan(){
 
 
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('no_npwp','NPWP','required');    
-        $this->form_validation->set_rules('no_siup','SIUP','required');    
-        $this->form_validation->set_rules('email','Email','callback_cek_email');    
+        $this->form_validation->set_rules('nama','NAMA','required');    
+        $this->form_validation->set_rules('alamat','ALAMAT','required');    
+        $this->form_validation->set_rules('telp','NO. TELP','required');    
         // $this->form_validation->set_rules('pelaksana_nip','NIP','required');         
          
         $this->form_validation->set_message('required', ' %s Harus diisi ');
@@ -77,13 +80,13 @@ function simpan(){
 if($this->form_validation->run() == TRUE ) { 
 
         
-        $res = $this->db->insert('biro_jasa', $post); 
+        $res = $this->db->insert('samsat', $post); 
         
         if($res){
-            $arr = array("error"=>true,'message'=>"BERHASIL DISIMPAN");
+            $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
         }
         else {
-             $arr = array("error"=>false,'message'=>"GAGAL  DISIMPAN");
+             $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
         }
 }
 else {
@@ -181,11 +184,10 @@ else {
 		// $daft_id = $row['daft_id'];
         $id = $row['id'];
         $hapus = "<a href ='#' onclick=\"hapus('$id')\" class='btn btn-danger btn-xs'><i class='fa fa-trash'></i>Hapus</a>
-        <a href ='sa_birojasa/editdata?id=$id' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i>Edit</a>";
+        <a href ='sa_samsat/editdata?id=$id' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i>Edit</a>";
         	
         	 
         	$arr_data[] = array(
-        		$row['id_polda'],
         		$row['id'],
         		$row['nama'],
         		$row['alamat'],
@@ -276,7 +278,7 @@ else {
 
     	$data = array('id' => $id, );
 
-    	$res = $this->db->delete('biro_jasa', $data);
+    	$res = $this->db->delete('samsat', $data);
         if($res){
             $arr = array("error"=>false,"message"=>"DATA BERHASIL DIHAPUS");
         }
