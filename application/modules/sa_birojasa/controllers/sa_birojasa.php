@@ -49,11 +49,12 @@ function simpan(){
        
         
         $res = $this->db->insert('biro_jasa', $post); 
+        
         if($res){
-            $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
+            $arr = array("error"=>true,'message'=>"BERHASIL DISIMPAN");
         }
         else {
-             $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
+             $arr = array("error"=>false,'message'=>"GAGAL  DISIMPAN");
         }
         echo json_encode($arr);
 }
