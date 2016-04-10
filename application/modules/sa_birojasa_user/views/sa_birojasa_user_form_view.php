@@ -41,6 +41,17 @@
         value="<?php echo isset($nama)?$nama:""; ?>">
       </div>
     </div>
+    
+    
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Birojasa </label>
+      <div class="col-sm-9">
+       
+        <?php echo form_dropdown("birojasa_id",$arr_birojasa,'','id="birojasa_id" class="form-control input-style"'); ?>
+      </div>
+    </div>
+    
+    
     <div class="form-group">
       <label class="col-sm-3 control-label">No. HP</label>
       <div class="col-sm-9">

@@ -6,7 +6,7 @@ class sa_birojasa_user extends admin_controller{
 
 		$this->controller = get_class($this);
 		$this->load->model('bju_model','dm');
-        $this->load->model("core_model","cm");
+        $this->load->model("coremodel","cm");
 		
 		//$this->load->helper("serviceurl");
 		
@@ -48,7 +48,7 @@ function baru(){
 
 function cek_email($email){
     $this->db->where("email",$email);
-    if($this->db->get("biro_jasa")->num_rows() > 0)
+    if($this->db->get("pengguna")->num_rows() > 0)
     {
          $this->form_validation->set_message('cek_email', ' %s Sudah ada');
          return false;
@@ -56,17 +56,31 @@ function cek_email($email){
 
 }
 
+function cek_passwd($p1){
+    $p2 = $this->input->post('p2');
+
+    if(empty($p1) or empty($p2)){
+         $this->form_validation->set_message('cek_passwd', ' %s harus diisi');
+         return false;
+    }
+    if($p1 <> $p2) {
+        $this->form_validation->set_message('cek_passwd', ' %s tidak sama');
+         return false;
+    }
+}
+
 function simpan(){
 
 
     $post = $this->input->post();
-    unset($post['id']);
+    
        
 
 
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('nama','NPWP','required');    
-        $this->form_validation->set_rules('no_siup','SIUP','required');    
+        $this->form_validation->set_rules('nama','Nama Pengguna','required');    
+        $this->form_validation->set_rules('nomor_hp','Nomor HP','required');   
+        $this->form_validation->set_rules('p1','callback_cek_passwd','required'); 
         $this->form_validation->set_rules('email','Email','callback_cek_email');    
         // $this->form_validation->set_rules('pelaksana_nip','NIP','required');         
          
@@ -76,12 +90,17 @@ function simpan(){
 
      
 
+        $post['password'] = md5($post['p1']);
+
+        $post['level'] = '2';
+        unset($post['p1']);
+        unset($post['p2']);
         //show_array($data);
 
 if($this->form_validation->run() == TRUE ) { 
 
         
-        $res = $this->db->insert('biro_jasa', $post); 
+        $res = $this->db->insert('pengguna', $post); 
         if($res){
             $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
         }
@@ -236,8 +255,11 @@ else {
     	 $id = $get['id'];
 
     	 $this->db->where('id',$id);
-    	 $biro_jasa = $this->db->get('biro_jasa');
+    	 $biro_jasa = $this->db->get('pengguna');
     	 $data = $biro_jasa->row_array();
+
+        $data['arr_birojasa'] = $this->cm->arr_dropdown("biro_jasa", "id", "nama", "nama");
+
 
          $data['action'] = 'update';
          // show_array($data); exit;
