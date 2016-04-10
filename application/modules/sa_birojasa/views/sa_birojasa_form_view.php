@@ -9,7 +9,7 @@
 
               <div class="panel panel-primary">
       <div class="panel-heading">
-      <strong><h3 class="panel-title">Edit</h3></strong>
+      <strong><h3 class="panel-title">Tambah data </h3></strong>
     </div>
     <div class="panel-body" id="data_umum">
 

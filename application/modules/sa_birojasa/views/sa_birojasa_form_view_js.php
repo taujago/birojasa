@@ -104,16 +104,58 @@ $("#tombolsubmitsimpan").click(function(){
         url:'<?php echo site_url("$this->controller/simpan"); ?>',
         data : $('#form_data').serialize(),
         type : 'post',
-        dateType : 'json',
+        dataType : 'json',
         success : function(obj){
-            if(obj.error==false) { // berhasil 
+
+            console.log(obj.error);
+
+            if(obj.error == false) { // berhasil 
+
+                // alert('hooooo.. error false');
                      BootstrapDialog.alert({
                             type: BootstrapDialog.TYPE_PRIMARY,
                             title: 'Informasi',
                             message: obj.message
                              
                         });   
+                      $('#form_data').data('bootstrapValidator').resetForm(true);
+            }
+            else {
+                 BootstrapDialog.alert({
+                            type: BootstrapDialog.TYPE_DANGER,
+                            title: 'Error',
+                            message: obj.message 
+                             
+                        }); 
+            }
+        }
+    });
 
+    return false;
+});
+
+
+
+$("#tombolsubmitupdate").click(function(){ 
+    $.ajax({
+        url:'<?php echo site_url("$this->controller/update"); ?>',
+        data : $('#form_edit').serialize(),
+        type : 'post',
+        dataType : 'json',
+        success : function(obj){
+
+            console.log(obj.error);
+
+            if(obj.error == false) { // berhasil 
+
+                // alert('hooooo.. error false');
+                     BootstrapDialog.alert({
+                            type: BootstrapDialog.TYPE_PRIMARY,
+                            title: 'Informasi',
+                            message: obj.message
+                             
+                        });   
+                     // $('#form_data').data('bootstrapValidator').resetForm(true);
             }
             else {
                  BootstrapDialog.alert({

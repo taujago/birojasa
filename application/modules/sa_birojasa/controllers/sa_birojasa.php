@@ -41,12 +41,41 @@ function baru(){
         $this->cetak();
 }
 
+
+function cek_email($email){
+    $this->db->where("email",$email);
+    if($this->db->get("biro_jasa")->num_rows() > 0)
+    {
+         $this->form_validation->set_message('cek_email', ' %s Sudah ada');
+         return false;
+    }
+
+}
+
 function simpan(){
 
 
     $post = $this->input->post();
     unset($post['id']);
        
+
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('no_npwp','NPWP','required');    
+        $this->form_validation->set_rules('no_siup','SIUP','required');    
+        $this->form_validation->set_rules('email','Email','callback_cek_email');    
+        // $this->form_validation->set_rules('pelaksana_nip','NIP','required');         
+         
+        $this->form_validation->set_message('required', ' %s Harus diisi ');
+        
+        $this->form_validation->set_error_delimiters('', '<br>');
+
+     
+
+        //show_array($data);
+
+if($this->form_validation->run() == TRUE ) { 
+
         
         $res = $this->db->insert('biro_jasa', $post); 
         
@@ -56,6 +85,50 @@ function simpan(){
         else {
              $arr = array("error"=>false,'message'=>"GAGAL  DISIMPAN");
         }
+}
+else {
+    $arr = array("error"=>true,'message'=>validation_errors());
+}
+        echo json_encode($arr);
+}
+
+
+
+function update(){
+
+    $post = $this->input->post();
+   
+       
+
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('no_npwp','NPWP','required');    
+        $this->form_validation->set_rules('no_siup','SIUP','required');    
+        // $this->form_validation->set_rules('email','Email','callback_cek_email');    
+        // $this->form_validation->set_rules('pelaksana_nip','NIP','required');         
+         
+        $this->form_validation->set_message('required', ' %s Harus diisi ');
+        
+        $this->form_validation->set_error_delimiters('', '<br>');
+
+     
+
+        //show_array($data);
+
+if($this->form_validation->run() == TRUE ) { 
+
+        $this->db->where("id",$post['id']);
+        $res = $this->db->update('biro_jasa', $post); 
+        if($res){
+            $arr = array("error"=>false,'message'=>"BERHASIL DIUPDATE");
+        }
+        else {
+             $arr = array("error"=>true,'message'=>"GAGAL  DIUPDATE");
+        }
+}
+else {
+    $arr = array("error"=>true,'message'=>validation_errors());
+}
         echo json_encode($arr);
 }
 
