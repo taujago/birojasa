@@ -14,6 +14,7 @@
 	<div class="form-group">
       <label class="col-sm-3 control-label">Email</label>
       <div class="col-sm-9">
+         <input type="hidden" name="id" id="id" class="form-control input-style" value="<?php echo isset($id)?$id:""; ?>">
         <input type="text" name="email" id="email" class="form-control input-style" placeholder="Email . . ." value="<?php echo isset($email)?$email:""; ?>">
       </div>
     </div>
@@ -66,7 +67,7 @@
     
     <div class="form-group pull-center">
         <div class="col-sm-offset-3 col-sm-9">
-          <button id="tombolsubmitsimpan" style="border-radius: 0;" type="submit" class="btn btn-lg btn-primary"  >Simpan</button>
+          <button id="tombolsubmitupdate" style="border-radius: 0;" type="submit" class="btn btn-lg btn-primary"  >Simpan</button>
           <a href="<?php echo site_url("$this->controller"); ?>"><button style="border-radius: 0;" id="reset" type="button" class="btn btn-lg btn-danger">Cancel</button></a>
         </div>
       </div>

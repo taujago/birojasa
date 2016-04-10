@@ -92,10 +92,6 @@ else {
         echo json_encode($arr);
 }
 
-
-
-
-
 function update(){
 
     $post = $this->input->post();
@@ -185,11 +181,12 @@ else {
         	
         	 
         	$arr_data[] = array(
-        		$row['id_polda'],
         		$row['id'],
         		$row['nama'],
         		$row['alamat'],
         		$row['telp'],
+                $row['hp'],
+                $row['email'],
         		$hapus
         		
          			 

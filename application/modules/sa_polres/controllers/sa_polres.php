@@ -1,12 +1,11 @@
 <?php 
-class sa_birojasa_user extends admin_controller{
+class sa_polres extends admin_controller{
 	var $controller;
-	function sa_birojasa_user(){
+	function sa_polres(){
 		parent::__construct();
 
 		$this->controller = get_class($this);
-		$this->load->model('bju_model','dm');
-        $this->load->model("coremodel","cm");
+		$this->load->model('sa_polres_model','dm');
 		
 		//$this->load->helper("serviceurl");
 		
@@ -23,8 +22,8 @@ function index(){
 		$data_array=array();
 		$content = $this->load->view($this->controller."_view",$data_array,true);
 
-		$this->set_subtitle("User Biro Jasa");
-		$this->set_title("User Biro Jasa");
+		$this->set_subtitle("polres");
+		$this->set_title("POLRES");
 		$this->set_content($content);
 		$this->cetak();
 }
@@ -34,53 +33,28 @@ function baru(){
         $data_array=array();
 
         $data_array['action'] = 'simpan';
-
-        $data_array['arr_birojasa'] = $this->cm->arr_dropdown("biro_jasa", "id", "nama", "nama");
-
         $content = $this->load->view($this->controller."_form_view",$data_array,true);
 
-        $this->set_subtitle("Tambah Pengguna Biro  Jasa");
-        $this->set_title("Tambah Pengguna Biro Jasa");
+        $this->set_subtitle("Tambah Biro Jasa");
+        $this->set_title("Tambah Biro Jasa");
         $this->set_content($content);
         $this->cetak();
 }
 
 
-function cek_email($email){
-    $this->db->where("email",$email);
-    if($this->db->get("pengguna")->num_rows() > 0)
-    {
-         $this->form_validation->set_message('cek_email', ' %s Sudah ada');
-         return false;
-    }
 
-}
-
-function cek_passwd($p1){
-    $p2 = $this->input->post('p2');
-
-    if(empty($p1) or empty($p2)){
-         $this->form_validation->set_message('cek_passwd', ' %s harus diisi');
-         return false;
-    }
-    if($p1 <> $p2) {
-        $this->form_validation->set_message('cek_passwd', ' %s tidak sama');
-         return false;
-    }
-}
 
 function simpan(){
 
 
     $post = $this->input->post();
-    
+    unset($post['id']);
        
 
 
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('nama','Nama Pengguna','required');    
-        $this->form_validation->set_rules('nomor_hp','Nomor HP','required');   
-        $this->form_validation->set_rules('p1','callback_cek_passwd','required'); 
+        $this->form_validation->set_rules('no_npwp','NPWP','required');    
+        $this->form_validation->set_rules('no_siup','SIUP','required');    
         $this->form_validation->set_rules('email','Email','callback_cek_email');    
         // $this->form_validation->set_rules('pelaksana_nip','NIP','required');         
          
@@ -90,17 +64,12 @@ function simpan(){
 
      
 
-        $post['password'] = md5($post['p1']);
-
-        $post['level'] = '2';
-        unset($post['p1']);
-        unset($post['p2']);
         //show_array($data);
 
 if($this->form_validation->run() == TRUE ) { 
 
         
-        $res = $this->db->insert('pengguna', $post); 
+        $res = $this->db->insert('m_polres', $post); 
         if($res){
             $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
         }
@@ -115,6 +84,44 @@ else {
 }
 
 
+
+function update(){
+
+    $post = $this->input->post();
+   
+       
+
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('no_npwp','NPWP','required');    
+        $this->form_validation->set_rules('no_siup','SIUP','required');    
+        // $this->form_validation->set_rules('email','Email','callback_cek_email');    
+        // $this->form_validation->set_rules('pelaksana_nip','NIP','required');         
+         
+        $this->form_validation->set_message('required', ' %s Harus diisi ');
+        
+        $this->form_validation->set_error_delimiters('', '<br>');
+
+     
+
+        //show_array($data);
+
+if($this->form_validation->run() == TRUE ) { 
+
+        $this->db->where("id",$post['id']);
+        $res = $this->db->update('m_polres', $post); 
+        if($res){
+            $arr = array("error"=>false,'message'=>"BERHASIL DIUPDATE");
+        }
+        else {
+             $arr = array("error"=>true,'message'=>"GAGAL  DIUPDATE");
+        }
+}
+else {
+    $arr = array("error"=>true,'message'=>validation_errors());
+}
+        echo json_encode($arr);
+}
 
 
     function get_data() {
@@ -160,18 +167,17 @@ else {
         $arr_data = array();
         foreach($result as $row) : 
 		// $daft_id = $row['daft_id'];
-        $id = $row['id'];
+        $id = $row['polres_id'];
         $hapus = "<a href ='#' onclick=\"hapus('$id')\" class='btn btn-danger btn-xs'><i class='fa fa-trash'></i>Hapus</a>
-        <a href ='$this->controller/editdata?id=$id' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i>Edit</a>";
+        <a href ='sa_polres/editdata?id=$id' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i>Edit</a>";
         	
         	 
         	$arr_data[] = array(
-        		$row['id'],
-        		$row['nama'],
-        		$row['email'],
-        		$row['nomor_hp'],
-        		$row['birojasa'],        		 
-        		$hapus
+        		$row['polres_id'],
+        		$row['polres_nama'],
+        		$row['polres_kode'],
+        		$row['polda_id'],
+        	   $hapus
         		
          			 
         		  				);
@@ -186,20 +192,37 @@ else {
         echo json_encode($responce); 
     }
 
-    
+    function editsimpan(){
+    	
+    	$post = $this->input->post();
+    	$id = $post['id'];
+
+
+    	$data = array(  'polres_id' => $post['polres_id'],
+						'polres_nama' => $post['polres_nama'],
+						'polres_kode' => $post['polres_kode'],
+						'polda_id' => $post['polda_id'],
+						
+
+
+						);
+    	
+
+    	$this->db->where('id', $id);
+    	$this->db->update('sa_polres', $data);
+    	redirect('sa_polres');
+
+    }
 
     function editdata(){
     	 $get = $this->input->get(); 
     	 $id = $get['id'];
 
     	 $this->db->where('id',$id);
-    	 $biro_jasa = $this->db->get('pengguna');
+    	 $biro_jasa = $this->db->get('m_polres');
     	 $data = $biro_jasa->row_array();
 
-        $data['arr_birojasa'] = $this->cm->arr_dropdown("biro_jasa", "id", "nama", "nama");
-
-
-        $data['action'] = 'update';
+         $data['action'] = 'update';
          // show_array($data); exit;
     	 
 		
@@ -216,7 +239,7 @@ else {
     	// 		'hp' => $data->hp,
 
     	// 	);
-		$content = $this->load->view("sa_birojasa_user_form_edit_view",$data,true);
+		$content = $this->load->view("sa_polres_form_edit_view",$data,true);
 
          // $content = $this->load->view($this->controller."_form_view",$data,true);
 
@@ -229,73 +252,6 @@ else {
 
 
 
-function cek_passwd2($p1){
-    $p2 = $this->input->post('p2');
- 
-    if($p1 <> $p2) {
-        $this->form_validation->set_message('cek_passwd', ' %s tidak sama');
-         return false;
-    }
-}
-
-
-
-
-function update(){
-
-    $post = $this->input->post();
-   
-       
-
-
-        $this->load->library('form_validation');
-
-        $this->form_validation->set_rules('nama','Nama Pengguna','required');    
-        $this->form_validation->set_rules('nomor_hp','Nomor HP','required');   
-        $this->form_validation->set_rules('p1','Password','callback_cek_passwd2'); 
-        // $this->form_validation->set_rules('email','Email','callback_cek_email');   
-        // $this->form_validation->set_rules('email','Email','callback_cek_email');    
-        // $this->form_validation->set_rules('pelaksana_nip','NIP','required');         
-         
-        $this->form_validation->set_message('required', ' %s Harus diisi ');
-        
-        $this->form_validation->set_error_delimiters('', '<br>');
-
-     
-
-        //show_array($data);
-
-if($this->form_validation->run() == TRUE ) { 
-
-
-
-
-        if(!empty($post['p1']) or !empty($post['p2'])) {
-            $post['password'] = md5($post['p1']);
-        }
-        
-        unset($post['p1']);
-        unset($post['p2']);
-
-
-
-
-        $this->db->where("id",$post['id']);
-        $res = $this->db->update('pengguna', $post); 
-        if($res){
-            $arr = array("error"=>false,'message'=>"BERHASIL DIUPDATE");
-        }
-        else {
-             $arr = array("error"=>true,'message'=>"GAGAL  DIUPDATE");
-        }
-}
-else {
-    $arr = array("error"=>true,'message'=>validation_errors());
-}
-        echo json_encode($arr);
-}
-
-
 
     function hapusdata(){
     	$get = $this->input->post();
@@ -303,14 +259,14 @@ else {
 
     	$data = array('id' => $id, );
 
-    	$res = $this->db->delete('pengguna', $data);
+    	$res = $this->db->delete('m_polres', $data);
         if($res){
             $arr = array("error"=>false,"message"=>"DATA BERHASIL DIHAPUS");
         }
         else {
             $arr = array("error"=>true,"message"=>"DATA GAGAL DIHAPUS ".mysql_error());
         }
-    	//redirect('sa_birojasa_user');
+    	//redirect('sa_birojasa');
         echo json_encode($arr);
     }
 
@@ -324,9 +280,9 @@ else {
 	// 					'alamat' => $post['alamat'],
 	// 					'password' => $password,
 	// 					'level' => 2);
-	// 	$this->db->insert('sa_birojasa_user', $data); 
+	// 	$this->db->insert('sa_birojasa', $data); 
 
-	// 	redirect('sa_birojasa_user');
+	// 	redirect('sa_birojasa');
 	// }
 
 

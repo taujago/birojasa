@@ -3,18 +3,18 @@
 
 $(document).ready(function(){
 
-	 var dt = $("#biro_jasa").DataTable(
+	 var dt = $("#polres").DataTable(
 		 	{
 		 		// "order": [[ 0, "desc" ]],
 		 		// "iDisplayLength": 50,
 				"columnDefs": [ { "targets": 0, "orderable": false } ],
 				"processing": true,
 		        "serverSide": true,
-		        "ajax": '<?php echo site_url("$this->controller/get_data") ?>'
+		        "ajax": '<?php echo site_url("sa_polres/get_data") ?>'
 		 	});
 
 		 
-		 $("#biro_jasa_filter").css("display","none");  
+		 $("#sa_polres_filter").css("display","none");  
 	
 	 
 		 $("#btn_submit").click(function(){
@@ -46,8 +46,8 @@ function hapus(id){
 
 
 BootstrapDialog.show({
-            message : 'ANDA AKAN MENGHAPUS DATA USER BIRO JASA. ANDA YAKIN  ?  ',
-            title: 'KONFIRMASI HAPUS DATA USER  BIRO JASA',
+            message : 'ANDA AKAN MENGHAPUS DATA BIRO JASA. ANDA YAKIN  ?  ',
+            title: 'KONFIRMASI HAPUS DATA  BIRO JASA',
             draggable: true,
             buttons : [
               {
