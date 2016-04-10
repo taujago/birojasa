@@ -146,6 +146,11 @@ folder instead of downloading all of them to reduce the load. -->
               </a>
             </li>
             <li class="treeview">
+              <a href="<?php echo site_url('sa_birojasa_user'); ?>">
+                <i class="fa fa-user"></i> <span>Birojasa User</span></i>
+              </a>
+            </li>
+            <li class="treeview">
               <a href="<?php echo site_url('sa_dealer'); ?>">
                 <i class="fa fa-user"></i> <span>Dealer</span></i>
               </a>
