@@ -145,6 +145,11 @@ folder instead of downloading all of them to reduce the load. -->
                 <i class="fa fa-user"></i> <span>Biro Jasa</span></i>
               </a>
             </li>
+            <li class="treeview">
+              <a href="<?php echo site_url('sa_dealer'); ?>">
+                <i class="fa fa-user"></i> <span>Biro Jasa</span></i>
+              </a>
+            </li>
           </ul>
         </section>
         <!-- /.sidebar -->
