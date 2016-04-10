@@ -141,19 +141,15 @@ folder instead of downloading all of them to reduce the load. -->
               </a>
             </li>
             <li class="treeview">
-              <a href="<?php echo site_url('sa_birojasa'); ?>">
-                <i class="fa fa-user"></i> <span>Biro Jasa</span></i>
+              <a href="#">
+                <i class="fa fa-dashboard"></i> <span>Data</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
-            </li>
-            <li class="treeview">
-              <a href="<?php echo site_url('sa_birojasa_user'); ?>">
-                <i class="fa fa-user"></i> <span>Birojasa User</span></i>
-              </a>
-            </li>
-            <li class="treeview">
-              <a href="<?php echo site_url('sa_dealer'); ?>">
-                <i class="fa fa-user"></i> <span>Dealer</span></i>
-              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo site_url('sa_birojasa'); ?>"><i class="fa fa-circle-o"></i> Biro Jasa</a></li>
+                <li><a href="<?php echo site_url('sa_birojasa_user'); ?>"><i class="fa fa-circle-o"></i> Biro Jasa User</a></li>
+                <li><a href="<?php echo site_url('sa_dealer'); ?>"><i class="fa fa-circle-o"></i> Dealer</a></li>
+                <li><a href="<?php echo site_url('sa_samsat'); ?>"><i class="fa fa-circle-o"></i> Samsat</a></li>
+              </ul>
             </li>
           </ul>
         </section>
