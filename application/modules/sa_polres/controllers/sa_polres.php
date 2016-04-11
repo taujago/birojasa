@@ -6,7 +6,12 @@ class sa_polres extends admin_controller{
 
 		$this->controller = get_class($this);
 		$this->load->model('sa_polres_model','dm');
+
          $this->load->model("coremodel","cm");
+
+        $this->load->model("coremodel","cm");
+
+
 		
 		//$this->load->helper("serviceurl");
 		

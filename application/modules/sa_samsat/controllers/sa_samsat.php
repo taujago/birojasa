@@ -156,6 +156,7 @@ else {
 
       //  order[0][column]
         $req_param = array (
+
 				"sort_by" => $sidx,
 				"sort_direction" => $sord,
 				"limit" => null,
@@ -192,6 +193,7 @@ else {
         		$row['nama'],
         		$row['alamat'],
         		$row['telp'],
+                $row['nm_polda'],
         		$hapus
         		
          			 
@@ -238,11 +240,12 @@ else {
     	 $id = $get['id'];
 
     	 $this->db->where('id',$id);
-    	 $biro_jasa = $this->db->get('biro_jasa');
-    	 $data = $biro_jasa->row_array();
+    	 $biro_jasa = $this->db->get('samsat');
+    	 $data_array = $biro_jasa->row_array();
 
-         $data['action'] = 'update';
+         $data_array['action'] = 'update';
          // show_array($data); exit;
+         $data_array['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
     	 
 		
 
@@ -258,12 +261,12 @@ else {
     	// 		'hp' => $data->hp,
 
     	// 	);
-		$content = $this->load->view("sa_birojasa_form_edit_view",$data,true);
+		$content = $this->load->view("sa_samsat_form_edit_view",$data_array,true);
 
          // $content = $this->load->view($this->controller."_form_view",$data,true);
 
-		$this->set_subtitle("Edit Biro Jasa");
-		$this->set_title("Edit Biro Jasa");
+		$this->set_subtitle("Edit Samsat");
+		$this->set_title("Edit Samsat");
 		$this->set_content($content);
 		$this->cetak();
 

@@ -22,19 +22,23 @@ class samsat_model extends CI_Model {
 		 					"id",
 							"nama",
 							"alamat",
-							"telp"
+							"telp",
+							"nm_polda"
 		 	);
 
+		 // $this->db->select('p.*, bj.nama as birojasa')->from("pengguna p");
+		 // $this->db->join('biro_jasa bj','p.birojasa_id=bj.id');
+		 // $this->db->where("p.level",2);
 
-		
-
-		 $this->db->select('*')->from("samsat");
+		 $this->db->select('s.*, polda.polda_nama as nm_polda')->from("samsat s");
+		 $this->db->join('m_polda polda','s.id_polda=polda.polda_id');
+		 
 
 
 		 
 
 		 if(!empty($nama)) {
-		 	$this->db->like("nama",$nama);
+		 	$this->db->like("s.nama",$nama);
 		 }
 
 		($param['limit'] != null ? $this->db->limit($param['limit']['end'], $param['limit']['start']) : '');

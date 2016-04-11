@@ -11,24 +11,14 @@
           <!-- Default box -->
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Data Biro Jasa</h3>
+              <h3 class="box-title">Data Samsat</h3>
               <div class="box-tools pull-right">
-                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                <a href="<?php echo site_url("$this->controller/baru"); ?>"><button type="button" class="btn btn-primary form-control"><i class="fa fa fa-plus-circle "></i> Tambah Samsat</button></a>
               </div>
             </div>
             <div class="box-body">
 
-            <div class="row">
-            <div class="col-sm-offset-3 col-sm-9">
-              
-            </div>
-            <div class="col-md-3 pull-right">
-              <div class="form-group">
-                <label></label>
-                <a href="<?php echo site_url("$this->controller/baru"); ?>"><button type="button" class="btn btn-primary form-control"><i class="fa fa fa-plus-circle "></i> Tambah Biro Jasa</button></a>
-              </div>
-            </div>
-            </div>
+            
 
             <form role="form" action="" id="btn-cari" >
             <div class="col-md-3">
@@ -64,6 +54,7 @@
         <th width="23%">Nama</th>
         <th width="21%">Alamat </th>
         <th width="14%">Email</th>
+        <th width="14%">Polda</th>
         <th width="14%">#</th>
     </tr>
   
