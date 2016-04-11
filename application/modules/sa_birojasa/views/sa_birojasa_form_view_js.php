@@ -26,6 +26,20 @@ $('#form_data').bootstrapValidator({
                             }
                         }
                     },
+                    hp: {
+                        validators: {
+                            notEmpty: {
+                                message : 'No. HP tidak boleh kosong' 
+                            }
+                        }
+                    },
+                    telp: {
+                        validators: {
+                            notEmpty: {
+                                message : 'No. Telp tidak boleh kosong' 
+                            }
+                        }
+                    },
 
                     email: {
                         validators: {
@@ -37,7 +51,7 @@ $('#form_data').bootstrapValidator({
                             },
                             remote: {
                                 type: 'POST',
-                                url: "<?php echo site_url('sa_add_bj/cekEmail'); ?>",
+                                url: "<?php echo site_url('sa_birojasa/cekEmail'); ?>",
                                 message: 'Biro jasa dengan email ini sudah terdaftar',
                                 delay: 2000
                             }
@@ -50,7 +64,7 @@ $('#form_data').bootstrapValidator({
                             },
                             remote: {
                                 type: 'POST',
-                                url: "<?php echo site_url('sa_add_bj/ceksiup'); ?>",
+                                url: "<?php echo site_url('sa_birojasa/ceksiup'); ?>",
                                 message: 'Biro jasa dengan nomor SIUP ini sudah terdaftar',
                                 delay: 2000
                             }
@@ -63,7 +77,7 @@ $('#form_data').bootstrapValidator({
                             },
                             remote: {
                                 type: 'POST',
-                                url: "<?php echo site_url('sa_add_bj/cektdp'); ?>",
+                                url: "<?php echo site_url('sa_birojasa/cektdp'); ?>",
                                 message: 'Biro jasa dengan nomor TDP ini sudah terdaftar',
                                 delay: 2000
                             }
@@ -76,9 +90,9 @@ $('#form_data').bootstrapValidator({
                             },
                             remote: {
                                 type: 'POST',
-                                url: "<?php echo site_url('sa_add_bj/ceknpwp'); ?>",
+                                url: "<?php echo site_url('sa_birojasa/ceknpwp'); ?>",
                                 message: 'Biro jasa dengan nomor NPWP ini sudah terdaftar',
-                                delay: 2000
+                                delay: 200
                             }
                         }
                     }

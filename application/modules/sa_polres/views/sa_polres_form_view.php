@@ -14,34 +14,24 @@
     <div class="panel-body" id="data_umum">
 
     <div class="form-group">
-      <label class="col-sm-3 control-label">Id POLRES</label>
+      <label class="col-sm-3 control-label">Polda</label>
+      <div class="col-sm-9">
+          <input type="hidden" name="id" id="id" value="<?php echo isset($id)?$id:""; ?>">
+         <?php echo form_dropdown("polda_id",$arr_polda,'','id="id_polda" class="form-control input-style"'); ?>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Nama</label>
       <div class="col-sm-9">
         <input type="hidden" name="id" id="id" value="<?php echo isset($id)?$id:""; ?>">
-        <input type="text" name="nama" id="nama" class="form-control input-style" placeholder="Id Polres" 
+        <input type="text" name="polres_nama" id="polres_nama" class="form-control input-style" placeholder="Nama Polres" 
         value="<?php echo isset($nama)?$nama:""; ?>">
       </div>
     </div>
-    <div class="form-group">
-      <label class="col-sm-3 control-label">NAMA POLRES</label>
-      <div class="col-sm-9">
-        <input type="text" name="no_siup"  value="<?php echo isset($no_siup)?$no_siup:""; ?>" id="no_siup" class="form-control input-style" placeholder="NAMA POLRES . . ."  >
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-3 control-label">KODE POLRES</label>
-      <div class="col-sm-9">
-        <input type="text" name="no_npwp" id="no_npwp" class="form-control input-style" placeholder="KODE POLRES . . ." value="<?php echo isset($no_npwp)?$no_npwp:""; ?>">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-3 control-label">ID POLDA</label>
-      <div class="col-sm-9">
-        <input type="text" name="no_tdp" id="no_tdp" class="form-control input-style" placeholder="ID POLDA. . ." value="<?php echo isset($no_tdp)?$no_tdp:""; ?>">
-      </div>
     <div class="form-group pull-center">
         <div class="col-sm-offset-3 col-sm-9">
-          <button id="tombolsubmitsimpan" style="border-radius: 0;" type="submit" class="btn btn-lg btn-primary"  >Simpan</button>
-          <a href="<?php echo site_url('sa_birojasa'); ?>"><button style="border-radius: 0;" id="reset" type="button" class="btn btn-lg btn-danger">Cancel</button></a>
+          <button id="tombolsubmitsimpan" style="border-radius: 0;" type="submit" class="btn btn-lg btn-primary"  >Simpan</button> 
+          <a href="<?php echo site_url('sa_polres'); ?>"><button style="border-radius: 0;" id="reset" type="button" class="btn btn-lg btn-danger">Cancel</button></a>
         </div>
       </div>
 

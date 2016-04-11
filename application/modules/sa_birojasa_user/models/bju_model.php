@@ -30,13 +30,13 @@ class bju_model extends CI_Model {
 
 		 $this->db->select('p.*, bj.nama as birojasa')->from("pengguna p");
 		 $this->db->join('biro_jasa bj','p.birojasa_id=bj.id');
-		 $this->db->where("level",2);
+		 $this->db->where("p.level",2);
 
 
 		 
 
 		 if(!empty($nama)) {
-		 	$this->db->like("nama",$nama);
+		 	$this->db->like("p.nama",$nama);
 		 }
 
 		($param['limit'] != null ? $this->db->limit($param['limit']['end'], $param['limit']['start']) : '');

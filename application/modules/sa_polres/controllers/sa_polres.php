@@ -6,6 +6,7 @@ class sa_polres extends admin_controller{
 
 		$this->controller = get_class($this);
 		$this->load->model('sa_polres_model','dm');
+        
 		
 		//$this->load->helper("serviceurl");
 		
@@ -22,8 +23,8 @@ function index(){
 		$data_array=array();
 		$content = $this->load->view($this->controller."_view",$data_array,true);
 
-		$this->set_subtitle("polres");
-		$this->set_title("POLRES");
+		$this->set_subtitle("Data Polres");
+		$this->set_title("Data Polres");
 		$this->set_content($content);
 		$this->cetak();
 }
@@ -33,10 +34,11 @@ function baru(){
         $data_array=array();
 
         $data_array['action'] = 'simpan';
+        $data_array['arr_polres'] = $this->cm->arr_dropdown("m_polres", "polres_id", "polres_nama", "polres_nama");
         $content = $this->load->view($this->controller."_form_view",$data_array,true);
 
-        $this->set_subtitle("Tambah Biro Jasa");
-        $this->set_title("Tambah Biro Jasa");
+        $this->set_subtitle("Tambah Polres");
+        $this->set_title("Tambah Polres");
         $this->set_content($content);
         $this->cetak();
 }
@@ -53,9 +55,7 @@ function simpan(){
 
 
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('no_npwp','NPWP','required');    
-        $this->form_validation->set_rules('no_siup','SIUP','required');    
-        $this->form_validation->set_rules('email','Email','callback_cek_email');    
+        $this->form_validation->set_rules('polres_nama','Nama','required');       
         // $this->form_validation->set_rules('pelaksana_nip','NIP','required');         
          
         $this->form_validation->set_message('required', ' %s Harus diisi ');
@@ -93,8 +93,8 @@ function update(){
 
 
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('no_npwp','NPWP','required');    
-        $this->form_validation->set_rules('no_siup','SIUP','required');    
+        // $this->form_validation->set_rules('no_npwp','NPWP','required');    
+        // $this->form_validation->set_rules('no_siup','SIUP','required');    
         // $this->form_validation->set_rules('email','Email','callback_cek_email');    
         // $this->form_validation->set_rules('pelaksana_nip','NIP','required');         
          
@@ -136,7 +136,7 @@ else {
         $sord = isset($_REQUEST['order'][0]['dir'])?$_REQUEST['order'][0]['dir']:"asc"; // get the direction if(!$sidx) $sidx =1;  
         
   
-        $nama = $_REQUEST['columns'][1]['search']['value'];
+        $polres_nama = $_REQUEST['columns'][1]['search']['value'];
 
 
       //  order[0][column]
@@ -144,7 +144,7 @@ else {
 				"sort_by" => $sidx,
 				"sort_direction" => $sord,
 				"limit" => null,
-				"nama" => $nama
+				"polres_nama" => $polres_nama
 				
 				 
 		);     
@@ -169,7 +169,7 @@ else {
 		// $daft_id = $row['daft_id'];
         $id = $row['polres_id'];
         $hapus = "<a href ='#' onclick=\"hapus('$id')\" class='btn btn-danger btn-xs'><i class='fa fa-trash'></i>Hapus</a>
-        <a href ='sa_polres/editdata?id=$id' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i>Edit</a>";
+        <a href ='sa_polres/editdata?polres_id=$id' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i>Edit</a>";
         	
         	 
         	$arr_data[] = array(
@@ -215,12 +215,13 @@ else {
     }
 
     function editdata(){
-    	 $get = $this->input->get(); 
-    	 $id = $get['id'];
+    	
+         $get = $this->input->get(); 
+         $id = $get['id'];
 
-    	 $this->db->where('id',$id);
-    	 $biro_jasa = $this->db->get('m_polres');
-    	 $data = $biro_jasa->row_array();
+         $this->db->where('id',$id);
+         $dealer = $this->db->get('m_polres');
+         $data = $dealer->row_array();
 
          $data['action'] = 'update';
          // show_array($data); exit;
@@ -255,9 +256,9 @@ else {
 
     function hapusdata(){
     	$get = $this->input->post();
-    	$id = $get['id'];
+    	$polres_id = $get['id'];
 
-    	$data = array('id' => $id, );
+    	$data = array('polres_id' => $polres_id, );
 
     	$res = $this->db->delete('m_polres', $data);
         if($res){

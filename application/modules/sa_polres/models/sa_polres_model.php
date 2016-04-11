@@ -32,8 +32,8 @@ class sa_polres_model extends CI_Model {
 
 		 
 
-		 if(!empty($nama)) {
-		 	$this->db->like("nama",$nama);
+		 if(!empty($polres_nama)) {
+		 	$this->db->like("polres_nama",$polres_nama);
 		 }
 
 		($param['limit'] != null ? $this->db->limit($param['limit']['end'], $param['limit']['start']) : '');

@@ -11,47 +11,15 @@ $('#form_data').bootstrapValidator({
                     validating: 'glyphicon glyphicon-refresh'
                 },
                 fields: {
-                    nama: {
+                    polres_nama: {
                         validators: {
                             notEmpty: {
                                 message : 'Nama tidak boleh kosong' 
                             }
                         }
                     },
-                    telp: {
-                        validators: {
-                            notEmpty: {
-                                message : 'Alamat tidak boleh kosong' 
-                            }
-                        }
-                    },
 
-                    alamat: {
-                        validators: {
-                            notEmpty: {
-                                message : 'Alamat tidak boleh kosong' 
-                            }
-                        }
-                    },
-
-                    email: {
-                        validators: {
-                            notEmpty: {
-                                message : 'Email tidak boleh kosong'    
-                            },
-                            emailAddress: {
-                                message : 'Email harus valid'
-                            },
-                            remote: {
-                                type: 'POST',
-                                url: "<?php echo site_url('sa_dealer/cekEmail'); ?>",
-                                message: 'Dealer dengan email ini sudah terdaftar',
-                                delay: 2000
-                            }
-                        }
-                    },
                     
-
 
                     
                 }

@@ -26,6 +26,28 @@ $('#form_data').bootstrapValidator({
                             }
                         }
                     },
+                    p1: {
+                        validators: {
+                            notEmpty: {
+                                message : 'Password tidak boleh kosong' 
+                            },
+                            stringLength: {
+                                min: 6, 
+                                message: 'Panjang minimal 6 karakter'
+                            }
+                        }
+                    },
+                    p2: {
+                        validators: {
+                            notEmpty: {
+                                message: 'tidak boleh kosong'
+                            },
+                            identical: {
+                                field: 'p1',
+                                message: 'passwod yang anda masukkan tidak sesuai'
+                            }
+                        }
+                    },
 
                     email: {
                         validators: {
@@ -37,7 +59,7 @@ $('#form_data').bootstrapValidator({
                             },
                             remote: {
                                 type: 'POST',
-                                url: "<?php echo site_url('sa_add_bj/cekEmail'); ?>",
+                                url: "<?php echo site_url('sa_birojasa_user/cekEmail'); ?>",
                                 message: 'Biro jasa dengan email ini sudah terdaftar',
                                 delay: 200
                             }

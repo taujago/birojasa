@@ -44,5 +44,5 @@
 
 
       <?php 
-$this->load->view($this->controller."_form_view_js");
+$this->load->view($this->controller."sa_polres_form_view_js");
 ?>

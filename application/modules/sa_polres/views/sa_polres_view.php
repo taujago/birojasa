@@ -1,4 +1,4 @@
- <link href="<?php echo base_url("assets") ?>/css/datepicker.css" rel="stylesheet">
+<link href="<?php echo base_url("assets") ?>/css/datepicker.css" rel="stylesheet">
 <script src="<?php echo base_url("assets") ?>/js/bootstrap-datepicker.js"></script>
 <script src="<?php echo base_url("assets") ?>/js/jquery.dataTables.min.js"></script>
 
@@ -11,7 +11,7 @@
           <!-- Default box -->
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Data POLRES</h3>
+              <h3 class="box-title">Data Polres</h3>
               <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
               </div>
@@ -25,7 +25,7 @@
             <div class="col-md-3 pull-right">
               <div class="form-group">
                 <label></label>
-                <a href="<?php echo site_url("$this->controller/baru"); ?>"><button type="button" class="btn btn-primary form-control"><i class="fa fa fa-plus-circle "></i> Tambah POLRES</button></a>
+                <a href="<?php echo site_url("$this->controller/baru"); ?>"><button type="button" class="btn btn-primary form-control"><i class="fa fa fa-plus-circle "></i> Tambah Polres</button></a>
               </div>
             </div>
             </div>
@@ -33,8 +33,8 @@
             <form role="form" action="" id="btn-cari" >
             <div class="col-md-3">
               <div class="form-group">
-                <label for="nama">Nama</label>
-                <input id="nama" name="nama" type="text" class="form-control" placeholder="Nama"></input>
+                <label for="polres_nama">Nama</label>
+                <input id="polres_nama" name="polres_nama" type="text" class="form-control" placeholder="Nama"></input>
               </div>
             </div>
             <div class="col-md-1">

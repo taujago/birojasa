@@ -12,7 +12,18 @@ class sa_dealer extends admin_controller{
 	}
 
 
-
+  function cekEmail(){
+        $email = $this->input->post('email');
+        $valid = true;
+        $this->db->where('email', $email);
+        $jumlah = $this->db->get("dealer")->num_rows();    
+        if($jumlah == 1) {
+            $valid = false;
+        }
+        
+        echo json_encode(array('valid' => $valid));
+    
+    }
 
 
 

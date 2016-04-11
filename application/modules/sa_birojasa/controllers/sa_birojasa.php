@@ -10,9 +10,70 @@ class sa_birojasa extends admin_controller{
 		//$this->load->helper("serviceurl");
 		
 	}
+// validator 
+
+    function cekEmail(){
+        $email = $this->input->post('email');
+        $valid = true;
+        $this->db->where('email', $email);
+        $jumlah = $this->db->get("biro_jasa")->num_rows();    
+        if($jumlah == 1) {
+            $valid = false;
+        }
+        
+        echo json_encode(array('valid' => $valid));
+    
+    }
+        function ceksiup(){
+        $email = $this->input->post('no_siup');
+        $valid = true;
+        $this->db->where('no_siup', $email);
+        $jumlah = $this->db->get("biro_jasa")->num_rows();    
+        if($jumlah == 1) {
+            $valid = false;
+        }
+        
+        echo json_encode(array('valid' => $valid));
+    
+    }
+          function ceknpwp(){
+        $email = $this->input->post('no_npwp');
+        $valid = true;
+        $this->db->where('no_npwp', $email);
+        $jumlah = $this->db->get("biro_jasa")->num_rows();    
+        if($jumlah == 1) {
+            $valid = false;
+        }
+        
+        echo json_encode(array('valid' => $valid));
+    
+    }
+            function cektdp(){
+        $email = $this->input->post('no_tdp');
+        $valid = true;
+        $this->db->where('no_tdp', $email);
+        $jumlah = $this->db->get("biro_jasa")->num_rows();    
+        if($jumlah == 1) {
+            $valid = false;
+        }
+        
+        echo json_encode(array('valid' => $valid));
+    
+    }
 
 
 
+// end validator 
+
+function cek_email($email){
+    $this->db->where("email",$email);
+    if($this->db->get("biro_jasa")->num_rows() > 0)
+    {
+         $this->form_validation->set_message('cek_email', ' %s Sudah ada');
+         return false;
+    }
+
+}
 
 
 
@@ -42,15 +103,6 @@ function baru(){
 }
 
 
-function cek_email($email){
-    $this->db->where("email",$email);
-    if($this->db->get("biro_jasa")->num_rows() > 0)
-    {
-         $this->form_validation->set_message('cek_email', ' %s Sudah ada');
-         return false;
-    }
-
-}
 
 function simpan(){
 
@@ -80,10 +132,10 @@ if($this->form_validation->run() == TRUE ) {
         $res = $this->db->insert('biro_jasa', $post); 
         
         if($res){
-            $arr = array("error"=>true,'message'=>"BERHASIL DISIMPAN");
+            $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
         }
         else {
-             $arr = array("error"=>false,'message'=>"GAGAL  DISIMPAN");
+             $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
         }
 }
 else {
@@ -185,11 +237,12 @@ else {
         	
         	 
         	$arr_data[] = array(
-        		$row['id_polda'],
         		$row['id'],
         		$row['nama'],
         		$row['alamat'],
         		$row['telp'],
+                $row['hp'],
+                $row['email'],
         		$hapus
         		
          			 

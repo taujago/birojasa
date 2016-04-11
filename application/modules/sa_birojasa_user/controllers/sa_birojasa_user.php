@@ -13,6 +13,18 @@ class sa_birojasa_user extends admin_controller{
 	}
 
 
+    function cekEmail(){
+        $email = $this->input->post('email');
+        $valid = true;
+        $this->db->where('email', $email);
+        $jumlah = $this->db->get("pengguna")->num_rows();    
+        if($jumlah == 1) {
+            $valid = false;
+        }
+        
+        echo json_encode(array('valid' => $valid));
+    
+    }
 
 
 
@@ -298,7 +310,7 @@ else {
 
     	$data = array('id' => $id, );
 
-    	$res = $this->db->delete('biro_jasa', $data);
+    	$res = $this->db->delete('pengguna', $data);
         if($res){
             $arr = array("error"=>false,"message"=>"DATA BERHASIL DIHAPUS");
         }

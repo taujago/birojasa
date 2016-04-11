@@ -14,14 +14,14 @@ $(document).ready(function(){
 		 	});
 
 		 
-		 $("#sa_polres_filter").css("display","none");  
+		 $("#polres_filter").css("display","none");  
 	
 	 
 		 $("#btn_submit").click(function(){
 		 	  // alert('hello');
 		 	  
 
-		 	  dt.column(1).search($("#nama").val())
+		 	  dt.column(1).search($("#polres_nama").val())
 				 .draw();
 
 				 return false;
@@ -29,8 +29,7 @@ $(document).ready(function(){
 
 
 		 $("#btn_reset").click(function(){
-			$("#nama").val('');
-
+			$("#nama_nama").val('');
 			$("#btn_submit").click();
 		 });
 
@@ -74,7 +73,7 @@ BootstrapDialog.show({
 				                       
 				                  });   
 
-                  			$('#biro_jasa').DataTable().ajax.reload();		
+                  			$('#polres').DataTable().ajax.reload();		
                   		}
                   		else {
                   			BootstrapDialog.alert({
