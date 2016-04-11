@@ -13,22 +13,12 @@
             <div class="box-header with-border">
               <h3 class="box-title">Data Polres</h3>
               <div class="box-tools pull-right">
-                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                 <a href="<?php echo site_url("$this->controller/baru"); ?>"><button type="button" class="btn btn-primary form-control"><i class="fa fa fa-plus-circle "></i> Tambah Polres</button></a>
               </div>
             </div>
             <div class="box-body">
 
-            <div class="row">
-            <div class="col-sm-offset-3 col-sm-9">
-              
-            </div>
-            <div class="col-md-3 pull-right">
-              <div class="form-group">
-                <label></label>
-                <a href="<?php echo site_url("$this->controller/baru"); ?>"><button type="button" class="btn btn-primary form-control"><i class="fa fa fa-plus-circle "></i> Tambah Polres</button></a>
-              </div>
-            </div>
-            </div>
+          
 
             <form role="form" action="" id="btn-cari" >
             <div class="col-md-3">
