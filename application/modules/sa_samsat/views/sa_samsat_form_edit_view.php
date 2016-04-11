@@ -17,7 +17,8 @@
       <label class="col-sm-3 control-label">Nama Polda</label>
       <div class="col-sm-9">
         <input type="hidden" name="id" id="id" value="<?php echo isset($id)?$id:""; ?>">
-         <?php echo form_dropdown("id_polda",$arr_polda,'','id="id_polda" class="form-control input-style"'); ?>
+         <?php echo form_dropdown("id_polda",$arr_polda,$id_polda,'id="id_polda" class="form-control input-style"'); ?>
+
       </div>
     </div>
     <div class="form-group">

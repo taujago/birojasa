@@ -69,7 +69,7 @@ folder instead of downloading all of them to reduce the load. -->
 
 		<header class="main-header">
         <!-- Logo -->
-		  <a href="<?php echo site_url('user'); ?>" class="logo">
+		  <a href="<?php echo site_url('admin'); ?>" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
 			<span class="logo-mini"><b>S</b>A</span>
 			<!-- logo for regular state and mobile devices -->
@@ -145,6 +145,7 @@ folder instead of downloading all of them to reduce the load. -->
                 <i class="fa fa-edit"></i> <span>Data Master</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
+                <li><a href="<?php echo site_url('sa_bbn_satu'); ?>"><i class="fa fa-circle-o"></i> Estimasi BBN 1</a></li>
                 <li><a href="<?php echo site_url('sa_birojasa'); ?>"><i class="fa fa-circle-o"></i> Biro Jasa</a></li>
                 <li><a href="<?php echo site_url('sa_birojasa_user'); ?>"><i class="fa fa-circle-o"></i> Biro Jasa User</a></li>
                 <li><a href="<?php echo site_url('sa_dealer'); ?>"><i class="fa fa-circle-o"></i> Dealer</a></li>

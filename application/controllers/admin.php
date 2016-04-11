@@ -21,12 +21,16 @@ class admin extends admin_controller {
 		$birojasa_user = $this->db->get('pengguna')->num_rows();
 		$samsat = $this->db->get('samsat')->num_rows();
 		$dealer = $this->db->get('dealer')->num_rows();
+		$bbn1 = $this->db->get('estimasi_bbn_satu')->num_rows();
+		$polres = $this->db->get('m_polres')->num_rows();
 
 		$data_array = array(
 								"biro_jasa" => $birojasa, 
 								"samsat" => $samsat,
 								"dealer" => $dealer,
-								"birojasa_user" => $birojasa_user, 
+								"birojasa_user" => $birojasa_user,
+								"bbn1" => $bbn1, 
+								"polres" => $polres
 								);
 
 		$content = $this->load->view("admin/index_view",$data_array,true);

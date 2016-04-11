@@ -1,7 +1,24 @@
       <section class="content">
       <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-      <div class="row">
-        
+      
+       <div class="row">
+         <div class="col-lg-3 col-xs-6">
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3><?php echo $bbn1; ?></h3>
+              <p>Estimasi BBN 1</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-filing"></i>
+            </div>
+            <a href="<?php echo site_url('sa_bbn_satu'); ?>" class="small-box-footer">
+              Click Here 
+              <i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="row">  
         <div class="col-lg-3 col-xs-6">
           <div class="small-box bg-aqua">
             <div class="inner">
@@ -18,7 +35,7 @@
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
-          <div class="small-box bg-green">
+          <div class="small-box bg-blue">
             <div class="inner">
               <h3><?php echo $birojasa_user; ?></h3>
               <p>Biro Jasa User</p>
@@ -32,6 +49,8 @@
             </a>
           </div>
         </div>
+      </div>
+      <div class="row">
         <div class="col-lg-3 col-xs-6">
           <div class="small-box bg-yellow">
             <div class="inner">
@@ -48,7 +67,7 @@
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
-          <div class="small-box bg-red">
+          <div class="small-box bg-orange">
             <div class="inner">
               <h3><?php echo $samsat; ?></h3>
               <p>Samsat</p>
@@ -57,6 +76,23 @@
               <i class="ion ion-ios-folder"></i>
             </div>
             <a href="<?php echo site_url('sa_samsat'); ?>" class="small-box-footer">
+              Click Here 
+              <i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+         <div class="col-lg-3 col-xs-6">
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3><?php echo $polres; ?></h3>
+              <p>Polres</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-briefcase"></i>
+            </div>
+            <a href="<?php echo site_url('sa_polres'); ?>" class="small-box-footer">
               Click Here 
               <i class="fa fa-arrow-circle-right"></i>
             </a>

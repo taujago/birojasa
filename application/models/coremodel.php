@@ -47,6 +47,8 @@ var $arr_bulan = array(1=>"JANUARI","FEBRUARI","MARET","APRIL","MEI","JUNI","JUL
 
         }
 
+        
+
         function arr_level() {
                 $arr = array(1=>"Level 1","Level 2","Level 3");
                 return $arr;
