@@ -9,7 +9,7 @@
               <p>Biro Jasa</p>
             </div>
             <div class="icon">
-              <i class="ion ion-social-windows"></i>
+              <i class="ion ion-stats-bars"></i>
             </div>
             <a href="<?php echo site_url('sa_birojasa'); ?>" class="small-box-footer">
               Click Here 
