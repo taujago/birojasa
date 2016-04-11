@@ -60,10 +60,10 @@
 
 
         
-        <th width="7%">ID_POLRES</th>
-        <th width="23%">NAMA_POLRES</th>
-        <th width="21%">KODE_POLRES</th>
-        <th width="11%">ID_POLDA</th>
+        <th width="7%">ID POLRES</th>
+        <th width="23%">NAMA POLRES</th>
+        <th width="21%">KODE POLRES</th>
+        <th width="11%">ID POLDA</th>
         <th width="10%">#</th>
        
     </tr>

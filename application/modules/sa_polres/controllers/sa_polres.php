@@ -6,7 +6,7 @@ class sa_polres extends admin_controller{
 
 		$this->controller = get_class($this);
 		$this->load->model('sa_polres_model','dm');
-        
+         $this->load->model("coremodel","cm");
 		
 		//$this->load->helper("serviceurl");
 		
@@ -32,7 +32,7 @@ function index(){
 
 function baru(){
         $data_array=array();
-
+        $data_array['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
         $data_array['action'] = 'simpan';
         $content = $this->load->view($this->controller."_form_view",$data_array,true);
         $this->set_subtitle("Tambah Polres");
@@ -48,14 +48,13 @@ function simpan(){
 
 
     $post = $this->input->post();
-    unset($post['id']);
        
 
 
         $this->load->library('form_validation');
         $this->form_validation->set_rules('polres_nama','NAMA','required');
         $this->form_validation->set_rules('polres_kode','KODE','required');   
-        $this->form_validation->set_rules('polda_id','ID POLDA','required');  
+          
          
         $this->form_validation->set_message('required', ' %s Harus diisi ');
         
@@ -191,6 +190,7 @@ else {
     }
 
     function editsimpan(){
+
     	
     	$post = $this->input->post();
     	$id = $post['polres_id'];
@@ -219,9 +219,9 @@ else {
 
          $this->db->where('polres_id',$polres_id);
          $dealer = $this->db->get('m_polres');
-         $data = $dealer->row_array();
+         $data_array = $dealer->row_array();
 
-         $data['action'] = 'update';
+         $data_array['action'] = 'update';
          // show_array($data); exit;
     	 
 		
@@ -238,7 +238,9 @@ else {
     	// 		'hp' => $data->hp,
 
     	// 	);
-		$content = $this->load->view("sa_polres_form_edit_view",$data,true);
+
+        $data_array['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
+		$content = $this->load->view("sa_polres_form_edit_view",$data_array,true);
 
          // $content = $this->load->view($this->controller."_form_view",$data,true);
 
