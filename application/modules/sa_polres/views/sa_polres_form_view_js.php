@@ -18,11 +18,26 @@ $('#form_data').bootstrapValidator({
                             }
                         }
                     },
-
+                    polres_kode: {
+                        validators: {
+                            notEmpty:{
+                                message : 'Kode Polres tidak boleh kosong'
+                            }
+                        }
+                    },
+                    polda_id: {
+                        validators: {
+                            notEmpty: {
+                                message : 'Id Polda tidak boleh kosong'
+                            }
+                        }
+                    }
                     
 
                     
                 }
+
+            
                 
             });
 

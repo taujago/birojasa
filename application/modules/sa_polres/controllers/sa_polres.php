@@ -34,14 +34,12 @@ function baru(){
         $data_array=array();
 
         $data_array['action'] = 'simpan';
-        $data_array['arr_polres'] = $this->cm->arr_dropdown("m_polres", "polres_id", "polres_nama", "polres_nama");
         $content = $this->load->view($this->controller."_form_view",$data_array,true);
-
         $this->set_subtitle("Tambah Polres");
         $this->set_title("Tambah Polres");
         $this->set_content($content);
         $this->cetak();
-}
+    }
 
 
 
@@ -55,8 +53,9 @@ function simpan(){
 
 
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('polres_nama','Nama','required');       
-        // $this->form_validation->set_rules('pelaksana_nip','NIP','required');         
+        $this->form_validation->set_rules('polres_nama','NAMA','required');
+        $this->form_validation->set_rules('polres_kode','KODE','required');   
+        $this->form_validation->set_rules('polda_id','ID POLDA','required');  
          
         $this->form_validation->set_message('required', ' %s Harus diisi ');
         
@@ -93,10 +92,9 @@ function update(){
 
 
         $this->load->library('form_validation');
-        // $this->form_validation->set_rules('no_npwp','NPWP','required');    
-        // $this->form_validation->set_rules('no_siup','SIUP','required');    
-        // $this->form_validation->set_rules('email','Email','callback_cek_email');    
-        // $this->form_validation->set_rules('pelaksana_nip','NIP','required');         
+        $this->form_validation->set_rules('polres_nama','Nama Polres','required');    
+        $this->form_validation->set_rules('polres_kode','Kode polres','required');        
+        $this->form_validation->set_rules('polda_id','Kode Polda','required');         
          
         $this->form_validation->set_message('required', ' %s Harus diisi ');
         
@@ -108,7 +106,7 @@ function update(){
 
 if($this->form_validation->run() == TRUE ) { 
 
-        $this->db->where("id",$post['id']);
+        $this->db->where("polres_id",$post['polres_id']);
         $res = $this->db->update('m_polres', $post); 
         if($res){
             $arr = array("error"=>false,'message'=>"BERHASIL DIUPDATE");
@@ -195,10 +193,10 @@ else {
     function editsimpan(){
     	
     	$post = $this->input->post();
-    	$id = $post['id'];
+    	$id = $post['polres_id'];
 
 
-    	$data = array(  'polres_id' => $post['polres_id'],
+    	$data = array(  
 						'polres_nama' => $post['polres_nama'],
 						'polres_kode' => $post['polres_kode'],
 						'polda_id' => $post['polda_id'],
@@ -209,7 +207,7 @@ else {
     	
 
     	$this->db->where('id', $id);
-    	$this->db->update('sa_polres', $data);
+    	$this->db->update('m_polres', $data);
     	redirect('sa_polres');
 
     }
@@ -217,9 +215,9 @@ else {
     function editdata(){
     	
          $get = $this->input->get(); 
-         $id = $get['id'];
+         $polres_id = $get['polres_id'];
 
-         $this->db->where('id',$id);
+         $this->db->where('polres_id',$polres_id);
          $dealer = $this->db->get('m_polres');
          $data = $dealer->row_array();
 
@@ -244,8 +242,8 @@ else {
 
          // $content = $this->load->view($this->controller."_form_view",$data,true);
 
-		$this->set_subtitle("Edit Biro Jasa");
-		$this->set_title("Edit Biro Jasa");
+		$this->set_subtitle("Edit Polres");
+		$this->set_title("Edit polres");
 		$this->set_content($content);
 		$this->cetak();
 
