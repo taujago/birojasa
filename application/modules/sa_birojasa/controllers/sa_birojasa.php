@@ -144,10 +144,6 @@ else {
         echo json_encode($arr);
 }
 
-
-
-
-
 function update(){
 
     $post = $this->input->post();

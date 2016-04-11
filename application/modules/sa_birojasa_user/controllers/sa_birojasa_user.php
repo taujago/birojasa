@@ -128,44 +128,6 @@ else {
 
 
 
-function update(){
-
-    $post = $this->input->post();
-   
-       
-
-
-        $this->load->library('form_validation');
-        $this->form_validation->set_rules('no_npwp','NPWP','required');    
-        $this->form_validation->set_rules('no_siup','SIUP','required');    
-        // $this->form_validation->set_rules('email','Email','callback_cek_email');    
-        // $this->form_validation->set_rules('pelaksana_nip','NIP','required');         
-         
-        $this->form_validation->set_message('required', ' %s Harus diisi ');
-        
-        $this->form_validation->set_error_delimiters('', '<br>');
-
-     
-
-        //show_array($data);
-
-if($this->form_validation->run() == TRUE ) { 
-
-        $this->db->where("id",$post['id']);
-        $res = $this->db->update('biro_jasa', $post); 
-        if($res){
-            $arr = array("error"=>false,'message'=>"BERHASIL DIUPDATE");
-        }
-        else {
-             $arr = array("error"=>true,'message'=>"GAGAL  DIUPDATE");
-        }
-}
-else {
-    $arr = array("error"=>true,'message'=>validation_errors());
-}
-        echo json_encode($arr);
-}
-
 
     function get_data() {
 
@@ -236,31 +198,7 @@ else {
         echo json_encode($responce); 
     }
 
-    function editsimpan(){
-    	
-    	$post = $this->input->post();
-    	$id = $post['id'];
-
-
-    	$data = array(  'id' => $post['id'],
-						'nama' => $post['nama'],
-						'email' => $post['email'],
-						'alamat' => $post['alamat'],
-						'no_siup' => $post['no_siup'],
-						'no_npwp' => $post['no_npwp'],
-						'no_tdp' => $post['no_tdp'],
-						'telp' => $post['telp'],
-						'hp' => $post['hp'],
-
-
-						);
-    	
-
-    	$this->db->where('id', $id);
-    	$this->db->update('biro_jasa', $data);
-    	redirect('sa_birojasa_user');
-
-    }
+    
 
     function editdata(){
     	 $get = $this->input->get(); 
@@ -273,7 +211,7 @@ else {
         $data['arr_birojasa'] = $this->cm->arr_dropdown("biro_jasa", "id", "nama", "nama");
 
 
-         $data['action'] = 'update';
+        $data['action'] = 'update';
          // show_array($data); exit;
     	 
 		
@@ -301,6 +239,73 @@ else {
 
     }
 
+
+
+function cek_passwd2($p1){
+    $p2 = $this->input->post('p2');
+ 
+    if($p1 <> $p2) {
+        $this->form_validation->set_message('cek_passwd', ' %s tidak sama');
+         return false;
+    }
+}
+
+
+
+
+function update(){
+
+    $post = $this->input->post();
+   
+       
+
+
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('nama','Nama Pengguna','required');    
+        $this->form_validation->set_rules('nomor_hp','Nomor HP','required');   
+        $this->form_validation->set_rules('p1','Password','callback_cek_passwd2'); 
+        // $this->form_validation->set_rules('email','Email','callback_cek_email');   
+        // $this->form_validation->set_rules('email','Email','callback_cek_email');    
+        // $this->form_validation->set_rules('pelaksana_nip','NIP','required');         
+         
+        $this->form_validation->set_message('required', ' %s Harus diisi ');
+        
+        $this->form_validation->set_error_delimiters('', '<br>');
+
+     
+
+        //show_array($data);
+
+if($this->form_validation->run() == TRUE ) { 
+
+
+
+
+        if(!empty($post['p1']) or !empty($post['p2'])) {
+            $post['password'] = md5($post['p1']);
+        }
+        
+        unset($post['p1']);
+        unset($post['p2']);
+
+
+
+
+        $this->db->where("id",$post['id']);
+        $res = $this->db->update('pengguna', $post); 
+        if($res){
+            $arr = array("error"=>false,'message'=>"BERHASIL DIUPDATE");
+        }
+        else {
+             $arr = array("error"=>true,'message'=>"GAGAL  DIUPDATE");
+        }
+}
+else {
+    $arr = array("error"=>true,'message'=>validation_errors());
+}
+        echo json_encode($arr);
+}
 
 
 
