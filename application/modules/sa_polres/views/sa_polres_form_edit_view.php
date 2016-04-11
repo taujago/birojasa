@@ -13,29 +13,29 @@
     <div class="panel-body" id="data_umum">
 
     <div class="form-group">
-      <label class="col-sm-3 control-label">ID POLRES</label>
+      <label class="col-sm-3 control-label">Nama Polres</label>
       <div class="col-sm-9">
-        <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
-        <input type="text" name="nama" id="nama" class="form-control input-style" placeholder="ID POLRES . . ." value="<?php echo $nama; ?>">
+        <input type="hidden" name="polres_id" id="polres_id" value="<?php echo $polres_id; ?>">
+        <input type="text" name="polres_nama" id="polres_nama" class="form-control input-style" placeholder="Nama Polres . . ." value="<?php echo $polres_nama; ?>">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">NAMA POLRES</label>
+      <label class="col-sm-3 control-label">Kode Polres</label>
       <div class="col-sm-9">
-        <input type="text" name="no_siup" id="no_siup" class="form-control input-style" placeholder="NAMA POLRES . . ." value="<?php echo $no_siup; ?>">
+        <input type="text" name="polres_kode" id="polres_kode" class="form-control input-style" placeholder="Kode Polres . . ." value="<?php echo $polres_kode; ?>">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">KODE POLRES</label>
+      <label class="col-sm-3 control-label">Id Polda</label>
       <div class="col-sm-9">
-        <input type="text" name="no_npwp" id="no_npwp" class="form-control input-style" placeholder="KODE POLRES . . ." value="<?php echo $no_npwp; ?>">
+        <input type="text" name="polda_id" id="polda_id" class="form-control input-style" placeholder="KODE POLRES . . ." value="<?php echo $polda_id; ?>">
       </div>
     </div>
 
     <div class="form-group pull-center">
         <div class="col-sm-offset-3 col-sm-9">
           <button id="tombolsubmitupdate" style="border-radius: 0;" type="submit" class="btn btn-lg btn-primary"  >Simpan</button>
-          <a href="<?php echo site_url('sa_birojasa'); ?>"><button style="border-radius: 0;" id="reset" type="button" class="btn btn-lg btn-danger">Cancel</button></a>
+          <a href="<?php echo site_url('sa_polres'); ?>"><button style="border-radius: 0;" id="reset" type="button" class="btn btn-lg btn-danger">Cancel</button></a>
         </div>
       </div>
 
@@ -44,5 +44,5 @@
 
 
       <?php 
-$this->load->view($this->controller."sa_polres_form_view_js");
+$this->load->view($this->controller."_form_view_js");
 ?>
