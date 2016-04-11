@@ -13,22 +13,22 @@
     <div class="panel-body" id="data_umum">
 
     <div class="form-group">
-      <label class="col-sm-3 control-label">Nama Polres</label>
+      <label class="col-sm-3 control-label">Nama Polda</label>
       <div class="col-sm-9">
-        <input type="hidden" name="polres_id" id="polres_id" value="<?php echo $polres_id; ?>">
-        <input type="text" name="polres_nama" id="polres_nama" class="form-control input-style" placeholder="Nama Polres . . ." value="<?php echo $polres_nama; ?>">
+        <input type="hidden" name="polres_id" id="polres_id" value="<?php echo isset($polres_id)?$polres_id:""; ?>">
+         <?php echo form_dropdown("polda_id",$arr_polda,'','id="polda_id" class="form-control input-style"'); ?>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Nama polres</label>
+      <div class="col-sm-9">
+        <input type="text" name="polres_nama" id="polres_nama" class="form-control input-style" placeholder="nama Polres . . ." value="<?php echo $polres_nama; ?>">
       </div>
     </div>
     <div class="form-group">
       <label class="col-sm-3 control-label">Kode Polres</label>
       <div class="col-sm-9">
-        <input type="text" name="polres_kode" id="polres_kode" class="form-control input-style" placeholder="Kode Polres . . ." value="<?php echo $polres_kode; ?>">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-3 control-label">Id Polda</label>
-      <div class="col-sm-9">
-        <input type="text" name="polda_id" id="polda_id" class="form-control input-style" placeholder="KODE POLRES . . ." value="<?php echo $polda_id; ?>">
+        <input type="text" name="polres_kode" id="polres_kode" class="form-control input-style" placeholder="KODE POLRES . . ." value="<?php echo $polres_kode; ?>">
       </div>
     </div>
 
