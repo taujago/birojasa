@@ -5,7 +5,6 @@ class daftar extends user_controller{
 		$this->controller = get_class($this);
 
 		parent::__construct();
-		$this->load->helper("tanggal");
 		$this->load->model("daftar_model","dm");
 	}
 	

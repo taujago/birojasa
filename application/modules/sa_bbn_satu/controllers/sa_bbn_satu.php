@@ -1,11 +1,11 @@
 <?php 
-class sa_samsat extends admin_controller{
+class sa_bbn_satu extends admin_controller{
 	var $controller;
-	function sa_samsat(){
+	function sa_bbn_satu(){
 		parent::__construct();
 
 		$this->controller = get_class($this);
-		$this->load->model('samsat_model','dm');
+		$this->load->model('bbn_satu_model','dm');
         $this->load->model("coremodel","cm");
 		
 		//$this->load->helper("serviceurl");
@@ -18,42 +18,36 @@ class sa_samsat extends admin_controller{
 
 
 
-
 function index(){
 		$data_array=array();
 		$content = $this->load->view($this->controller."_view",$data_array,true);
 
-		$this->set_subtitle("Data Samsat");
-		$this->set_title("Data Samsat");
+		$this->set_subtitle("Estimasi Pengurusan");
+		$this->set_title("BBN 1");
 		$this->set_content($content);
 		$this->cetak();
 }
+
+    
+
 
 
 function baru(){
         $data_array=array();
 
         $data_array['action'] = 'simpan';
-
         $data_array['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
+
+        $data_array['arr_samsat'] = $this->cm->arr_dropdown("samsat", "id", "nama", "nama");
         $content = $this->load->view($this->controller."_form_view",$data_array,true);
 
-        $this->set_subtitle("Tambah Samsat");
-        $this->set_title("Tambah Samsat");
+        $this->set_subtitle("Tambah BBN 1");
+        $this->set_title("Tambah BBN 1");
         $this->set_content($content);
         $this->cetak();
 }
 
 
-function cek_email($email){
-    $this->db->where("email",$email);
-    if($this->db->get("biro_jasa")->num_rows() > 0)
-    {
-         $this->form_validation->set_message('cek_email', ' %s Sudah ada');
-         return false;
-    }
-
-}
 
 function simpan(){
 
@@ -64,9 +58,15 @@ function simpan(){
 
 
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('nama','NAMA','required');    
-        $this->form_validation->set_rules('alamat','ALAMAT','required');    
-        $this->form_validation->set_rules('telp','NO. TELP','required');    
+        $this->form_validation->set_rules('tipe_kendaraan','Tipe Kendaraan','required');    
+        $this->form_validation->set_rules('tahun_kendaraan','Tahun Kendaraan','required');
+        $this->form_validation->set_rules('warna_tnkb','Warna TNKB','required');    
+        $this->form_validation->set_rules('polda','Polda','required');
+        $this->form_validation->set_rules('samsat','Samsat','required');    
+        $this->form_validation->set_rules('rp_daftar_stnk','Daftar STNK','required');
+        $this->form_validation->set_rules('rp_daftar_bpkb','Daftar BPKB','required');    
+        $this->form_validation->set_rules('rp_pajak_kendaraan','Pajak Kendaraan','required');
+        $this->form_validation->set_rules('rp_admin_fee','Admin Fee','required');    
         // $this->form_validation->set_rules('pelaksana_nip','NIP','required');         
          
         $this->form_validation->set_message('required', ' %s Harus diisi ');
@@ -80,7 +80,7 @@ function simpan(){
 if($this->form_validation->run() == TRUE ) { 
 
         
-        $res = $this->db->insert('samsat', $post); 
+        $res = $this->db->insert('estimasi_bbn_satu', $post); 
         
         if($res){
             $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
@@ -95,21 +95,21 @@ else {
         echo json_encode($arr);
 }
 
-
-
-
-
 function update(){
 
     $post = $this->input->post();
    
        
-
-
-        $this->load->library('form_validation');
-        $this->form_validation->set_rules('nama','NAMA','required');    
-        $this->form_validation->set_rules('alamat','ALAMAT','required');    
-        $this->form_validation->set_rules('telp','NO. TELP','required');     
+        $this->load->library('form_validation'); 
+        $this->form_validation->set_rules('tipe_kendaraan','Tipe Kendaraan','required');    
+        $this->form_validation->set_rules('tahun_kendaraan','Tahun Kendaraan','required');
+        $this->form_validation->set_rules('warna_tnkb','Warna TNKB','required');    
+        $this->form_validation->set_rules('polda','Polda','required');
+        $this->form_validation->set_rules('samsat','Samsat','required');    
+        $this->form_validation->set_rules('rp_daftar_stnk','Daftar STNK','required');
+        $this->form_validation->set_rules('rp_daftar_bpkb','Daftar BPKB','required');    
+        $this->form_validation->set_rules('rp_pajak_kendaraan','Pajak Kendaraan','required');
+        $this->form_validation->set_rules('rp_admin_fee','Admin Fee','required');     
         // $this->form_validation->set_rules('email','Email','callback_cek_email');    
         // $this->form_validation->set_rules('pelaksana_nip','NIP','required');         
          
@@ -124,7 +124,7 @@ function update(){
 if($this->form_validation->run() == TRUE ) { 
 
         $this->db->where("id",$post['id']);
-        $res = $this->db->update('samsat', $post); 
+        $res = $this->db->update('estimasi_bbn_satu', $post); 
         if($res){
             $arr = array("error"=>false,'message'=>"BERHASIL DIUPDATE");
         }
@@ -152,16 +152,15 @@ else {
         $sord = isset($_REQUEST['order'][0]['dir'])?$_REQUEST['order'][0]['dir']:"asc"; // get the direction if(!$sidx) $sidx =1;  
         
   
-        $nama = $_REQUEST['columns'][1]['search']['value'];
+        $tipe_kendaraan = $_REQUEST['columns'][1]['search']['value'];
 
 
       //  order[0][column]
         $req_param = array (
-
 				"sort_by" => $sidx,
 				"sort_direction" => $sord,
 				"limit" => null,
-				"nama" => $nama
+				"tipe_kendaraan" => $tipe_kendaraan
 				
 				 
 		);     
@@ -186,15 +185,16 @@ else {
 		// $daft_id = $row['daft_id'];
         $id = $row['id'];
         $hapus = "<a href ='#' onclick=\"hapus('$id')\" class='btn btn-danger btn-xs'><i class='fa fa-trash'></i>Hapus</a>
-        <a href ='sa_samsat/editdata?id=$id' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i>Edit</a>";
+        <a href ='sa_bbn_satu/editdata?id=$id' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i>Edit</a>";
         	
         	 
         	$arr_data[] = array(
         		$row['id'],
-        		$row['nama'],
-        		$row['alamat'],
-        		$row['telp'],
-                $row['nm_polda'],
+        		$row['tipe_kendaraan'],
+        		$row['tahun_kendaraan'],
+        		$row['warna_tnkb'],
+                $row['samsat'],
+                $row['polda'],
         		$hapus
         		
          			 
@@ -210,40 +210,23 @@ else {
         echo json_encode($responce); 
     }
 
-    
-
+   
     function editdata(){
     	 $get = $this->input->get(); 
     	 $id = $get['id'];
 
     	 $this->db->where('id',$id);
-    	 $biro_jasa = $this->db->get('samsat');
-    	 $data_array = $biro_jasa->row_array();
+    	 $estimasi_bbn_satu = $this->db->get('estimasi_bbn_satu');
+    	 $data = $estimasi_bbn_satu->row_array();
 
-         $data_array['action'] = 'update';
-         // show_array($data); exit;
-         $data_array['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
-    	 
-		
+         $data['action'] = 'update';
 
-    	// $data_array=array(
-    	// 		'id' => $data->id,
-    	// 		'nama' => $data->nama,
-    	// 		'no_siup' => $data->no_siup,
-    	// 		'no_npwp' => $data->no_npwp,
-    	// 		'no_tdp' => $data->no_tdp,
-    	// 		'telp' => $data->telp,
-    	// 		'alamat' => $data->alamat,
-    	// 		'email' => $data->email,
-    	// 		'hp' => $data->hp,
-
-    	// 	);
-		$content = $this->load->view("sa_samsat_form_edit_view",$data_array,true);
+		$content = $this->load->view("sa_bbn_satu_form_edit_view",$data,true);
 
          // $content = $this->load->view($this->controller."_form_view",$data,true);
 
-		$this->set_subtitle("Edit Samsat");
-		$this->set_title("Edit Samsat");
+		$this->set_subtitle("Edit Biro Jasa");
+		$this->set_title("Edit Biro Jasa");
 		$this->set_content($content);
 		$this->cetak();
 
@@ -258,7 +241,7 @@ else {
 
     	$data = array('id' => $id, );
 
-    	$res = $this->db->delete('samsat', $data);
+    	$res = $this->db->delete('estimasi_bbn_satu', $data);
         if($res){
             $arr = array("error"=>false,"message"=>"DATA BERHASIL DIHAPUS");
         }
@@ -270,19 +253,6 @@ else {
     }
 
 
-
-	// function simpan(){
-	// 	$post = $this->input->post();
-	// 	$password = md5($post['password']);
-	// 	$data = array('nama' => $post['nama'],
-	// 					'email' => $post['email'],
-	// 					'alamat' => $post['alamat'],
-	// 					'password' => $password,
-	// 					'level' => 2);
-	// 	$this->db->insert('sa_birojasa', $data); 
-
-	// 	redirect('sa_birojasa');
-	// }
 
 
 
