@@ -1,15 +1,12 @@
 <?php 
-class sa_polres extends admin_controller{
+class sa_polda extends admin_controller{
 	var $controller;
-	function sa_polres(){
+	function sa_polda(){
 		parent::__construct();
 
 		$this->controller = get_class($this);
-		$this->load->model('sa_polres_model','dm');
+		$this->load->model('sa_polda_model','dm');
 
-         $this->load->model("coremodel","cm");
-
-        $this->load->model("coremodel","cm");
 
 
 		
@@ -28,20 +25,19 @@ function index(){
 		$data_array=array();
 		$content = $this->load->view($this->controller."_view",$data_array,true);
 
-		$this->set_subtitle("Data Polres");
-		$this->set_title("Data Polres");
+		$this->set_subtitle("Data Polda");
+		$this->set_title("Data Polda");
 		$this->set_content($content);
 		$this->cetak();
 }
 
 
 function baru(){
-        $data_array=array();
-        $data_array['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
+    
         $data_array['action'] = 'simpan';
         $content = $this->load->view($this->controller."_form_view",$data_array,true);
-        $this->set_subtitle("Tambah Polres");
-        $this->set_title("Tambah Polres");
+        $this->set_subtitle("Tambah Polda");
+        $this->set_title("Tambah Polda");
         $this->set_content($content);
         $this->cetak();
     }
@@ -57,8 +53,8 @@ function simpan(){
 
 
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('polres_nama','NAMA','required');
-        $this->form_validation->set_rules('polres_kode','KODE','required');   
+        $this->form_validation->set_rules('polda_nama','NAMA','required');
+          
           
          
         $this->form_validation->set_message('required', ' %s Harus diisi ');
@@ -72,7 +68,7 @@ function simpan(){
 if($this->form_validation->run() == TRUE ) { 
 
         
-        $res = $this->db->insert('m_polres', $post); 
+        $res = $this->db->insert('m_polda', $post); 
         if($res){
             $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
         }
@@ -96,10 +92,7 @@ function update(){
 
 
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('polres_nama','Nama Polres','required');    
-        $this->form_validation->set_rules('polres_kode','Kode polres','required');        
-        $this->form_validation->set_rules('polda_id','Kode Polda','required');         
-         
+        $this->form_validation->set_rules('polda_nama','Nama Polda','required');     
         $this->form_validation->set_message('required', ' %s Harus diisi ');
         
         $this->form_validation->set_error_delimiters('', '<br>');
@@ -110,8 +103,8 @@ function update(){
 
 if($this->form_validation->run() == TRUE ) { 
 
-        $this->db->where("polres_id",$post['polres_id']);
-        $res = $this->db->update('m_polres', $post); 
+        $this->db->where("polda_id",$post['polda_id']);
+        $res = $this->db->update('m_polda', $post); 
         if($res){
             $arr = array("error"=>false,'message'=>"BERHASIL DIUPDATE");
         }
@@ -138,7 +131,7 @@ else {
         $sord = isset($_REQUEST['order'][0]['dir'])?$_REQUEST['order'][0]['dir']:"asc"; // get the direction if(!$sidx) $sidx =1;  
         
   
-        $polres_nama = $_REQUEST['columns'][1]['search']['value'];
+        $polda_nama = $_REQUEST['columns'][1]['search']['value'];
 
 
       //  order[0][column]
@@ -146,7 +139,7 @@ else {
 				"sort_by" => $sidx,
 				"sort_direction" => $sord,
 				"limit" => null,
-				"polres_nama" => $polres_nama
+				"polda_nama" => $polda_nama
 				
 				 
 		);     
@@ -169,16 +162,14 @@ else {
         $arr_data = array();
         foreach($result as $row) : 
 		// $daft_id = $row['daft_id'];
-        $id = $row['polres_id'];
+        $id = $row['polda_id'];
         $hapus = "<a href ='#' onclick=\"hapus('$id')\" class='btn btn-danger btn-xs'><i class='fa fa-trash'></i>Hapus</a>
-        <a href ='sa_polres/editdata?polres_id=$id' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i>Edit</a>";
+        <a href ='sa_polda/editdata?polda_id=$id' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i>Edit</a>";
         	
         	 
         	$arr_data[] = array(
-        		$row['polres_id'],
-        		$row['polres_nama'],
-        		$row['polres_kode'],
         		$row['polda_id'],
+        		$row['polda_nama'],
         	   $hapus
         		
          			 
@@ -198,33 +189,27 @@ else {
 
     	
     	$post = $this->input->post();
-    	$id = $post['polres_id'];
+    	$id = $post['polda_id'];
 
 
     	$data = array(  
-						'polres_nama' => $post['polres_nama'],
-						'polres_kode' => $post['polres_kode'],
-						'polda_id' => $post['polda_id'],
-						
-
-
+						'polda_nama' => $post['polda_nama'],
 						);
     	
-
-    	$this->db->where('id', $id);
-    	$this->db->update('m_polres', $data);
-    	redirect('sa_polres');
+    	$this->db->where('polda_id', $polda_id);
+    	$this->db->update('m_polda', $data);
+    	redirect('sa_polda');
 
     }
 
     function editdata(){
     	
          $get = $this->input->get(); 
-         $polres_id = $get['polres_id'];
+         $polda_id = $get['polda_id'];
 
-         $this->db->where('polres_id',$polres_id);
-         $polres = $this->db->get('m_polres');
-         $data_array = $polres->row_array();
+         $this->db->where('polda_id',$polda_id);
+         $polda = $this->db->get('m_polda');
+         $data_array= $polda->row_array();
 
          $data_array['action'] = 'update';
          // show_array($data); exit;
@@ -244,13 +229,12 @@ else {
 
     	// 	);
 
-        $data_array['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
-		$content = $this->load->view("sa_polres_form_edit_view",$data_array,true);
+        
 
-         // $content = $this->load->view($this->controller."_form_view",$data,true);
+        $content = $this->load->view("sa_polda_form_edit_view",$data_array,true);
 
-		$this->set_subtitle("Edit Polres");
-		$this->set_title("Edit polres");
+		$this->set_subtitle("Edit Polda");
+		$this->set_title("Edit Polda");
 		$this->set_content($content);
 		$this->cetak();
 
@@ -261,11 +245,11 @@ else {
 
     function hapusdata(){
     	$get = $this->input->post();
-    	$polres_id = $get['id'];
+    	$polda_id = $get['id'];
 
-    	$data = array('polres_id' => $polres_id, );
+    	$data = array('polda_id' => $polda_id, );
 
-    	$res = $this->db->delete('m_polres', $data);
+    	$res = $this->db->delete('m_polda', $data);
         if($res){
             $arr = array("error"=>false,"message"=>"DATA BERHASIL DIHAPUS");
         }
