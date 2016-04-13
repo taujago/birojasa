@@ -3,6 +3,8 @@
 $(document).ready(function(){
 
 
+
+
 $('#form_data').bootstrapValidator({
                 message: 'This value is not valid', 
                 feedbackIcons: { 
@@ -33,21 +35,7 @@ $('#form_data').bootstrapValidator({
                             }
                         }
                     },
-                    polda: {
-                        validators: {
-                            notEmpty: {
-                                message : 'Polda tidak boleh kosong' 
-                            }
-                        }
-                    },
-
-                    samsat: {
-                        validators: {
-                            notEmpty: {
-                                message : 'Samat tidak boleh kosong'    
-                            }
-                        }
-                    },
+                    
                     rp_daftar_stnk: {
                         validators: {
                             notEmpty: {
@@ -169,6 +157,20 @@ $("#tombolsubmitupdate").click(function(){
 
 
 
+
+$("#id_polda").change(function(){
+
+    $.ajax({
+
+            url : '<?php echo site_url("$this->controller/get_samsat") ?>',
+            data : { id_polda : $(this).val() },
+            type : 'post', 
+            success : function(result) {
+                $("#id_samsat").html(result)
+            }
+    });
+
+});
 
 
 

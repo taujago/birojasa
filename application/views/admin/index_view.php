@@ -112,7 +112,7 @@
         <div class="col-lg-3 col-xs-6">
           <div class="small-box bg-red">
             <div class="inner">
-              <h3><?php echo $polres; ?></h3>
+              <h3><?php echo $polda; ?></h3>
               <p>Polda</p>
             </div>
             <div class="icon">

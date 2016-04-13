@@ -217,11 +217,12 @@ else {
     	 $id = $get['id'];
 
     	 $this->db->where('id',$id);
-    	 $biro_jasa = $this->db->get('samsat');
-    	 $data_array = $biro_jasa->row_array();
+    	 $samsat = $this->db->get('samsat');
+    	 $data_array = $samsat->row_array();
 
          $data_array['action'] = 'update';
          // show_array($data); exit;
+         
          $data_array['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
     	 
 		
