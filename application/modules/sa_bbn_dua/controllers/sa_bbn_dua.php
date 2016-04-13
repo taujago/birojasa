@@ -28,7 +28,19 @@ function index(){
 		$this->cetak();
 }
 
-    
+function get_samsat(){
+    $data = $this->input->post();
+
+    $id_polda = $data['id_polda'];
+    $this->db->where("id_polda",$id_polda);
+    $this->db->order_by("nama");
+    $rs = $this->db->get("samsat");
+    foreach($rs->result() as $row ) :
+        echo "<option value=$row->id>$row->nama </option>";
+    endforeach;
+
+
+}
 
 
 
@@ -38,7 +50,9 @@ function baru(){
         $data_array['action'] = 'simpan';
         $data_array['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
 
-        $data_array['arr_samsat'] = $this->cm->arr_dropdown("samsat", "id", "nama", "nama");
+        $data_array['arr_perubahan'] = $this->cm->arr_dropdown("perubahan", "id", "nama", "nama");
+
+        
         $content = $this->load->view($this->controller."_form_view",$data_array,true);
 
         $this->set_subtitle("Tambah BBN 1");
@@ -60,12 +74,10 @@ function simpan(){
         $this->load->library('form_validation');
         $this->form_validation->set_rules('tipe_kendaraan','Tipe Kendaraan','required');    
         $this->form_validation->set_rules('tahun_kendaraan','Tahun Kendaraan','required');
-        $this->form_validation->set_rules('warna_tnkb','Warna TNKB','required');    
-        $this->form_validation->set_rules('polda','Polda','required');
-        $this->form_validation->set_rules('samsat','Samsat','required');    
-        $this->form_validation->set_rules('rp_daftar_stnk','Daftar STNK','required');
-        $this->form_validation->set_rules('rp_daftar_bpkb','Daftar BPKB','required');    
-        $this->form_validation->set_rules('rp_pajak_kendaraan','Pajak Kendaraan','required');
+        $this->form_validation->set_rules('warna_tnkb','Warna TNKB','required');
+           
+        $this->form_validation->set_rules('rp_pendaftaran','Daftar STNK','required');
+        $this->form_validation->set_rules('rp_perubahan','Daftar BPKB','required');    
         $this->form_validation->set_rules('rp_admin_fee','Admin Fee','required');    
         // $this->form_validation->set_rules('pelaksana_nip','NIP','required');         
          
@@ -80,7 +92,7 @@ function simpan(){
 if($this->form_validation->run() == TRUE ) { 
 
         
-        $res = $this->db->insert('estimasi_bbn_satu', $post); 
+        $res = $this->db->insert('estimasi_bbn_dua', $post); 
         
         if($res){
             $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
@@ -104,11 +116,9 @@ function update(){
         $this->form_validation->set_rules('tipe_kendaraan','Tipe Kendaraan','required');    
         $this->form_validation->set_rules('tahun_kendaraan','Tahun Kendaraan','required');
         $this->form_validation->set_rules('warna_tnkb','Warna TNKB','required');    
-        $this->form_validation->set_rules('polda','Polda','required');
-        $this->form_validation->set_rules('samsat','Samsat','required');    
-        $this->form_validation->set_rules('rp_daftar_stnk','Daftar STNK','required');
-        $this->form_validation->set_rules('rp_daftar_bpkb','Daftar BPKB','required');    
-        $this->form_validation->set_rules('rp_pajak_kendaraan','Pajak Kendaraan','required');
+        
+        $this->form_validation->set_rules('rp_pendaftaran','Daftar BPKB','required');    
+        $this->form_validation->set_rules('rp_perubahan','Pajak Kendaraan','required');
         $this->form_validation->set_rules('rp_admin_fee','Admin Fee','required');     
         // $this->form_validation->set_rules('email','Email','callback_cek_email');    
         // $this->form_validation->set_rules('pelaksana_nip','NIP','required');         
@@ -124,7 +134,7 @@ function update(){
 if($this->form_validation->run() == TRUE ) { 
 
         $this->db->where("id",$post['id']);
-        $res = $this->db->update('estimasi_bbn_satu', $post); 
+        $res = $this->db->update('estimasi_bbn_dua', $post); 
         if($res){
             $arr = array("error"=>false,'message'=>"BERHASIL DIUPDATE");
         }
@@ -192,9 +202,9 @@ else {
         		$row['id'],
         		$row['tipe_kendaraan'],
         		$row['tahun_kendaraan'],
-        		$row['warna_tnkb'],
-                $row['samsat'],
-                $row['polda'],
+        		$row['nm_perubahan'],
+                $row['nm_samsat'],
+                $row['nm_polda'],
         		$hapus
         		
          			 
@@ -220,6 +230,9 @@ else {
     	 $data = $estimasi_bbn_satu->row_array();
 
          $data['action'] = 'update';
+         $data['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
+
+        $data['arr_perubahan'] = $this->cm->arr_dropdown("perubahan", "id", "nama", "nama");
 
 		$content = $this->load->view("sa_bbn_dua_form_edit_view",$data,true);
 
@@ -241,7 +254,7 @@ else {
 
     	$data = array('id' => $id, );
 
-    	$res = $this->db->delete('estimasi_bbn_satu', $data);
+    	$res = $this->db->delete('estimasi_bbn_dua', $data);
         if($res){
             $arr = array("error"=>false,"message"=>"DATA BERHASIL DIHAPUS");
         }

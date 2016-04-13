@@ -36,13 +36,13 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">Polda</label>
       <div class="col-sm-9">
-        <input type="text" name="polda"  value="<?php echo $polda; ?>" id="polda" class="form-control input-style" placeholder="Polda"  >
+        <?php echo form_dropdown("id_polda",$arr_polda,$id_polda,'id="id_polda" class="form-control input-style"'); ?>
       </div>
     </div>
     <div class="form-group">
       <label class="col-sm-3 control-label">Samsat</label>
       <div class="col-sm-9">
-      <input type="text" name="samsat"  value="<?php echo $samsat; ?>" id="samsat" class="form-control input-style" placeholder="Samsat"  >
+      <?php echo form_dropdown("id_samsat",$arr_samsat,$id_samsat,'id="id_samsat" class="form-control input-style"'); ?>
       </div>
     </div>
     <div class="form-group">

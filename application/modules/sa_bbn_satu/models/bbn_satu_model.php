@@ -18,25 +18,30 @@ class bbn_satu_model extends CI_Model {
 
 		 extract($param);
 
-		 $kolom = array(0=>"id",
+		 $kolom = array(0=>"bbn1.id",
 							"tipe_kendaraan",
 							"tahun_kendaraan",
 							"warna_tnkb",
-							"samsat",
-							"polda",
+							"nm_samsat",
+							"nm_polda",
 							
 		 	);
 
 
-		
 
-		 $this->db->select('*')->from("estimasi_bbn_satu");
+		 	$this->db->select('bbn1.*, polda.polda_nama as nm_polda, s.nama as nm_samsat');
+
+		 	$this->db->from("estimasi_bbn_satu bbn1");
+		 	$this->db->join('m_polda polda','bbn1.id_polda=polda.polda_id');
+		 	$this->db->join('samsat s', 'bbn1.id_samsat = s.id');
+
+		
 
 
 		 
 
 		 if(!empty($tipe_kendaraan)) {
-		 	$this->db->like("tipe_kendaraan",$tipe_kendaraan);
+		 	$this->db->like("bbn1.tipe_kendaraan",$tipe_kendaraan);
 		 }
 
 		($param['limit'] != null ? $this->db->limit($param['limit']['end'], $param['limit']['start']) : '');

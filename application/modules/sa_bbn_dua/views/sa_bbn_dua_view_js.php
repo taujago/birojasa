@@ -74,7 +74,7 @@ BootstrapDialog.show({
                                        
                                   });   
 
-                            $('#bbn_satu').DataTable().ajax.reload();      
+                            $('#bbn_dua').DataTable().ajax.reload();      
                         }
                         else {
                             BootstrapDialog.alert({
