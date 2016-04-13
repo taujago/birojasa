@@ -38,6 +38,8 @@ function baru(){
         $data_array['action'] = 'simpan';
         $data_array['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
 
+        
+
         $data_array['arr_samsat'] = $this->cm->arr_dropdown("samsat", "id", "nama", "nama");
         $content = $this->load->view($this->controller."_form_view",$data_array,true);
 
@@ -61,8 +63,6 @@ function simpan(){
         $this->form_validation->set_rules('tipe_kendaraan','Tipe Kendaraan','required');    
         $this->form_validation->set_rules('tahun_kendaraan','Tahun Kendaraan','required');
         $this->form_validation->set_rules('warna_tnkb','Warna TNKB','required');    
-        $this->form_validation->set_rules('polda','Polda','required');
-        $this->form_validation->set_rules('samsat','Samsat','required');    
         $this->form_validation->set_rules('rp_daftar_stnk','Daftar STNK','required');
         $this->form_validation->set_rules('rp_daftar_bpkb','Daftar BPKB','required');    
         $this->form_validation->set_rules('rp_pajak_kendaraan','Pajak Kendaraan','required');
@@ -104,8 +104,6 @@ function update(){
         $this->form_validation->set_rules('tipe_kendaraan','Tipe Kendaraan','required');    
         $this->form_validation->set_rules('tahun_kendaraan','Tahun Kendaraan','required');
         $this->form_validation->set_rules('warna_tnkb','Warna TNKB','required');    
-        $this->form_validation->set_rules('polda','Polda','required');
-        $this->form_validation->set_rules('samsat','Samsat','required');    
         $this->form_validation->set_rules('rp_daftar_stnk','Daftar STNK','required');
         $this->form_validation->set_rules('rp_daftar_bpkb','Daftar BPKB','required');    
         $this->form_validation->set_rules('rp_pajak_kendaraan','Pajak Kendaraan','required');
@@ -193,8 +191,8 @@ else {
         		$row['tipe_kendaraan'],
         		$row['tahun_kendaraan'],
         		$row['warna_tnkb'],
-                $row['samsat'],
-                $row['polda'],
+                $row['nm_samsat'],
+                $row['nm_polda'],
         		$hapus
         		
          			 
@@ -210,6 +208,21 @@ else {
         echo json_encode($responce); 
     }
 
+    function get_samsat(){
+    $data = $this->input->post();
+
+    $id_polda = $data['id_polda'];
+    $this->db->where("id_polda",$id_polda);
+    $this->db->order_by("nama");
+    $rs = $this->db->get("samsat");
+    foreach($rs->result() as $row ) :
+        echo "<option value=$row->id>$row->nama </option>";
+    endforeach;
+
+
+}
+
+
    
     function editdata(){
     	 $get = $this->input->get(); 
@@ -219,14 +232,23 @@ else {
     	 $estimasi_bbn_satu = $this->db->get('estimasi_bbn_satu');
     	 $data = $estimasi_bbn_satu->row_array();
 
-         $data['action'] = 'update';
+
+         
+
+          $data['action'] = 'update';
+
+         $data['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
+
+        $data['arr_samsat'] = $this->cm->arr_dropdown("samsat", "id","nama", "nama", "nama");
+
+        
 
 		$content = $this->load->view("sa_bbn_satu_form_edit_view",$data,true);
 
          // $content = $this->load->view($this->controller."_form_view",$data,true);
 
-		$this->set_subtitle("Edit Biro Jasa");
-		$this->set_title("Edit Biro Jasa");
+		$this->set_subtitle("Edit Estimasi");
+		$this->set_title("BBN 1");
 		$this->set_content($content);
 		$this->cetak();
 
@@ -251,6 +273,7 @@ else {
     	//redirect('sa_birojasa');
         echo json_encode($arr);
     }
+
 
 
 

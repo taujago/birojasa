@@ -49,10 +49,10 @@
 
 
         
-        <th width="7%">ID</th>
-        <th width="15%">Tipe Kendaraan</th>
-        <th width="11%">Tahun</th>
-        <th width="10%">Warna TNKB</th>
+        <th width="5%">ID</th>
+        <th width="10%">Tipe Kendaraan</th>
+        <th width="7%">Tahun</th>
+        <th width="15%">Jenis Perubahan</th>
         <th width="15%">Samsat</th>
         <th width="20%">Polda</th>
         <th width="14%">#</th>

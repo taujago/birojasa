@@ -23,6 +23,7 @@ class admin extends admin_controller {
 		$dealer = $this->db->get('dealer')->num_rows();
 		$bbn1 = $this->db->get('estimasi_bbn_satu')->num_rows();
 		$polres = $this->db->get('m_polres')->num_rows();
+		$polda = $this->db->get('m_polda')->num_rows();
 		$bbn2 = $this->db->get('estimasi_bbn_dua')->num_rows();
 
 		$data_array = array(
@@ -32,7 +33,8 @@ class admin extends admin_controller {
 								"birojasa_user" => $birojasa_user,
 								"bbn1" => $bbn1, 
 								"polres" => $polres,
-								"bbn2" => $bbn2
+								"bbn2" => $bbn2,
+								'polda' => $polda
 								);
 
 		$content = $this->load->view("admin/index_view",$data_array,true);

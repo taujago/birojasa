@@ -23,7 +23,10 @@ $userdata = $this->session->userdata('bj_login');
                 </li>
                 <li><a href="<?php echo site_url('/'); ?>bj_profil"><i class="fa fa-user"></i> Profil </span></a>
                 </li>
+
                  <li><a href="<?php echo site_url('/'); ?>bj_user"><i class="fa fa-user"></i> User </span></a>
+
+                <li><a href="<?php echo site_url('/'); ?>bj_bbn_satu"><i class="fa fa-user"></i> Pengurusan BBN 1 </span></a>
                 </li>
               </ul>
             </div>
