@@ -30,9 +30,7 @@ class biro_jasa_controller extends CI_Controller {
 	
 	function cetak(){
 		$arr = array();	
-		$this->load->view('bj/header_view',$this->content);
-		$this->load->view("bj/side_bar_view",$this->content);
-		$this->load->view("bj/footer_view", $this->content);
+		$this->load->view('bj/bj_theme',$this->content);
 		
 	}
 
