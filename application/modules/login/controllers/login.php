@@ -66,10 +66,12 @@ function cek_password($password) {
 		 $username = $data['form-username'];
 		 $password = $data['mask'];
 
-		 $this->db->where("email",$username);
-		 $this->db->where("password",$password);
-		 $res = $this->db->get("pengguna");
-		  // echo $this->db->last_query(); exit;
+		 $this->db->select('p.*,b.nama as birojasa')->from('pengguna p')
+		 ->join('biro_jasa b','p.birojasa_id = b.id','left');
+		 $this->db->where("p.email",$username);
+		 $this->db->where("p.password",$password);
+		 $res = $this->db->get();
+		  // echo $this->db->last_query();  //exit;
 
 		 if($res->num_rows()==0) {
 
@@ -79,21 +81,16 @@ function cek_password($password) {
 		 }
 		 else {
 
-		 	$member = $res->row();
+		 	$member = $res->row_array();
+		 	// show_array($member);
+		 	// exit;
 
-		 	$jj = array (
-					'login' => true,
-					'id_user' => $member->id,
-					'email' => $member->email,
-					'nama' => $member->nama,
-					'alamat' => $member->alamat,
-					);
-
-		 	if($member->level == 1) {
+		 	$member['login'] = true;
+		 	if($member['level'] == 1) {
 		 		
 				
 
-				$this->session->set_userdata('admin_login', $jj);
+				$this->session->set_userdata('admin_login', $member);
 		 		$datalogin = $this->session->userdata("admin_login");
 		 		redirect('admin');
 
@@ -102,16 +99,16 @@ function cek_password($password) {
 
 
 		 	}
-		 	else if ($member->level == 2) {
+		 	else if ($member['level'] == 2) {
 		 		
-		 		$this->session->set_userdata('bj_login', $jj);
+		 		$this->session->set_userdata('bj_login', $member);
 		 		$datalogin = $this->session->userdata("bj_login");
 		 		redirect('biro_jasa');
 		 	}
 
-		 	else if ($member->level == 3) {
+		 	else if ($member['level'] == 3) {
 
-		 		$this->session->set_userdata('user_login', $jj);
+		 		$this->session->set_userdata('user_login', $member);
 
 		 		$datalogin = $this->session->userdata("user_login");
 
