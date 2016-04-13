@@ -23,6 +23,8 @@ $userdata = $this->session->userdata('bj_login');
                 </li>
                 <li><a href="<?php echo site_url('/'); ?>bj_profil"><i class="fa fa-user"></i> Profil </span></a>
                 </li>
+                 <li><a href="<?php echo site_url('/'); ?>bj_user"><i class="fa fa-user"></i> User </span></a>
+                </li>
               </ul>
             </div>
             <div class="menu_section">
