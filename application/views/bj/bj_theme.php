@@ -96,6 +96,7 @@ $userdata = $this->session->userdata('bj_login');
               <ul class="nav side-menu">
                 <li><a href="<?php echo site_url('/'); ?>biro_jasa"><i class="fa fa-dashboard"></i> Home </a>
                 </li>
+
                 <li><a><i class="fa fa-dashboard"></i> Pengurusan BBN <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
                     <li><a href="<?php echo site_url('bj_bbn_satu'); ?>">BBN 1</a>
@@ -104,6 +105,12 @@ $userdata = $this->session->userdata('bj_login');
                     </li>
                   </ul>
                 </li>
+                <li><a href="<?php echo site_url('/'); ?>bj_profil"><i class="fa fa-user"></i> Profil </span></a>
+
+                </li>
+                <li><a href="<?php echo site_url('/'); ?>bj_add_user"><i class="fa fa-user"></i> User </span></a>
+                </li>
+
                 <li><a href="<?php echo site_url('/'); ?>bj_profil"><i class="fa fa-user"></i> Profil </span></a>
                 </li>
               </ul>
@@ -231,6 +238,8 @@ $userdata = $this->session->userdata('bj_login');
   <script src="<?php echo base_url(); ?>assets/js/chartjs/chart.min.js"></script>
 
   <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
+
+  <script src="<?php echo base_url(); ?>assets/js/bootstrapValidator.min.js"></script>
 
    <script src="<?php echo base_url(); ?>assets/js/bootstrap/bootstrap-dialog.min.js"></script>
 
