@@ -29,10 +29,16 @@ $userdata = $this->session->userdata('bj_login');
    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap/bootstrap-dialog.min.css">
    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrapValidator.min.css">
    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap/bootstrap-dialog.min.css">
+   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
 
 
   <script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/nprogress.js"></script>
+
+
 
   
   
@@ -90,9 +96,15 @@ $userdata = $this->session->userdata('bj_login');
               <ul class="nav side-menu">
                 <li><a href="<?php echo site_url('/'); ?>biro_jasa"><i class="fa fa-dashboard"></i> Home </a>
                 </li>
-                <li><a href="<?php echo site_url('/'); ?>bj_profil"><i class="fa fa-user"></i> Profil </span></a>
+                <li><a><i class="fa fa-dashboard"></i> Pengurusan BBN <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu" style="display: none">
+                    <li><a href="<?php echo site_url('bj_bbn_satu'); ?>">BBN 1</a>
+                    </li>
+                    <li><a href="<?php echo site_url('bj_bbn_dua'); ?>">BBN 2</a>
+                    </li>
+                  </ul>
                 </li>
-                <li><a href="<?php echo site_url('/'); ?>bj_bbn_satu"><i class="fa fa-user"></i> Pengurusan BBN 1 </span></a>
+                <li><a href="<?php echo site_url('/'); ?>bj_profil"><i class="fa fa-user"></i> Profil </span></a>
                 </li>
               </ul>
             </div>
@@ -221,6 +233,14 @@ $userdata = $this->session->userdata('bj_login');
   <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
 
    <script src="<?php echo base_url(); ?>assets/js/bootstrap/bootstrap-dialog.min.js"></script>
+
+   <script src="<?php echo base_url('assets/plugins/slimScroll/jquery.slimscroll.min.js'); ?>"></script>
+    <!-- FastClick -->
+    <script src="<?php echo base_url('assets/plugins/fastclick/fastclick.min.js'); ?>"></script>
+    <!-- AdminLTE App -->
+    <script src="<?php echo base_url('assets/dist/js/app.min.js'); ?>"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="<?php echo base_url('assets/dist/js/demo.js'); ?>"></script>
 
 
 

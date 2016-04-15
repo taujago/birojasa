@@ -3,7 +3,7 @@
     ?>    
      <script src="<?php echo base_url("assets") ?>/js/jquery.dataTables.min.js"></script>           
               <div class="x_title">
-                  <h2>Tambah Data <small>Pengurusan BBN 1 </small></h2>
+                  <h2>Tambah Data <small>Pengurusan BBN 2 </small></h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-plus"></i></a>
@@ -20,9 +20,9 @@
 
             <div class="col-md-3">
               <div class="form-group">
-                <label for="nama">Nama</label>
+                <label for="nama">No. Rangka</label>
                 
-                <input id="no_rangka" name="no_rangka" type="text" class="form-control" placeholder="Nama"></input>
+                <input id="no_rangka" name="no_rangka" type="text" class="form-control" placeholder="No. Rangka"></input>
               </div>
             </div>
             <div class="col-md-1">
@@ -42,7 +42,7 @@
             
 
 
-<table width="100%" border="0" id="bj_bbn_satu" class="table table-striped 
+<table width="100%" border="0" id="bj_bbn_dua" class="table table-striped 
              table-bordered table-hover dataTable no-footer" role="grid">
 <thead>
   <tr  >
@@ -55,7 +55,7 @@
         <th width="11%">Tgl. Faktur</th>
         <th width="10%">Tgl. Entri</th>
         <th width="20%">Pengurus</th>
-        <th width="10%">#</th>
+        <th width="14%">#</th>
     </tr>
   
 </thead>
