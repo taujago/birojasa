@@ -3,18 +3,18 @@
 
 $(document).ready(function(){
 
-     var dt = $("#bj_bbn_satu").DataTable(
+     var dt = $("#bj_bbn_dua").DataTable(
             {
                 // "order": [[ 0, "desc" ]],
                 // "iDisplayLength": 50,
                 "columnDefs": [ { "targets": 0, "orderable": false } ],
                 "processing": true,
                 "serverSide": true,
-                "ajax": '<?php echo site_url("bj_bbn_satu/get_data") ?>'
+                "ajax": '<?php echo site_url("bj_bbn_dua/get_data") ?>'
             });
 
          
-         $("#bj_bbn_satu_filter").css("display","none");  
+         $("#bj_bbn_dua_filter").css("display","none");  
     
      
          $("#btn_submit").click(function(){
@@ -74,7 +74,7 @@ BootstrapDialog.show({
                                        
                                   });   
 
-                            $('#bj_bbn_satu').DataTable().ajax.reload();      
+                            $('#bj_bbn_dua').DataTable().ajax.reload();      
                         }
                         else {
                             BootstrapDialog.alert({

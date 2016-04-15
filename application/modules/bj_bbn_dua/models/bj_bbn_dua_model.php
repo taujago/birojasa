@@ -1,9 +1,9 @@
 <?php 
 
-class bj_bbn_satu_model extends CI_Model {
+class bj_bbn_dua_model extends CI_Model {
 
 
-	function bj_bbn_satu_model(){
+	function bj_bbn_dua_model(){
 		parent::__construct();
 	}
 
@@ -18,7 +18,7 @@ class bj_bbn_satu_model extends CI_Model {
 
 		 extract($param);
 
-		 $kolom = array(0=>"bbn1.id",
+		 $kolom = array(0=>"bbn2.id",
 							"no_rangka",
 							"no_faktur",
 							"tgl_faktur",
@@ -29,10 +29,10 @@ class bj_bbn_satu_model extends CI_Model {
 
 
 
-		 	$this->db->select('bbn1.*, p.nama as bj_nama_user');
+		 	$this->db->select('bbn2.*, p.nama as bj_nama_user');
 
-		 	$this->db->from("bj_bbn_satu bbn1");
-		 	$this->db->join('pengguna p','bbn1.user_entri=p.id');
+		 	$this->db->from("bj_bbn_dua bbn2");
+		 	$this->db->join('pengguna p','bbn2.user_entri=p.id');
 		 	$this->db->where('id_birojasa', $id_birojasa);
 		
 
@@ -40,7 +40,7 @@ class bj_bbn_satu_model extends CI_Model {
 		 
 
 		 if(!empty($no_rangka)) {
-		 	$this->db->like("bbn1.no_rangka",$no_rangka);
+		 	$this->db->like("bbn2.no_rangka",$no_rangka);
 		 }
 
 		($param['limit'] != null ? $this->db->limit($param['limit']['end'], $param['limit']['start']) : '');
@@ -53,23 +53,14 @@ class bj_bbn_satu_model extends CI_Model {
  		return $res;
 	}
 
-		function datawilayah($id, $table, $condition, $nama){
+
+	function datawilayah($id, $table, $condition, $nama){
 		$this->db->select($nama);
 		$this->db->where($id, $condition);
 		$this->db->order_by($nama);
 		$rs = $this->db->get($table);
 		return $rs;
 
-	}
-
-
-	function biaya($tipe, $tahun, $warna, $samsat){
-		$this->db->where('tipe_kendaraan', $tipe);
-		$this->db->where('tahun_kendaraan', $tahun);
-		$this->db->where('warna_tnkb', $warna);
-		$this->db->where('id_samsat', $samsat); 
-		$rs = $this->db->get('estimasi_bbn_satu');
-		return $rs;
 	}
 
 
