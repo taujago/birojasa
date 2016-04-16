@@ -179,7 +179,7 @@ function simpan(){
         
         $this->form_validation->set_error_delimiters('', '<br>');
 
-        $data = $this->dm->biaya($post['type'], $post['tahun_buat'],$post['warna'], $post['id_samsat'])->row_array();
+        
 
         
      
@@ -189,8 +189,8 @@ function simpan(){
 
 
 if($this->form_validation->run() == TRUE ) { 
-
-        if(!empty($data)){
+        $biaya = $this->dm->biaya($post['type'], $post['tahun_buat'],$post['warna'], $post['id_samsat'])->row_array();
+        if(!empty($biaya)){
         $stnk = $biaya['rp_daftar_stnk'];
         $bpkb = $biaya['rp_daftar_bpkb'];
         $pajak = $biaya['rp_pajak_kendaraan'];

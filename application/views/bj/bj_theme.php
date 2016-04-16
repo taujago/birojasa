@@ -97,7 +97,7 @@ $userdata = $this->session->userdata('bj_login');
                 <li><a href="<?php echo site_url('/'); ?>biro_jasa"><i class="fa fa-dashboard"></i> Home </a>
                 </li>
 
-                <li><a><i class="fa fa-dashboard"></i> Pengurusan BBN <span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa fa-folder-open-o"></i> Pengurusan BBN <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
                     <li><a href="<?php echo site_url('bj_bbn_satu'); ?>">BBN 1</a>
                     </li>
@@ -105,13 +105,8 @@ $userdata = $this->session->userdata('bj_login');
                     </li>
                   </ul>
                 </li>
-                <li><a href="<?php echo site_url('/'); ?>bj_profil"><i class="fa fa-user"></i> Profil </span></a>
-
                 </li>
-                <li><a href="<?php echo site_url('/'); ?>bj_add_user"><i class="fa fa-user"></i> User </span></a>
-                </li>
-
-                <li><a href="<?php echo site_url('/'); ?>bj_profil"><i class="fa fa-user"></i> Profil </span></a>
+                <li><a href="<?php echo site_url('/'); ?>bj_add_user"><i class="fa fa-users"></i> User </span></a>
                 </li>
               </ul>
             </div>
@@ -121,16 +116,7 @@ $userdata = $this->session->userdata('bj_login');
           </div>
 
           <div class="sidebar-footer hidden-small">
-            <a data-toggle="tooltip" data-placement="top" title="Settings">
-              <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-            </a>
-            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-              <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-            </a>
-            <a data-toggle="tooltip" data-placement="top" title="Lock">
-              <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-            </a>
-            <a data-toggle="tooltip" data-placement="top" title="Logout">
+            <a href="<?php echo site_url(); ?>/login/logout_bj" data-toggle="tooltip" data-placement="top" title="Logout">
               <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
             </a>
           </div>
