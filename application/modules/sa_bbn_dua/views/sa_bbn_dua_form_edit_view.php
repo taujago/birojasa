@@ -30,7 +30,7 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">Warna TNKB</label>
       <div class="col-sm-9">
-        <input type="text" name="warna_tnkb" id="warna_tnkb" class="form-control input-style" placeholder="Warna TNKB" value="<?php echo isset($warna_tnkb)?$warna_tnkb:""; ?>">
+        <?php echo form_dropdown("id_warna",$arr_warna,$id_warna,'id="id_warna" class="form-control input-style"'); ?>
       </div>
     </div>
     <div class="form-group">
@@ -42,7 +42,8 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">Samsat</label>
       <div class="col-sm-9">
-      <?php echo form_dropdown("id_samsat",array(),$id_samsat,'id="id_samsat" class="form-control input-style"'); ?>
+      <?php echo form_dropdown("id_samsat",$arr_samsat,$id_samsat,'id="id_samsat" class="form-control input-style"'); ?>
+      
       </div>
     </div>
     <div class="form-group">

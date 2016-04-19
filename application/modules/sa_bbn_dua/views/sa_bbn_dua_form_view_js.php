@@ -21,13 +21,7 @@ $('#form_data').bootstrapValidator({
                         }
                     },
 
-                    tahun_kendaraan: {
-                        validators: {
-                            notEmpty: {
-                                message : 'Tahun Kendaraan tidak boleh kosong' 
-                            }
-                        }
-                    },
+                   
                     warna_tnkb: {
                         validators: {
                             notEmpty: {
