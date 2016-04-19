@@ -1,6 +1,9 @@
     <?php
     $userdata = $this->session->userdata('bj_login');
     ?>   
+
+    <link href="<?php echo base_url("assets") ?>/css/datepicker.css" rel="stylesheet">
+    <script src="<?php echo base_url("assets") ?>/js/bootstrap-datepicker.js"></script> 
               <!-- Start Page -->
                 <!-- Selsai -->
           <div class="row">
@@ -24,6 +27,23 @@
                   
                   <form id="form_data" data-parsley-validate class="form-horizontal form-label-left" action="<?php echo site_url("$this->controller/$action"); ?>" method="post">
 
+
+                  <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12">Tgl. Entri 
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="tanggal" class="tanggal form-control col-md-7 col-xs-12" name="tgl_entri" class="form-control input-style" placeholder="Tanggal BBN2"  data-date-format="dd-mm-yyyy">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Jenis Perubahan
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <?php echo form_dropdown("id_perubahan",$arr_perubahan,'','id="id_perubahan" class="form-control input-style"'); ?>
+                      </div>
+                    </div>
+
+                    
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nomor Rangka
                       </label>
@@ -50,14 +70,14 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Faktur 
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="tgl_faktur" name="tgl_faktur" class="date-picker form-control col-md-7 col-xs-12 tgl" required="required" type="text" placeholder="Tanggal Faktur">
+                        <input type="text" id="tanggal" class="tanggal form-control col-md-7 col-xs-12" name="tgl_faktur" class="form-control input-style" placeholder="Tanggal BBN2"  data-date-format="dd-mm-yyyy">
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Merek
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="merek" name="merek" required="required" class="form-control col-md-7 col-xs-12" placeholder="Merk">
+                        <?php echo form_dropdown("id_merek",$arr_merek,'','id="id_merek" class="form-control input-style"'); ?>
                       </div>
                     </div>
                     <div class="form-group">
@@ -68,24 +88,24 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Model
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="model" name="model" required="required" class="form-control col-md-7 col-xs-12" placeholder="Model">
-                      </div>
-                    </div>
-                    <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Jenis
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="jenis" name="jenis" required="required" class="form-control col-md-7 col-xs-12" placeholder="Jenis">
-                      </div>
+                        <?php echo form_dropdown("id_jenis",$arr_jenis,'','id="id_jenis" class="form-control input-style"'); ?>
+                       </div> 
+                    </div>
+                   <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Model
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <?php echo form_dropdown("id_model",array(),'','id="id_model" class="form-control input-style"'); ?>
+                       </div> 
                     </div>
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Warna
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="warna" name="warna" required="required" class="form-control col-md-7 col-xs-12" placeholder="Warna">
+                        <?php echo form_dropdown("id_warna",$arr_warna,'','id="id_warna" class="form-control input-style"'); ?>
                       </div>
                     </div>
                     <div class="form-group">
@@ -106,7 +126,13 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Tahun Buat
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="tahun_buat" name="tahun_buat" required="required" class="form-control col-md-7 col-xs-12" placeholder="Tahun Buat">
+                        <select name="tahun_buat" id="tahun_buat" class="form-control col-md-7 col-xs-12"  >
+                              <?php
+                           for($i=date('Y'); $i>=date('Y')-32; $i-=1){
+                              echo"<option value='$i'> $i </option>";
+                                }
+                              ?>
+                          </select>
                       </div>
                     </div>
                     <div class="form-group">
@@ -127,7 +153,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nama Pemilik
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="nama_pemilik" name="nama_pemilik" required="required" class="form-control col-md-7 col-xs-12" placeholder="Nama Dealer">
+                        <input type="text" id="nama_pemilik" name="nama_pemilik" required="required" class="form-control col-md-7 col-xs-12" placeholder="Nama Pemilik">
                       </div>
                     </div>
                     <div class="form-group">
@@ -178,13 +204,6 @@
                       <div class="col-md-6 col-sm-6 col-xs-12">
                         <?php echo form_dropdown("id_samsat",array(),'','id="id_samsat" class="form-control input-style"'); ?>
                        </div> 
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12">Tgl. Entri 
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="tgl_entri" name="tgl_entri" class="date-picker form-control col-md-7 col-xs-12 tgl" required="required" type="text" placeholder="Tgl. Entri">
-                      </div>
                     </div>
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Pengurus
