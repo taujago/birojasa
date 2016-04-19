@@ -7,6 +7,10 @@
 $(document).ready(function() {
 
 
+$(".tanggal").datepicker().on('changeDate', function(ev){                 
+             $('.tanggal').datepicker('hide');
+        });
+
 
   $("#tombolsubmitsimpan").click(function(){
  console.log('tests');
@@ -46,6 +50,20 @@ $(document).ready(function() {
 });
               
 
+
+  $("#id_jenis").change(function(){
+
+    $.ajax({
+
+            url : '<?php echo site_url("$this->controller/get_model") ?>',
+            data : { id_jenis : $(this).val() },
+            type : 'post', 
+            success : function(result) {
+                $("#id_model").html(result)
+            }
+      });
+
+    });
               
             
 

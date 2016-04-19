@@ -18,12 +18,6 @@
 </br>
 
 
-
-
-
-
-
-
 		<div class="row">
             <div class="col-md-12">
               <div class="x_panel">
@@ -75,24 +69,24 @@
         <th><?php echo $type; ?></th>
   </tr>
 	<tr>
-        <th >Model</th>
+        <th >Jenis</th>
         <th>:</th>
-        <th ><?php echo $model; ?></th>
+        <th ><?php echo $jenis; ?></th>
   </tr>
   <tr>
-        <th >Jenis</th>
+        <th >Model</th>
         <th>:</th>
         <th><?php echo $model; ?></th>
   </tr>
   <tr>
         <th>Warna</th>
         <th>:</th>
-        <th><?php echo $model; ?></th>
+        <th><?php echo $warna; ?></th>
   </tr>
   <tr>
         <th>Silinder</th>
         <th>:</th>
-        <th><?php echo $model; ?></th>
+        <th><?php echo $silinder; ?></th>
   </tr>
   <tr>
         <th>Bahan Bakar</th>

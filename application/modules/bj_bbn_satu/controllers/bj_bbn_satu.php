@@ -16,7 +16,7 @@ class bj_bbn_satu extends biro_jasa_controller{
 // Untuk View
 
 
-        function lihatdata(){
+    function lihatdata(){
          $get = $this->input->get(); 
          $id = $get['id'];
 
@@ -32,14 +32,28 @@ class bj_bbn_satu extends biro_jasa_controller{
           $kecamatan = $this->dm->datawilayah('id', 'tiger_kecamatan', $data['id_kecamatan'], 'kecamatan')->row_array();
           $desa = $this->dm->datawilayah('id', 'tiger_desa', $data['id_desa'], 'desa')->row_array();
 
+          $jenis = $this->dm->datawilayah('id_jenis', 'm_jenis', $data['id_jenis'], 'jenis')->row_array();
+
           $polda = $this->dm->datawilayah('polda_id', 'm_polda', $data['id_polda'], 'polda_nama')->row_array();
 
           $samsat = $this->dm->datawilayah('id', 'samsat', $data['id_samsat'], 'nama')->row_array();
           $pengurus = $this->dm->datawilayah('id', 'pengguna', $data['user_entri'], 'nama')->row_array();
+
+          
+
+          $model = $this->dm->datawilayah('id_model', 'm_model', $data['id_model'], 'model')->row_array();
+
+          $merek = $this->dm->datawilayah('kode', 'm_merek', $data['id_merek'], 'nama')->row_array();
+
+          $warna = $this->dm->datawilayah('WARNA_ID', 'm_warna', $data['id_warna'], 'WARNA_NAMA')->row_array();
          
 
 
 
+        $data["jenis"] = $jenis['jenis'];
+        $data["model"] = $model['model'];
+        $data["merek"] = $merek['nama'];
+        $data["warna"] = $warna['WARNA_NAMA'];
         
         $data["kota"] = $kota['kota'];
         $data['provinsi'] = $provinsi['provinsi'];
@@ -92,9 +106,18 @@ function baru(){
 
         // Dropdown Array
         $data_array['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
+
+        $data_array['arr_merek'] = $this->cm->arr_dropdown("m_merek", "kode", "nama", "nama");
+
+        $data_array['arr_jenis'] = $this->cm->arr_dropdown("m_jenis", "id_jenis", "jenis", "jenis");
+
         $data_array['arr_provinsi'] = $this->cm->arr_dropdown("tiger_provinsi", "id", "provinsi", "provinsi");
+
+        $data_array['arr_warna'] = $this->cm->arr_dropdown("m_warna", "WARNA_ID", "WARNA_NAMA", "WARNA_NAMA");
         
         $data_array['arr_user'] = $this->cm->arr_dropdown2("pengguna", "id", "nama", "nama", "birojasa_id", $id_birojasa);
+
+
 
         // Load Page
         $content = $this->load->view($this->controller."_form_view",$data_array,true);
@@ -145,23 +168,17 @@ function simpan(){
 
     $post = $this->input->post();
 
-    
-
-    
-    
-       
-
 
         $this->load->library('form_validation');
         $this->form_validation->set_rules('no_rangka','No. Rangka','required');
         $this->form_validation->set_rules('no_mesin','No. Mesin','required'); 
         $this->form_validation->set_rules('no_faktur','No. Faktur','required'); 
         $this->form_validation->set_rules('tgl_faktur','Tanggal Faktur','required'); 
-        $this->form_validation->set_rules('merek','Merk','required'); 
+        $this->form_validation->set_rules('id_merek','Merk','required'); 
         $this->form_validation->set_rules('type','Type','required'); 
-        $this->form_validation->set_rules('model','Model','required');     
-        $this->form_validation->set_rules('jenis','Jenis','required'); 
-        $this->form_validation->set_rules('warna','Warna','required'); 
+        $this->form_validation->set_rules('id_model','Model','required');     
+        $this->form_validation->set_rules('id_jenis','Jenis','required'); 
+        $this->form_validation->set_rules('id_warna','Warna','required'); 
         $this->form_validation->set_rules('silinder','Silinder','required'); 
         $this->form_validation->set_rules('bahan_bakar','Bahan Bakar','required'); 
         $this->form_validation->set_rules('tahun_buat','Tahun Buat','required'); 
@@ -179,17 +196,19 @@ function simpan(){
         
         $this->form_validation->set_error_delimiters('', '<br>');
 
-        
-
-        
-     
 
         //show_array($data);
 
 
 
 if($this->form_validation->run() == TRUE ) { 
-        $biaya = $this->dm->biaya($post['type'], $post['tahun_buat'],$post['warna'], $post['id_samsat'])->row_array();
+        $post['tgl_faktur'] = flipdate($post['tgl_faktur']);
+        $post['tgl_entri'] = flipdate($post['tgl_entri']);
+
+        
+        $biaya = $this->dm->biaya($post['type'], $post['tahun_buat'],$post['id_warna'], $post['id_samsat'])->row_array();
+
+
         if(!empty($biaya)){
         $stnk = $biaya['rp_daftar_stnk'];
         $bpkb = $biaya['rp_daftar_bpkb'];
@@ -200,9 +219,7 @@ if($this->form_validation->run() == TRUE ) {
         $post['rp_daftar_bpkb']=$bpkb;
         $post['rp_pajak_kendaraan']=$pajak;
         $post['rp_admin_fee']=$admin;
-    }else{
-        $arr = array("error"=>true,'message'=>"Type Kendaraan, Tahun Kendaraan, Warna Kendaraan Samsat Tidak Ada Dalam Database");
-    }   
+    }
         
         
 
@@ -313,11 +330,11 @@ function update(){
         $this->form_validation->set_rules('no_mesin','No. Mesin','required'); 
         $this->form_validation->set_rules('no_faktur','No. Faktur','required'); 
         $this->form_validation->set_rules('tgl_faktur','Tanggal Faktur','required'); 
-        $this->form_validation->set_rules('merek','Merk','required'); 
+        $this->form_validation->set_rules('id_merek','Merk','required'); 
         $this->form_validation->set_rules('type','Type','required'); 
-        $this->form_validation->set_rules('model','Model','required');     
-        $this->form_validation->set_rules('jenis','Jenis','required'); 
-        $this->form_validation->set_rules('warna','Warna','required'); 
+        $this->form_validation->set_rules('id_model','Model','required');     
+        $this->form_validation->set_rules('id_jenis','Jenis','required'); 
+        $this->form_validation->set_rules('id_warna','Warna','required'); 
         $this->form_validation->set_rules('silinder','Silinder','required'); 
         $this->form_validation->set_rules('bahan_bakar','Bahan Bakar','required'); 
         $this->form_validation->set_rules('tahun_buat','Tahun Buat','required'); 
@@ -401,6 +418,20 @@ else {
     $rs = $this->db->get("samsat");
     foreach($rs->result() as $row ) :
         echo "<option value=$row->id>$row->nama </option>";
+    endforeach;
+
+
+}
+
+function get_model(){
+    $data = $this->input->post();
+
+    $id_jenis = $data['id_jenis'];
+    $this->db->where("id_jenis",$id_jenis);
+    $this->db->order_by("model");
+    $rs = $this->db->get("m_model");
+    foreach($rs->result() as $row ) :
+        echo "<option value=$row->id_model>$row->model </option>";
     endforeach;
 
 

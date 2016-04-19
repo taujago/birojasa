@@ -62,7 +62,7 @@ function simpan(){
         $this->load->library('form_validation');
         $this->form_validation->set_rules('tipe_kendaraan','Tipe Kendaraan','required');    
         $this->form_validation->set_rules('tahun_kendaraan','Tahun Kendaraan','required');
-        $this->form_validation->set_rules('warna_tnkb','Warna TNKB','required');    
+        $this->form_validation->set_rules('id_warna','Warna TNKB','required');    
         $this->form_validation->set_rules('rp_daftar_stnk','Daftar STNK','required');
         $this->form_validation->set_rules('rp_daftar_bpkb','Daftar BPKB','required');    
         $this->form_validation->set_rules('rp_pajak_kendaraan','Pajak Kendaraan','required');
@@ -190,7 +190,7 @@ else {
         		$row['id'],
         		$row['tipe_kendaraan'],
         		$row['tahun_kendaraan'],
-        		$row['warna_tnkb'],
+        		$row['id_warna'],
                 $row['nm_samsat'],
                 $row['nm_polda'],
         		$hapus
