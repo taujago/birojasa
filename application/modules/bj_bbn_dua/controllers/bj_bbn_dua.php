@@ -65,6 +65,82 @@ function baru(){
         $this->cetak();
 }
 
+function update(){
+
+    $post = $this->input->post();
+   
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('no_rangka','No. Rangka','required');
+        $this->form_validation->set_rules('no_mesin','No. Mesin','required'); 
+        $this->form_validation->set_rules('no_faktur','No. Faktur','required'); 
+        $this->form_validation->set_rules('tgl_faktur','Tanggal Faktur','required');     
+        $this->form_validation->set_rules('id_jenis','Jenis','required');  
+        $this->form_validation->set_rules('silinder','Silinder','required'); 
+        $this->form_validation->set_rules('bahan_bakar','Bahan Bakar','required'); 
+        $this->form_validation->set_rules('tahun_buat','Tahun Buat','required'); 
+        $this->form_validation->set_rules('kode_dealer','Kode Dealer','required'); 
+        $this->form_validation->set_rules('nama_dealer','Nama Dealer','required');
+        $this->form_validation->set_rules('id_desa','Desa','required'); 
+        $this->form_validation->set_rules('id_kecamatan','Kecamatan','required');
+        $this->form_validation->set_rules('id_provinsi','Provinsi','required');
+        $this->form_validation->set_rules('id_kota','Kota','required');
+        $this->form_validation->set_rules('id_polda','Polda','required');
+        $this->form_validation->set_rules('id_samsat','Samsat','required');
+        $this->form_validation->set_rules('tgl_entri','Tanggal Entri','required');         
+         
+        $this->form_validation->set_message('required', 'Field %s Harus diisi ');
+        
+        $this->form_validation->set_error_delimiters('', '<br>');       
+        
+
+      
+
+        //show_array($data);
+
+if($this->form_validation->run() == TRUE ) { 
+
+        $post['tgl_faktur'] = flipdate($post['tgl_faktur']);
+        $post['tgl_entri'] = flipdate($post['tgl_entri']);
+
+        
+        $biaya = $this->dm->biaya($post['type'], $post['tahun_buat'],$post['id_warna'], $post['id_samsat'], $post['id_perubahan'])->row_array();
+
+        if(empty($biaya)){
+
+            $arr = array("error"=>true,'message'=>"TERJADI KESALAHAN </br> TOLONG PERIKSA KEMBALI DATA ANDA");
+        }
+
+        else{
+        $daftar = $biaya['rp_pendaftaran'];
+        $bayar = $biaya['rp_perubahan'];
+        $admin = $biaya['rp_admin_fee'];
+
+        $post['rp_daftar']=$daftar;
+        $post['rp_biaya']=$bayar;
+        $post['rp_admin_fee']=$admin;
+ 
+
+        
+        $this->db->where("id",$post['id']);
+        $res = $this->db->update('bj_bbn_dua', $post);
+        
+        if($res){
+            $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
+        }
+        else {
+             $arr = array("error"=>true,'message'=>"GAGAL DISIMPAN");
+        }
+
+         }
+}
+else {
+    $arr = array("error"=>true,'message'=>validation_errors());
+}
+
+        echo json_encode($arr);
+}
+
+
 
 
 function simpan(){

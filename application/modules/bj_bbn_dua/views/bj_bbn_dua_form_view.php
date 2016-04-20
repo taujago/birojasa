@@ -10,7 +10,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
                 <div class="x_title">
-                  <h2>Tambah Data <small>Pengurusan BBN 2 </small></h2>
+                  <h2>Tambah Data <small>Pengurusan BBN 2</small></h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-eye"></i></a>
@@ -215,8 +215,8 @@
                     <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                        <button id="tombolsubmitsimpan" type="submit" class="btn btn-primary">Simpan</button>
-                        <button type="reset" class="btn btn-danger">Batal</button>
+                        <button id="tombolsubmitupdate" type="submit" class="btn btn-primary">Simpan</button>
+                        <a href="<?php echo site_url('bj_bbn_dua'); ?>"><button type="button" class="btn btn-danger">Batal</button>
                       </div>
                     </div>
 

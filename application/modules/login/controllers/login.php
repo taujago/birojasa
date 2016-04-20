@@ -71,7 +71,6 @@ function cek_password($password) {
 		 $this->db->where("p.email",$username);
 		 $this->db->where("p.password",$password);
 		 $res = $this->db->get();
-		  // echo $this->db->last_query();  //exit;
 
 		 if($res->num_rows()==0) {
 
@@ -111,10 +110,6 @@ function cek_password($password) {
 		 		$this->session->set_userdata('user_login', $member);
 
 		 		$datalogin = $this->session->userdata("user_login");
-
-		 		// show_array($datalogin); exit;
-
-		 		// $ret = array("error"=>false,"message"=>"Login sukses.Klik Oke untuk melanjutkan");
 
 		 		redirect('user');
 		 	}

@@ -242,9 +242,10 @@ if($this->form_validation->run() == TRUE ) {
 
         
         $biaya = $this->dm->biaya($post['type'], $post['tahun_buat'],$post['id_warna'], $post['id_samsat'])->row_array();
-
-
-        if(!empty($biaya)){
+        if (empty($biaya)) {
+            $arr = array("error"=>true,'message'=>"TERJADI KESALAHAN </BR> MOHON PERIKSA KEMBALI DATA ANDA");
+        }
+        else{
         $stnk = $biaya['rp_daftar_stnk'];
         $bpkb = $biaya['rp_daftar_bpkb'];
         $pajak = $biaya['rp_pajak_kendaraan'];
@@ -254,7 +255,7 @@ if($this->form_validation->run() == TRUE ) {
         $post['rp_daftar_bpkb']=$bpkb;
         $post['rp_pajak_kendaraan']=$pajak;
         $post['rp_admin_fee']=$admin;
-    }
+
         
         
 
@@ -266,6 +267,7 @@ if($this->form_validation->run() == TRUE ) {
         else {
              $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
         }
+    }
 }
 else {
     $arr = array("error"=>true,'message'=>validation_errors());
@@ -400,9 +402,11 @@ if($this->form_validation->run() == TRUE ) {
 
         
         $biaya = $this->dm->biaya($post['type'], $post['tahun_buat'],$post['id_warna'], $post['id_samsat'])->row_array();
+        if(empty($biaya)){
+            $arr = array("error"=>true,'message'=>"TERJADI KESALAHAN </BR> MOHON PERIKSA KEMBALI DATA EDITAN ANDA");
+        }
 
-
-        if(!empty($biaya)){
+        else{
         $stnk = $biaya['rp_daftar_stnk'];
         $bpkb = $biaya['rp_daftar_bpkb'];
         $pajak = $biaya['rp_pajak_kendaraan'];
@@ -412,7 +416,7 @@ if($this->form_validation->run() == TRUE ) {
         $post['rp_daftar_bpkb']=$bpkb;
         $post['rp_pajak_kendaraan']=$pajak;
         $post['rp_admin_fee']=$admin;
-    }
+   
 
 
         $this->db->where("id",$post['id']);
@@ -423,6 +427,7 @@ if($this->form_validation->run() == TRUE ) {
         else {
              $arr = array("error"=>true,'message'=>"GAGAL  DIUPDATE");
         }
+    }
 }
 else {
     $arr = array("error"=>true,'message'=>validation_errors());

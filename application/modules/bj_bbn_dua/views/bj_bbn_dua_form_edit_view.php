@@ -207,7 +207,7 @@
                     <div class="form-group">
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                         <button id="tombolsubmitupdate" type="submit" class="btn btn-primary">Simpan</button>
-                        <a href="<?php echo site_url('bj_bbn_dua'); ?>"><button type="button" class="btn btn-danger">Batal</button>
+                        <a href="<?php echo site_url('bj_bbn_dua'); ?>"><button type="button" class="btn btn-danger">Batal</button></a>
                       </div>
                     </div>
 
