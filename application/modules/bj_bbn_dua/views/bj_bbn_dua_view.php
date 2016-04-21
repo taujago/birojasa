@@ -55,7 +55,7 @@
         <th width="11%">Tgl. Faktur</th>
         <th width="10%">Tgl. Entri</th>
         <th width="20%">Pengurus</th>
-        <th width="14%">#</th>
+        <th width="12%">#</th>
     </tr>
   
 </thead>

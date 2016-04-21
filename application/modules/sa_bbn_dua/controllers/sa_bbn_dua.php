@@ -51,6 +51,7 @@ function baru(){
         $data_array['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
 
         $data_array['arr_perubahan'] = $this->cm->arr_dropdown("perubahan", "id", "nama", "nama");
+        $data_array['arr_warna'] = $this->cm->arr_dropdown("m_warna", "WARNA_ID", "WARNA_NAMA", "WARNA_NAMA");
 
         
         $content = $this->load->view($this->controller."_form_view",$data_array,true);
@@ -74,7 +75,6 @@ function simpan(){
         $this->load->library('form_validation');
         $this->form_validation->set_rules('tipe_kendaraan','Tipe Kendaraan','required');    
         $this->form_validation->set_rules('tahun_kendaraan','Tahun Kendaraan','required');
-        $this->form_validation->set_rules('warna_tnkb','Warna TNKB','required');
            
         $this->form_validation->set_rules('rp_pendaftaran','Daftar STNK','required');
         $this->form_validation->set_rules('rp_perubahan','Daftar BPKB','required');    
@@ -114,8 +114,7 @@ function update(){
        
         $this->load->library('form_validation'); 
         $this->form_validation->set_rules('tipe_kendaraan','Tipe Kendaraan','required');    
-        $this->form_validation->set_rules('tahun_kendaraan','Tahun Kendaraan','required');
-        $this->form_validation->set_rules('warna_tnkb','Warna TNKB','required');    
+        $this->form_validation->set_rules('tahun_kendaraan','Tahun Kendaraan','required');    
         
         $this->form_validation->set_rules('rp_pendaftaran','Daftar BPKB','required');    
         $this->form_validation->set_rules('rp_perubahan','Pajak Kendaraan','required');
@@ -230,7 +229,12 @@ else {
     	 $data = $estimasi_bbn_satu->row_array();
 
          $data['action'] = 'update';
+
          $data['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
+
+         $data['arr_warna'] = $this->cm->arr_dropdown("m_warna", "WARNA_ID", "WARNA_NAMA", "WARNA_NAMA");
+         
+          $data['arr_samsat'] = $this->cm->arr_dropdown("samsat", "id","nama", "nama", "nama");
 
         $data['arr_perubahan'] = $this->cm->arr_dropdown("perubahan", "id", "nama", "nama");
 

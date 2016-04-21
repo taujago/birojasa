@@ -54,7 +54,7 @@ class bj_bbn_dua_model extends CI_Model {
 	}
 
 
-	function datawilayah($id, $table, $condition, $nama){
+		function datawilayah($id, $table, $condition, $nama){
 		$this->db->select($nama);
 		$this->db->where($id, $condition);
 		$this->db->order_by($nama);
@@ -64,7 +64,15 @@ class bj_bbn_dua_model extends CI_Model {
 	}
 
 
-	
+	function biaya($tipe, $tahun, $warna, $samsat, $perubahan){
+		$this->db->where('tipe_kendaraan', $tipe);
+		$this->db->where('id_perubahan', $perubahan);
+		$this->db->where('tahun_kendaraan', $tahun);
+		$this->db->where('id_warna', $warna);
+		$this->db->where('id_samsat', $samsat); 
+		$rs = $this->db->get('estimasi_bbn_dua');
+		return $rs;
+	}
 
 
 }

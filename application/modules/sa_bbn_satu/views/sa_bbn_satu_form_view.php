@@ -24,13 +24,19 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">Tahun Kendaraan</label>
       <div class="col-sm-9">
-        <input type="text" name="tahun_kendaraan"  value="<?php echo isset($tahun_kendaraan)?$tahun_kendaraan:""; ?>" id="tahun_kendaraan" class="form-control input-style" placeholder="Tahun Kendaraan"  >
+      <select name="tahun_kendaraan" id="tahun_kendaraan" class="form-control input-style"  >
+          <?php
+          for($i=date('Y'); $i>=date('Y')-32; $i-=1){
+              echo"<option value='$i'> $i </option>";
+                }
+              ?>
+        </select>
       </div>
     </div>
     <div class="form-group">
       <label class="col-sm-3 control-label">Warna TNKB</label>
       <div class="col-sm-9">
-        <input type="text" name="warna_tnkb" id="warna_tnkb" class="form-control input-style" placeholder="Warna TNKB" value="<?php echo isset($warna_tnkb)?$warna_tnkb:""; ?>">
+        <?php echo form_dropdown("id_warna",$arr_warna,'','id="id_warna" class="form-control input-style"'); ?>
       </div>
     </div>
     <div class="form-group">

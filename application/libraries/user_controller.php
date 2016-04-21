@@ -30,9 +30,7 @@ class user_controller extends CI_Controller {
 	
 	function cetak(){
 		$arr = array();	
-		$this->load->view('user/header_view',$this->content);
-		$this->load->view("user/side_bar_view",$this->content);
-		$this->load->view("user/footer_view", $this->content);
+		$this->load->view('user/user_theme',$this->content);
 		
 	}
 

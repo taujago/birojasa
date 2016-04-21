@@ -82,17 +82,17 @@
   <tr>
         <th >Jenis</th>
         <th>:</th>
-        <th><?php echo $model; ?></th>
+        <th><?php echo $jenis; ?></th>
   </tr>
   <tr>
         <th>Warna</th>
         <th>:</th>
-        <th><?php echo $model; ?></th>
+        <th><?php echo $warna; ?></th>
   </tr>
   <tr>
         <th>Silinder</th>
         <th>:</th>
-        <th><?php echo $model; ?></th>
+        <th><?php echo $silinder; ?></th>
   </tr>
   <tr>
         <th>Bahan Bakar</th>
@@ -114,6 +114,7 @@
         <th>:</th>
         <th><?php echo $nama_dealer; ?></th>
   </tr>
+  
 
 </tbody>
 </table>
@@ -219,20 +220,40 @@
         <th width="70%"><?php echo $polda; ?></th>
    </tr>
    <tr>
-        <th width="20%">Samsat</th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $samsat; ?></th>
+        <th >Samsat</th>
+        <th >:</th>
+        <th ><?php echo $samsat; ?></th>
    </tr>
    <tr>
-        <th width="20%">Tgl. Entri</th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $tgl_entri; ?></th>
+        <th>Jenis Perubahan</th>
+        <th>:</th>
+        <th><?php echo $perubahan; ?></th>
    </tr>
    <tr>
-        <th width="20%">Pengurus</th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $pengurus; ?></th>
+        <th>Tgl. Entri</th>
+        <th>:</th>
+        <th><?php echo $tgl_entri; ?></th>
    </tr>
+   <tr>
+        <th>Pengurus</th>
+        <th>:</th>
+        <th><?php echo $pengurus; ?></th>
+   </tr>
+   <tr>
+        <th>Daftar</th>
+        <th>:</th>
+        <th><?php echo $rp_daftar; ?></th>
+  </tr>
+  <tr>
+        <th>Biaya</th>
+        <th>:</th>
+        <th><?php echo $rp_biaya; ?></th>
+  </tr>
+  <tr>
+        <th>Admin Fee</th>
+        <th>:</th>
+        <th><?php echo $rp_admin_fee; ?></th>
+  </tr>
   </tbody>
 </table>
 
