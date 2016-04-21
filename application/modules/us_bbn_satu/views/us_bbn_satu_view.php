@@ -51,11 +51,14 @@
 
 
         
-        <th width="7%">ID</th>
+        <th width="5%">ID</th>
         <th width="15%">No. Rangka</th>
         <th width="15%">No. Faktur</th>
-        <th width="11%">Tgl. Faktur</th>
-        <th width="10%">Tgl. Entri</th>
+        <th width="15%">Nama Pemilik</th>
+        <th width="10%">BPKB</th>
+        <th width="10%">STNK</th>
+        <th width="10%">Pajak</th>
+        <th width="10%">Admin Fee</th>
         <th width="12%">#</th>
     </tr>
   

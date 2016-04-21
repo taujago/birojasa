@@ -148,15 +148,10 @@ $userdata = $this->session->userdata('user_login');
                   </li>
                 </ul>
               </li>
-
-              
-
             </ul>
           </nav>
         </div>
-
       </div>
-
       <div class="right_col" role="main">
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
@@ -167,17 +162,13 @@ $userdata = $this->session->userdata('user_login');
                 </div>
               </div>
               <div>
-
       <?php echo $content ?>
-
       </div>
               <div class="clearfix"></div>
             </div>
           </div>
         </div>
-
-
-              <footer>
+        <footer>
           <div class="copyright-info">
             <p class="pull-right"><a href="https://www.tigapilarmajumandiri.com">Tiga Pilar Maju Mandiri</a>  
             </p>

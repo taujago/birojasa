@@ -47,6 +47,12 @@ class us_bbn_satu extends user_controller{
           $merek = $this->dm->datawilayah('kode', 'm_merek', $data['id_merek'], 'nama')->row_array();
 
           $warna = $this->dm->datawilayah('WARNA_ID', 'm_warna', $data['id_warna'], 'WARNA_NAMA')->row_array();
+
+          if ($data['status'] > 0) {
+              $data['img_status'] = 'Selsai.png';
+          }else{
+                $data['img_status'] = 'blm_selsai.png';
+          }
          
 
 
@@ -69,12 +75,12 @@ class us_bbn_satu extends user_controller{
 
         
 
-        $content = $this->load->view("bj_bbn_satu_detail_view",$data,true);
+        $content = $this->load->view("us_bbn_satu_detail_view",$data,true);
 
          // $content = $this->load->view($this->controller."_form_view",$data,true);
 
         $this->set_subtitle("Detail Data");
-        $this->set_title("Detail Data BBN 2");
+        $this->set_title("Detail Data BBN 1");
         $this->set_content($content);
         $this->cetak();
 
@@ -97,186 +103,7 @@ function index(){
 
 
 
-function baru(){
 
-        $data_array=array();
-        $data_array['action'] = 'simpan';
-        $userdata = $this->session->userdata('bj_login');
-        $id_birojasa = $userdata['birojasa_id'];
-        
-
-        // Dropdown Array
-        $data_array['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
-
-        $data_array['arr_merek'] = $this->cm->arr_dropdown("m_merek", "kode", "nama", "nama");
-
-        $data_array['arr_jenis'] = $this->cm->arr_dropdown("m_jenis", "id_jenis", "jenis", "jenis");
-
-        $data_array['arr_provinsi'] = $this->cm->arr_dropdown("tiger_provinsi", "id", "provinsi", "provinsi");
-
-        $data_array['arr_warna'] = $this->cm->arr_dropdown("m_warna", "WARNA_ID", "WARNA_NAMA", "WARNA_NAMA");
-        
-        $data_array['arr_user'] = $this->cm->arr_dropdown2("pengguna", "id", "nama", "nama", "birojasa_id", $id_birojasa);
-
-
-
-        // Load Page
-        $content = $this->load->view($this->controller."_form_view",$data_array,true);
-
-        $this->set_subtitle("Tambah BBN 1");
-        $this->set_title("Tambah BBN 1");
-        $this->set_content($content);
-        $this->cetak();
-} 
-
-
-  function editdata(){
-         $get = $this->input->get(); 
-         $id = $get['id'];
-         $userdata = $this->session->userdata('bj_login');
-
-        
-
-
-         $this->db->where('id',$id);
-         $bbn1 = $this->db->get('bj_bbn_satu');
-         // echo $estimasi_bbn_satu->row_array(); exit();
-         $data = $bbn1->row_array();
-         $id_provinsi = $data['id_provinsi'];
-         $id_kota = $data['id_kota'];
-         $id_kecamatan = $data['id_kecamatan'];
-         $id_polda = $data['id_polda'];
-         $id_jenis = $data['id_jenis'];
-         $data['tgl_faktur'] = flipdate($data['tgl_faktur']);
-        $data['tgl_entri'] = flipdate($data['tgl_entri']);
-
-
-
-
-         $id_birojasa = $userdata['birojasa_id'];
-        // echo $this->db->last_query(); exit();
-
-         
-
-          $data['action'] = 'update';
-
-         $data['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
-
-         $data['arr_model'] = $this->cm->arr_dropdown3("m_model", "id_model", "model", "model", "id_jenis", $id_jenis  );
-
-        $data['arr_merek'] = $this->cm->arr_dropdown("m_merek", "kode", "nama", "nama");
-
-        $data['arr_jenis'] = $this->cm->arr_dropdown("m_jenis", "id_jenis", "jenis", "jenis");
-
-        $data['arr_provinsi'] = $this->cm->arr_dropdown("tiger_provinsi", "id", "provinsi", "provinsi");
-
-        $data['arr_kota'] = $this->cm->arr_dropdown3("tiger_kota", "id","kota", "kota", "id_provinsi", $id_provinsi );
-
-        $data['arr_kecamatan'] = $this->cm->arr_dropdown3("tiger_kecamatan", "id","kecamatan", "kecamatan", "id_kota", $id_kota);
-
-        $data['arr_desa'] = $this->cm->arr_dropdown3("tiger_desa", "id","desa", "desa", "id_kecamatan", $id_kecamatan);
-
-         $data['arr_samsat'] = $this->cm->arr_dropdown3("samsat", "id","nama", "nama", "id_polda", $id_polda );
-
-        $data['arr_warna'] = $this->cm->arr_dropdown("m_warna", "WARNA_ID", "WARNA_NAMA", "WARNA_NAMA");
-        
-        $data['arr_user'] = $this->cm->arr_dropdown2("pengguna", "id", "nama", "nama", "birojasa_id", $id_birojasa);
-        
-
-        $content = $this->load->view("bj_bbn_satu_form_edit_view",$data,true);
-
-         // $content = $this->load->view($this->controller."_form_view",$data,true);
-
-        $this->set_subtitle("Edit Estimasi");
-        $this->set_title("BBN 1");
-        $this->set_content($content);
-        $this->cetak();
-
-    }
-
-    // function crud
-
-    // Create
-
-function simpan(){
-
-
-    $post = $this->input->post();
-
-
-        $this->load->library('form_validation');
-        $this->form_validation->set_rules('no_rangka','No. Rangka','required');
-        $this->form_validation->set_rules('no_mesin','No. Mesin','required'); 
-        $this->form_validation->set_rules('no_faktur','No. Faktur','required'); 
-        $this->form_validation->set_rules('tgl_faktur','Tanggal Faktur','required'); 
-        $this->form_validation->set_rules('id_merek','Merk','required'); 
-        $this->form_validation->set_rules('type','Type','required'); 
-        $this->form_validation->set_rules('id_model','Model','required');     
-        $this->form_validation->set_rules('id_jenis','Jenis','required'); 
-        $this->form_validation->set_rules('id_warna','Warna','required'); 
-        $this->form_validation->set_rules('silinder','Silinder','required'); 
-        $this->form_validation->set_rules('bahan_bakar','Bahan Bakar','required'); 
-        $this->form_validation->set_rules('tahun_buat','Tahun Buat','required'); 
-        $this->form_validation->set_rules('kode_dealer','Kode Dealer','required'); 
-        $this->form_validation->set_rules('nama_dealer','Nama Dealer','required'); 
-        $this->form_validation->set_rules('id_desa','Desa','required'); 
-        $this->form_validation->set_rules('id_kecamatan','Kecamatan','required');
-        $this->form_validation->set_rules('id_provinsi','Provinsi','required');
-        $this->form_validation->set_rules('id_kota','Kota','required');
-        $this->form_validation->set_rules('id_polda','Polda','required');
-        $this->form_validation->set_rules('id_samsat','Samsat','required');
-        $this->form_validation->set_rules('tgl_entri','Tanggal Entri','required');         
-         
-        $this->form_validation->set_message('required', 'Field %s Harus diisi ');
-        
-        $this->form_validation->set_error_delimiters('', '<br>');
-
-
-        //show_array($data);
-
-
-
-if($this->form_validation->run() == TRUE ) { 
-        $post['tgl_faktur'] = flipdate($post['tgl_faktur']);
-        $post['tgl_entri'] = flipdate($post['tgl_entri']);
-
-        
-        $biaya = $this->dm->biaya($post['type'], $post['tahun_buat'],$post['id_warna'], $post['id_samsat'])->row_array();
-        if (empty($biaya)) {
-            $arr = array("error"=>true,'message'=>"TERJADI KESALAHAN </BR> MOHON PERIKSA KEMBALI DATA ANDA");
-        }
-        else{
-        $stnk = $biaya['rp_daftar_stnk'];
-        $bpkb = $biaya['rp_daftar_bpkb'];
-        $pajak = $biaya['rp_pajak_kendaraan'];
-        $admin = $biaya['rp_admin_fee'];
-
-        $post['rp_daftar_stnk']=$stnk;
-        $post['rp_daftar_bpkb']=$bpkb;
-        $post['rp_pajak_kendaraan']=$pajak;
-        $post['rp_admin_fee']=$admin;
-
-        
-        
-
-        $res = $this->db->insert('bj_bbn_satu', $post); 
-        
-        if($res){
-            $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
-        }
-        else {
-             $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
-        }
-    }
-}
-else {
-    $arr = array("error"=>true,'message'=>validation_errors());
-}
-        echo json_encode($arr);
-}
-
-
-    // Read
 
 
    function get_data() {
@@ -296,17 +123,6 @@ else {
         
   
         $no_rangka = $_REQUEST['columns'][1]['search']['value'];
-
-
-        
-        
-        
-
-
-        
-
-        
-
 
       //  order[0][column]
         $req_param = array (
@@ -339,18 +155,20 @@ else {
         // $daft_id = $row['daft_id'];
         $id = $row['id'];
         $no_rangka = $row['no_rangka'];
-        $hapus = "<a href ='#' onclick=\"hapus('$id')\" class='btn btn-danger btn-xs'><i class='fa fa-trash'></i> Hapus</a>
-        <a href ='bj_bbn_satu/editdata?id=$id' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i> Edit</a>";
-        // <a href ='bj_bbn_satu/editdata?id=$id' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i>Edit</a>";
-        $nama ="<a href='bj_bbn_satu/lihatdata?id=$id'>$no_rangka</a>";
+        $hapus = "<a href ='us_bbn_satu/lihatdata?id=$id' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i> Detail</a>";
+        
+        $nama ="<a href='us_bbn_satu/lihatdata?id=$id'>$no_rangka</a>";
             
              
             $arr_data[] = array(
                 $row['id'],
                 $nama,
                 $row['no_mesin'],
-                $row['tgl_faktur'],
-                $row['tgl_entri'],
+                $row['nama_pemilik'],
+                $row['rp_daftar_stnk'],
+                $row['rp_daftar_bpkb'],
+                $row['rp_pajak_kendaraan'],
+                $row['rp_admin_fee'],
                 $hapus
                 
                      
@@ -372,78 +190,34 @@ else {
 function update(){
 
     $post = $this->input->post();
-   
-        $this->load->library('form_validation');
-        $this->form_validation->set_rules('no_rangka','No. Rangka','required');
-        $this->form_validation->set_rules('no_mesin','No. Mesin','required'); 
-        $this->form_validation->set_rules('no_faktur','No. Faktur','required'); 
-        $this->form_validation->set_rules('tgl_faktur','Tanggal Faktur','required'); 
-        $this->form_validation->set_rules('id_merek','Merk','required'); 
-        $this->form_validation->set_rules('type','Type','required'); 
-        $this->form_validation->set_rules('id_model','Model','required');   
-        $this->form_validation->set_rules('silinder','Silinder','required'); 
-        $this->form_validation->set_rules('bahan_bakar','Bahan Bakar','required'); 
-        $this->form_validation->set_rules('tahun_buat','Tahun Buat','required'); 
-        $this->form_validation->set_rules('kode_dealer','Kode Dealer','required'); 
-        $this->form_validation->set_rules('nama_dealer','Nama Dealer','required'); 
-        $this->form_validation->set_rules('id_desa','Desa','required'); 
-        $this->form_validation->set_rules('id_kecamatan','Kecamatan','required');
-        $this->form_validation->set_rules('id_provinsi','Provinsi','required');
-        $this->form_validation->set_rules('id_kota','Kota','required');
-        $this->form_validation->set_rules('id_polda','Polda','required');
-        $this->form_validation->set_rules('id_samsat','Samsat','required');
-        $this->form_validation->set_rules('tgl_entri','Tanggal Entri','required');         
-         
-        $this->form_validation->set_message('required', 'Field %s Harus diisi ');
-        
-        $this->form_validation->set_error_delimiters('', '<br>');
-       
-        
+    $id = $post['id'];
 
-     
+    $this->load->library('form_validation');
 
-        //show_array($data);
+    $this->db->where('id', $id);
+    $this->db->where('status', 0);
+    $vld = $this->db->get('bj_bbn_satu');
 
-if($this->form_validation->run() == TRUE ) { 
+    
+    if($vld->num_rows() > 0){
 
 
-        $post['tgl_faktur'] = flipdate($post['tgl_faktur']);
-        $post['tgl_entri'] = flipdate($post['tgl_entri']);
-
-        
-        $biaya = $this->dm->biaya($post['type'], $post['tahun_buat'],$post['id_warna'], $post['id_samsat'])->row_array();
-        if(empty($biaya)){
-            $arr = array("error"=>true,'message'=>"TERJADI KESALAHAN </BR> MOHON PERIKSA KEMBALI DATA EDITAN ANDA");
-        }
-
-        else{
-        $stnk = $biaya['rp_daftar_stnk'];
-        $bpkb = $biaya['rp_daftar_bpkb'];
-        $pajak = $biaya['rp_pajak_kendaraan'];
-        $admin = $biaya['rp_admin_fee'];
-
-        $post['rp_daftar_stnk']=$stnk;
-        $post['rp_daftar_bpkb']=$bpkb;
-        $post['rp_pajak_kendaraan']=$pajak;
-        $post['rp_admin_fee']=$admin;
-   
-
-
-        $this->db->where("id",$post['id']);
-        $res = $this->db->update('bj_bbn_satu', $post); 
+        $post['status']=1;
+        $this->db->where("id",$id);
+        $this->db->set('tgl_update', 'NOW()', FALSE);
+        $res = $this->db->update('bj_bbn_satu', $post);
         if($res){
-            $arr = array("error"=>false,'message'=>"BERHASIL DIUPDATE");
+            $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
         }
         else {
-             $arr = array("error"=>true,'message'=>"GAGAL  DIUPDATE");
+             $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
         }
     }
-}
-else {
-    $arr = array("error"=>true,'message'=>validation_errors());
-}
-
+    else{
+        $arr = array("error"=>true, 'message'=>"DATA BBN INI TELAH ANDA KONFIRMASI SEBELUMNYA");
+    }
         echo json_encode($arr);
+
 }
 
 
@@ -456,23 +230,6 @@ else {
 
 
 
-
-    function hapusdata(){
-    	$get = $this->input->post();
-    	$id = $get['id'];
-
-    	$data = array('id' => $id, );
-
-    	$res = $this->db->delete('bj_bbn_satu', $data);
-        if($res){
-            $arr = array("error"=>false,"message"=>"DATA BERHASIL DIHAPUS");
-        }
-        else {
-            $arr = array("error"=>true,"message"=>"DATA GAGAL DIHAPUS ".mysql_error());
-        }
-    	//redirect('sa_birojasa');
-        echo json_encode($arr);
-    }
 
 
 
@@ -548,10 +305,6 @@ function get_model(){
 
 
 }
-
-
-
-
 
 	
 

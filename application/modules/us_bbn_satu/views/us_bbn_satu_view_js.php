@@ -10,7 +10,7 @@ $(document).ready(function(){
                 "columnDefs": [ { "targets": 0, "orderable": false } ],
                 "processing": true,
                 "serverSide": true,
-                "ajax": '<?php echo site_url("us_bbn_dua/get_data") ?>'
+                "ajax": '<?php echo site_url("us_bbn_satu/get_data") ?>'
             });
 
          

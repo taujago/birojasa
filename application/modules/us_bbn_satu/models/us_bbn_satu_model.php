@@ -21,14 +21,17 @@ class us_bbn_satu_model extends CI_Model {
 		 $kolom = array(0=>"id",
 							"no_rangka",
 							"no_faktur",
-							"tgl_faktur",
-							"tgl_entri"
+							"nama_pemilik",
+							"rp_daftar_stnk",
+							"rp_daftar_bpkb",
+							"rp_pajak_kendaraan",
+							"rp_admin_fee"
 							
 		 	);
 
 
 
-		 	$this->db->select('*')->from("bj_bbn_dua");
+		 	$this->db->select('*')->from("bj_bbn_satu");
 		 	$this->db->where('user_entri', $id);		
 
 
