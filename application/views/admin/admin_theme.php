@@ -153,6 +153,11 @@ folder instead of downloading all of them to reduce the load. -->
                 <li><a href="<?php echo site_url('sa_samsat'); ?>"><i class="fa fa-circle-o"></i> Samsat</a></li>
                 <li><a href="<?php echo site_url('sa_polda'); ?>"><i class="fa fa-circle-o"></i> Polda</a></li>
                 <li><a href="<?php echo site_url('sa_polres'); ?>"><i class="fa fa-circle-o"></i> Polres</a></li>
+                <li><a href="<?php echo site_url('sa_warna'); ?>"><i class="fa fa-circle-o"></i> Warna</a></li>
+                <li><a href="<?php echo site_url('sa_jenis'); ?>"><i class="fa fa-circle-o"></i> Jenis</a></li>
+                <li><a href="<?php echo site_url('sa_merk'); ?>"><i class="fa fa-circle-o"></i> Merk</a></li>
+                <li><a href="<?php echo site_url('sa_model'); ?>"><i class="fa fa-circle-o"></i> Model</a></li>
+
 
               </ul>
             </li>
