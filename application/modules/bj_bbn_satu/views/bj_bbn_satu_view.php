@@ -48,16 +48,17 @@
              table-bordered table-hover dataTable no-footer" role="grid">
 <thead>
   <tr>
-    <th rowspan="2">ID</th>
-    <th width="20" rowspan="2">No. Rangka</th>
-    <th width="10" rowspan="2">No. Faktur</th>
-    <th width="10" rowspan="2">Tgl. Entri</th>
+
+    <th width="3%" rowspan="2">ID</th>
+    <th width="10%" rowspan="2">Tgl. Entri</th>
+    <th width="25%" rowspan="2">No. Rangka</th>
+    <th width="10%" rowspan="2">No. Faktur</th>
     <th colspan="4">Biaya</th>
-    <th width="20%" rowspan="2">Pengurus</th>
-    <th width="12%" rowspan="2">#</th>
+    <th width="10%" rowspan="2">Pengurus</th>
+    <th width="10%" rowspan="2">#</th>
   </tr>
   <tr> 
-        <th width="0%">bpkb</th>
+        <th width="10%">bpkb</th>
         <th width="10%">stnk</th>
         <th width="10%">pajak</th>
         <th width="10%">admin</th>
