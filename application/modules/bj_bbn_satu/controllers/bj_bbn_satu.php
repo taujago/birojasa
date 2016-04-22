@@ -338,9 +338,13 @@ else {
                 $row['id'],
                 $nama,
                 $row['no_mesin'],
-                $row['tgl_faktur'],
                 $row['tgl_entri'],
+                $row['rp_daftar_bpkb'],
+                $row['rp_daftar_stnk'],
+                $row['rp_pajak_kendaraan'],
+                $row['rp_admin_fee'],
                 $row['bj_nama_user'],
+                
                 $hapus
                 
                      

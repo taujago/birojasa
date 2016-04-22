@@ -47,18 +47,21 @@
 <table width="100%" border="0" id="bj_bbn_satu" class="table table-striped 
              table-bordered table-hover dataTable no-footer" role="grid">
 <thead>
-  <tr  >
-
-
-        
-        <th width="7%">ID</th>
-        <th width="15%">No. Rangka</th>
-        <th width="15%">No. Faktur</th>
-        <th width="11%">Tgl. Faktur</th>
-        <th width="10%">Tgl. Entri</th>
-        <th width="20%">Pengurus</th>
-        <th width="12%">#</th>
-    </tr>
+  <tr>
+    <th rowspan="2">ID</th>
+    <th width="20" rowspan="2">No. Rangka</th>
+    <th width="10" rowspan="2">No. Faktur</th>
+    <th width="10" rowspan="2">Tgl. Entri</th>
+    <th colspan="4">Biaya</th>
+    <th width="20%" rowspan="2">Pengurus</th>
+    <th width="12%" rowspan="2">#</th>
+  </tr>
+  <tr> 
+        <th width="0%">bpkb</th>
+        <th width="10%">stnk</th>
+        <th width="10%">pajak</th>
+        <th width="10%">admin</th>
+  </tr>
   
 </thead>
 </table>

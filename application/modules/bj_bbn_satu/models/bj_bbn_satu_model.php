@@ -24,6 +24,10 @@ class bj_bbn_satu_model extends CI_Model {
 							"tgl_faktur",
 							"tgl_entri",
 							"bj_nama_user",
+							"rp_daftar_stnk",
+							'rp_daftar_bpkb',
+							"rp_pajak_kendaraan",
+							"rp_admin_fee"
 							
 		 	);
 
