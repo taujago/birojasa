@@ -7,6 +7,7 @@ class bj_bbn_satu extends biro_jasa_controller{
 		$this->controller = get_class($this);
 		$this->load->model('bj_bbn_satu_model','dm');
         $this->load->model("coremodel","cm");
+        $this->load->helper("tanggal");
 		
 		//$this->load->helper("serviceurl");
 		
@@ -545,6 +546,34 @@ function get_model(){
 
 
 
+
+function get_biaya(){
+    $post = $this->input->post();
+
+    extract($post);
+    $this->db->where("id_warna",$id_warna);
+    $this->db->where("id_samsat",$id_samsat);
+    $this->db->where("tahun_kendaraan",$tahun_buat);
+    $this->db->where("tipe_kendaraan",$type);
+
+    $data = $this->db->get("estimasi_bbn_satu")->row_array();
+    // echo $this->db->last_query(); 
+
+    // show_array($data);
+
+ $data['total'] = rupiah($data['rp_daftar_bpkb'] + $data['rp_daftar_stnk']  + $data['rp_pajak_kendaraan'] +  $data['rp_admin_fee'] );
+
+
+    $data['rp_daftar_bpkb'] = rupiah( $data['rp_daftar_bpkb']);
+    $data['rp_daftar_stnk'] = rupiah( $data['rp_daftar_stnk']);
+    $data['rp_pajak_kendaraan'] = rupiah( $data['rp_pajak_kendaraan']);
+    $data['rp_admin_fee'] = rupiah( $data['rp_admin_fee']);
+
+   
+
+    echo json_encode($data);
+
+}
 
 
 	

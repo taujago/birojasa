@@ -7,6 +7,28 @@
 $(document).ready(function() {
 
 
+$('.rp').focus(function(){
+    console.log('test');
+
+    $.ajax({
+        url : '<?php echo site_url("$this->controller/get_biaya") ?>',
+        data :  $("#form_data").serialize(), 
+        type : 'post',
+        dataType : 'json',
+        success : function(obj) {
+            $("#rp_daftar_stnk").val(obj.rp_daftar_stnk);
+            $("#rp_daftar_bpkb").val(obj.rp_daftar_bpkb);
+            $("#rp_pajak_kendaraan").val(obj.rp_pajak_kendaraan);
+            $("#rp_admin_fee").val(obj.rp_admin_fee);
+            $("#total").val(obj.total);
+        }
+    });
+
+});
+
+
+
+
 $(".tanggal").datepicker().on('changeDate', function(ev){                 
              $('.tanggal').datepicker('hide');
         });

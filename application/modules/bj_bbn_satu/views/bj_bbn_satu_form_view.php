@@ -32,7 +32,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Entri 
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="tanggal" class="tanggal form-control col-md-7 col-xs-12" name="tgl_entri" class="form-control input-style" placeholder="Tanggal BBN2"  data-date-format="dd-mm-yyyy">
+                        <input type="text" id="tanggal" class="tanggal form-control col-md-7 col-xs-12 input-style" name="tgl_entri"  placeholder="Tanggal BBN2"  data-date-format="dd-mm-yyyy">
                       </div>
                     </div>
                     
@@ -62,7 +62,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Faktur 
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="tanggal" class="tanggal form-control col-md-7 col-xs-12" name="tgl_faktur" class="form-control input-style" placeholder="Tanggal BBN2"  data-date-format="dd-mm-yyyy">
+                        <input type="text" id="tanggal" class="tanggal form-control col-md-7 col-xs-12 input-style" name="tgl_faktur"   placeholder="Tanggal BBN2"  data-date-format="dd-mm-yyyy">
                       </div>
                     </div>
                     <div class="form-group">
@@ -198,6 +198,51 @@
                         <?php echo form_dropdown("user_entri",$arr_user,'','id="user_entri" class="form-control input-style"'); ?>
                        </div> 
                     </div>
+                    
+                    
+             <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Biaya STNK
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="rp_daftar_stnk" name="rp_daftar_stnk" required="required" class="form-control col-md-7 col-xs-12 rp" placeholder="Biaya STNK">
+                      </div>
+                    </div>
+      
+  <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Biaya BPKB
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="rp_daftar_bpkb" name="rp_daftar_bpkb" required="required" class="form-control col-md-7 col-xs-12 rp" placeholder="Biaya BPKB">
+                      </div>
+                    </div>
+                    
+                    
+                    
+  <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Pajak Kendaraan
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="rp_pajak_kendaraan" name="rp_pajak_kendaraan" required="required" class="form-control col-md-7 col-xs-12 rp" placeholder="Pajak Kendaraan">
+                      </div>
+                    </div>
+                    
+  <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Admin Fee
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="rp_admin_fee" name="rp_admin_fee" required="required" class="form-control col-md-7 col-xs-12 rp" placeholder="Admin Fee">
+                      </div>
+                    </div>
+                    
+<div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Total Estimasi Biaya
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="total" name="total" required="required" class="form-control col-md-7 col-xs-12 rp" placeholder="Admin Fee">
+                      </div>
+                    </div>         
+                                                                                                    
+                    
                     <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">

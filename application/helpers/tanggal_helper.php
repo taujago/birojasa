@@ -100,4 +100,9 @@ function service_date($tgl){
 }
 
 
+function rupiah($angka) {
+	return number_format($angka,0,',','.');
+}
+
+
 ?>
