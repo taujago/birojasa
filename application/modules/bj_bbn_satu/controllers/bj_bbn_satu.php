@@ -336,10 +336,12 @@ else {
             
              
             $arr_data[] = array(
+
+                
                 $row['id'],
+                $row['tgl_entri'],
                 $nama,
                 $row['no_mesin'],
-                $row['tgl_entri'],
                 $row['rp_daftar_bpkb'],
                 $row['rp_daftar_stnk'],
                 $row['rp_pajak_kendaraan'],

@@ -48,10 +48,11 @@
              table-bordered table-hover dataTable no-footer" role="grid">
 <thead>
   <tr>
+
     <th width="3%" rowspan="2">ID</th>
+    <th width="10%" rowspan="2">Tgl. Entri</th>
     <th width="25%" rowspan="2">No. Rangka</th>
     <th width="10%" rowspan="2">No. Faktur</th>
-    <th width="10%" rowspan="2">Tgl. Entri</th>
     <th colspan="4">Biaya</th>
     <th width="10%" rowspan="2">Pengurus</th>
     <th width="10%" rowspan="2">#</th>
