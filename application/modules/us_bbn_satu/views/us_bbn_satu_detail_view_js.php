@@ -1,5 +1,14 @@
 <script type="text/javascript">
+
+
+
 	$(document).ready(function() {
+
+        $(".tanggal").datepicker().on('changeDate', function(ev){                 
+             $('.tanggal').datepicker('hide');
+        });
+
+        
 		$("#btn_submit1").click(function(){
  			$.ajax({
 
@@ -22,7 +31,7 @@
                         });   
 
                     
-                    $('#form_update').data('bootstrapValidator').resetForm(true);
+                    // $('#form_update').data('bootstrapValidator').resetForm(true);
                     $("#proses").html(obj.nama_status);
                     $("#proses").attr('data-target',obj.status);
 
@@ -65,7 +74,7 @@
                              
                         });   
                     
-                      $('#form_update').data('bootstrapValidator').resetForm(true);
+                      // $('#form_update').data('bootstrapValisdator').resetForm(true);
                       $("#proses").html(obj.nama_status);
                     $("#proses").attr('data-target',obj.status);
 
@@ -106,7 +115,7 @@
                              
                         });   
                       
-                      $('#form_update').data('bootstrapValidator').resetForm(true);
+                      // $('#form_update').data('bootstrapValidator').resetForm(true);
                       $("#proses").html(obj.nama_status);
                     $("#proses").attr('data-target',obj.status);
 
@@ -150,7 +159,7 @@
                              
                         });   
                      
-                      $('#form_update').data('bootstrapValidator').resetForm(true);
+                      // $('#form_update').data('bootstrapValidator').resetForm(true);
                        $("#proses").html(obj.nama_status);
                     $("#proses").attr('data-target',obj.status);
 
@@ -191,7 +200,7 @@
                              
                         });   
                      
-                      $('#form_update').data('bootstrapValidator').resetForm(true);
+                      // $('#form_update').data('bootstrapValidator').resetForm(true);
                       $("#proses").html(obj.nama_status);
                     $("#proses").attr('data-target',obj.status);
 
@@ -233,7 +242,7 @@
                              
                         });   
                       
-                      $('#form_update').data('bootstrapValidator').resetForm(true);
+                      // $('#form_update').data('bootstrapValidator').resetForm(true);
                       $("#proses").html(obj.nama_status);
                     $("#proses").attr('data-target',obj.status);
 
@@ -274,7 +283,7 @@
                              
                         });   
                       
-                      $('#form_update').data('bootstrapValidator').resetForm(true);
+                      // $('#form_update').data('bootstrapValidator').resetForm(true);
                       $("#proses").html(obj.nama_status);
                     $("#proses").attr('data-target',obj.status);
 

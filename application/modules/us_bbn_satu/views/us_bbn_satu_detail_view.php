@@ -1,7 +1,15 @@
 </br>
- 
+    
+    
+    <style type="text/css">
+        .ui-datepicker {
+          position: relative; 
+          z-index: 100000 !important;
+        }
+    </style>
 
-
+    <link href="<?php echo base_url("assets") ?>/css/datepicker.css" rel="stylesheet">
+    <script src="<?php echo base_url("assets") ?>/js/bootstrap-datepicker.js"></script>
 
         
 
@@ -277,6 +285,8 @@
                             <div class="form-group">
                               <label for="kembali">Masuk Samsat</label>
                               <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
+                              <input type="text" id="tanggal" name="tgl_entri" class="tanggal ui-datepicker form-control" placeholder="Tanggal Masuk Samsat"  data-date-format="dd-mm-yyyy" style="position: relative; z-index: 100000 !important; ">
+                              <br/>
                               <p>Anda Dapat Mengkonfirmasi Data BBN Yang Anda Urus Telah Masuk Ke Samsat Dengan Cara Klik Tombol <b>Konfirmasi</b></p>
                             </div>
                           </div>

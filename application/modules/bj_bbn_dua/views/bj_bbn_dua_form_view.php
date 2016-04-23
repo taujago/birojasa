@@ -32,7 +32,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12">Tgl. Entri 
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="tanggal" class="tanggal form-control col-md-7 col-xs-12" name="tgl_entri" class="form-control input-style" placeholder="Tanggal BBN2"  data-date-format="dd-mm-yyyy">
+                        <input type="text" id="tanggal" name="tgl_entri" class="tanggal form-control col-md-7 col-xs-12 input-style" placeholder="Tanggal BBN2"  data-date-format="dd-mm-yyyy">
                       </div>
                     </div>
                     <div class="form-group">
