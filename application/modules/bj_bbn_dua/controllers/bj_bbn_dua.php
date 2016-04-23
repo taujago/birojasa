@@ -183,6 +183,7 @@ if($this->form_validation->run() == TRUE ) {
 
         $post['tgl_faktur'] = flipdate($post['tgl_faktur']);
         $post['tgl_entri'] = flipdate($post['tgl_entri']);
+        $post['status'] = 1;
 
         
         $biaya = $this->dm->biaya($post['type'], $post['tahun_buat'],$post['id_warna'], $post['id_samsat'], $post['id_perubahan'])->row_array();
@@ -325,11 +326,14 @@ else {
         	
         	 
         	$arr_data[] = array(
+                
         		$row['id'],
+                $row['tgl_entri'],
         		$nama,
         		$row['no_mesin'],
-        		$row['tgl_faktur'],
-                $row['tgl_entri'],
+        		$row['rp_daftar'],
+                $row['rp_biaya'],
+                $row['rp_admin_fee'],
                 $row['bj_nama_user'],
         		$hapus
         		

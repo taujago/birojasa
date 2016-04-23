@@ -25,7 +25,8 @@ class us_bbn_satu_model extends CI_Model {
 							"rp_daftar_stnk",
 							"rp_daftar_bpkb",
 							"rp_pajak_kendaraan",
-							"rp_admin_fee"
+							"rp_admin_fee",
+							"status"
 							
 		 	);
 

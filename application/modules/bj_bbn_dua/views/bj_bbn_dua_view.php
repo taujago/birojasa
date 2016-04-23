@@ -5,13 +5,9 @@
               <div class="x_title">
                   <h2>Tambah Data <small>Pengurusan BBN 2 </small></h2>
                   <ul class="nav navbar-right panel_toolbox">
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-plus"></i></a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="<?php echo site_url($this->controller.'/baru'); ?>">Tambah Data</a>
-                        </li>
-                      </ul>
-                    </li>
+                  <a href="<?php echo site_url($this->controller.'/baru'); ?>"><button type="button" class="btn btn-primary">Tambah Data</button>
+                    </a>
+
                   </ul>
                   <div class="clearfix"></div>
                 </div>
@@ -49,14 +45,20 @@
 
 
         
-        <th width="7%">ID</th>
-        <th width="15%">No. Rangka</th>
-        <th width="15%">No. Faktur</th>
-        <th width="11%">Tgl. Faktur</th>
-        <th width="10%">Tgl. Entri</th>
-        <th width="20%">Pengurus</th>
-        <th width="12%">#</th>
+        <th width="3%" rowspan="2" style='text-align:center;vertical-align:middle'>ID</th>
+        <th width="10%" rowspan="2" style='text-align:center;vertical-align:middle'>Tgl. Entri</th>
+        <th width="20%" rowspan="2" style='text-align:center;vertical-align:middle'>No. Rangka</th>
+        <th width="10%" rowspan="2" style='text-align:center;vertical-align:middle'>No. Faktur</th>
+        <th width="40%" colspan="3" style='text-align:center;vertical-align:middle'>Biaya</th>
+        <th width="15%" rowspan="2" style='text-align:center;vertical-align:middle'>Pengurus</th>
+        <th width="15%" rowspan="2" style='text-align:center;vertical-align:middle'>#</th>
     </tr>
+
+    <tr> 
+        <th width="4%" style='text-align:center;vertical-align:middle'>Daftar</th>
+        <th width="4%" style='text-align:center;vertical-align:middle'>Biaya</th>
+        <th width="4%" style='text-align:center;vertical-align:middle'>Admin Fee</th>
+  </tr>
   
 </thead>
 </table>

@@ -23,7 +23,8 @@ class us_bbn_dua_model extends CI_Model {
 							"no_faktur",
 							"rp_daftar",
 							"rp_biaya", 
-							"rp_admin_fee"
+							"rp_admin_fee",
+							"status"
 							
 		 	);
 

@@ -24,6 +24,9 @@ class bj_bbn_dua_model extends CI_Model {
 							"tgl_faktur",
 							"tgl_entri",
 							"bj_nama_user",
+							"rp_daftar",
+							"rp_biaya",
+							"rp_admin_fee"
 							
 		 	);
 

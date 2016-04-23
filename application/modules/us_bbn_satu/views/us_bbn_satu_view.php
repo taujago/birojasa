@@ -47,19 +47,20 @@
 <table width="100%" border="0" id="us_bbn_satu" class="table table-striped 
              table-bordered table-hover dataTable no-footer" role="grid">
 <thead>
-  <tr  >
+  <tr>
+        <th width="5%" rowspan="2" style='text-align:center;vertical-align:middle'>ID</th>
+        <th width="15%" rowspan="2" style='text-align:center;vertical-align:middle'>No. Rangka</th>
+        <th width="15%" rowspan="2" style='text-align:center;vertical-align:middle'>No. Faktur</th>
+        <th width="15%" rowspan="2" style='text-align:center;vertical-align:middle'>Nama Pemilik</th>
+        <th width="40%" colspan="4" style='text-align:center;vertical-align:middle'>Biaya</th>
+        <th width="12%" rowspan="2" style='text-align:center;vertical-align:middle'>#</th>
+    </tr>
+    <tr>
+        <th width="10%" style='text-align:center;vertical-align:middle'>BPKB</th>
+        <th width="10%" style='text-align:center;vertical-align:middle'>STNK</th>
+        <th width="10%" style='text-align:center;vertical-align:middle'>Pajak</th>
+        <th width="10%" style='text-align:center;vertical-align:middle'>Admin Fee</th>
 
-
-        
-        <th width="5%">ID</th>
-        <th width="15%">No. Rangka</th>
-        <th width="15%">No. Faktur</th>
-        <th width="15%">Nama Pemilik</th>
-        <th width="10%">BPKB</th>
-        <th width="10%">STNK</th>
-        <th width="10%">Pajak</th>
-        <th width="10%">Admin Fee</th>
-        <th width="12%">#</th>
     </tr>
   
 </thead>

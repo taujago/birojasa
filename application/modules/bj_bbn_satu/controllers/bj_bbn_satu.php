@@ -238,6 +238,8 @@ function simpan(){
 
 
 if($this->form_validation->run() == TRUE ) { 
+
+        $post['status'] = 1;
         $post['tgl_faktur'] = flipdate($post['tgl_faktur']);
         $post['tgl_entri'] = flipdate($post['tgl_entri']);
 

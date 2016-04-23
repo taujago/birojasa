@@ -7,9 +7,10 @@ proses BBN1
 3. stnk sudah jadi (no stnk dan tanggal stnk pajak)
 4. bpkb sudah jadi (no bpkb, tanggal bpkb)
 5. input biaya kelebihan 
-6. serah stnk (tanggal dan siapa yang menyerahkan )
+6. serah stnk (tanggal dan siapa yang menyerahkan)
 7. menyerahkan bpkb (tanggal serah bpkb, dan siapa yang menyerahkan )
 8. invoice (tanggal pembayaran,user, metode bayar, no kartu debit, ref id debit, jumlah bayar)
+9. Selesai
 
 
 samsat_masuk_tgl

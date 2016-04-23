@@ -96,7 +96,7 @@ $userdata = $this->session->userdata('user_login');
             <div class="menu_section">
               <h3>General</h3>
               <ul class="nav side-menu">
-                <li><a href="<?php echo site_url('/'); ?>biro_jasa"><i class="fa fa-dashboard"></i> Home </a>
+                <li><a href="<?php echo site_url('/'); ?>user"><i class="fa fa-dashboard"></i> Home </a>
                 </li>
 
                 <li><a><i class="fa fa-folder-open-o"></i> Pengurusan BBN <span class="fa fa-chevron-down"></span></a>
@@ -229,6 +229,9 @@ $userdata = $this->session->userdata('user_login');
     <script src="<?php echo base_url('assets/dist/js/app.min.js'); ?>"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="<?php echo base_url('assets/dist/js/demo.js'); ?>"></script>
+
+      <script src="<?php echo base_url('assets/js/custom.js'); ?>"></script>
+  <!-- form wizard -->
 
 
 

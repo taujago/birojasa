@@ -3,7 +3,7 @@
 
 
 
-          <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target=".bs-example-modal-sm">Selsai</button>
+          <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target=".<?php echo $status; ?>">Perbaharui Proses</button>
 
 
 <div class="row" style="font-size: 30px;">
@@ -265,38 +265,184 @@
 
 
 
-
-                 
-              <form id="form_update" data-parsley-validate class="form-horizontal form-label-left" action="<?php echo site_url("us_bbn_satu/update"); ?>" method="post">
-                <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+            <form id="form_update1" data-parsley-validate class="form-horizontal form-label-left" action="<?php echo site_url("us_bbn_dua/update1"); ?>" method="post">
+                <div class="modal fade 1" tabindex="-1" role="dialog" aria-hidden="true">
                   <div class="modal-dialog modal-sm">
                     <div class="modal-content">
 
                       <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
                         </button>
-                        <h4 class="modal-title" id="myModalLabel2">Kofirmasi Penyelesaian</h4>
+                        <h4 class="modal-title" id="myModalLabel2">Konfirmasi</h4>
                       </div>
                       <div class="modal-body">
                         <div class="row">
                           <div class="col-md-12">
                             <div class="form-group">
-                              <label for="kembali">Sisa Uang</label>
+                              <label for="kembali">Masuk Samsat</label>
                               <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
-                              <input id="kembali" name="kembali" type="text" class="form-control" placeholder="Sisa Uang"></input>
+                              <p>Anda Dapat Mengkonfirmasi Data BBN Yang Anda Urus Telah Masuk Ke Samsat Dengan Cara Klik Tombol <b>Konfirmasi</b></p>
                             </div>
                           </div>
                         </div>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                        <button type="button" id="btn_submit" class="btn btn-primary">Simpan</button>
+                        <button type="button" id="btn_submit1" class="btn btn-primary">Konfirmasi</button>
                       </div>
 
                     </div>
                   </div>
                 </div>
                 </form>
+
+
+                <form id="form_update2" data-parsley-validate class="form-horizontal form-label-left" action="<?php echo site_url("us_bbn_dua/update2"); ?>" method="post">
+                <div class="modal fade 2" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel2">Konfirmasi</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label for="kembali">Samsat Selesai</label>
+                              <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
+                              <p>Anda Dapat Mengkonfirmasi Data BBN Yang Anda Urus Telah Selsai Di Samsat Dengan Cara Klik Tombol <b>Konfirmasi</b></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" id="btn_submit2" class="btn btn-primary">Konfirmasi</button>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                </form>
+
+
+                <form id="form_update3" data-parsley-validate class="form-horizontal form-label-left" action="<?php echo site_url("us_bbn_dua/update3"); ?>" method="post">
+                <div class="modal fade 3" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel2">Konfirmasi</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label for="kembali">Penyerahan Berkas</label>
+                              <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
+                              <p>Anda Dapat Mengkonfirmasi Data BBN Yang Anda Urus Diserahkan Berkasnya Dengan Cara Klik Tombol <b>Konfirmasi</b></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" id="btn_submit3" class="btn btn-primary">Konfirmasi</button>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                </form>
+
+
+
+                <!-- PEMBAYARAN -->
+
+                <form id="form_update4" data-parsley-validate class="form-horizontal form-label-left" action="<?php echo site_url("us_bbn_satu/update4"); ?>" method="post">
+                <div class="modal fade 4" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel2">Konfirmasi</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label for="kembali">Pembayaran</label>
+                              <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
+                              <p>Anda Dapat Mengkonfirmasi Pembayaran Dengan Cara Klik Tombol <b>Konfirmasi</b></p>
+                            </div>
+                            <div class="form-group">
+                              <label for="kembali">Metode Pembayaran</label>
+                              <input id="bayar_metode" name="bayar_metode" type="text" class="form-control" placeholder="Metode Pembayaran"></input>
+                            </div>
+                            <div class="form-group">
+                              <label for="kembali">No. Kartu Debit</label>
+                              <input id="bayar_no_cc" name="bayar_no_cc" type="text" class="form-control" placeholder="No. Kartu Debit"></input>
+                            </div>
+                            <div class="form-group">
+                              <label for="kembali">Ref ID Debit</label>
+                              <input id="bayar_ref_cc" name="bayar_ref_cc" type="text" class="form-control" placeholder="Ref ID Debit"></input>
+                            </div>
+                            <div class="form-group">
+                              <label for="kembali">Jumlah Bayar</label>
+                              <input id="bayar_jumlah" name="bayar_jumlah" type="text" class="form-control" placeholder="Jumlah Bayar"></input>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" id="btn_submit4" class="btn btn-primary">Konfirmasi</button>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                </form>
+
+
+                <div class="modal fade 5" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel2">Selesai</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label for="kembali">Proses Selesai</label>
+                              <p>Proses Telah Selesai Di Kerjakan Dengan Baik</p>
+                              <p><b>TERIMAKASIH</b></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        
+                        <a href="<?php echo site_url('us_bbn_dua/index') ?>">
+                        <button type="button" class="btn btn-primary">Selesai</button></a>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                 
+              
 <?php 
 $this->load->view('us_bbn_dua_detail_view_js');
 ?>
