@@ -4,6 +4,38 @@
 		"selected_items":
 		[
 			[
+				"rp",
+				"rp_pajak_kendaraan"
+			],
+			[
+				"rp_",
+				"rp_daftar_stnk"
+			],
+			[
+				"ext",
+				"extract	(bj_bbn_satu_model.php)"
+			],
+			[
+				"estimasi",
+				"estimasi_bbn_satu	(bj_bbn_satu_model.php)"
+			],
+			[
+				"control",
+				"controller"
+			],
+			[
+				"contr",
+				"controller"
+			],
+			[
+				"ar",
+				"array	$… = array (…)"
+			],
+			[
+				"mysqli",
+				"mysqli_connect"
+			],
+			[
 				"res",
 				"result"
 			],
@@ -296,10 +328,6 @@
 				"row2"
 			],
 			[
-				"ar",
-				"array"
-			],
-			[
 				"wid",
 				"width:200px"
 			],
@@ -486,39 +514,60 @@
 			[
 				"ord",
 				"order_by"
-			],
-			[
-				"li",
-				"link	Tag"
-			],
-			[
-				"LEPAS_DA",
-				"LEPAS_DAFT_BY"
-			],
-			[
-				"LEAS",
-				"LEASING_ID"
-			],
-			[
-				"USER",
-				"USER_LEVEL"
-			],
-			[
-				"BPKB",
-				"BPKB_ID"
-			],
-			[
-				"BPKB_",
-				"BPKB_STATUS"
-			],
-			[
-				"BLOKI",
-				"BLOKIR_STATUS"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "application/modules/bj_bbn_satu/models/bj_bbn_satu_model.php",
+			"settings":
+			{
+				"buffer_size": 1656,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/models/coremodel.php",
+			"settings":
+			{
+				"buffer_size": 2668,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/modules/bj_bbn_satu/views/bj_bbn_satu_form_view_js.php",
+			"settings":
+			{
+				"buffer_size": 4870,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/modules/bj_bbn_satu/controllers/bj_bbn_satu.php",
+			"settings":
+			{
+				"buffer_size": 18745,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "proses-bisnis-birojasa.txt",
+			"settings":
+			{
+				"buffer_size": 1112,
+				"line_ending": "Unix",
+				"name": "proses BBN1"
+			}
+		},
+		{
+			"file": "application/helpers/tanggal_helper.php",
+			"settings":
+			{
+				"buffer_size": 1958,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -557,10 +606,57 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/firman/htdocs/birojasa"
+		"/Users/firman/htdocs/birojasa",
+		"/Users/firman/htdocs/birojasa/application",
+		"/Users/firman/htdocs/birojasa/application/modules",
+		"/Users/firman/htdocs/birojasa/application/modules/bj_bbn_satu",
+		"/Users/firman/htdocs/birojasa/application/modules/bj_bbn_satu/controllers",
+		"/Users/firman/htdocs/birojasa/application/modules/bj_bbn_satu/models",
+		"/Users/firman/htdocs/birojasa/application/modules/bj_bbn_satu/views",
+		"/Users/firman/htdocs/birojasa/application/modules/sa_birojasa/controllers",
+		"/Users/firman/htdocs/birojasa/application/modules/sa_birojasa/models",
+		"/Users/firman/htdocs/birojasa/application/modules/sa_birojasa/views"
 	],
 	"file_history":
 	[
+		"/Users/firman/htdocs/birojasa/application/config/database.php",
+		"/Users/firman/htdocs/birojasa/.gitignore",
+		"/Users/firman/htdocs/birojasa/database/tabel_master.sql",
+		"/Users/firman/htdocs/birojasa/index.php",
+		"/Users/firman/htdocs/birojasa/application/libraries/admin_controller.php",
+		"/Users/firman/Dropbox/materialized_view_project/dbsifik_dispenda.sql",
+		"/Users/firman/htdocs/birojasa/application/modules/sa_birojasa_user/controllers/sa_birojasa_user.php",
+		"/Users/firman/htdocs/birojasa/application/modules/sa_birojasa/controllers/sa_birojasa.php",
+		"/Users/firman/htdocs/birojasa/application/modules/login/controllers/login.php",
+		"/Users/firman/Dropbox/materialized_view_script.sql",
+		"/Users/firman/Dropbox/materialized_view_project/dbsifik_kalsel.sql",
+		"/Users/firman/htdocs/birojasa/application/modules/sa_birojasa_user/views/sa_birojasa_user_view_js.php",
+		"/Users/firman/htdocs/birojasa/application/modules/sa_birojasa_user/views/sa_birojasa_user_view.php",
+		"/Users/firman/htdocs/birojasa/application/modules/sa_birojasa_user/views/sa_birojasa_user_form_edit_view.php",
+		"/Users/firman/htdocs/birojasa/application/modules/sa_birojasa_user/models/bju_model.php",
+		"/Users/firman/htdocs/birojasa/application/models/coremodel.php",
+		"/Users/firman/htdocs/birojasa/application/modules/sa_birojasa_user/views/sa_birojasa_user_form_view_js.php",
+		"/Users/firman/htdocs/birojasa/application/modules/sa_birojasa/views/sa_birojasa_view_js.php",
+		"/Users/firman/htdocs/birojasa/application/modules/sa_birojasa/views/sa_birojasa_form_view.php",
+		"/Users/firman/htdocs/birojasa/application/modules/sa_birojasa/views/sa_birojasa_form_view_js.php",
+		"/Users/firman/htdocs/birojasa/application/modules/sa_birojasa/views/sa_birojasa_form_edit_view.php",
+		"/Users/firman/htdocs/birojasa/application/modules/sa_add_bj/controllers/sa_add_bj.php",
+		"/Users/firman/htdocs/birojasa/application/modules/sa_birojasa/views/sa_birojasa_view.php",
+		"/Users/firman/htdocs/birojasa/application/modules/sa_birojasa/models/biro_jasa_model.php",
+		"/Users/firman/htdocs/birojasa/application/modules/__sampah/baru_verifikasi/views/baru_verifikasi_view_js.php",
+		"/Users/firman/htdocs/birojasa/application/modules/__sampah/polisi_verifikasi/views/polisi_verifikasi_view_js.php",
+		"/Users/firman/htdocs/birojasa/application/modules/sa_add_bj/views/sa_add_bj_view_js.php",
+		"/Users/firman/htdocs/birojasa/application/modules/sa_add_bj/views/sa_add_bj_view.php",
+		"/Users/firman/htdocs/birojasa/application/modules/admin_birojasa/models/admin_bj_model.php",
+		"/Users/firman/htdocs/birojasa/application/modules/admin_birojasa/controllers/admin_birojasa.php",
+		"/Users/firman/htdocs/birojasa/application/modules/admin_birojasa/views/admin_birojasa_view.php",
+		"/Users/firman/htdocs/birojasa/application/modules/sa_birojasa/views/sa_edit_birojasa_view.php",
+		"/Users/firman/htdocs/birojasa/application/views/admin/side_bar_view.php",
+		"/Users/firman/htdocs/birojasa/application/views/admin/header_view.php",
+		"/Users/firman/htdocs/birojasa/application/views/admin/admin_theme.php",
+		"/Users/firman/htdocs/birojasa/application/views/admin/index_view.php",
+		"/Users/firman/htdocs/birojasa/application/controllers/admin.php",
+		"/Users/firman/htdocs/test.php",
 		"/Users/firman/htdocs/bpkbonline/application/config/database.php",
 		"/Users/firman/htdocs/bpkbonline/application/controllers/rocknroll.php",
 		"/Users/firman/htdocs/bpkbonline/application/controllers/tester.php",
@@ -650,49 +746,11 @@
 		"/Users/firman/htdocs/bbn/application/views/template_baru.php",
 		"/Users/firman/htdocs/bbn/assets/css/form-elements.css",
 		"/Users/firman/htdocs/bpkbservice/application/modules/polisi_blokir_perleasing/models/pbpl_model.php",
-		"/Users/firman/htdocs/bpkbservice/application/modules/polisi_blokir_perleasing/controllers/polisi_blokir_perleasing.php",
-		"/Users/firman/htdocs/bpkbservice/application/modules/polisi_blokir_perleasing/views/polisi_blokir_perleasing_view_js.php",
-		"/Users/firman/htdocs/bpkbservice/application/modules/polisi_verifikasi/controllers/polisi_verifikasi.php",
-		"/Users/firman/htdocs/bpkbservice/application/modules/baru_verifikasi/controllers/baru_verifikasi.php",
-		"/Users/firman/htdocs/bpkbservice/application/modules/baru_daftar/controllers/baru_daftar.php",
-		"/Users/firman/htdocs/bpkbservice/index.php",
-		"/Users/firman/htdocs/bpkbservice/application/models/coremodel.php",
-		"/Users/firman/htdocs/bpkbservice/application/modules/baru_cek/controllers/baru_cek.php",
-		"/Users/firman/htdocs/bpkbservice/application/modules/baru_import/controllers/baru_import.php",
-		"/Users/firman/htdocs/bpkbservice/application/modules/admin_laporan/models/admin_lap_model.php",
-		"/Users/firman/htdocs/bpkbservice/application/modules/admin_laporan/controllers/admin_laporan.php",
-		"/Users/firman/htdocs/bpkbservice/application/modules/admin_laporan/views/admin_laporan_view_js.php",
-		"/Users/firman/htdocs/bpkbservice/application/modules/admin_laporan/views/admin_laporan_view.php",
-		"/Users/firman/htdocs/bpkbservice/application/modules/polisi_verifikasi/models/ver_model.php",
-		"/Users/firman/htdocs/bpkbservice/application/modules/baru_daftar/models/bd_model.php",
-		"/Users/firman/htdocs/bpkbservice/application/modules/baru_verifikasi/models/ver_model.php",
-		"/Users/firman/htdocs/bpkbservice/application/index.html",
-		"/Users/firman/htdocs/bpkbservice/application/modules/baru_bukablokir/controllers/baru_bukablokir.php",
-		"/Users/firman/htdocs/bpkbservice/application/libraries/master_controller.php",
-		"/Users/firman/htdocs/bpkbservice/application/helpers/tanggal_helper.php",
-		"/Users/firman/htdocs/bpkbservice/application/modules/polisi_verifikasi/views/polisi_verifikasi_view_detail.php",
-		"/Users/firman/htdocs/bpkbservice/application/modules/baru_bukablokir/views/baru_bukablokir_view_js.php",
-		"/Users/firman/htdocs/bpkbservice/application/modules/baru_verifikasi/views/baru_verifikasi_view_detail.php",
-		"/Users/firman/htdocs/bpkbservice/application/modules/polisi_verifikasi/views/polisi_verifikasi_view_js.php",
-		"/Users/firman/htdocs/bpkbservice/application/modules/baru_verifikasi/views/baru_verifikasi_view_js.php",
-		"/Users/firman/htdocs/bpkbservice/application/views/template_baru.php",
-		"/Users/firman/htdocs/bpkbservice/application/modules/baru_daftar/views/lama_daftar_form_edit_js.php",
-		"/Users/firman/htdocs/bpkbservice/application/modules/baru_daftar/views/lama_daftar_form_js.php",
-		"/Users/firman/htdocs/bpkbservice/application/modules/baru_daftar/views/baru_daftar_form_js.php",
-		"/Users/firman/htdocs/bpkbservice/application/modules/baru_daftar/views/baru_daftar_form.php",
-		"/Users/firman/htdocs/bpkbservice/application/config/database.php",
-		"/Users/firman/htdocs/bpkbservice/application/config/autoload.php",
-		"/Users/firman/htdocs/bpkbservice/application/libraries/Excel.php",
-		"/Users/firman/htdocs/bpkbservice/application/libraries/Excel_reader.php",
-		"/Users/firman/htdocs/bpkbservice/application/modules/baru_import/views/baru_import_view_js.php",
-		"/Users/firman/htdocs/bpkbservice/application/modules/baru_import/views/baru_import_list_view.php",
-		"/Users/firman/htdocs/bpkbservice/application/modules/polres_blokir_pidana/controllers/polres_blokir_pidana.php",
-		"/Users/firman/htdocs/bpkbservice/application/modules/polisi_blokir_pidana/controllers/polisi_blokir_pidana.php",
-		"/Users/firman/htdocs/bpkbservice/application/controllers/testlogin.php"
+		"/Users/firman/htdocs/bpkbservice/application/modules/polisi_blokir_perleasing/controllers/polisi_blokir_perleasing.php"
 	],
 	"find":
 	{
-		"height": 25.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -706,6 +764,22 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"    \n",
+			"EXEC",
+			"DBMS_VIEW",
+			"NEXT SYSDATE + 1/1152 ",
+			"dblink_dbsifik",
+			"t_BPKB_MASTER",
+			"t_HISTORY",
+			"T_HIST_NOPOLISI",
+			"$member->level",
+			"jj",
+			"biro_jasa_model",
+			"sa_birojasa",
+			"data",
+			"obj",
+			"no_siup",
+			"admin_data_list",
 			"message",
 			"cekbbn",
 			"this",
@@ -822,8 +896,190 @@
 	"groups":
 	[
 		{
+			"selected": 4,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "application/modules/bj_bbn_satu/models/bj_bbn_satu_model.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1656,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								181,
+								181
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "application/models/coremodel.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2668,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								641,
+								641
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "application/modules/bj_bbn_satu/views/bj_bbn_satu_form_view_js.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4870,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								594,
+								594
+							],
+							[
+								610,
+								610
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 61.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "application/modules/bj_bbn_satu/controllers/bj_bbn_satu.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 18745,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								18274,
+								18274
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 9764.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "proses-bisnis-birojasa.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1112,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								644,
+								644
+							]
+						],
+						"settings":
+						{
+							"auto_name": "proses BBN1",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 363.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "application/helpers/tanggal_helper.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1958,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1949,
+								1949
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1179.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -876,6 +1132,54 @@
 		"selected_items":
 		[
 			[
+				"taggal",
+				"application/helpers/tanggal_helper.php"
+			],
+			[
+				"corem",
+				"application/models/coremodel.php"
+			],
+			[
+				"inde",
+				"index.php"
+			],
+			[
+				"tabelma",
+				"database/tabel_master.sql"
+			],
+			[
+				".g",
+				".gitignore"
+			],
+			[
+				"database",
+				"application/config/database.php"
+			],
+			[
+				"admincon",
+				"application/libraries/admin_controller.php"
+			],
+			[
+				"login",
+				"application/modules/login/controllers/login.php"
+			],
+			[
+				"database.php",
+				"application/config/database.php"
+			],
+			[
+				"sabirojasa",
+				"application/modules/sa_birojasa/controllers/sa_birojasa.php"
+			],
+			[
+				"admin.php",
+				"application/controllers/admin.php"
+			],
+			[
+				"admin",
+				"application/libraries/admin_controller.php"
+			],
+			[
 				"oramo",
 				"application/models/oramodel.php"
 			],
@@ -914,10 +1218,6 @@
 			[
 				"lupapass",
 				"application/modules/lupa_password/controllers/lupa_password.php"
-			],
-			[
-				"login",
-				"application/modules/login/controllers/login.php"
 			],
 			[
 				"config.ph",
@@ -978,10 +1278,6 @@
 			[
 				"stick",
 				"assets/css/sticky-footer.css"
-			],
-			[
-				"database",
-				"application/config/database.php"
 			],
 			[
 				"baruver",
@@ -1078,10 +1374,6 @@
 			[
 				"brow",
 				"bpkbservice/browsj_doc.html"
-			],
-			[
-				"inde",
-				"bpkbservice/index.php"
 			],
 			[
 				"core",
@@ -1344,7 +1636,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 267.0,
+	"side_bar_width": 313.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

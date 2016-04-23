@@ -16,6 +16,17 @@ class us_bbn_satu extends user_controller{
 // Untuk View
 
 
+
+var $status_button = array(1=>"Konfirmasi berkas masuk samsast",
+    2=>"Konfirmasi STNK sudah jadi",
+    "Konfirmasi BPKB sudah jadi ",
+    "Input kelebihan Biaya",
+    "Penyerahan STNK",
+    "Penyerahan BPKB",
+    "Input Invoice","
+    SELESAI");
+
+
     function lihatdata(){
          $get = $this->input->get(); 
          $id = $get['id'];
@@ -26,6 +37,8 @@ class us_bbn_satu extends user_controller{
 
          $data = $bbn->row_array();
         
+
+         // show_array($data);exit;
 
 
          $kota = $this->dm->datawilayah('id', 'tiger_kota', $data['id_kota'], 'kota')->row_array();
@@ -69,6 +82,7 @@ class us_bbn_satu extends user_controller{
         $data['polda'] = $polda['polda_nama'];
         $data['samsat'] = $samsat['nama'];
         $data['pengurus'] = $pengurus['nama'];
+        $data['nama_status'] = $this->status_button[$data['status']];
     
 
 
@@ -254,6 +268,8 @@ function update1(){
         $res = $this->db->update('bj_bbn_satu', $post);
         if($res){
             $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
+            $arr['status'] = ".".$post['status'];
+            $arr['nama_status'] = $this->status_button[$post['status']];
         }
         else {
              $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
@@ -289,6 +305,8 @@ function update2(){
         $res = $this->db->update('bj_bbn_satu', $post);
         if($res){
             $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
+            $arr['status'] = ".".$post['status'];
+            $arr['nama_status'] = $this->status_button[$post['status']];
         }
         else {
              $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
@@ -324,6 +342,8 @@ function update3(){
         $res = $this->db->update('bj_bbn_satu', $post);
         if($res){
             $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
+            $arr['status'] = ".".$post['status'];
+            $arr['nama_status'] = $this->status_button[$post['status']];
         }
         else {
              $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
@@ -360,6 +380,8 @@ function update4(){
         $res = $this->db->update('bj_bbn_satu', $post);
         if($res){
             $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
+             $arr['status'] = ".".$post['status'];
+            $arr['nama_status'] = $this->status_button[$post['status']];
         }
         else {
              $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
@@ -396,6 +418,8 @@ function update5(){
         $res = $this->db->update('bj_bbn_satu', $post);
         if($res){
             $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
+             $arr['status'] = ".".$post['status'];
+            $arr['nama_status'] = $this->status_button[$post['status']];
         }
         else {
              $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
@@ -432,6 +456,8 @@ function update6(){
         $res = $this->db->update('bj_bbn_satu', $post);
         if($res){
             $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
+             $arr['status'] = ".".$post['status'];
+            $arr['nama_status'] = $this->status_button[$post['status']];
         }
         else {
              $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
@@ -469,6 +495,8 @@ function update7(){
         $res = $this->db->update('bj_bbn_satu', $post);
         if($res){
             $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
+             $arr['status'] = ".".$post['status'];
+            $arr['nama_status'] = $this->status_button[$post['status']];
         }
         else {
              $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
