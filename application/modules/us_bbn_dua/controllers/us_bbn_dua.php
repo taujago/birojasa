@@ -15,6 +15,15 @@ class us_bbn_dua extends user_controller{
 
 // Untuk View
 
+var $status_button = array(1=>"Konfirmasi berkas masuk samsast",
+    2=>"Konfirmasi STNK sudah jadi",
+    "Konfirmasi BPKB sudah jadi ",
+    "Input kelebihan Biaya",
+    "Penyerahan STNK",
+    "Penyerahan BPKB",
+    "Input Invoice","
+    SELESAI");
+
 
     function lihatdata(){
          $get = $this->input->get(); 
@@ -65,6 +74,7 @@ class us_bbn_dua extends user_controller{
         $data['polda'] = $polda['polda_nama'];
         $data['samsat'] = $samsat['nama'];
         $data['pengurus'] = $pengurus['nama'];
+        $data['nama_status'] = $this->status_button[$data['status']];
     
 
 
@@ -209,6 +219,8 @@ function update1(){
         $res = $this->db->update('bj_bbn_dua', $post);
         if($res){
             $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
+            $arr['status'] = ".".$post['status'];
+            $arr['nama_status'] = $this->status_button[$post['status']];
         }
         else {
              $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
@@ -245,6 +257,8 @@ function update2(){
         $res = $this->db->update('bj_bbn_dua', $post);
         if($res){
             $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
+            $arr['status'] = ".".$post['status'];
+            $arr['nama_status'] = $this->status_button[$post['status']];
         }
         else {
              $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
@@ -282,6 +296,8 @@ function update3(){
         $res = $this->db->update('bj_bbn_dua', $post);
         if($res){
             $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
+            $arr['status'] = ".".$post['status'];
+            $arr['nama_status'] = $this->status_button[$post['status']];
         }
         else {
              $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
@@ -318,6 +334,8 @@ function update4(){
         $res = $this->db->update('bj_bbn_dua', $post);
         if($res){
             $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
+            $arr['status'] = ".".$post['status'];
+            $arr['nama_status'] = $this->status_button[$post['status']];
         }
         else {
              $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");

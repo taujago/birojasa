@@ -3,7 +3,7 @@
 
 
 
-          <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target=".<?php echo $status; ?>">Perbaharui Proses</button>
+          <button id="proses" type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target=".<?php echo $status; ?>"><?php echo $nama_status; ?></button>
 
 
 <div class="row" style="font-size: 30px;">
