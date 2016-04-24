@@ -39,8 +39,12 @@ class bj_bbn_dua_model extends CI_Model {
 		 	$this->db->where('id_birojasa', $id_birojasa);
 		
 
-
+		 	$tanggal_awal = flipdate($tanggal_awal);
+			$tanggal_akhir = flipdate($tanggal_akhir);
 		 
+		if(!empty($tanggal_awal) and !empty($tanggal_akhir) ) {
+		 	$this->db->where("tgl_entri between '$tanggal_awal' and '$tanggal_akhir'",null,false);	 	
+		 }
 
 		 if(!empty($no_rangka)) {
 		 	$this->db->like("bbn2.no_rangka",$no_rangka);

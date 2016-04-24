@@ -1,12 +1,9 @@
 </br>
     
-    
     <style type="text/css">
-        .ui-datepicker {
-          position: relative; 
-          z-index: 100000 !important;
-        }
+    .datepicker{ z-index: 1151 !important; }
     </style>
+    
 
     <link href="<?php echo base_url("assets") ?>/css/datepicker.css" rel="stylesheet">
     <script src="<?php echo base_url("assets") ?>/js/bootstrap-datepicker.js"></script>
@@ -45,10 +42,10 @@
 <table width="100%" border="0" class="table table-striped table-hover no-footer" role="grid">
 <thead>
   <tr>
-        <th colspan="2" align="center" style="font-size: 20px;">Data Pengurusan</th>
+        <th colspan="2" align="center">Data Pengurusan</th>
   </tr>
 </thead>
-<tbody style="font-size: 16px;">
+<tbody>
     <tr>
         <th width="20%">Polda</th>
         <th width="1%">:</th>
@@ -116,10 +113,10 @@
 <table width="100%" border="0" class="table table-striped table-hover no-footer" role="grid">
 <thead>
   <tr>
-        <th colspan="2" align="center" style="font-size: 20px;">Detail Kendaraan </th>
+        <th colspan="2" align="center">Detail Kendaraan </th>
   </tr>
 </thead>
-<tbody style="font-size: 16px;">
+<tbody>
 	<tr>
         <th width="20%">No. Rangka</th>
         <th width="1%">:</th>
@@ -222,10 +219,10 @@
 <table width="100%" border="0" class="table table-striped table-hover no-footer" role="grid">
 <thead>
   <tr>
-        <th colspan="2" align="center" style="font-size: 20px;">Data Pemilik Kendaraan</th>
+        <th colspan="2" align="center">Data Pemilik Kendaraan</th>
   </tr>
 </thead>
-<tbody style="font-size: 16px;">
+<tbody>
     <tr>
         <th width="20%">Nama</th>
         <th width="1%">:</th>
@@ -285,7 +282,7 @@
                             <div class="form-group">
                               <label for="kembali">Masuk Samsat</label>
                               <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
-                              <input type="text" id="tanggal" name="tgl_entri" class="tanggal ui-datepicker form-control" placeholder="Tanggal Masuk Samsat"  data-date-format="dd-mm-yyyy" style="position: relative; z-index: 100000 !important; ">
+                              <input type="text" id="tanggal" name="samsat_masuk_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Masuk Samsat"  data-date-format="dd-mm-yyyy">
                               <br/>
                               <p>Anda Dapat Mengkonfirmasi Data BBN Yang Anda Urus Telah Masuk Ke Samsat Dengan Cara Klik Tombol <b>Konfirmasi</b></p>
                             </div>
@@ -329,8 +326,17 @@
                         <div class="row">
                           <div class="col-md-12">
                             <div class="form-group">
-                              <label for="kembali">No. STNK</label>
+                              <label for="kembali">Tgl. STNK</label>
                               <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
+                              <input type="text" id="tanggal" name="stnk_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Jadi STNK"  data-date-format="dd-mm-yyyy">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label for="kembali">No. STNK</label>
+                              
                               <input id="stnk_no" name="stnk_no" type="text" class="form-control" placeholder="No STNK"></input>
                             </div>
                           </div>
@@ -365,6 +371,15 @@
                             <div class="form-group">
                               <label for="kembali">Konfirmasi BPKB Sudah Jadi</label>
                               <p>Anda Dapat Mengkonfirmasi Data BBN Yang Anda Urus BPKB nya Sudah Jadi Dengan Cara Klik Tombol <b>Konfirmasi</b></p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label for="kembali">Tgl. BPKB</label>
+                              <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
+                              <input type="text" id="tanggal" name="bpkb_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Jadi BPKB"  data-date-format="dd-mm-yyyy">
                             </div>
                           </div>
                         </div>
@@ -452,6 +467,14 @@
                             </div>
                           </div>
                         </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label for="kembali">Tgl. Serah STNK</label>
+                              <input type="text" id="tanggal" name="stnk_serah_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Serah STNK"  data-date-format="dd-mm-yyyy">
+                            </div>
+                          </div>
+                        </div>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
@@ -487,6 +510,14 @@
                             </div>
                           </div>
                         </div>
+                         <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label for="kembali">Tgl. Serah BPKB</label>
+                              <input type="text" id="tanggal" name="bpkb_serah_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Jadi BPKB"  data-date-format="dd-mm-yyyy">
+                            </div>
+                          </div>
+                        </div>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
@@ -517,6 +548,10 @@
                               <label for="kembali">Pembayaran</label>
                               <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
                               <p>Anda Dapat Mengkonfirmasi Pembayaran Dengan Cara Klik Tombol <b>Konfirmasi</b></p>
+                            </div>
+                            <div class="form-group">
+                              <label for="kembali">Tgl. Pembayaran</label>
+                              <input type="text" id="tanggal" name="bayar_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Pembayaran"  data-date-format="dd-mm-yyyy">
                             </div>
                             <div class="form-group">
                               <label for="kembali">Metode Pembayaran</label>

@@ -41,7 +41,12 @@ class bj_bbn_satu_model extends CI_Model {
 		
 
 
+		 	$tanggal_awal = flipdate($tanggal_awal);
+			$tanggal_akhir = flipdate($tanggal_akhir);
 		 
+		if(!empty($tanggal_awal) and !empty($tanggal_akhir) ) {
+		 	$this->db->where("tgl_entri between '$tanggal_awal' and '$tanggal_akhir'",null,false);	 	
+		 }
 
 		 if(!empty($no_rangka)) {
 		 	$this->db->like("bbn1.no_rangka",$no_rangka);

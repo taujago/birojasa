@@ -1,6 +1,9 @@
     <?php
     $userdata = $this->session->userdata('bj_login');
     ?>    
+
+     <link href="<?php echo base_url("assets") ?>/css/datepicker.css" rel="stylesheet">
+    <script src="<?php echo base_url("assets") ?>/js/bootstrap-datepicker.js"></script>
      <script src="<?php echo base_url("assets") ?>/js/jquery.dataTables.min.js"></script>           
               <div class="x_title">
                   <h2>Tambah Data <small>Pengurusan BBN 1 </small></h2>
@@ -13,13 +16,24 @@
 
 
           <form role="form" action="" id="btn-cari">
-
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="Tanggal">Tanggal Awal</label>
+                <input name="tanggal_awal" id="tanggal_awal" type="text" class="form-control tanggal_awal" placeholder="Tanggal Awal" data-date-format="dd-mm-yyyy"></input>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="Tanggal">Tanggal Akhir</label>
+                <input name="tanggal_akhir" id="tanggal_akhir" type="text" class="form-control tanggal_akhir" placeholder="Tanggal Akhir" data-date-format="dd-mm-yyyy"></input>
+              </div>
+            </div>
 
             <div class="col-md-3">
               <div class="form-group">
-                <label for="nama">Nama</label>
+                <label for="nama">No. Rangka</label>
                 
-                <input id="no_rangka" name="no_rangka" type="text" class="form-control" placeholder="Nama"></input>
+                <input id="no_rangka" name="no_rangka" type="text" class="form-control" placeholder="No. Rangka"></input>
               </div>
             </div>
             <div class="col-md-1">

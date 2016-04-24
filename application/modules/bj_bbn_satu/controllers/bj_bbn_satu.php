@@ -294,7 +294,9 @@ else {
         $sord = isset($_REQUEST['order'][0]['dir'])?$_REQUEST['order'][0]['dir']:"asc"; // get the direction if(!$sidx) $sidx =1;  
         
   
-        $no_rangka = $_REQUEST['columns'][1]['search']['value'];
+        $tanggal_awal = $_REQUEST['columns'][1]['search']['value'];
+        $tanggal_akhir = $_REQUEST['columns'][2]['search']['value'];
+        $no_rangka = $_REQUEST['columns'][3]['search']['value'];
         $userdata = $this->session->userdata('bj_login');
         $id_birojasa = $userdata['birojasa_id'];
         // $userdata = $this->session->userdata('bj_login');
@@ -307,6 +309,8 @@ else {
                 "sort_by" => $sidx,
                 "sort_direction" => $sord,
                 "limit" => null,
+                "tanggal_awal" => $tanggal_awal,
+                "tanggal_akhir" => $tanggal_akhir,
                 "no_rangka" => $no_rangka, 
                 "id_birojasa" => $id_birojasa    
         );     
@@ -335,13 +339,14 @@ else {
         <a href ='bj_bbn_satu/editdata?id=$id' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i> Edit</a>";
         // <a href ='bj_bbn_satu/editdata?id=$id' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i>Edit</a>";
         $nama ="<a href='bj_bbn_satu/lihatdata?id=$id'>$no_rangka</a>";
+        $tgl_entri = flipdate($row['tgl_entri']);
             
              
             $arr_data[] = array(
 
                 
                 $row['id'],
-                $row['tgl_entri'],
+                $tgl_entri,
                 $nama,
                 $row['no_mesin'],
                 $row['rp_daftar_bpkb'],

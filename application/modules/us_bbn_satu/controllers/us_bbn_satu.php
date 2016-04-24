@@ -136,13 +136,16 @@ function index(){
         $sord = isset($_REQUEST['order'][0]['dir'])?$_REQUEST['order'][0]['dir']:"asc"; // get the direction if(!$sidx) $sidx =1;  
         
   
-        $no_rangka = $_REQUEST['columns'][1]['search']['value'];
-
+        $tanggal_awal = $_REQUEST['columns'][1]['search']['value'];
+        $tanggal_akhir = $_REQUEST['columns'][2]['search']['value'];
+        $no_rangka = $_REQUEST['columns'][3]['search']['value'];
       //  order[0][column]
         $req_param = array (
                 "sort_by" => $sidx,
                 "sort_direction" => $sord,
                 "limit" => null,
+                "tanggal_awal" => $tanggal_awal,
+                "tanggal_akhir" => $tanggal_akhir,
                 "no_rangka" => $no_rangka, 
                 "id_birojasa" => $id_birojasa, 
                 "id" => $pengguna,    
@@ -183,6 +186,7 @@ function index(){
              
             $arr_data[] = array(
                 $row['id'],
+                $row['tgl_entri'],
                 $nama,
                 $row['no_mesin'],
                 $row['nama_pemilik'],
@@ -212,6 +216,7 @@ function update(){
 
     $post = $this->input->post();
     $id = $post['id'];
+
 
     $this->load->library('form_validation');
 
@@ -250,6 +255,7 @@ function update1(){
     $post = $this->input->post();
     $id = $post['id'];
     $post['samsat_masuk_user'] = $userdata['id'];
+    $post['samsat_masuk_tgl'] = flipdate($post['samsat_masuk_tgl']);
 
 
     $this->load->library('form_validation');
@@ -264,7 +270,6 @@ function update1(){
 
         $post['status']=2;
         $this->db->where("id",$id);
-        $this->db->set('samsat_masuk_tgl', 'NOW()', FALSE);
         $res = $this->db->update('bj_bbn_satu', $post);
         if($res){
             $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
@@ -301,7 +306,7 @@ function update2(){
 
         $post['status']=3;
         $this->db->where("id",$id);
-        $this->db->set('stnk_tgl', 'NOW()', FALSE);
+        $post['stnk_tgl'] = flipdate($post['stnk_tgl']);
         $res = $this->db->update('bj_bbn_satu', $post);
         if($res){
             $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
@@ -338,7 +343,7 @@ function update3(){
 
         $post['status']=4;
         $this->db->where("id",$id);
-        $this->db->set('bpkb_tgl', 'NOW()', FALSE);
+        $post['bpkb_tgl'] = flipdate($post['bpkb_tgl']);
         $res = $this->db->update('bj_bbn_satu', $post);
         if($res){
             $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
@@ -406,7 +411,7 @@ function update5(){
 
     $this->db->where('id', $id);
     $this->db->where('status', 5);
-    $this->db->set('stnk_serah_tgl', 'NOW()', FALSE);
+    $post['stnk_serah_tgl'] = flipdate($post['stnk_serah_tgl']);
     $vld = $this->db->get('bj_bbn_satu');
 
     
@@ -444,7 +449,7 @@ function update6(){
 
     $this->db->where('id', $id);
     $this->db->where('status', 6);
-    $this->db->set('bpkb_serah_tgl', 'NOW()', FALSE);
+    $post['bpkb_serah_tgl'] = flipdate($post['bpkb_serah_tgl']);
     $vld = $this->db->get('bj_bbn_satu');
 
     
@@ -483,7 +488,7 @@ function update7(){
 
     $this->db->where('id', $id);
     $this->db->where('status', 7);
-    $this->db->set('bayar_tgl', 'NOW()', FALSE);
+    $post['bayar_tgl'] = flipdate($post['bayar_tgl']);
     $vld = $this->db->get('bj_bbn_satu');
 
     
