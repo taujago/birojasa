@@ -222,56 +222,10 @@ else {
         echo json_encode($arr);
 }
 
-// function update(){
-
-//     $post = $this->input->post();
-   
-       
-//         $this->load->library('form_validation'); 
-//         $this->form_validation->set_rules('tipe_kendaraan','Tipe Kendaraan','required');    
-//         $this->form_validation->set_rules('tahun_kendaraan','Tahun Kendaraan','required');
-//         $this->form_validation->set_rules('warna_tnkb','Warna TNKB','required');    
-//         $this->form_validation->set_rules('rp_daftar_stnk','Daftar STNK','required');
-//         $this->form_validation->set_rules('rp_daftar_bpkb','Daftar BPKB','required');    
-//         $this->form_validation->set_rules('rp_pajak_kendaraan','Pajak Kendaraan','required');
-//         $this->form_validation->set_rules('rp_admin_fee','Admin Fee','required');     
-//         // $this->form_validation->set_rules('email','Email','callback_cek_email');    
-//         // $this->form_validation->set_rules('pelaksana_nip','NIP','required');         
-         
-//         $this->form_validation->set_message('required', ' %s Harus diisi ');
-        
-//         $this->form_validation->set_error_delimiters('', '<br>');
-
-     
-
-//         //show_array($data);
-
-// if($this->form_validation->run() == TRUE ) { 
-
-//         $this->db->where("id",$post['id']);
-//         $res = $this->db->update('bj_bbn_dua', $post); 
-//         if($res){
-//             $arr = array("error"=>false,'message'=>"BERHASIL DIUPDATE");
-//         }
-//         else {
-//              $arr = array("error"=>true,'message'=>"GAGAL  DIUPDATE");
-//         }
-// }
-// else {
-//     $arr = array("error"=>true,'message'=>validation_errors());
-// }
-
-//         echo json_encode($arr);
-// }
 
 
-    function get_data() {
 
-        
-        
-
-
-        
+    function get_data() {   
     	
     	// show_array($userdata);
 
@@ -281,12 +235,14 @@ else {
         $sidx = isset($_REQUEST['order'][0]['column'])?$_REQUEST['order'][0]['column']:0; // get index row - i.e. user click to sort 
         $sord = isset($_REQUEST['order'][0]['dir'])?$_REQUEST['order'][0]['dir']:"asc"; // get the direction if(!$sidx) $sidx =1;  
         
-  
-        $no_rangka = $_REQUEST['columns'][1]['search']['value'];
+        $tanggal_awal = $_REQUEST['columns'][1]['search']['value'];
+        $tanggal_akhir = $_REQUEST['columns'][2]['search']['value'];
+        $no_rangka = $_REQUEST['columns'][3]['search']['value'];
         $userdata = $this->session->userdata('bj_login');
         $id_birojasa = $userdata['birojasa_id'];
         // $userdata = $this->session->userdata('bj_login');
         // $id_birojasa = $userdata['birojasa_id'];
+
 
 
 
@@ -295,6 +251,8 @@ else {
 				"sort_by" => $sidx,
 				"sort_direction" => $sord,
 				"limit" => null,
+                "tanggal_awal" => $tanggal_awal,
+                "tanggal_akhir" => $tanggal_akhir,
 				"no_rangka" => $no_rangka, 
                 "id_birojasa" => $id_birojasa	 
 		);     
@@ -323,12 +281,12 @@ else {
         <a href ='bj_bbn_dua/edit_data?id=$id' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i> Edit</a>";
 
         $nama ="<a href='bj_bbn_dua/lihatdata?id=$id'>$no_rangka</a>";
-        	
+        $tgl_entri = flipdate($row['tgl_entri']);
         	 
         	$arr_data[] = array(
                 
         		$row['id'],
-                $row['tgl_entri'],
+                $tgl_entri,
         		$nama,
         		$row['no_mesin'],
         		$row['rp_daftar'],

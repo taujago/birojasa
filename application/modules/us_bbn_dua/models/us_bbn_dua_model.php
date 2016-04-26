@@ -19,6 +19,7 @@ class us_bbn_dua_model extends CI_Model {
 		 extract($param);
 
 		 $kolom = array(0=>"id",
+		 					"tgl_entri",
 							"no_rangka",
 							"no_faktur",
 							"rp_daftar",
@@ -34,7 +35,12 @@ class us_bbn_dua_model extends CI_Model {
 		 	$this->db->where('user_entri', $id);		
 
 
+		  $tanggal_awal = flipdate($tanggal_awal);
+			$tanggal_akhir = flipdate($tanggal_akhir);
 		 
+		if(!empty($tanggal_awal) and !empty($tanggal_akhir) ) {
+		 	$this->db->where("tgl_entri between '$tanggal_awal' and '$tanggal_akhir'",null,false);	 	
+		 }
 
 		 if(!empty($no_rangka)) {
 		 	$this->db->like("no_rangka",$no_rangka);

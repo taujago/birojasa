@@ -6,6 +6,7 @@
 
 $(document).ready(function() {
 
+ 
 
 $('.rp').focus(function(){
     console.log('test');

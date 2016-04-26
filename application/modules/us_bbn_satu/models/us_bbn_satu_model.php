@@ -20,6 +20,7 @@ class us_bbn_satu_model extends CI_Model {
 
 		 $kolom = array(0=>"id",
 							"no_rangka",
+							"tgl_entri",
 							"no_faktur",
 							"nama_pemilik",
 							"rp_daftar_stnk",
@@ -36,7 +37,12 @@ class us_bbn_satu_model extends CI_Model {
 		 	$this->db->where('user_entri', $id);		
 
 
+		 $tanggal_awal = flipdate($tanggal_awal);
+			$tanggal_akhir = flipdate($tanggal_akhir);
 		 
+		if(!empty($tanggal_awal) and !empty($tanggal_akhir) ) {
+		 	$this->db->where("tgl_entri between '$tanggal_awal' and '$tanggal_akhir'",null,false);	 	
+		 }
 
 		 if(!empty($no_rangka)) {
 		 	$this->db->like("no_rangka",$no_rangka);

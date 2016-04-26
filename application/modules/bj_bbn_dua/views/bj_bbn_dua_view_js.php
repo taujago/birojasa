@@ -3,6 +3,15 @@
 
 $(document).ready(function(){
 
+  $(".tanggal_awal").datepicker().on('changeDate', function(ev){                 
+         $('.tanggal_awal').datepicker('hide');
+    });
+  
+  $(".tanggal_akhir").datepicker().on('changeDate', function(ev){                 
+         $('.tanggal_akhir').datepicker('hide');
+    });
+
+
      var dt = $("#bj_bbn_dua").DataTable(
             {
                 // "order": [[ 0, "desc" ]],
@@ -21,7 +30,9 @@ $(document).ready(function(){
               // alert('hello');
               
 
-              dt.column(1).search($("#no_rangka").val())
+              dt.column(1).search($("#tanggal_awal").val())
+                .column(2).search($("#tanggal_akhir").val())
+                .column(3).search($("#no_rangka").val())
                  .draw();
 
                  return false;
