@@ -104,7 +104,7 @@
                             message: obj.message
                              
                         });   
-                      $('#form_update').data('bootstrapValidator').resetForm(true);
+                      // $('#form_update').data('bootstrapValidator').resetForm(true);
                       $("#proses").html(obj.nama_status);
                     $("#proses").attr('data-target',obj.status);
 
@@ -145,7 +145,7 @@
                             message: obj.message
                              
                         });   
-                      $('#form_update').data('bootstrapValidator').resetForm(true);
+                      // $('#form_update').data('bootstrapValidator').resetForm(true);
                       $("#proses").html(obj.nama_status);
                     $("#proses").attr('data-target',obj.status);
 
