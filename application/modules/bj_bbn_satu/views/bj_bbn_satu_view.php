@@ -54,17 +54,17 @@
 
 
 <table width="100%" border="0" id="bj_bbn_satu" class="table table-striped 
-             table-bordered table-hover dataTable no-footer" role="grid">
+             table-bordered table-hover dataTable no-footer" role="grid" style='text-align:center;vertical-align:middle'>
 <thead>
   <tr>
 
     <th width="3%" rowspan="2" style='text-align:center;vertical-align:middle'>ID</th>
     <th width="10%" rowspan="2" style='text-align:center;vertical-align:middle'>Tgl. Entri</th>
-    <th width="25%" rowspan="2" style='text-align:center;vertical-align:middle'>No. Rangka</th>
+    <th width="15%" rowspan="2" style='text-align:center;vertical-align:middle'>No. Rangka</th>
     <th width="10%" rowspan="2" style='text-align:center;vertical-align:middle'>No. Faktur</th>
     <th width="40%" colspan="4" style='text-align:center;vertical-align:middle'>Biaya</th>
     <th width="10%" rowspan="2" style='text-align:center;vertical-align:middle'>Pengurus</th>
-    <th width="10%" rowspan="2" style='text-align:center;vertical-align:middle'>#</th>
+    <th width="20%" rowspan="2" style='text-align:center;vertical-align:middle'>#</th>
   </tr>
   <tr> 
         <th width="10%" style='text-align:center;vertical-align:middle'>BPKB</th>

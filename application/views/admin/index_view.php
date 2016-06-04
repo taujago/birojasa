@@ -71,7 +71,7 @@
               <p>Dealer</p>
             </div>
             <div class="icon">
-              <i class="ion ion-briefcase"></i>
+              <i class="ion ion-android-car"></i>
             </div>
             <a href="<?php echo site_url('sa_dealer'); ?>" class="small-box-footer">
               Click Here 
@@ -86,7 +86,7 @@
               <p>Samsat</p>
             </div>
             <div class="icon">
-              <i class="ion ion-briefcase"></i>
+              <i class="ion ion-calendar"></i>
             </div>
             <a href="<?php echo site_url('sa_samsat'); ?>" class="small-box-footer">
               Click Here 
@@ -101,7 +101,7 @@
               <p>Polres</p>
             </div>
             <div class="icon">
-              <i class="ion ion-briefcase"></i>
+              <i class="ion ion-android-contacts"></i>
             </div>
             <a href="<?php echo site_url('sa_polres'); ?>" class="small-box-footer">
               Click Here 
@@ -116,7 +116,7 @@
               <p>Polda</p>
             </div>
             <div class="icon">
-              <i class="ion ion-briefcase"></i>
+              <i class="ion ion-android-contact"></i>
             </div>
             <a href="<?php echo site_url('sa_polda'); ?>" class="small-box-footer">
               Click Here 
@@ -163,7 +163,7 @@
               <p>Merk</p>
             </div>
             <div class="icon">
-              <i class="ion ion-clipboard"></i>
+              <i class="ion ion-card"></i>
             </div>
             <a href="<?php echo site_url('sa_merk'); ?>" class="small-box-footer">
               Click Here 
@@ -178,7 +178,7 @@
               <p>Model</p>
             </div>
             <div class="icon">
-              <i class="ion ion-clipboard"></i>
+              <i class="ion ion-ios-bookmarks"></i>
             </div>
             <a href="<?php echo site_url('sa_model'); ?>" class="small-box-footer">
               Click Here 

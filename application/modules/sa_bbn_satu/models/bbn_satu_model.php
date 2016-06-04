@@ -28,7 +28,7 @@ class bbn_satu_model extends CI_Model {
 		 	);
 
 
-
+		 	
 		 	$this->db->select('bbn1.*, polda.polda_nama as nm_polda, s.nama as nm_samsat, w.WARNA_NAMA as nm_warna');
 
 		 	$this->db->from("estimasi_bbn_satu bbn1");
@@ -37,9 +37,9 @@ class bbn_satu_model extends CI_Model {
 		 	$this->db->join('m_warna w', 'bbn1.id_warna = w.WARNA_ID');
 
 		
+		 	
 
-
-		 
+		    
 
 		 if(!empty($tipe_kendaraan)) {
 		 	$this->db->like("bbn1.tipe_kendaraan",$tipe_kendaraan);

@@ -111,11 +111,11 @@ function baru(){
 
         $data_array['arr_merek'] = $this->cm->arr_dropdown("m_merek", "kode", "nama", "nama");
 
-        $data_array['arr_jenis'] = $this->cm->arr_dropdown("m_jenis", "id_jenis", "jenis", "jenis");
+        $data_array['arr_jenis'] = $this->cm->arr_dropdown3("m_jenis", "id_jenis", "jenis", "jenis", "id_birojasa", $id_birojasa);
 
         $data_array['arr_provinsi'] = $this->cm->arr_dropdown("tiger_provinsi", "id", "provinsi", "provinsi");
 
-        $data_array['arr_warna'] = $this->cm->arr_dropdown("m_warna", "WARNA_ID", "WARNA_NAMA", "WARNA_NAMA");
+        $data_array['arr_warna'] = $this->cm->arr_dropdown3("m_warna", "WARNA_ID", "WARNA_NAMA", "WARNA_NAMA", "id_birojasa", $id_birojasa);
         
         $data_array['arr_user'] = $this->cm->arr_dropdown2("pengguna", "id", "nama", "nama", "birojasa_id", $id_birojasa);
 
@@ -243,10 +243,18 @@ if($this->form_validation->run() == TRUE ) {
         $post['tgl_faktur'] = flipdate($post['tgl_faktur']);
         $post['tgl_entri'] = flipdate($post['tgl_entri']);
 
-        
-        $biaya = $this->dm->biaya($post['type'], $post['tahun_buat'],$post['id_warna'], $post['id_samsat'])->row_array();
+        $userdata = $this->session->userdata('bj_login');
+        $birojasa = $userdata['birojasa_id'];
+
+        $primarykey = array('tipe_kendaraan' => $post['type'],
+                            'tahun_buat' => $post['tahun_buat'],
+                            'id_warna' => $post['id_warna'],
+                            'id_samsat' => $post['id_samsat'],
+                            'birojasa' => $birojasa
+         );
+        $biaya = $this->dm->biaya($primarykey)->row_array();
         if (empty($biaya)) {
-            $arr = array("error"=>true,'message'=>"TERJADI KESALAHAN </BR> MOHON PERIKSA KEMBALI DATA ANDA");
+            $arr = array("error"=>true,'message'=>"BELUM ADA ESTIMASI BIAYA UNTUK DATA INI </BR> MOHON PERIKSA KEMBALI DATA ANDA");
         }
         else{
         $stnk = $biaya['rp_daftar_stnk'];
@@ -335,8 +343,17 @@ else {
         // $daft_id = $row['daft_id'];
         $id = $row['id'];
         $no_rangka = $row['no_rangka'];
-        $hapus = "<a href ='#' onclick=\"hapus('$id')\" class='btn btn-danger btn-xs'><i class='fa fa-trash'></i> Hapus</a>
-        <a href ='bj_bbn_satu/editdata?id=$id' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i> Edit</a>";
+        $action = "<div class='btn-group'>
+                              <button type='button' class='btn btn-primary'>Pending</button>
+                              <button type='button' class='btn btn-primary dropdown-toggle' data-toggle='dropdown'>
+                                <span class='caret'></span>
+                                <span class='sr-only'>Toggle Dropdown</span>
+                              </button>
+                              <ul class='dropdown-menu' role='menu'>
+                                <li><a href='#' onclick=\"hapus('$id')\" ><i class='fa fa-trash'></i> Hapus</a></li>
+                                <li><a href='bj_bbn_satu/editdata?id=$id'><i class='fa fa-edit'></i> Edit</a></li>
+                              </ul>
+                            </div>";
         // <a href ='bj_bbn_satu/editdata?id=$id' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i>Edit</a>";
         $nama ="<a href='bj_bbn_satu/lihatdata?id=$id'>$no_rangka</a>";
         $tgl_entri = flipdate($row['tgl_entri']);
@@ -355,7 +372,7 @@ else {
                 $row['rp_admin_fee'],
                 $row['bj_nama_user'],
                 
-                $hapus
+                $action
                 
                      
                                 );
@@ -417,7 +434,7 @@ if($this->form_validation->run() == TRUE ) {
         
         $biaya = $this->dm->biaya($post['type'], $post['tahun_buat'],$post['id_warna'], $post['id_samsat'])->row_array();
         if(empty($biaya)){
-            $arr = array("error"=>true,'message'=>"TERJADI KESALAHAN </BR> MOHON PERIKSA KEMBALI DATA EDITAN ANDA");
+            $arr = array("error"=>true,'message'=>"BELUM ADA ESTIMASI BIAYA UNTUK DATA INI </BR> MOHON PERIKSA KEMBALI DATA EDITAN ANDA");
         }
 
         else{
@@ -485,8 +502,12 @@ else {
 
         function get_samsat(){
     $data = $this->input->post();
+    $userdata = $this->session->userdata('bj_login');
+    $birojasa = $userdata['birojasa_id'];
 
     $id_polda = $data['id_polda'];
+
+    $this->db->where('id_birojasa', $birojasa);
     $this->db->where("id_polda",$id_polda);
     $this->db->order_by("nama");
     $rs = $this->db->get("samsat");
@@ -500,7 +521,12 @@ else {
 function get_model(){
     $data = $this->input->post();
 
+    $userdata = $this->session->userdata('bj_login');
+
+    $birojasa = $userdata['birojasa_id'];
+
     $id_jenis = $data['id_jenis'];
+    $this->db->where("id_birojasa", $birojasa);
     $this->db->where("id_jenis",$id_jenis);
     $this->db->order_by("model");
     $rs = $this->db->get("m_model");

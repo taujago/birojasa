@@ -72,11 +72,15 @@ class bj_bbn_satu_model extends CI_Model {
 	}
 
 
-	function biaya($tipe, $tahun, $warna, $samsat){
-		$this->db->where('tipe_kendaraan', $tipe);
-		$this->db->where('tahun_kendaraan', $tahun);
-		$this->db->where('id_warna', $warna);
-		$this->db->where('id_samsat', $samsat); 
+	function biaya($data){
+
+		extract($data);
+		$this->db->where('tipe_kendaraan', $tipe_kendaraan);
+		$this->db->where('tahun_kendaraan', $tahun_buat);
+		$this->db->where('id_warna', $id_warna);
+		$this->db->where('id_samsat', $id_samsat);
+		$this->db->where('id_birojasa', $birojasa); 
+
 		$rs = $this->db->get('estimasi_bbn_satu');
 		return $rs;
 	}

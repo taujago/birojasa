@@ -2,8 +2,16 @@
     $userdata = $this->session->userdata('bj_login');
     ?>
 
+
+
+    <link href="<?php echo base_url("assets") ?>/plugins/select2/select2.min.css" rel="stylesheet" >
+    
+
     <link href="<?php echo base_url("assets") ?>/css/datepicker.css" rel="stylesheet">
-    <script src="<?php echo base_url("assets") ?>/js/bootstrap-datepicker.js"></script>   
+    <script src="<?php echo base_url("assets") ?>/js/bootstrap-datepicker.js"></script>
+
+    <script src="<?php echo base_url("assets") ?>/plugins/select2/select2.full.min.js"></script>   
+    
               <!-- Start Page -->
                 <!-- Selsai -->
           <div class="row">
@@ -69,7 +77,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Merek
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <?php echo form_dropdown("id_merek",$arr_merek,'','id="id_merek" class="form-control input-style"'); ?>
+                        <?php echo form_dropdown("id_merek",$arr_merek,'','id="id_merek" class="form-control select2" style="width: 100%;"'); ?>
                        </div> 
                     </div>
                     <div class="form-group">

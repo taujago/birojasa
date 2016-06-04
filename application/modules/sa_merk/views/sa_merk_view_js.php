@@ -45,7 +45,7 @@ function hapus(id){
 
 
 BootstrapDialog.show({
-            message : 'ANDA AKAN MENGHAPUS DATA BIRO JASA. ANDA YAKIN  ?  ',
+            message : 'ANDA AKAN MENGHAPUS DATA MERK BIRO JASA. ANDA YAKIN  ?  ',
             title: 'KONFIRMASI HAPUS DATA  BIRO JASA',
             draggable: true,
             buttons : [

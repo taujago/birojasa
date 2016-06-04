@@ -369,7 +369,6 @@
                               <input type="text" id="tanggal" name="berkas_serah_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Pembayaran"  data-date-format="dd-mm-yyyy">
                             </div>
                       </div>
-                      </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
                         <button type="button" id="btn_submit3" class="btn btn-primary">Konfirmasi</button>
@@ -377,7 +376,7 @@
 
                     </div>
                   </div>
-                </div>
+                  </div>
                 </form>
 
 

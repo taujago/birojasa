@@ -7,7 +7,7 @@
  
 
 
-              <div class="panel panel-primary">
+    <div class="panel panel-primary">
       <div class="panel-heading">
       <strong><h3 class="panel-title">Tambah data </h3></strong>
     </div>

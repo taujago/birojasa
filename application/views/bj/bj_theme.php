@@ -107,6 +107,27 @@ $userdata = $this->session->userdata('bj_login');
                     </li>
                   </ul>
                 </li>
+                 <li><a><i class="fa fa-minus-square-o"></i> Data Master BBN <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu" style="display: none">
+                    <li><a href="<?php echo site_url('bj_es_bbn_satu'); ?>">Estimasi BBN 1</a>
+                    </li>
+                    <li><a href="<?php echo site_url('bj_es_bbn_dua'); ?>">Estimasi BBN 2</a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-minus-square-o"></i> Data Master <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu" style="display: none">
+                    <li><a href="<?php echo site_url('bj_dealer'); ?>">Dealer</a>
+                    </li>
+                    <li><a href="<?php echo site_url('bj_samsat'); ?>">Samsat</a>
+                    </li>
+                    <li><a href="<?php echo site_url('bj_warna'); ?>">Warna</a>
+                    </li>
+                    <li><a href="<?php echo site_url('bj_jenis'); ?>">Jenis</a>
+                    </li>
+                    <li><a href="<?php echo site_url('bj_model'); ?>">Model</a>
+                    </li>
+                  </ul>
                 </li>
                 <li><a href="<?php echo site_url('/'); ?>bj_add_user"><i class="fa fa-users"></i> User </span></a>
                 </li>

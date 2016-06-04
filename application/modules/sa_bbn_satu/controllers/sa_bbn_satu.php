@@ -14,10 +14,6 @@ class sa_bbn_satu extends admin_controller{
 
 
 
-
-
-
-
 function index(){
 		$data_array=array();
 		$content = $this->load->view($this->controller."_view",$data_array,true);
@@ -75,7 +71,8 @@ function simpan(){
         $this->form_validation->set_error_delimiters('', '<br>');
 
      
-
+         $userdata = $this->session->userdata("bj_login");
+        $post['id_birojasa'] = $userdata['birojasa_id'];
         //show_array($data);
 
 if($this->form_validation->run() == TRUE ) { 
@@ -153,13 +150,17 @@ else {
   
         $tipe_kendaraan = $_REQUEST['columns'][1]['search']['value'];
 
+         $userdata = $this->session->userdata("bj_login");
+        $birojasa = $userdata['birojasa_id'];
+
 
       //  order[0][column]
         $req_param = array (
 				"sort_by" => $sidx,
 				"sort_direction" => $sord,
 				"limit" => null,
-				"tipe_kendaraan" => $tipe_kendaraan
+				"tipe_kendaraan" => $tipe_kendaraan,
+                "birojasa" => $birojasa
 				
 				 
 		);     
@@ -177,7 +178,7 @@ else {
         
         $result = $this->dm->data($req_param)->result_array();
         
-
+        
        
         $arr_data = array();
         foreach($result as $row) : 

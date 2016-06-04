@@ -53,7 +53,7 @@
 
 
 <table width="100%" border="0" id="bj_bbn_dua" class="table table-striped 
-             table-bordered table-hover dataTable no-footer" role="grid">
+             table-bordered table-hover dataTable no-footer" role="grid" style='text-align:center;vertical-align:middle'>
 <thead>
   <tr  >
 

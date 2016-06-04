@@ -3,7 +3,7 @@
 class bbn_dua_model extends CI_Model {
 
 
-	function bbn_satu_model(){
+	function bbn_dua_model(){
 		parent::__construct();
 	}
 

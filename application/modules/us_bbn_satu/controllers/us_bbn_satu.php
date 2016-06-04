@@ -1,6 +1,15 @@
 <?php 
 class us_bbn_satu extends user_controller{
 	var $controller;
+    var $status_button = array(1=>"Konfirmasi berkas masuk samsast",
+    2=>"Konfirmasi STNK sudah jadi",
+    3 => "Konfirmasi BPKB sudah jadi ",
+    4 =>"Input kelebihan Biaya",
+    5 =>"Penyerahan STNK",
+    6 =>"Penyerahan BPKB",
+    7 =>"Input Invoice",
+    8 =>"SELESAI");
+    
 	function us_bbn_satu(){
 		parent::__construct();
 
@@ -9,6 +18,7 @@ class us_bbn_satu extends user_controller{
         $this->load->model("coremodel","cm");
 		
 		//$this->load->helper("serviceurl");
+
 		
 	}
 
@@ -17,14 +27,7 @@ class us_bbn_satu extends user_controller{
 
 
 
-var $status_button = array(1=>"Konfirmasi berkas masuk samsast",
-    2=>"Konfirmasi STNK sudah jadi",
-    "Konfirmasi BPKB sudah jadi ",
-    "Input kelebihan Biaya",
-    "Penyerahan STNK",
-    "Penyerahan BPKB",
-    "Input Invoice","
-    SELESAI");
+
 
 
     function lihatdata(){
@@ -62,7 +65,7 @@ var $status_button = array(1=>"Konfirmasi berkas masuk samsast",
           $warna = $this->dm->datawilayah('WARNA_ID', 'm_warna', $data['id_warna'], 'WARNA_NAMA')->row_array();
 
           if ($data['status'] > 0) {
-              $data['img_status'] = 'Selsai.png';
+              $data['img_status'] = 'Selesai.png';
           }else{
                 $data['img_status'] = 'blm_selsai.png';
           }
