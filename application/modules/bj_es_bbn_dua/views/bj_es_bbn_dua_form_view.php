@@ -36,7 +36,7 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">Warna TNKB</label>
       <div class="col-sm-9">
-        <?php echo form_dropdown("id_warna",$arr_warna,isset($id_warna)?$id_warna:'','id="id_warna" class="form-control input-style"'); ?>
+        <?php echo form_dropdown("id_warna",$arr_warna_tnkb,isset($id_warna)?$id_warna:'','id="id_warna" class="form-control input-style"'); ?>
       </div>
     </div>
     <div class="form-group">

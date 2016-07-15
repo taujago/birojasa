@@ -29,12 +29,12 @@ class bj_es_bbn_satu_model extends CI_Model {
 
 
 		 	$this->db->where('bbn1.id_birojasa', $birojasa);
-		 	$this->db->select('bbn1.*, polda.polda_nama as nm_polda, s.nama as nm_samsat, w.WARNA_NAMA as nm_warna');
+		 	$this->db->select('bbn1.*, polda.polda_nama as nm_polda, s.nama as nm_samsat, w.warna_tnkb as nm_warna');
 
 		 	$this->db->from("estimasi_bbn_satu bbn1");
 		 	$this->db->join('m_polda polda','bbn1.id_polda=polda.polda_id');
 		 	$this->db->join('samsat s', 'bbn1.id_samsat = s.id');
-		 	$this->db->join('m_warna w', 'bbn1.id_warna = w.WARNA_ID');
+		 	$this->db->join('m_warna_tnkb w', 'bbn1.id_warna = w.id_warna_tnkb','left');
 
 			
 

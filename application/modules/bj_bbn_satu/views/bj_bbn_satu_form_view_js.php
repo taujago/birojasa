@@ -6,6 +6,19 @@
 
 $(document).ready(function() {
 
+
+$("#no_rangka").focusout(function(){
+    $.ajax({
+        url : '<?php echo site_url("$this->controller/get_apmdata") ?>',
+        type : 'post',
+        dataType : 'json',
+        data : {no_rangka : $("#no_rangka").val() },
+        success : function(obj) {
+            console.log(obj); 
+        }
+    });
+});
+
  
 
 $('.rp').focus(function(){

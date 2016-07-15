@@ -41,6 +41,10 @@ function baru(){
 
         $data_array['arr_warna'] = $this->cm->arr_dropdown3("m_warna", "WARNA_ID", "WARNA_NAMA", "WARNA_NAMA", "id_birojasa", $birojasa);
 
+        $data_array['arr_warna_tnkb'] = $this->cm->arr_dropdown("m_warna_tnkb", "id_warna_tnkb", "warna_tnkb", "warna_tnkb");
+
+
+
         $data_array['arr_samsat'] = $this->cm->arr_dropdown("samsat", "id", "nama", "nama");
         $content = $this->load->view($this->controller."_form_view",$data_array,true);
 
@@ -265,6 +269,9 @@ else {
 
          $data['arr_warna'] = $this->cm->arr_dropdown("m_warna", "WARNA_ID","WARNA_NAMA", "WARNA_NAMA", "WARNA_NAMA");
 
+
+
+ $data['arr_warna_tnkb'] = $this->cm->arr_dropdown("m_warna_tnkb", "id_warna_tnkb", "warna_tnkb", "warna_tnkb");
         // $data['arr_samsat'] = $this->cm->arr_dropdown2("samsat", "id","nama", "nama", "nama");
 
         $data['arr_samsat'] = $this->cm->arr_dropdown3("samsat", "id","nama", "nama", "id_polda", $id_polda );

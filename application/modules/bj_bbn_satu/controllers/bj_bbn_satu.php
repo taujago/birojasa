@@ -1,6 +1,7 @@
 <?php 
 class bj_bbn_satu extends biro_jasa_controller{
 	var $controller;
+    var $apm_url; 
 	function bj_bbn_satu(){
 		parent::__construct();
 
@@ -9,12 +10,48 @@ class bj_bbn_satu extends biro_jasa_controller{
         $this->load->model("coremodel","cm");
         $this->load->helper("tanggal");
 		
+        $this->apm_url = $this->config->item("apm_url");
 		//$this->load->helper("serviceurl");
 		
 	}
 
 
 // Untuk View
+
+function get_apmdata(){
+    $data = $this->input->post(); 
+    show_array($data); 
+    $nomor_rangka = $data['no_rangka'];
+    $clientID = '908';
+    $ClientKey = '2f692411fb26ece11c366db14f18e7d7';
+
+    $x = $ClientKey . date("Ymd"). "APMDATA". $nomor_rangka ; 
+
+    echo $x;
+    $signature = sha1( $x);
+
+    $input_param = array(
+            "Fn"    => "APMDATA",
+            "ClientID" => "908",
+            "Param" => array(
+                    "Signature" => $signature,
+                    "NoRangka"  =>$nomor_rangka 
+                )
+        );
+
+
+    show_array($input_param); 
+    echo "url apm ". $this->apm_url; 
+
+    $input_json = json_encode($input_param); 
+
+    echo "<hr />" ; echo $input_json; 
+    $return = $this->execute_service_apm($this->apm_url,$input_param); 
+
+    echo json_encode($return);
+
+}
+
 
 
     function lihatdata(){
@@ -116,6 +153,8 @@ function baru(){
         $data_array['arr_provinsi'] = $this->cm->arr_dropdown("tiger_provinsi", "id", "provinsi", "provinsi");
 
         $data_array['arr_warna'] = $this->cm->arr_dropdown3("m_warna", "WARNA_ID", "WARNA_NAMA", "WARNA_NAMA", "id_birojasa", $id_birojasa);
+
+        $data_array['arr_warna_tnkb'] = $this->cm->arr_dropdown("m_warna_tnkb", "id_warna_tnkb", "warna_tnkb", "warna_tnkb");
         
         $data_array['arr_user'] = $this->cm->arr_dropdown2("pengguna", "id", "nama", "nama", "birojasa_id", $id_birojasa);
 
@@ -200,6 +239,7 @@ function baru(){
     // Create
 
 function simpan(){
+
 
 
     $post = $this->input->post();
@@ -344,7 +384,7 @@ else {
         $id = $row['id'];
         $no_rangka = $row['no_rangka'];
         $action = "<div class='btn-group'>
-                              <button type='button' class='btn btn-primary'>Pending</button>
+                              <button type='button' class='btn btn-primary'>Proses</button>
                               <button type='button' class='btn btn-primary dropdown-toggle' data-toggle='dropdown'>
                                 <span class='caret'></span>
                                 <span class='sr-only'>Toggle Dropdown</span>
@@ -358,18 +398,19 @@ else {
         $nama ="<a href='bj_bbn_satu/lihatdata?id=$id'>$no_rangka</a>";
         $tgl_entri = flipdate($row['tgl_entri']);
             
-             
+             $total = $row['rp_daftar_bpkb'] + $row['rp_daftar_stnk'] + $row['rp_pajak_kendaraan'] + $row['rp_admin_fee']; 
             $arr_data[] = array(
-
+                
                 
                 $row['id'],
                 $tgl_entri,
                 $nama,
                 $row['no_mesin'],
-                $row['rp_daftar_bpkb'],
-                $row['rp_daftar_stnk'],
-                $row['rp_pajak_kendaraan'],
-                $row['rp_admin_fee'],
+                rupiah($row['rp_daftar_bpkb']),
+                rupiah($row['rp_daftar_stnk']),
+                rupiah($row['rp_pajak_kendaraan']),
+                rupiah($row['rp_admin_fee']),
+                rupiah($total),
                 $row['bj_nama_user'],
                 
                 $action
@@ -583,6 +624,9 @@ function get_model(){
 
 
 function get_biaya(){
+    $data_bj = $this->session->userdata("bj_login");
+    //show_array($data_bj);
+
     $post = $this->input->post();
 
     extract($post);
@@ -590,7 +634,7 @@ function get_biaya(){
     $this->db->where("id_samsat",$id_samsat);
     $this->db->where("tahun_kendaraan",$tahun_buat);
     $this->db->where("tipe_kendaraan",$type);
-
+    $this->db->where("id_birojasa",$data_bj["birojasa_id"]); ///    $userdata['birojasa_id'];
     $data = $this->db->get("estimasi_bbn_satu")->row_array();
     // echo $this->db->last_query(); 
 
