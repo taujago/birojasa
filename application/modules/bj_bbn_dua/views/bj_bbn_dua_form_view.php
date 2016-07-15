@@ -101,13 +101,25 @@
                         <?php echo form_dropdown("id_model",array(),'','id="id_model" class="form-control input-style"'); ?>
                        </div> 
                     </div>
+
                     <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Warna
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Warna TNKB
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <?php echo form_dropdown("id_warna",$arr_warna,'','id="id_warna" class="form-control input-style"'); ?>
+                        <?php echo form_dropdown("id_warna",$arr_warna_tnkb,'','id="id_warna" class="form-control input-style"'); ?>
                       </div>
                     </div>
+
+
+                      <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Warna Kendaraan
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <?php echo form_dropdown("id_warna_kendaraan",$arr_warna,'','id="id_warna_kendaraan" class="form-control input-style"'); ?>
+                      </div>
+                    </div>
+
+
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Silinder
                       </label>
