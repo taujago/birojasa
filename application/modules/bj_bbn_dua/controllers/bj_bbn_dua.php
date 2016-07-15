@@ -7,6 +7,7 @@ class bj_bbn_dua extends biro_jasa_controller{
 		$this->controller = get_class($this);
 		$this->load->model('bj_bbn_dua_model','dm');
         $this->load->model("coremodel","cm");
+        $this->load->helper("tanggal");
 		
 		//$this->load->helper("serviceurl");
 		
@@ -153,9 +154,6 @@ function simpan(){
 
 
     $post = $this->input->post();
-    
-       
-
 
         $this->load->library('form_validation');
         $this->form_validation->set_rules('no_rangka','No. Rangka','required');
@@ -196,7 +194,7 @@ if($this->form_validation->run() == TRUE ) {
 
         if(empty($biaya)){
 
-            $arr = array("error"=>true,'message'=>"TERJADI KESALAHAN </br> TOLONG PERIKSA KEMBALI DATA ANDA");
+            $arr = array("error"=>true,'message'=>"DATA BELUM ADA DI ESTIMASI BIAYA </br> TOLONG PERIKSA KEMBALI DATA ANDA");
         }
 
         else{
@@ -204,9 +202,13 @@ if($this->form_validation->run() == TRUE ) {
         $bayar = $biaya['rp_perubahan'];
         $admin = $biaya['rp_admin_fee'];
 
-        $post['rp_daftar']=$daftar;
-        $post['rp_biaya']=$bayar;
-        $post['rp_admin_fee']=$admin;
+        $post['rp_daftar'] = $daftar;
+        $post['rp_biaya'] = $bayar;
+        $post['rp_admin_fee'] = $admin;
+
+        unset($post["rp_pendaftaran"]);
+        unset($post["rp_perubahan"]);
+        unset($post["rp_total"]);
  
 
         
@@ -471,6 +473,37 @@ else {
     }
 
 
+function get_biaya(){
+    $data_bj = $this->session->userdata("bj_login");
+    //show_array($data_bj);
+
+    $post = $this->input->post();
+
+    extract($post);
+    $this->db->where("tipe_kendaraan",$type);
+    $this->db->where("tahun_kendaraan",$tahun_buat);
+    $this->db->where("id_warna",$id_warna);
+    $this->db->where("id_samsat",$id_samsat);
+    $this->db->where("id_birojasa",$data_bj["birojasa_id"]); ///    $userdata['birojasa_id'];
+    $data = $this->db->get("estimasi_bbn_dua")->row_array();
+    //echo $this->db->last_query(); 
+
+    //show_array($data);
+
+ $data['rp_total'] = rupiah($data['rp_pendaftaran'] + $data['rp_perubahan']  + $data['rp_admin_fee'] );
+
+
+    $data['rp_pendaftaran'] = rupiah( $data['rp_pendaftaran']);
+    $data['rp_perubahan'] = rupiah( $data['rp_perubahan']);
+    $data['rp_admin_fee'] = rupiah( $data['rp_admin_fee']);
+   
+
+    echo json_encode($data);
+
+}
+
+
+
 function edit_data(){
          $get = $this->input->get(); 
          $id = $get['id'];
@@ -531,7 +564,7 @@ function edit_data(){
          // $content = $this->load->view($this->controller."_form_view",$data,true);
 
         $this->set_subtitle("Edit Estimasi");
-        $this->set_title("BBN 1");
+        $this->set_title("BBN 2");
         $this->set_content($content);
         $this->cetak();
 

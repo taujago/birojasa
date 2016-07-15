@@ -224,12 +224,46 @@
                         <?php echo form_dropdown("user_entri",$arr_user,'','id="user_entri" class="form-control input-style"'); ?>
                        </div> 
                     </div>
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Biaya Pendaftaran
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="rp_pendaftaran" name="rp_pendaftaran" required="required" class="form-control col-md-7 col-xs-12 rp" placeholder="Biaya Pendaftaran">
+                      </div>
+                    </div>
+      
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Biaya Perubahan
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="rp_perubahan" name="rp_perubahan" required="required" class="form-control col-md-7 col-xs-12 rp" placeholder="Biaya Perubahan">
+                      </div>
+                    </div>
+                    
+                    
+                    
+                       
+                      <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Admin Fee
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="rp_admin_fee" name="rp_admin_fee" required="required" class="form-control col-md-7 col-xs-12 rp" placeholder="Admin Fee">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Total
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="rp_total" name="rp_total" required="required" class="form-control col-md-7 col-xs-12 rp" placeholder="Total">
+                      </div>
+                    </div>
                     <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                        <button id="tombolsubmitupdate" type="submit" class="btn btn-primary">Simpan</button>
+                        <button id="tombolsubmitsimpan" type="submit" class="btn btn-primary">Simpan</button>
                         <a href="<?php echo site_url('bj_bbn_dua'); ?>"><button type="button" class="btn btn-danger">Batal</button>
                       </div>
+
                     </div>
 
                   </form>
