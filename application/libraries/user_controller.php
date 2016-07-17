@@ -30,7 +30,7 @@ class user_controller extends CI_Controller {
 	
 	function cetak(){
 		$arr = array();	
-		$this->load->view('user/user_theme',$this->content);
+		$this->load->view('user/new_user_theme',$this->content);
 		
 	}
 

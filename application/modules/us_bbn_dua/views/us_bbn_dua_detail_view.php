@@ -272,7 +272,7 @@
 
 
 
-            <form id="form_update1" data-parsley-validate class="form-horizontal form-label-left" action="<?php echo site_url("us_bbn_dua/update1"); ?>" method="post">
+            <form id="form_update" data-parsley-validate class="form-horizontal form-label-left" action="<?php echo site_url("us_bbn_dua/update"); ?>" method="post">
                 <div class="modal fade 1" tabindex="-1" role="dialog" aria-hidden="true">
                   <div class="modal-dialog modal-sm">
                     <div class="modal-content">
@@ -286,147 +286,49 @@
                         <div class="row">
                           <div class="col-md-12">
                             <div class="form-group">
-                              <label for="kembali">Masuk Samsat</label>
+                              <label for="kembali">Perbaharui Data</label>
                               <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
-                              <p>Anda Dapat Mengkonfirmasi Data BBN Yang Anda Urus Telah Masuk Ke Samsat Dengan Cara Klik Tombol <b>Konfirmasi</b></p>
+                              <p>Perbaharui Data Pengerjaan Pengurusan Selesai Saat Anda Klik Tombol <b>Selesai</b></p>
                             </div>
                           </div>
                         </div>
                         <div class="form-group">
                               <label for="kembali">Tgl. Masuk Samsat</label>
-                              <input type="text" id="tanggal" name="samsat_masuk_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Pembayaran"  data-date-format="dd-mm-yyyy">
-                            </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                        <button type="button" id="btn_submit1" class="btn btn-primary">Konfirmasi</button>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-                </form>
-
-
-                <form id="form_update2" data-parsley-validate class="form-horizontal form-label-left" action="<?php echo site_url("us_bbn_dua/update2"); ?>" method="post">
-                <div class="modal fade 2" tabindex="-1" role="dialog" aria-hidden="true">
-                  <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel2">Konfirmasi</h4>
-                      </div>
-                      <div class="modal-body">
-                        <div class="row">
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <label for="kembali">Samsat Selesai</label>
-                              <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
-                              <p>Anda Dapat Mengkonfirmasi Data BBN Yang Anda Urus Telah Selsai Di Samsat Dengan Cara Klik Tombol <b>Konfirmasi</b></p>
-                            </div>
-                          </div>
+                              <input type="text" id="tanggal" name="samsat_masuk_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Masuk Samsat" value="<?php echo isset($samsat_masuk_tgl)?$samsat_masuk_tgl:''; ?>"  data-date-format="dd-mm-yyyy" >
                         </div>
                         <div class="form-group">
                               <label for="kembali">Tgl. Selesai Samsat</label>
-                              <input type="text" id="tanggal" name="samsat_selesai_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Pembayaran"  data-date-format="dd-mm-yyyy">
-                            </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                        <button type="button" id="btn_submit2" class="btn btn-primary">Konfirmasi</button>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-                </form>
-
-
-                <form id="form_update3" data-parsley-validate class="form-horizontal form-label-left" action="<?php echo site_url("us_bbn_dua/update3"); ?>" method="post">
-                <div class="modal fade 3" tabindex="-1" role="dialog" aria-hidden="true">
-                  <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel2">Konfirmasi</h4>
-                      </div>
-                      <div class="modal-body">
-                        <div class="row">
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <label for="kembali">Penyerahan Berkas</label>
-                              <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
-                              <p>Anda Dapat Mengkonfirmasi Data BBN Yang Anda Urus Diserahkan Berkasnya Dengan Cara Klik Tombol <b>Konfirmasi</b></p>
-                            </div>
-                          </div>
+                              <input type="text" id="tanggal" name="samsat_selesai_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Selesai Samsat" data-date-format="dd-mm-yyyy" value="<?php echo isset($samsat_selesai_tgl)?$samsat_selesai_tgl:''; ?>">
                         </div>
                         <div class="form-group">
                               <label for="kembali">Tgl. Penyerahan Berkas</label>
-                              <input type="text" id="tanggal" name="berkas_serah_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Pembayaran"  data-date-format="dd-mm-yyyy">
-                            </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                        <button type="button" id="btn_submit3" class="btn btn-primary">Konfirmasi</button>
-                      </div>
-
-                    </div>
-                  </div>
-                  </div>
-                </form>
-
-
-
-                <!-- PEMBAYARAN -->
-
-                <form id="form_update4" data-parsley-validate class="form-horizontal form-label-left" action="<?php echo site_url("us_bbn_satu/update4"); ?>" method="post">
-                <div class="modal fade 4" tabindex="-1" role="dialog" aria-hidden="true">
-                  <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel2">Konfirmasi</h4>
-                      </div>
-                      <div class="modal-body">
-                        <div class="row">
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <label for="kembali">Pembayaran</label>
-                              <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
-                              <p>Anda Dapat Mengkonfirmasi Pembayaran Dengan Cara Klik Tombol <b>Konfirmasi</b></p>
-                            </div>
-                            <div class="form-group">
+                              <input type="text" id="tanggal" name="berkas_serah_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Penyerahan Berkas"  data-date-format="dd-mm-yyyy" value="<?php echo isset($berkas_serah_tgl)?$berkas_serah_tgl:''; ?>">
+                        </div>
+                        <div class="form-group">
                               <label for="kembali">Tgl. Pembayaran</label>
-                              <input type="text" id="tanggal" name="bayar_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Pembayaran"  data-date-format="dd-mm-yyyy">
-                            </div>
-                            <div class="form-group">
+                              <input type="text" id="bayar_tgl" name="bayar_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Pembayaran"  data-date-format="dd-mm-yyyy" value="<?php echo isset($bayar_tgl)?$bayar_tgl:''; ?>">
+                        </div>
+                        <div class="form-group">
                               <label for="kembali">Metode Pembayaran</label>
-                              <input id="bayar_metode" name="bayar_metode" type="text" class="form-control" placeholder="Metode Pembayaran"></input>
-                            </div>
-                            <div class="form-group">
+                              <input id="bayar_metode" name="bayar_metode" type="text" class="form-control" placeholder="Metode Pembayaran" value="<?php echo isset($bayar_metode)?$bayar_metode:''; ?>"></input>
+                        </div>
+                        <div class="form-group">
                               <label for="kembali">No. Kartu Debit</label>
-                              <input id="bayar_no_cc" name="bayar_no_cc" type="text" class="form-control" placeholder="No. Kartu Debit"></input>
-                            </div>
-                            <div class="form-group">
+                              <input id="bayar_no_cc" name="bayar_no_cc" type="text" class="form-control" placeholder="No. Kartu Debit" value="<?php echo isset($bayar_no_cc)?$bayar_no_cc:''; ?>"></input>
+                        </div>
+                        <div class="form-group">
                               <label for="kembali">Ref ID Debit</label>
-                              <input id="bayar_ref_cc" name="bayar_ref_cc" type="text" class="form-control" placeholder="Ref ID Debit"></input>
-                            </div>
-                            <div class="form-group">
+                              <input id="bayar_ref_cc" name="bayar_ref_cc" type="text" class="form-control" placeholder="Ref ID Debit" value="<?php echo isset($bayar_ref_cc)?$bayar_ref_cc:''; ?>"></input>
+                        </div>
+                        <div class="form-group">
                               <label for="kembali">Jumlah Bayar</label>
-                              <input id="bayar_jumlah" name="bayar_jumlah" type="text" class="form-control" placeholder="Jumlah Bayar"></input>
-                            </div>
-                          </div>
+                              <input id="bayar_jumlah" name="bayar_jumlah" type="text" class="form-control" placeholder="Jumlah Bayar" value="<?php echo isset($bayar_jumlah)?$bayar_jumlah:''; ?>"></input>
                         </div>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                        <button type="button" id="btn_submit4" class="btn btn-primary">Konfirmasi</button>
+                        <button type="button" id="btn_submit" class="btn btn-primary">Perbaharui</button>
+                        <button type="button" id="btn_selesai" class="btn btn-success">Selesai</button>
                       </div>
 
                     </div>
@@ -434,37 +336,7 @@
                 </div>
                 </form>
 
-
-                <div class="modal fade 5" tabindex="-1" role="dialog" aria-hidden="true">
-                  <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel2">Selesai</h4>
-                      </div>
-                      <div class="modal-body">
-                        <div class="row">
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <label for="kembali">Proses Selesai</label>
-                              <p>Proses Telah Selesai Di Kerjakan Dengan Baik</p>
-                              <p><b>TERIMAKASIH</b></p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="modal-footer">
-                        
-                        <a href="<?php echo site_url('us_bbn_dua/index') ?>">
-                        <button type="button" class="btn btn-primary">Selesai</button></a>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-                 
+            
               
 <?php 
 $this->load->view('us_bbn_dua_detail_view_js');

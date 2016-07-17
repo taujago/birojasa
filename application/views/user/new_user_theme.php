@@ -99,14 +99,14 @@ $userdata = $this->session->userdata('user_login');
                 <li><a href="<?php echo site_url('/'); ?>user"><i class="fa fa-dashboard"></i> Home </a>
                 </li>
 
-                <li><a><i class="fa fa-folder-open-o"></i> Pengurusan BBN <span class="fa fa-chevron-down"></span></a>
+                
+                <li><a><i class="fa fa-minus-square-o"></i> Pengurusan BBN <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
                     <li><a href="<?php echo site_url('us_bbn_satu'); ?>">BBN 1</a>
                     </li>
                     <li><a href="<?php echo site_url('us_bbn_dua'); ?>">BBN 2</a>
                     </li>
                   </ul>
-                </li>
                 </li>
                 <li><a href="<?php echo site_url('/'); ?>us_add_user"><i class="fa fa-users"></i> User </span></a>
                 </li>
@@ -118,7 +118,7 @@ $userdata = $this->session->userdata('user_login');
           </div>
 
           <div class="sidebar-footer hidden-small">
-            <a href="<?php echo site_url(); ?>/login/logout_bj" data-toggle="tooltip" data-placement="top" title="Logout">
+            <a href="<?php echo site_url(); ?>/login/logout_user" data-toggle="tooltip" data-placement="top" title="Logout">
               <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
             </a>
           </div>
@@ -142,16 +142,21 @@ $userdata = $this->session->userdata('user_login');
                   <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-                  <li><a href="<?php echo site_url(); ?>/bj_profil">Profile</a>
+                  <li><a href="<?php echo site_url(); ?>/user_profil">Profile</a>
                   </li>
-                  <li><a href="<?php echo site_url(); ?>/login/logout_bj"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                  <li><a href="<?php echo site_url(); ?>/login/logout_user"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                   </li>
                 </ul>
               </li>
+
+              
+
             </ul>
           </nav>
         </div>
+
       </div>
+
       <div class="right_col" role="main">
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
@@ -162,13 +167,17 @@ $userdata = $this->session->userdata('user_login');
                 </div>
               </div>
               <div>
+
       <?php echo $content ?>
+
       </div>
               <div class="clearfix"></div>
             </div>
           </div>
         </div>
-        <footer>
+
+
+              <footer>
           <div class="copyright-info">
             <p class="pull-right"><a href="https://www.tigapilarmajumandiri.com">Tiga Pilar Maju Mandiri</a>  
             </p>
@@ -177,7 +186,11 @@ $userdata = $this->session->userdata('user_login');
         </footer>
         <!-- /footer content -->
       </div>
+      <!-- /page content -->
 
+    </div>
+
+  </div>
 
   <div id="custom_notifications" class="custom-notifications dsp_none">
     <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
@@ -185,8 +198,7 @@ $userdata = $this->session->userdata('user_login');
     <div class="clearfix"></div>
     <div id="notif-group" class="tabbed_notifications"></div>
   </div>
-</div>
-</div>
+
   <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/flot/jquery.flot.js"></script>
   <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/flot/jquery.flot.pie.js"></script>
   <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/flot/jquery.flot.orderBars.js"></script>
@@ -226,9 +238,6 @@ $userdata = $this->session->userdata('user_login');
     <script src="<?php echo base_url('assets/dist/js/app.min.js'); ?>"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="<?php echo base_url('assets/dist/js/demo.js'); ?>"></script>
-
-      <script src="<?php echo base_url('assets/js/custom.js'); ?>"></script>
-  <!-- form wizard -->
 
 
 
