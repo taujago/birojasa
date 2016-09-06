@@ -40,10 +40,10 @@ var $pilihan;
 
 	 
 
-function execute_service($url,$method,$json_data) {
+function execute_service($url,$json_data) {
 
 	// echo $json_data; exit;
-	$req_url = $url."/".$method;
+	$req_url = $url;//."/".$method;
 	// echo $req_url;  exit;
  	$ch = curl_init();
 
@@ -55,17 +55,16 @@ function execute_service($url,$method,$json_data) {
 
 	//execute post
 	$result = curl_exec($ch);
-	// echo $result;  
+	echo $result;  
 
-	$obj  = json_decode($result);
-	$array = (array) $obj;
+	// $obj  = json_decode($result);
+	// $array = (array) $obj;
 
-	$info = curl_getinfo($ch);
+	// $info = curl_getinfo($ch);
 
-	$error = ($info['http_code']=="200")?false:true;
-	// show_array($array); exit;
-	curl_close($ch);
-	return array("data"=>$array,"error"=>$error);
+	// $error = ($info['http_code']=="200")?false:true;
+ // 	curl_close($ch);
+	// return array("data"=>$array,"error"=>$error);
 }
 
 

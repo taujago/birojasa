@@ -21,8 +21,8 @@
           <form role="form" action="" id="btn-cari">
             <div class="col-md-3">
               <div class="form-group">
-              <label for="nama">Nama </label>
-                <input id="tipe_kendaraan" name="tipe_kendaraan" type="text" class="form-control" placeholder="Nama"></input>
+              <label for="nama">Tipe Kendaraan </label>
+                <input id="tipe_kendaraan" name="tipe_kendaraan" type="text" class="form-control" placeholder="Tipe Kendaraan"></input>
               </div>
             </div>
             <div class="col-md-1">
@@ -55,7 +55,8 @@
         <th width="11%" style='text-align:center;vertical-align:middle'>Tahun</th>
         <th width="10%" style='text-align:center;vertical-align:middle'>Warna TNKB</th>
         <th width="15%" style='text-align:center;vertical-align:middle'>Samsat</th>
-        <th width="20%" style='text-align:center;vertical-align:middle'>Polda</th>
+        <th width="15%" style='text-align:center;vertical-align:middle'>Polda</th>
+        <th width="15%" style='text-align:center;vertical-align:middle'>Biaya</th>
         <th width="14%" style='text-align:center;vertical-align:middle'>Action</th>
     </tr>
   

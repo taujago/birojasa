@@ -17,8 +17,6 @@
 $config['base_url']	= '';
 
 $config['service_url']	= 'http://localhost/leasingservice/api_service.php';
-$config['apm_url']	= 'http://appservice.bpkb.net/sol/apmdata.php';
-
 
 /*
 |--------------------------------------------------------------------------

@@ -177,7 +177,11 @@ $userdata = $this->session->userdata('user_login');
         </footer>
         <!-- /footer content -->
       </div>
+      <!-- /page content -->
 
+    </div>
+
+  </div>
 
   <div id="custom_notifications" class="custom-notifications dsp_none">
     <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
@@ -185,8 +189,7 @@ $userdata = $this->session->userdata('user_login');
     <div class="clearfix"></div>
     <div id="notif-group" class="tabbed_notifications"></div>
   </div>
-</div>
-</div>
+
   <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/flot/jquery.flot.js"></script>
   <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/flot/jquery.flot.pie.js"></script>
   <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/flot/jquery.flot.orderBars.js"></script>

@@ -1,7 +1,6 @@
 <?php 
 class bj_bbn_satu extends biro_jasa_controller{
 	var $controller;
-    var $apm_url; 
 	function bj_bbn_satu(){
 		parent::__construct();
 
@@ -10,48 +9,12 @@ class bj_bbn_satu extends biro_jasa_controller{
         $this->load->model("coremodel","cm");
         $this->load->helper("tanggal");
 		
-        $this->apm_url = $this->config->item("apm_url");
 		//$this->load->helper("serviceurl");
 		
 	}
 
 
 // Untuk View
-
-function get_apmdata(){
-    $data = $this->input->post(); 
-    show_array($data); 
-    $nomor_rangka = $data['no_rangka'];
-    $clientID = '908';
-    $ClientKey = '2f692411fb26ece11c366db14f18e7d7';
-
-    $x = $ClientKey . date("Ymd"). "APMDATA". $nomor_rangka ; 
-
-    echo $x;
-    $signature = sha1( $x);
-
-    $input_param = array(
-            "Fn"    => "APMDATA",
-            "ClientID" => "908",
-            "Param" => array(
-                    "Signature" => $signature,
-                    "NoRangka"  =>$nomor_rangka 
-                )
-        );
-
-
-    show_array($input_param); 
-    echo "url apm ". $this->apm_url; 
-
-    $input_json = json_encode($input_param); 
-
-    echo "<hr />" ; echo $input_json; 
-    $return = $this->execute_service_apm($this->apm_url,$input_param); 
-
-    echo json_encode($return);
-
-}
-
 
 
     function lihatdata(){
@@ -154,6 +117,7 @@ function baru(){
 
         $data_array['arr_warna'] = $this->cm->arr_dropdown3("m_warna", "WARNA_ID", "WARNA_NAMA", "WARNA_NAMA", "id_birojasa", $id_birojasa);
 
+
         $data_array['arr_warna_tnkb'] = $this->cm->arr_dropdown("m_warna_tnkb", "id_warna_tnkb", "warna_tnkb", "warna_tnkb");
         
         $data_array['arr_user'] = $this->cm->arr_dropdown2("pengguna", "id", "nama", "nama", "birojasa_id", $id_birojasa);
@@ -163,8 +127,8 @@ function baru(){
         // Load Page
         $content = $this->load->view($this->controller."_form_view",$data_array,true);
 
-        $this->set_subtitle("Tambah BBN 1");
-        $this->set_title("Tambah BBN 1");
+        $this->set_subtitle("Tambah Data Kepengurusan  BBN 1");
+        $this->set_title("Tambah Data Kepengurusan  BBN 1");
         $this->set_content($content);
         $this->cetak();
 } 
@@ -227,8 +191,8 @@ function baru(){
 
          // $content = $this->load->view($this->controller."_form_view",$data,true);
 
-        $this->set_subtitle("Edit Estimasi");
-        $this->set_title("BBN 1");
+        $this->set_subtitle("Edit Pengurusan BBN1");
+        $this->set_title("Edit Pengurusan BBN1");
         $this->set_content($content);
         $this->cetak();
 
@@ -239,7 +203,6 @@ function baru(){
     // Create
 
 function simpan(){
-
 
 
     $post = $this->input->post();
@@ -288,7 +251,7 @@ if($this->form_validation->run() == TRUE ) {
 
         $primarykey = array('tipe_kendaraan' => $post['type'],
                             'tahun_buat' => $post['tahun_buat'],
-                            'id_warna' => $post['id_warna'],
+                            'id_warna_tnkb' => $post['id_warna_tnkb'],
                             'id_samsat' => $post['id_samsat'],
                             'birojasa' => $birojasa
          );
@@ -302,10 +265,12 @@ if($this->form_validation->run() == TRUE ) {
         $pajak = $biaya['rp_pajak_kendaraan'];
         $admin = $biaya['rp_admin_fee'];
 
-        $post['rp_daftar_stnk']=$stnk;
-        $post['rp_daftar_bpkb']=$bpkb;
-        $post['rp_pajak_kendaraan']=$pajak;
-        $post['rp_admin_fee']=$admin;
+        $post['rp_daftar_stnk']=bersih($stnk);
+        $post['rp_daftar_bpkb']=bersih($bpkb);
+        $post['rp_pajak_kendaraan']=bersih($pajak);
+        $post['rp_admin_fee']=bersih($admin);
+
+         $post['total']=bersih($post['total']);
 
         
         
@@ -384,7 +349,7 @@ else {
         $id = $row['id'];
         $no_rangka = $row['no_rangka'];
         $action = "<div class='btn-group'>
-                              <button type='button' class='btn btn-primary'>Proses</button>
+                              <button type='button' class='btn btn-primary'>Pending</button>
                               <button type='button' class='btn btn-primary dropdown-toggle' data-toggle='dropdown'>
                                 <span class='caret'></span>
                                 <span class='sr-only'>Toggle Dropdown</span>
@@ -398,9 +363,9 @@ else {
         $nama ="<a href='bj_bbn_satu/lihatdata?id=$id'>$no_rangka</a>";
         $tgl_entri = flipdate($row['tgl_entri']);
             
-             $total = $row['rp_daftar_bpkb'] + $row['rp_daftar_stnk'] + $row['rp_pajak_kendaraan'] + $row['rp_admin_fee']; 
+             
             $arr_data[] = array(
-                
+
                 
                 $row['id'],
                 $tgl_entri,
@@ -410,7 +375,6 @@ else {
                 rupiah($row['rp_daftar_stnk']),
                 rupiah($row['rp_pajak_kendaraan']),
                 rupiah($row['rp_admin_fee']),
-                rupiah($total),
                 $row['bj_nama_user'],
                 
                 $action
@@ -630,7 +594,7 @@ function get_biaya(){
     $post = $this->input->post();
 
     extract($post);
-    $this->db->where("id_warna",$id_warna);
+    $this->db->where("id_warna_tnkb",$id_warna_tnkb);
     $this->db->where("id_samsat",$id_samsat);
     $this->db->where("tahun_kendaraan",$tahun_buat);
     $this->db->where("tipe_kendaraan",$type);
@@ -654,6 +618,73 @@ function get_biaya(){
 
 }
 
+function get_data_service(){
+    $post  = $this->input->post();
+    //show_array($post);
+
+    $this->db->where("polda_id",$post['id_polda']);
+    $data_polda  = $this->db->get("m_polda")->row();
+
+ 
+
+    $data = $data_polda->id_key . date("Ymd") . "APMDATA". $post['no_rangka'];
+
+    // echo "data before signature " . $data . '<hr />';
+
+    $signature = sha1($data);
+
+     // echo "data after signature " .$signature . '<hr />';
+
+    $arr = array(
+        "Fn" => "APMDATA",
+        "ClientID" => $data_polda->id,
+        "Param" => array(
+            "Signature" => $signature, 
+            "NoRangka"  => $post['no_rangka']
+            )
+
+        );
+
+
+    $json_data = json_encode($arr); 
+
+   // echo $json_data . '<br />';  
+
+
+    // show_array($data_polda);
+
+   
+
+    $hasil = $this->execute_service($data_polda->url, $json_data) ;
+
+    $arr = json_decode($hasil);
+
+    $arr->Data->TglFaktur = flipdate(todate2($arr->Data->TglFaktur)); 
+
+   // show_array($arr);
+
+    if($arr->Success == "1") {
+
+        echo json_encode($arr);
+
+    }
+
+    
+
+    // echo "hasilnya mana ? " . $hasil;
+}
+
+
+function get_data_type(){
+    $post = $this->input->post();
+
+    $no_rangka  = substr($post['no_rangka'], 0, 10); 
+
+    //echo "nomor rangka  $no_rangka ";
+    $this->db->where("NO_RANGKA", $no_rangka );
+    $data_type = $this->db->get("t_type")->row();
+    echo json_encode($data_type);
+}
 
 	
 

@@ -7,6 +7,7 @@ class bj_es_bbn_satu extends biro_jasa_controller{
 		$this->controller = get_class($this);
 		$this->load->model('bj_es_bbn_satu_model','dm');
         $this->load->model("coremodel","cm");
+        $this->load->helper("tanggal");
 		
 		//$this->load->helper("serviceurl");
 		
@@ -39,11 +40,7 @@ function baru(){
         $data_array['action'] = 'simpan';
         $data_array['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
 
-        $data_array['arr_warna'] = $this->cm->arr_dropdown3("m_warna", "WARNA_ID", "WARNA_NAMA", "WARNA_NAMA", "id_birojasa", $birojasa);
-
-        $data_array['arr_warna_tnkb'] = $this->cm->arr_dropdown("m_warna_tnkb", "id_warna_tnkb", "warna_tnkb", "warna_tnkb");
-
-
+        $data_array['arr_warna'] = $this->cm->arr_dropdown("m_warna_tnkb", "id_warna_tnkb", "warna_tnkb", "warna_tnkb");
 
         $data_array['arr_samsat'] = $this->cm->arr_dropdown("samsat", "id", "nama", "nama");
         $content = $this->load->view($this->controller."_form_view",$data_array,true);
@@ -72,7 +69,14 @@ function simpan(){
         $this->form_validation->set_rules('rp_daftar_bpkb','Daftar BPKB','required');    
         $this->form_validation->set_rules('rp_pajak_kendaraan','Pajak Kendaraan','required');
         $this->form_validation->set_rules('rp_admin_fee','Admin Fee','required');    
-        // $this->form_validation->set_rules('pelaksana_nip','NIP','required');         
+        // $this->form_validation->set_rules('pelaksana_nip','NIP','required');   
+
+
+        $post['rp_daftar_stnk'] = bersih($post['rp_daftar_stnk'])     ; 
+        $post['rp_daftar_bpkb'] = bersih($post['rp_daftar_bpkb'])     ; 
+        $post['rp_pajak_kendaraan'] = bersih($post['rp_pajak_kendaraan'])     ; 
+        $post['rp_admin_fee'] = bersih($post['rp_admin_fee'])  ; 
+
          
         $this->form_validation->set_message('required', ' %s Harus diisi ');
         
@@ -120,6 +124,13 @@ function update(){
         $this->form_validation->set_message('required', ' %s Harus diisi ');
         
         $this->form_validation->set_error_delimiters('', '<br>');
+
+
+        $post['rp_daftar_stnk'] = bersih($post['rp_daftar_stnk'])     ; 
+        $post['rp_daftar_bpkb'] = bersih($post['rp_daftar_bpkb'])     ; 
+        $post['rp_pajak_kendaraan'] = bersih($post['rp_pajak_kendaraan'])     ; 
+        $post['rp_admin_fee'] = bersih($post['rp_admin_fee'])  ; 
+
 
      
 
@@ -196,7 +207,7 @@ else {
         
 
          $action = "<div class='btn-group'>
-                              <button type='button' class='btn btn-primary'>Pending</button>
+                              <button type='button' class='btn btn-primary'>Action</button>
                               <button type='button' class='btn btn-primary dropdown-toggle' data-toggle='dropdown'>
                                 <span class='caret'></span>
                                 <span class='sr-only'>Toggle Dropdown</span>
@@ -206,15 +217,19 @@ else {
                                 <li><a href='bj_es_bbn_satu/editdata?id=$id'><i class='fa fa-edit'></i> Edit</a></li>
                               </ul>
                             </div>";
-        	
+        $biaya = 'BPKB : '.rupiah($row['rp_daftar_bpkb']).'<br />'.
+                 'STNK : '.rupiah($row['rp_daftar_stnk']).'<br />'.
+                 'PAJAK : '.rupiah($row['rp_pajak_kendaraan']).'<br />'.
+                 'FEE : '.rupiah($row['rp_admin_fee']).'<br />'; 
         	 
-        	$arr_data[] = array(
+        	   $arr_data[] = array(
         		$row['id'],
         		$row['tipe_kendaraan'],
         		$row['tahun_kendaraan'],
-        		$row['nm_warna'],
+        		$row['warna_tnkb'],
                 $row['nm_samsat'],
                 $row['nm_polda'],
+                $biaya, 
         		$action
         		
          			 
@@ -267,11 +282,8 @@ else {
 
          $data['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
 
-         $data['arr_warna'] = $this->cm->arr_dropdown("m_warna", "WARNA_ID","WARNA_NAMA", "WARNA_NAMA", "WARNA_NAMA");
+       $data['arr_warna'] = $this->cm->arr_dropdown("m_warna_tnkb", "id_warna_tnkb", "warna_tnkb", "warna_tnkb");
 
-
-
- $data['arr_warna_tnkb'] = $this->cm->arr_dropdown("m_warna_tnkb", "id_warna_tnkb", "warna_tnkb", "warna_tnkb");
         // $data['arr_samsat'] = $this->cm->arr_dropdown2("samsat", "id","nama", "nama", "nama");
 
         $data['arr_samsat'] = $this->cm->arr_dropdown3("samsat", "id","nama", "nama", "id_polda", $id_polda );

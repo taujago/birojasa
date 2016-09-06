@@ -4,27 +4,6 @@
 $(document).ready(function() {
 
 
-
-
-$('.rp').focus(function(){
-    console.log('test');
-
-    $.ajax({
-        url : '<?php echo site_url("$this->controller/get_biaya") ?>',
-        data :  $("#form_data").serialize(), 
-        type : 'post',
-        dataType : 'json',
-        success : function(obj) {
-            $("#rp_pendaftaran").val(obj.rp_pendaftaran);
-            $("#rp_perubahan").val(obj.rp_perubahan);
-            $("#rp_admin_fee").val(obj.rp_admin_fee);
-            $("#rp_total").val(obj.rp_total);
-        }
-    });
-
-});
-
-
 $(".tanggal").datepicker().on('changeDate', function(ev){
                              
              $('.tanggal').datepicker('hide');

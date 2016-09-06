@@ -35,13 +35,13 @@ class biro_jasa_controller extends CI_Controller {
 	}
 
 
-	 
 
 
-function execute_service_apm($url,$json_data) {
+
+function execute_service($url,$json_data) {
 
 	// echo $json_data; exit;
-	$req_url = $url;
+	$req_url = $url;//."/".$method;
 	// echo $req_url;  exit;
  	$ch = curl_init();
 
@@ -53,22 +53,22 @@ function execute_service_apm($url,$json_data) {
 
 	//execute post
 	$result = curl_exec($ch);
-	// echo $result;  
+	return $result;
+	//echo $result;  
 
-	$obj  = json_decode($result);
-	$array = (array) $obj;
+	// $obj  = json_decode($result);
+	// $array = (array) $obj;
 
-	$info = curl_getinfo($ch);
+	// $info = curl_getinfo($ch);
 
-	$error = ($info['http_code']=="200")?false:true;
-	// show_array($array); exit;
-	curl_close($ch);
-	return array("data"=>$array,"error"=>$error);
+	// $error = ($info['http_code']=="200")?false:true;
+ // 	curl_close($ch);
+	// return array("data"=>$array,"error"=>$error);
 }
 
+	 
 
-
-function execute_service($url,$method,$json_data) {
+function execute_servicex($url,$method,$json_data) {
 
 	// echo $json_data; exit;
 	$req_url = $url."/".$method;

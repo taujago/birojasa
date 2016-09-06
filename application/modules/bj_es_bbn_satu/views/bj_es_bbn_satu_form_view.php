@@ -2,6 +2,15 @@
   <link href="<?php echo base_url("assets") ?>/plugins/select2/select2.min.css" rel="stylesheet" >
     <script src="<?php echo base_url("assets") ?>/js/bootstrap-datepicker.js"></script>
     <script src="<?php echo base_url("assets") ?>/plugins/select2/select2.full.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/js/autoNumeric.js"></script>
+ 
+
+ <style type="text/css">
+   .rupiah {
+    text-align: right;
+   }
+ </style>
+
 
     <form id="form_<?php echo $action; ?>" class="form-horizontal" method="post" 
         action="<?php echo site_url("$this->controller/$action"); ?>" role="form"> 
@@ -38,7 +47,7 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">Warna TNKB</label>
       <div class="col-sm-9">
-        <?php echo form_dropdown("id_warna",$arr_warna_tnkb,'','id="id_warna" class="form-control input-style"'); ?>
+        <?php echo form_dropdown("id_warna",$arr_warna,'','id="id_warna" class="form-control input-style"'); ?>
       </div>
     </div>
     <div class="form-group">
@@ -62,25 +71,27 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">Rp. Daftar STNK</label>
       <div class="col-sm-9">
-        <input type="text" name="rp_daftar_stnk" id="rp_daftar_stnk" class="form-control input-style" placeholder="Rp. Daftar STNK" value="<?php echo isset($rp_daftar_stnk)?$rp_daftar_stnk:""; ?>">
+        <input type="text" 
+        data-a-sign="" data-a-dec="," data-a-sep="." 
+        name="rp_daftar_stnk" id="rp_daftar_stnk" class="rupiah form-control input-style" placeholder="Rp. Daftar STNK" value="<?php echo isset($rp_daftar_stnk)?$rp_daftar_stnk:""; ?>">
       </div>
     </div>
     <div class="form-group">
       <label class="col-sm-3 control-label">Rp. Daftar BPKB</label>
       <div class="col-sm-9">
-        <input type="text" name="rp_daftar_bpkb" id="rp_daftar_bpkb" class="form-control input-style" placeholder="Rp. Daftar BPKB" value="<?php echo isset($rp_daftar_bpkb)?$rp_daftar_bpkb:""; ?>">
+        <input  data-a-sign="" data-a-dec="," data-a-sep="."  type="text" name="rp_daftar_bpkb" id="rp_daftar_bpkb" class="rupiah form-control input-style" placeholder="Rp. Daftar BPKB" value="<?php echo isset($rp_daftar_bpkb)?$rp_daftar_bpkb:""; ?>">
       </div>
     </div>
     <div class="form-group">
       <label class="col-sm-3 control-label">Rp. Pajak Kendaraan</label>
       <div class="col-sm-9">
-        <input type="text" name="rp_pajak_kendaraan" id="rp_pajak_kendaraan" class="form-control input-style" placeholder="Rp. Pajak Kendaraan" value="<?php echo isset($rp_pajak_kendaraan)?$rp_pajak_kendaraan:""; ?>">
+        <input  data-a-sign="" data-a-dec="," data-a-sep="."  type="text" name="rp_pajak_kendaraan" id="rp_pajak_kendaraan" class="rupiah form-control input-style" placeholder="Rp. Pajak Kendaraan" value="<?php echo isset($rp_pajak_kendaraan)?$rp_pajak_kendaraan:""; ?>">
       </div>
     </div>
     <div class="form-group">
       <label class="col-sm-3 control-label">Rp. Admin Fee</label>
       <div class="col-sm-9">
-        <input type="text" name="rp_admin_fee" id="rp_admin_fee" class="form-control input-style" placeholder="Rp. Admin Fee" value="<?php echo isset($rp_admin_fee)?$rp_admin_fee:""; ?>">
+        <input  data-a-sign="" data-a-dec="," data-a-sep="."  type="text" name="rp_admin_fee" id="rp_admin_fee" class="rupiah form-control input-style" placeholder="Rp. Admin Fee" value="<?php echo isset($rp_admin_fee)?$rp_admin_fee:""; ?>" >
       </div>
     </div>
     <div class="form-group pull-center">

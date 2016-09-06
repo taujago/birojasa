@@ -15,8 +15,8 @@ class us_bbn_dua extends user_controller{
 
 // Untuk View
 
-var $status_button = array(1=>"Perbaharui Data",
-    2=>"Selesai",
+var $status_button = array(1=>"Konfirmasi berkas masuk samsast",
+    2=>"Konfirmasi STNK sudah jadi",
     "Konfirmasi BPKB sudah jadi ",
     "Input kelebihan Biaya",
     "Penyerahan STNK",
@@ -59,10 +59,7 @@ var $status_button = array(1=>"Perbaharui Data",
           $warna = $this->dm->datawilayah('WARNA_ID', 'm_warna', $data['id_warna'], 'WARNA_NAMA')->row_array();
          
 
-        $data['samsat_masuk_tgl'] = flipdate($data['samsat_masuk_tgl']);
-        $data['samsat_selesai_tgl'] = flipdate($data['samsat_selesai_tgl']); 
-        $data['berkas_serah_tgl'] = flipdate($data['berkas_serah_tgl']); 
-        $data['bayar_tgl'] = flipdate($data['bayar_tgl']);   
+
 
         $data["jenis"] = $jenis['jenis'];
         $data["model"] = $model['model'];
@@ -166,7 +163,7 @@ function index(){
         // $daft_id = $row['daft_id'];
         $id = $row['id'];
         $no_rangka = $row['no_rangka'];
-        if($row['status'] < 2){
+        if($row['status'] < 5){
         $hapus = "<a href ='us_bbn_dua/lihatdata?id=$id' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i> Proses</a>";
         // <a href ='bj_bbn_satu/editdata?id=$id' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i>Edit</a>";
         $nama ="<a href='us_bbn_dua/lihatdata?id=$id'>$no_rangka</a>";
@@ -203,39 +200,14 @@ function index(){
     // Update
 
 
-function update(){
+
+function update1(){
 
     $userdata = $this->session->userdata('user_login');
     $post = $this->input->post();
     $id = $post['id'];
-    
-    if (!empty($post['samsat_masuk_tgl'])) {
-       $post['samsat_masuk_tgl'] = flipdate($post['samsat_masuk_tgl']);
-        $post['samsat_masuk_user'] = $userdata['id'];
-    }else{
-         unset($post['samsat_masuk_tgl']);
-    }
+    $post['samsat_masuk_user'] = $userdata['id'];
 
-    if (!empty($post['samsat_selesai_tgl'])) {
-       $post['samsat_selesai_tgl'] = flipdate($post['samsat_selesai_tgl']);
-        $post['samsat_selesai_user'] = $userdata['id'];
-    }else{
-         unset($post['samsat_selesai_tgl']);
-    }
-
-    if (!empty($post['berkas_serah_tgl'])) {
-       $post['berkas_serah_tgl'] = flipdate($post['berkas_serah_tgl']);
-        $post['berkas_serah_user'] = $userdata['id'];
-    }else{
-         unset($post['berkas_serah_tgl']);
-    }
-
-    if (!empty($post['bayar_tgl'])) {
-       $post['bayar_tgl'] = flipdate($post['bayar_tgl']);
-        $post['bayar_user'] = $userdata['id'];
-    }else{
-         unset($post['bayar_tgl']);
-    }
 
     $this->load->library('form_validation');
 
@@ -246,6 +218,124 @@ function update(){
     
     if($vld->num_rows() > 0){
 
+
+        $post['status']=2;
+        $this->db->where("id",$id);
+        $post['samsat_masuk_tgl'] = flipdate($post['samsat_masuk_tgl']);
+        $res = $this->db->update('bj_bbn_dua', $post);
+        if($res){
+            $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
+            $arr['status'] = ".".$post['status'];
+            $arr['nama_status'] = $this->status_button[$post['status']];
+        }
+        else {
+             $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
+        }
+    }
+    else{
+        $arr = array("error"=>true, 'message'=>"DATA BBN INI TELAH ANDA KONFIRMASI SEBELUMNYA");
+    }
+        echo json_encode($arr);
+
+}
+
+function update2(){
+
+    $userdata = $this->session->userdata('user_login');
+    $post = $this->input->post();
+    $id = $post['id'];
+    $post['samsat_selesai_user'] = $userdata['id'];
+
+
+    $this->load->library('form_validation');
+
+    $this->db->where('id', $id);
+    $this->db->where('status', 2);
+    $vld = $this->db->get('bj_bbn_dua');
+
+    
+    if($vld->num_rows() > 0){
+
+
+        $post['status']=3;
+        $this->db->where("id",$id);
+        $post['samsat_selesai_tgl'] = flipdate($post['samsat_selesai_tgl']);
+        $res = $this->db->update('bj_bbn_dua', $post);
+        if($res){
+            $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
+            $arr['status'] = ".".$post['status'];
+            $arr['nama_status'] = $this->status_button[$post['status']];
+        }
+        else {
+             $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
+        }
+    }
+    else{
+        $arr = array("error"=>true, 'message'=>"DATA BBN INI TELAH ANDA KONFIRMASI SEBELUMNYA");
+    }
+        echo json_encode($arr);
+
+}
+
+
+function update3(){
+
+    $userdata = $this->session->userdata('user_login');
+    $post = $this->input->post();
+    $id = $post['id'];
+    $post['berkas_serah_user'] = $userdata['id'];
+
+
+    $this->load->library('form_validation');
+
+    $this->db->where('id', $id);
+    $this->db->where('status', 3);
+    $vld = $this->db->get('bj_bbn_dua');
+
+    
+    if($vld->num_rows() > 0){
+
+
+        $post['status']=4;
+        $this->db->where("id",$id);
+        $post['berkas_serah_tgl'] = flipdate($post['berkas_serah_tgl']);
+        $res = $this->db->update('bj_bbn_dua', $post);
+        if($res){
+            $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
+            $arr['status'] = ".".$post['status'];
+            $arr['nama_status'] = $this->status_button[$post['status']];
+        }
+        else {
+             $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
+        }
+    }
+    else{
+        $arr = array("error"=>true, 'message'=>"DATA BBN INI TELAH ANDA KONFIRMASI SEBELUMNYA");
+    }
+        echo json_encode($arr);
+
+}
+
+function update4(){
+
+    $userdata = $this->session->userdata('user_login');
+    $post = $this->input->post();
+    $id = $post['id'];
+    $post['bayar_user'] = $userdata['id'];
+
+
+    $this->load->library('form_validation');
+
+    $this->db->where('id', $id);
+    $this->db->where('status', 4);
+    $post['bayar_tgl'] = flipdate($post['bayar_tgl']);
+    $vld = $this->db->get('bj_bbn_dua');
+
+    
+    if($vld->num_rows() > 0){
+
+
+        $post['status']=5;
         $this->db->where("id",$id);
         $res = $this->db->update('bj_bbn_dua', $post);
         if($res){
@@ -263,6 +353,9 @@ function update(){
         echo json_encode($arr);
 
 }
+
+
+ 
 
 
 
@@ -349,46 +442,6 @@ function get_model(){
 }
 
 
-function selesai(){
-
-    $userdata = $this->session->userdata('user_login');
-    $post = $this->input->post();
-    $id = $post['id'];
-    
-   
-    $this->load->library('form_validation');
-          
-         
-    $this->form_validation->set_message('required', ' %s Tidak Boleh Kosong ');
-        
-    $this->form_validation->set_error_delimiters('', '<br>');
-
-
-
-    $this->db->where('id', $id);
-    $vld = $this->db->get('bj_bbn_dua');
-
-    $data['status'] = 2;
-    
-    if($vld->num_rows() > 0){
-
-        $this->db->where("id",$id);
-        $res = $this->db->update('bj_bbn_dua', $data);
-        if($res){
-            $arr = array("error"=>false,'message'=>"BERHASIL DISELESAIKAN");
-            $arr['status'] = ".".$post['status'];
-            $arr['nama_status'] = $this->status_button[$post['status']];
-        }
-        else {
-             $arr = array("error"=>true,'message'=>"GAGAL  MENYELESAIKAN");
-        }
-    }
-    else{
-        $arr = array("error"=>true, 'message'=>"DATA BBN INI TELAH ANDA KONFIRMASI SEBELUMNYA");
-    }
-        echo json_encode($arr);
-
-}
 
 
 

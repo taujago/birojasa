@@ -10,7 +10,10 @@
     <link href="<?php echo base_url("assets") ?>/css/datepicker.css" rel="stylesheet">
     <script src="<?php echo base_url("assets") ?>/js/bootstrap-datepicker.js"></script>
 
-    <script src="<?php echo base_url("assets") ?>/plugins/select2/select2.full.min.js"></script>   
+    <script src="<?php echo base_url("assets") ?>/plugins/select2/select2.full.min.js"></script>
+
+    <script type="text/javascript" src="<?php echo base_url();?>assets/js/autoNumeric.js"></script>
+    
     
               <!-- Start Page -->
                 <!-- Selsai -->
@@ -36,11 +39,32 @@
                   <form id="form_data" data-parsley-validate class="form-horizontal form-label-left" action="<?php echo site_url("$this->controller/$action"); ?>" method="post">
 
 
+
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Polda
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <?php echo form_dropdown("id_polda",$arr_polda,'','id="id_polda" class="form-control input-style"'); ?>
+                       </div> 
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Samsat
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <?php echo form_dropdown("id_samsat",array(),'','id="id_samsat" class="form-control input-style"'); ?>
+                       </div> 
+                    </div>
+
+
+
+
+
+
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Entri 
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="tanggal" class="tanggal form-control col-md-7 col-xs-12 input-style" name="tgl_entri"  placeholder="Tanggal BBN2"  data-date-format="dd-mm-yyyy">
+                        <input type="text" id="tanggal" class="tanggal form-control col-md-7 col-xs-12 input-style" name="tgl_entri"  placeholder="Tanggal Entri"  data-date-format="dd-mm-yyyy">
                       </div>
                     </div>
                     
@@ -70,7 +94,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Faktur 
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="tanggal" class="tanggal form-control col-md-7 col-xs-12 input-style" name="tgl_faktur"   placeholder="Tanggal BBN2"  data-date-format="dd-mm-yyyy">
+                        <input type="text" id="tgl_faktur" class="tanggal form-control col-md-7 col-xs-12 input-style" name="tgl_faktur"   placeholder="Tanggal Faktur"  data-date-format="dd-mm-yyyy">
                       </div>
                     </div>
                     <div class="form-group">
@@ -103,18 +127,10 @@
                     </div>
 
                      <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Warna TNKB
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <?php echo form_dropdown("id_warna",$arr_warna_tnkb,'','id="id_warna" class="form-control input-style"'); ?>
-                       </div> 
-                    </div>
-
-                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Warna Kendaraan
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <?php echo form_dropdown("id_warna_kendaraan",$arr_warna,'','id="id_warna_kendaraan" class="form-control input-style"'); ?>
+                        <?php echo form_dropdown("id_warna",$arr_warna,'','id="id_warna" class="form-control input-style"'); ?>
                        </div> 
                     </div>
 
@@ -157,7 +173,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nama Pemilik
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="nama_pemilik" name="nama_pemilik" required="required" class="form-control col-md-7 col-xs-12" placeholder="Nama Dealer">
+                        <input type="text" id="nama_pemilik" name="nama_pemilik" required="required" class="form-control col-md-7 col-xs-12" placeholder="Nama Pemilik">
                       </div>
                     </div>
                     <div class="form-group">
@@ -195,20 +211,8 @@
                         <?php echo form_dropdown("id_desa",array(),'','id="id_desa" class="form-control input-style"'); ?>
                         </div>
                     </div>
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Polda
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <?php echo form_dropdown("id_polda",$arr_polda,'','id="id_polda" class="form-control input-style"'); ?>
-                       </div> 
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Samsat
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <?php echo form_dropdown("id_samsat",array(),'','id="id_samsat" class="form-control input-style"'); ?>
-                       </div> 
-                    </div>
+
+
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Pengurus
                       </label>
@@ -217,12 +221,24 @@
                        </div> 
                     </div>
                     
+
+                     <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Warna TNKB
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <?php echo form_dropdown("id_warna_tnkb",$arr_warna_tnkb,'','id="id_warna_tnkb" class="form-control input-style"'); ?>
+                       </div> 
+                    </div>
+
+
+
+
                     
              <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Biaya STNK
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="rp_daftar_stnk" name="rp_daftar_stnk" required="required" class="form-control col-md-7 col-xs-12 rp" placeholder="Biaya STNK">
+                        <input type="text" id="rp_daftar_stnk" name="rp_daftar_stnk" required="required" class="rupiah form-control col-md-7 col-xs-12 rp" placeholder="Biaya STNK"  data-a-sign="" data-a-dec="," data-a-sep="." >
                       </div>
                     </div>
       
@@ -230,7 +246,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Biaya BPKB
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="rp_daftar_bpkb" name="rp_daftar_bpkb" required="required" class="form-control col-md-7 col-xs-12 rp" placeholder="Biaya BPKB">
+                        <input type="text" id="rp_daftar_bpkb" name="rp_daftar_bpkb" required="required" class="rupiah form-control col-md-7 col-xs-12 rp" placeholder="Biaya BPKB"  data-a-sign="" data-a-dec="," data-a-sep="." >
                       </div>
                     </div>
                     
@@ -240,7 +256,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Pajak Kendaraan
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="rp_pajak_kendaraan" name="rp_pajak_kendaraan" required="required" class="form-control col-md-7 col-xs-12 rp" placeholder="Pajak Kendaraan">
+                        <input type="text" id="rp_pajak_kendaraan" name="rp_pajak_kendaraan" required="required" class="rupiah form-control col-md-7 col-xs-12 rp" placeholder="Pajak Kendaraan"  data-a-sign="" data-a-dec="," data-a-sep="." >
                       </div>
                     </div>
                     
@@ -248,7 +264,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Admin Fee
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="rp_admin_fee" name="rp_admin_fee" required="required" class="form-control col-md-7 col-xs-12 rp" placeholder="Admin Fee">
+                        <input type="text" id="rp_admin_fee" name="rp_admin_fee" required="required" class="rupiah form-control col-md-7 col-xs-12 rp" placeholder="Admin Fee"  data-a-sign="" data-a-dec="," data-a-sep="." >
                       </div>
                     </div>
                     
@@ -256,7 +272,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Total Estimasi Biaya
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="total" name="total" required="required" class="form-control col-md-7 col-xs-12 rp" placeholder="Admin Fee">
+                        <input type="text" id="total" name="total" required="required" class="form-control col-md-7 col-xs-12 rp" placeholder="Admin Fee"  data-a-sign="" data-a-dec="," data-a-sep="." >
                       </div>
                     </div>         
                                                                                                     

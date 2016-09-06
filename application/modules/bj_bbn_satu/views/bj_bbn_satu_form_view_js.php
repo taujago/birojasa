@@ -6,18 +6,7 @@
 
 $(document).ready(function() {
 
-
-$("#no_rangka").focusout(function(){
-    $.ajax({
-        url : '<?php echo site_url("$this->controller/get_apmdata") ?>',
-        type : 'post',
-        dataType : 'json',
-        data : {no_rangka : $("#no_rangka").val() },
-        success : function(obj) {
-            console.log(obj); 
-        }
-    });
-});
+$(".rupiah").autoNumeric('init'); 
 
  
 
@@ -201,6 +190,55 @@ $(".tanggal").datepicker().on('changeDate', function(ev){
     }, function(start, end, label) {
       console.log(start.toISOString(), end.toISOString(), label);
   });
+
+
+// request nomor rangka. kirim data id_polda dan nomor rangka 
+
+ $("#no_rangka").blur(function(){
+       // alert('hell yea..');
+
+       $.ajax({
+            url : '<?php echo site_url("bj_bbn_satu/get_data_service") ?>',
+           dataType : 'json',
+            type : 'post',
+            data : {  id_polda : $("#id_polda").val(), no_rangka : $("#no_rangka").val()  },
+            success : function(obj) {
+                // console.log(obj);
+                $("#no_mesin").val(obj.Data.NoMesin);
+                $("#no_faktur").val(obj.Data.NoFaktur);
+                $("#tgl_faktur").val(obj.Data.TglFaktur);
+                $("#kode_dealer").val(obj.Data.KodeDealer);
+                $("#nama_dealer").val(obj.Data.NamaDealer);
+                $("#nama_pemilik").val(obj.Data.Pemilik1);
+                $("#alamat_pemilik").val(obj.Data.Alamat1);
+
+
+            }
+
+       });
+
+
+       $.ajax({
+            url : '<?php echo site_url("bj_bbn_satu/get_data_type") ?>',
+           dataType : 'json',
+            type : 'post',
+            data : {   no_rangka : $("#no_rangka").val()  },
+            success : function(obj) {
+                // console.log(obj);
+                $("#silinder").val(obj.SILINDER);
+                $("#bahan_bakar").val(obj.BHN_BAKAR);
+                $("#tahun_buat").val(obj.THN_BUAT);
+                $("#type").val(obj.TIPE);
+                $("#id_merek").val(obj.MERK).attr('selected','selected');
+                
+
+
+            }
+
+       });
+ });
+
+
 
 });
 

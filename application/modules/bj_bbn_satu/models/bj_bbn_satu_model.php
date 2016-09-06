@@ -77,7 +77,7 @@ class bj_bbn_satu_model extends CI_Model {
 		extract($data);
 		$this->db->where('tipe_kendaraan', $tipe_kendaraan);
 		$this->db->where('tahun_kendaraan', $tahun_buat);
-		$this->db->where('id_warna', $id_warna);
+		$this->db->where('id_warna_tnkb', $id_warna_tnkb);
 		$this->db->where('id_samsat', $id_samsat);
 		$this->db->where('id_birojasa', $birojasa); 
 

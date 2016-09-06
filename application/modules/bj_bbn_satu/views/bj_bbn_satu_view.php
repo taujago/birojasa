@@ -63,8 +63,6 @@
     <th width="15%" rowspan="2" style='text-align:center;vertical-align:middle'>No. Rangka</th>
     <th width="10%" rowspan="2" style='text-align:center;vertical-align:middle'>No. Faktur</th>
     <th width="40%" colspan="4" style='text-align:center;vertical-align:middle'>Biaya</th>
-        <th width="10%" rowspan="2" style='text-align:center;vertical-align:middle'>Total</th>
-
     <th width="10%" rowspan="2" style='text-align:center;vertical-align:middle'>Pengurus</th>
     <th width="20%" rowspan="2" style='text-align:center;vertical-align:middle'>#</th>
   </tr>
