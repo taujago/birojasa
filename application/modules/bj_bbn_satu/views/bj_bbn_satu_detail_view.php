@@ -230,22 +230,22 @@
    <tr>
         <th width="20%">Daftar STNK</th>
         <th width="1%">:</th>
-        <th width="70%"><?php echo $rp_daftar_stnk; ?></th>
+        <th width="70%">Rp. <?php echo $rp_daftar_stnk; ?>,00</th>
    </tr>
    <tr>
         <th width="20%">Daftar BPKB</th>
         <th width="1%">:</th>
-        <th width="70%"><?php echo $rp_daftar_bpkb; ?></th>
+        <th width="70%">Rp. <?php echo $rp_daftar_bpkb; ?>,00</th>
    </tr>
    <tr>
         <th width="20%">Pajak Kendaraan</th>
         <th width="1%">:</th>
-        <th width="70%"><?php echo $rp_pajak_kendaraan; ?></th>
+        <th width="70%">Rp. <?php echo $rp_pajak_kendaraan; ?>,00</th>
    </tr>
    <tr>
         <th width="20%">Admin Fee</th>
         <th width="1%">:</th>
-        <th width="70%"><?php echo $rp_admin_fee; ?></th>
+        <th width="70%">Rp. <?php echo $rp_admin_fee; ?>,00</th>
    </tr>
   </tbody>
 </table>

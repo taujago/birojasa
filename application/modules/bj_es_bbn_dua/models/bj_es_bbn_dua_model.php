@@ -54,7 +54,15 @@ class bj_es_bbn_dua_model extends CI_Model {
 	}
 
 
-	
+	        function arr_pilih_polda(){
+                
+
+                $ret = array();
+                $ret = array('' => '- Pilih Polda Terlebih Dahulu -', );
+                
+                return $ret;
+
+        }
 
 
 }

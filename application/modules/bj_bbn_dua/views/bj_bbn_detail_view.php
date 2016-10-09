@@ -242,17 +242,17 @@
    <tr>
         <th>Daftar</th>
         <th>:</th>
-        <th><?php echo $rp_daftar; ?></th>
+        <th>Rp. <?php echo $rp_daftar; ?>,00</th>
   </tr>
   <tr>
         <th>Biaya</th>
         <th>:</th>
-        <th><?php echo $rp_biaya; ?></th>
+        <th>Rp. <?php echo $rp_biaya; ?>,00</th>
   </tr>
   <tr>
         <th>Admin Fee</th>
         <th>:</th>
-        <th><?php echo $rp_admin_fee; ?></th>
+        <th>Rp. <?php echo $rp_admin_fee; ?>,00</th>
   </tr>
   </tbody>
 </table>

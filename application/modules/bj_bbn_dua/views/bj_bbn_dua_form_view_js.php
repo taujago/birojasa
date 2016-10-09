@@ -4,12 +4,33 @@
 $(document).ready(function() {
 
 
+$(".rp").autoNumeric('init');              
+
+ $('.rp').focus(function(){
+
+    $.ajax({
+        url : '<?php echo site_url("$this->controller/get_biaya") ?>',
+        data :  $("#form_data").serialize(), 
+        type : 'post',
+        dataType : 'json',
+        success : function(obj) {
+            $("#rp_daftar").val(obj.rp_daftar);
+            $("#rp_biaya").val(obj.rp_biaya);
+            $("#rp_admin_fee").val(obj.rp_admin_fee);
+            $("#total").val(obj.total);
+        }
+
+    }); 
+    
+
+});   
+
 $(".tanggal").datepicker().on('changeDate', function(ev){
                              
              $('.tanggal').datepicker('hide');
         });
 
-  $("#tombolsubmitsimpan").click(function(){
+  $("#simpan").click(function(){
  console.log('tests');
 
     $.ajax({
@@ -46,12 +67,12 @@ $(".tanggal").datepicker().on('changeDate', function(ev){
     return false;
 });
 
-   $("#tombolsubmitupdate").click(function(){
+   $("#update").click(function(){
  console.log('tests');
 
     $.ajax({
         url:'<?php echo site_url("$this->controller/update"); ?>',
-        data : $('#form_edit').serialize(),
+        data : $('#form_data').serialize(),
         type : 'post',
         dataType : 'json',
         success : function(obj){
@@ -82,9 +103,8 @@ $(".tanggal").datepicker().on('changeDate', function(ev){
 
     return false;
 });
-              
+ 
 
-              
             
 
   $("#id_polda").change(function(){

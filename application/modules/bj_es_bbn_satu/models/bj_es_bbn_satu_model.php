@@ -34,7 +34,7 @@ class bj_es_bbn_satu_model extends CI_Model {
 		 	$this->db->from("estimasi_bbn_satu bbn1");
 		 	$this->db->join('m_polda polda','bbn1.id_polda=polda.polda_id');
 		 	$this->db->join('samsat s', 'bbn1.id_samsat = s.id');
-		 	$this->db->join('m_warna_tnkb w', 'bbn1.id_warna = w.id_warna_tnkb','left');
+		 	$this->db->join('m_warna_tnkb w', 'bbn1.id_warna_tnkb = w.id_warna_tnkb','left');
 
 			
 
@@ -56,6 +56,17 @@ class bj_es_bbn_satu_model extends CI_Model {
 	}
 
 
+
+
+        function arr_pilih_polda(){
+                
+
+                $ret = array();
+                $ret = array('' => '- Pilih Polda Terlebih Dahulu -', );
+                
+                return $ret;
+
+        }
 	
 
 

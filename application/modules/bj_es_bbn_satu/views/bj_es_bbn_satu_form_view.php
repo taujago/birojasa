@@ -35,19 +35,13 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">Tahun Kendaraan</label>
       <div class="col-sm-9">
-      <select name="tahun_kendaraan" id="tahun_kendaraan" class="form-control input-style"  >
-          <?php
-          for($i=date('Y'); $i>=date('Y')-32; $i-=1){
-              echo"<option value='$i'> $i </option>";
-                }
-              ?>
-        </select>
+      <?php echo form_dropdown("tahun_kendaraan",$arr_tahun,isset($tahun_kendaraan)?$tahun_kendaraan:'','id="tahun_kendaraan" class="form-control input-style"'); ?>
       </div>
     </div>
     <div class="form-group">
       <label class="col-sm-3 control-label">Warna TNKB</label>
       <div class="col-sm-9">
-        <?php echo form_dropdown("id_warna",$arr_warna,'','id="id_warna" class="form-control input-style"'); ?>
+        <?php echo form_dropdown("id_warna_tnkb",$arr_warna,isset($id_warna_tnkb)?$id_warna_tnkb:'','id="id_warna_tnkb" class="form-control input-style"'); ?>
       </div>
     </div>
     <div class="form-group">
@@ -61,7 +55,7 @@
       <div class="col-sm-9">
       <?php 
           if ($action == "simpan") {
-            echo form_dropdown("id_samsat",array(),'','id="id_samsat" class="form-control input-style"'); 
+            echo form_dropdown("id_samsat",$arr_pilih_polda,'','id="id_samsat" class="form-control input-style"'); 
           } else if ($action == "update") {
       echo form_dropdown("id_samsat",$arr_samsat,isset($id_samsat)?$id_samsat:'','id="id_samsat" class="form-control input-style"'); 
         }

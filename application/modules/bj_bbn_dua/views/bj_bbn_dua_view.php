@@ -69,9 +69,9 @@
     </tr>
 
     <tr> 
-        <th width="4%" style='text-align:center;vertical-align:middle'>Daftar</th>
-        <th width="4%" style='text-align:center;vertical-align:middle'>Biaya</th>
-        <th width="4%" style='text-align:center;vertical-align:middle'>Admin Fee</th>
+        <th width="4%" style='text-align:center;vertical-align:middle'>Daftar (Rp)</th>
+        <th width="4%" style='text-align:center;vertical-align:middle'>Biaya (Rp)</th>
+        <th width="4%" style='text-align:center;vertical-align:middle'>Admin Fee (Rp)</th>
   </tr>
   
 </thead>

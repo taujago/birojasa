@@ -71,12 +71,14 @@ class bj_bbn_dua_model extends CI_Model {
 	}
 
 
-	function biaya($tipe, $tahun, $warna, $samsat, $perubahan){
+	function biaya($tipe, $tahun, $warna, $samsat, $perubahan, $id_birojasa){
+		$this->db->select('*');
 		$this->db->where('tipe_kendaraan', $tipe);
 		$this->db->where('id_perubahan', $perubahan);
 		$this->db->where('tahun_kendaraan', $tahun);
 		$this->db->where('id_warna', $warna);
-		$this->db->where('id_samsat', $samsat); 
+		$this->db->where('id_samsat', $samsat);
+		$this->db->where('id_birojasa', $id_birojasa); 
 		$rs = $this->db->get('estimasi_bbn_dua');
 		return $rs;
 	}

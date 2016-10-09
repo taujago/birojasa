@@ -7,6 +7,8 @@ class bj_bbn_dua extends biro_jasa_controller{
 		$this->controller = get_class($this);
 		$this->load->model('bj_bbn_dua_model','dm');
         $this->load->model("coremodel","cm");
+
+        $this->load->helper("tanggal");
 		
 		//$this->load->helper("serviceurl");
 		
@@ -42,6 +44,7 @@ function baru(){
 
         // Dropdown Array
         $data_array['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
+        $data_array['arr_warna_tnkb'] = $this->cm->arr_dropdown("m_warna_tnkb", "id_warna_tnkb", "warna_tnkb", "warna_tnkb");
 
         $data_array['arr_merek'] = $this->cm->arr_dropdown("m_merek", "kode", "nama", "nama");
 
@@ -50,6 +53,7 @@ function baru(){
         $data_array['arr_jenis'] = $this->cm->arr_dropdown("m_jenis", "id_jenis", "jenis", "jenis");
 
         $data_array['arr_provinsi'] = $this->cm->arr_dropdown("tiger_provinsi", "id", "provinsi", "provinsi");
+        $data_array['arr_tahun'] = $this->cm->arr_tahun();
 
         $data_array['arr_warna'] = $this->cm->arr_dropdown("m_warna", "WARNA_ID", "WARNA_NAMA", "WARNA_NAMA");
         
@@ -102,12 +106,12 @@ if($this->form_validation->run() == TRUE ) {
         $post['tgl_faktur'] = flipdate($post['tgl_faktur']);
         $post['tgl_entri'] = flipdate($post['tgl_entri']);
 
-        
-        $biaya = $this->dm->biaya($post['type'], $post['tahun_buat'],$post['id_warna'], $post['id_samsat'], $post['id_perubahan'])->row_array();
+        $userdata = $this->session->userdata('bj_login');
+        $biaya = $this->dm->biaya($post['type'], $post['tahun_buat'],$post['id_warna_tnkb'], $post['id_samsat'], $post['id_perubahan'], $userdata['birojasa_id'])->row_array();
 
         if(empty($biaya)){
 
-            $arr = array("error"=>true,'message'=>"TERJADI KESALAHAN </br> TOLONG PERIKSA KEMBALI DATA ANDA");
+            $arr = array("error"=>true,'message'=>"TERJADI KESALAHAN </br> KOMBINASI DATA YANG ANDA MASUKKAN BELUM TERDAPAT PADA TABEL ESTIMASI BIAYA </br> MOHON PERIKSA KEMBALI DATA ANDA");
         }
 
         else{
@@ -118,12 +122,14 @@ if($this->form_validation->run() == TRUE ) {
         $post['rp_daftar']=$daftar;
         $post['rp_biaya']=$bayar;
         $post['rp_admin_fee']=$admin;
+        unset($post['total']);
  
 
         
         $this->db->where("id",$post['id']);
         $res = $this->db->update('bj_bbn_dua', $post);
         
+
         if($res){
             $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
         }
@@ -134,14 +140,51 @@ if($this->form_validation->run() == TRUE ) {
          }
 }
 else {
-    $arr = array("error"=>true,'message'=>validation_errors());
+    $arr = array("error"=>true,'message'=>$this->db->last_query());
 }
 
         echo json_encode($arr);
 }
 
 
+function get_biaya(){
+    $data_bj = $this->session->userdata("bj_login");
+    //show_array($data_bj);
 
+    $post = $this->input->post();
+
+    extract($post);
+
+    
+    $this->db->where("id_warna",$id_warna_tnkb);
+    $this->db->where("id_samsat",$id_samsat);
+    $this->db->where("tahun_kendaraan",$tahun_buat);
+    $this->db->where("id_perubahan",$id_perubahan);
+    $this->db->where("tipe_kendaraan",$type);
+    $this->db->where("id_birojasa",$data_bj["birojasa_id"]); ///    $userdata['birojasa_id'];
+    $data = $this->db->get("estimasi_bbn_dua")->row_array();
+    // echo $this->db->last_query(); 
+    // exit();
+    
+
+ 
+
+    if (empty($data)) {
+    $data['rp_pendaftaran'] = '';
+    $data['rp_perubahan'] = '';
+    $data['rp_admin_fee'] = '';
+    $data['total'] = '';
+    }else{
+    $data['total'] = rupiah($data['rp_pendaftaran'] + $data['rp_perubahan']  + $data['rp_admin_fee'] );
+    $data['rp_daftar'] = rupiah( $data['rp_pendaftaran']);
+    $data['rp_biaya'] = rupiah( $data['rp_perubahan']);
+    $data['rp_admin_fee'] = rupiah( $data['rp_admin_fee']);
+  }
+   
+
+    echo json_encode($data);
+
+}
 
 function simpan(){
 
@@ -169,12 +212,14 @@ function simpan(){
         $this->form_validation->set_rules('id_kota','Kota','required');
         $this->form_validation->set_rules('id_polda','Polda','required');
         $this->form_validation->set_rules('id_samsat','Samsat','required');
-        $this->form_validation->set_rules('tgl_entri','Tanggal Entri','required');         
+        $this->form_validation->set_rules('tgl_entri','Tanggal Entri','required'); 
+        $this->form_validation->set_rules('id_warna_tnkb','Warna TNKB','required');           
          
         $this->form_validation->set_message('required', 'Field %s Harus diisi ');
         
         $this->form_validation->set_error_delimiters('', '<br>');
 
+        $userdata = $this->session->userdata('bj_login');
      
 
         //show_array($data);
@@ -186,7 +231,7 @@ if($this->form_validation->run() == TRUE ) {
         $post['status'] = 1;
 
         
-        $biaya = $this->dm->biaya($post['type'], $post['tahun_buat'],$post['id_warna'], $post['id_samsat'], $post['id_perubahan'])->row_array();
+        $biaya = $this->dm->biaya($post['type'], $post['tahun_buat'],$post['id_warna_tnkb'], $post['id_samsat'], $post['id_perubahan'], $userdata['birojasa_id'])->row_array();
 
         if(empty($biaya)){
 
@@ -202,7 +247,7 @@ if($this->form_validation->run() == TRUE ) {
         $post['rp_biaya']=$bayar;
         $post['rp_admin_fee']=$admin;
  
-
+        unset($post['total']);
         
         $res = $this->db->insert('bj_bbn_dua', $post); 
         
@@ -289,9 +334,9 @@ else {
                 $tgl_entri,
         		$nama,
         		$row['no_mesin'],
-        		$row['rp_daftar'],
-                $row['rp_biaya'],
-                $row['rp_admin_fee'],
+        		rupiah($row['rp_daftar']),
+                rupiah($row['rp_biaya']),
+                rupiah($row['rp_admin_fee']),
                 $row['bj_nama_user'],
         		$hapus
         		
@@ -405,7 +450,9 @@ else {
          
 
 
-
+        $data['rp_biaya'] = rupiah($data['rp_biaya']);
+        $data['rp_daftar'] = rupiah($data['rp_daftar']);
+        $data['rp_admin_fee'] = rupiah($data['rp_admin_fee']);  
         $data["jenis"] = $jenis['jenis'];
         $data["model"] = $model['model'];
         $data["merek"] = $merek['nama'];
@@ -492,6 +539,13 @@ function edit_data(){
         // echo $this->db->last_query(); exit();
 
          
+        $data['arr_warna_tnkb'] = $this->cm->arr_dropdown("m_warna_tnkb", "id_warna_tnkb", "warna_tnkb", "warna_tnkb");
+
+                          
+                              
+       
+
+        $data['arr_tahun'] = $this->cm->arr_tahun();
 
           $data['action'] = 'update';
 
@@ -520,12 +574,12 @@ function edit_data(){
         $data['arr_user'] = $this->cm->arr_dropdown2("pengguna", "id", "nama", "nama", "birojasa_id", $id_birojasa);
         
 
-        $content = $this->load->view("bj_bbn_dua_form_edit_view",$data,true);
+        $content = $this->load->view("bj_bbn_dua_form_view",$data,true);
 
          // $content = $this->load->view($this->controller."_form_view",$data,true);
 
-        $this->set_subtitle("Edit Estimasi");
-        $this->set_title("BBN 1");
+        $this->set_subtitle("Edit Pengurusan");
+        $this->set_title("Edit Pengurusan BBN 2");
         $this->set_content($content);
         $this->cetak();
 

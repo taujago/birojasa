@@ -40,10 +40,22 @@ var $arr_bulan = array(1=>"JANUARI","FEBRUARI","MARET","APRIL","MEI","JUNI","JUL
 		//echo $this->db->last_query(); exit;
 
                 $ret = array();
+                $ret = array('' => '- Pilih Satu -', );
                 foreach($res->result_array() as $row) : 
                         $ret[$row[$vINDEX]] = $row[$vVALUE];
                 endforeach;
                 return $ret;
+
+        }
+
+        function arr_tahun(){
+
+            $ret = array();
+            $ret = array('' => '- Pilih Tahun -', );
+                for($i=date('Y'); $i>=date('Y')-32; $i-=1){
+                   $ret[$i] = $i; 
+               }
+               return $ret;
 
         }
 
@@ -55,6 +67,7 @@ var $arr_bulan = array(1=>"JANUARI","FEBRUARI","MARET","APRIL","MEI","JUNI","JUL
         //echo $this->db->last_query(); exit;
 
                 $ret = array();
+                $ret = array('' => '- Pilih Satu -', );
                 foreach($res->result_array() as $row) : 
                         $ret[$row[$vINDEX]] = $row[$vVALUE];
                 endforeach;
@@ -69,6 +82,7 @@ var $arr_bulan = array(1=>"JANUARI","FEBRUARI","MARET","APRIL","MEI","JUNI","JUL
         //echo $this->db->last_query(); exit;
 
                 $ret = array();
+                $ret = array('' => '- Pilih Satu -', );
                 foreach($res->result_array() as $row) : 
                         $ret[$row[$vINDEX]] = $row[$vVALUE];
                 endforeach;

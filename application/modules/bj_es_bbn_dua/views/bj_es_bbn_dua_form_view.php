@@ -1,5 +1,12 @@
       <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-     
+     <script type="text/javascript" src="<?php echo base_url();?>assets/js/autoNumeric.js"></script>
+ 
+
+ <style type="text/css">
+   .rupiah {
+    text-align: right;
+   }
+ </style>
         <!-- Main content -->
         <form id="form_<?php echo $action; ?>" class="form-horizontal" method="post" 
         action="<?php echo site_url("$this->controller/$action"); ?>" role="form"> 
@@ -24,13 +31,7 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">Tahun Kendaraan</label>
       <div class="col-sm-9">
-        <select name="tahun_kendaraan" id="tahun_kendaraan" class="form-control input-style"  >
-          <?php
-          for($i=date('Y'); $i>=date('Y')-32; $i-=1){
-              echo"<option value='$i'> $i </option>";
-                }
-              ?>
-        </select>
+        <?php echo form_dropdown("tahun_kendaraan",$arr_tahun,isset($tahun_kendaraan)?$tahun_kendaraan:'','id="tahun_kendaraan" class="form-control input-style"'); ?>
       </div>
     </div>
     <div class="form-group">
@@ -53,7 +54,7 @@
       if ($action == 'update') {
          echo form_dropdown("id_samsat",$arr_samsat,isset($id_samsat)?$id_samsat:'','id="id_samsat" class="form-control input-style"'); 
       }else if($action == 'simpan'){
-      echo form_dropdown("id_samsat",array(),'','id="id_samsat" class="form-control input-style"'); 
+      echo form_dropdown("id_samsat",$arr_pilih_polda,'','id="id_samsat" class="form-control input-style"'); 
       }
       ?>
       </div>
@@ -67,19 +68,19 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">Rp. Pendaftaran</label>
       <div class="col-sm-9">
-        <input type="text" name="rp_pendaftaran" id="rp_pendaftaran" class="form-control input-style" placeholder="Rp. Daftar BPKB" value="<?php echo isset($rp_pendaftaran)?$rp_pendaftaran:""; ?>">
+        <input data-a-sign="" data-a-dec="," data-a-sep="." type="text" name="rp_pendaftaran" id="rp_pendaftaran" class="rupiah form-control input-style" placeholder="Rp. Daftar BPKB" value="<?php echo isset($rp_pendaftaran)?$rp_pendaftaran:""; ?>">
       </div>
     </div>
     <div class="form-group">
       <label class="col-sm-3 control-label">Rp. Perubahan</label>
       <div class="col-sm-9">
-        <input type="text" name="rp_perubahan" id="rp_perubahan" class="form-control input-style" placeholder="Rp. Pajak Kendaraan" value="<?php echo isset($rp_perubahan)?$rp_perubahan:""; ?>">
+        <input data-a-sign="" data-a-dec="," data-a-sep="." type="text" name="rp_perubahan" id="rp_perubahan" class="rupiah form-control input-style" placeholder="Rp. Pajak Kendaraan" value="<?php echo isset($rp_perubahan)?$rp_perubahan:""; ?>">
       </div>
     </div>
     <div class="form-group">
       <label class="col-sm-3 control-label">Rp. Admin Fee</label>
       <div class="col-sm-9">
-        <input type="text" name="rp_admin_fee" id="rp_admin_fee" class="form-control input-style" placeholder="Rp. Admin Fee" value="<?php echo isset($rp_admin_fee)?$rp_admin_fee:""; ?>">
+        <input  data-a-sign="" data-a-dec="," data-a-sep="."  type="text" name="rp_admin_fee" id="rp_admin_fee" class="rupiah form-control input-style" placeholder="Rp. Admin Fee" value="<?php echo isset($rp_admin_fee)?$rp_admin_fee:""; ?>" >
       </div>
     </div>
     <div class="form-group pull-center">

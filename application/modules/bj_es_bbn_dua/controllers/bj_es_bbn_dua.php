@@ -7,7 +7,7 @@ class bj_es_bbn_dua extends biro_jasa_controller{
 		$this->controller = get_class($this);
 		$this->load->model($this->controller.'_model','dm');
         $this->load->model("coremodel","cm");
-		
+		$this->load->helper("tanggal");
 		//$this->load->helper("serviceurl");
 		
 	}
@@ -40,6 +40,8 @@ function get_samsat(){
     $this->db->where("id_polda",$id_polda);
     $this->db->order_by("nama");
     $rs = $this->db->get("samsat");
+
+    echo "<option value=''>- Pilih Samsat -</option>";
     foreach($rs->result() as $row ) :
         echo "<option value=$row->id>$row->nama </option>";
     endforeach;
@@ -58,11 +60,12 @@ function baru(){
         $data_array['action'] = 'simpan';
         $data_array['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
 
-
+        $data_array['arr_pilih_polda'] = $this->dm->arr_pilih_polda();
 
         $data_array['arr_perubahan'] = $this->cm->arr_dropdown("perubahan", "id", "nama", "nama");
+        $data_array['arr_tahun'] = $this->cm->arr_tahun();
         
-        $data_array['arr_warna'] = $this->cm->arr_dropdown3("m_warna", "WARNA_ID", "WARNA_NAMA", "WARNA_NAMA", "id_birojasa", $birojasa);
+        $data_array['arr_warna'] = $this->cm->arr_dropdown("m_warna_tnkb", "id_warna_tnkb", "warna_tnkb", "warna_tnkb");
 
         
         $content = $this->load->view($this->controller."_form_view",$data_array,true);
@@ -84,14 +87,22 @@ function simpan(){
 
 
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('tipe_kendaraan','Tipe Kendaraan','required');    
+        $this->form_validation->set_rules('tipe_kendaraan','Tipe Kendaraan','required');
         $this->form_validation->set_rules('tahun_kendaraan','Tahun Kendaraan','required');
-           
+        $this->form_validation->set_rules('id_warna','Warna TNKB','required');
+        $this->form_validation->set_rules('id_polda','Polda','required'); 
+        $this->form_validation->set_rules('id_samsat','Samsat','required');
+        $this->form_validation->set_rules('id_polda','Polda','required');  
+        $this->form_validation->set_rules('id_perubahan','Perubahan','required');   
         $this->form_validation->set_rules('rp_pendaftaran','Daftar STNK','required');
         $this->form_validation->set_rules('rp_perubahan','Daftar BPKB','required');    
         $this->form_validation->set_rules('rp_admin_fee','Admin Fee','required');    
         // $this->form_validation->set_rules('pelaksana_nip','NIP','required');         
-         
+        $post['rp_pendaftaran'] = bersih($post['rp_pendaftaran']); 
+        $post['rp_perubahan'] = bersih($post['rp_perubahan']);  
+        $post['rp_admin_fee'] = bersih($post['rp_admin_fee']); 
+
+
         $this->form_validation->set_message('required', ' %s Harus diisi ');
         
         $this->form_validation->set_error_delimiters('', '<br>');
@@ -127,15 +138,19 @@ function update(){
    
        
         $this->load->library('form_validation'); 
-        $this->form_validation->set_rules('tipe_kendaraan','Tipe Kendaraan','required');    
-        $this->form_validation->set_rules('tahun_kendaraan','Tahun Kendaraan','required');    
-        
-        $this->form_validation->set_rules('rp_pendaftaran','Daftar BPKB','required');    
-        $this->form_validation->set_rules('rp_perubahan','Pajak Kendaraan','required');
-        $this->form_validation->set_rules('rp_admin_fee','Admin Fee','required');     
-        // $this->form_validation->set_rules('email','Email','callback_cek_email');    
-        // $this->form_validation->set_rules('pelaksana_nip','NIP','required');         
-         
+       $this->form_validation->set_rules('tipe_kendaraan','Tipe Kendaraan','required');
+        $this->form_validation->set_rules('tahun_kendaraan','Tahun Kendaraan','required');
+        $this->form_validation->set_rules('id_warna','Warna TNKB','required');
+        $this->form_validation->set_rules('id_polda','Polda','required'); 
+        $this->form_validation->set_rules('id_samsat','Samsat','required');
+        $this->form_validation->set_rules('id_polda','Polda','required');
+        $this->form_validation->set_rules('id_perubahan','Perubahan','required');    
+        $this->form_validation->set_rules('rp_pendaftaran','Daftar STNK','required');
+        $this->form_validation->set_rules('rp_perubahan','Daftar BPKB','required');    
+        $this->form_validation->set_rules('rp_admin_fee','Admin Fee','required');        
+        $post['rp_pendaftaran'] = bersih($post['rp_pendaftaran']); 
+        $post['rp_perubahan'] = bersih($post['rp_perubahan']);  
+        $post['rp_admin_fee'] = bersih($post['rp_admin_fee']); 
         $this->form_validation->set_message('required', ' %s Harus diisi ');
         
         $this->form_validation->set_error_delimiters('', '<br>');
@@ -264,12 +279,12 @@ else {
 
          $data['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
 
-         $data['arr_warna'] = $this->cm->arr_dropdown("m_warna", "WARNA_ID", "WARNA_NAMA", "WARNA_NAMA");
-         
-          $data['arr_samsat'] = $this->cm->arr_dropdown3("samsat", "id","nama", "nama", "id_polda", $id_polda );
-
+        $data['arr_samsat'] = $this->cm->arr_dropdown3("samsat", "id","nama", "nama", "id_polda", $id_polda );
 
         $data['arr_perubahan'] = $this->cm->arr_dropdown("perubahan", "id", "nama", "nama");
+        $data['arr_tahun'] = $this->cm->arr_tahun();
+        
+        $data['arr_warna'] = $this->cm->arr_dropdown("m_warna_tnkb", "id_warna_tnkb", "warna_tnkb", "warna_tnkb");
 
 		$content = $this->load->view($this->controller."_form_view",$data,true);
 
