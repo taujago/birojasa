@@ -59,6 +59,27 @@ var $arr_bulan = array(1=>"JANUARI","FEBRUARI","MARET","APRIL","MEI","JUNI","JUL
 
         }
 
+        function arr_type($vTable, $vWHERE, $vorder_by, $vSelect){
+
+
+        
+        $this->db->select($vSelect);
+        $this->db->where('id_birojasa', $vWHERE);
+        $this->db->group_by($vSelect);
+        $this->db->order_by($vorder_by);
+        $res  = $this->db->get($vTable);
+
+
+                $ret = array();
+                $ret = array('' => '- Pilih Type -', );
+                foreach($res->result_array() as $row) : 
+                        $ret[$row[$vSelect]] = $row[$vSelect];
+                endforeach;
+        
+               return $ret;
+
+        }
+
         function arr_dropdown2($vTable, $vINDEX, $vVALUE, $vORDERBY, $vCONDITION, $vWHERE){
                 $this->db->where($vCONDITION, $vWHERE);
                 $this->db->where('level', 3);
@@ -70,6 +91,21 @@ var $arr_bulan = array(1=>"JANUARI","FEBRUARI","MARET","APRIL","MEI","JUNI","JUL
                 $ret = array('' => '- Pilih Satu -', );
                 foreach($res->result_array() as $row) : 
                         $ret[$row[$vINDEX]] = $row[$vVALUE];
+                endforeach;
+                return $ret;
+
+        }
+
+        function arr_dropdown4($vTable, $vINDEX, $vVALUE, $vWHERE){
+                $this->db->where('id_birojasa', $vWHERE);
+                $this->db->order_by($vINDEX);
+                $res  = $this->db->get($vTable);
+        //echo $this->db->last_query(); exit;
+
+                $ret = array();
+                $ret = array('' => '- Pilih Satu -', );
+                foreach($res->result_array() as $row) : 
+                        $ret[$row[$vINDEX]] = $row[$vINDEX].' - '.$row[$vVALUE];
                 endforeach;
                 return $ret;
 

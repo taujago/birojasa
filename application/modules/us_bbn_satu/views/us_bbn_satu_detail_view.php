@@ -274,52 +274,15 @@
                       <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
                         </button>
-                        <h4 class="modal-title" id="myModalLabel2">Konfirmasi</h4>
+                        <h4 class="modal-title" id="myModalLabel2">Progres Pengerjaan</h4>
                       </div>
                       <div class="modal-body">
                         <div class="row">
                           <div class="col-md-12">
                             <div class="form-group">
-                              <label for="kembali">Masuk Samsat</label>
+                              <label for="kembali">Tgl. Masuk Samsat</label>
                               <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
                               <input type="text" id="tanggal" name="samsat_masuk_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Masuk Samsat"  data-date-format="dd-mm-yyyy">
-                              <br/>
-                              <p>Anda Dapat Mengkonfirmasi Data BBN Yang Anda Urus Telah Masuk Ke Samsat Dengan Cara Klik Tombol <b>Konfirmasi</b></p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                        <button type="button" id="btn_submit1" class="btn btn-primary">Konfirmasi</button>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-                </form>
-
-
-                <!-- STNK -->
-
-
-
-                <form id="form_update2" data-parsley-validate class="form-horizontal form-label-left" action="<?php echo site_url("us_bbn_satu/update2"); ?>" method="post">
-                <div class="modal fade 2" tabindex="-1" role="dialog" aria-hidden="true">
-                  <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel2">Konfirmasi</h4>
-                      </div>
-                      <div class="modal-body">
-                      <div class="row">
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <label for="kembali">Konfirmasi STNK Sudah Jadi</label>
-                              <p>Anda Dapat Mengkonfirmasi Data BBN Yang Anda Urus STNK nya Sudah Jadi Dengan Cara Klik Tombol <b>Konfirmasi</b></p>
                             </div>
                           </div>
                         </div>
@@ -336,41 +299,7 @@
                           <div class="col-md-12">
                             <div class="form-group">
                               <label for="kembali">No. STNK</label>
-                              
                               <input id="stnk_no" name="stnk_no" type="text" class="form-control" placeholder="No STNK"></input>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                        <button type="button" id="btn_submit2" class="btn btn-primary">Simpan</button>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-                </form>
-
-
-                <!-- BPKB -->
-
-                 <form id="form_update3" data-parsley-validate class="form-horizontal form-label-left" action="<?php echo site_url("us_bbn_satu/update3"); ?>" method="post">
-                <div class="modal fade 3" tabindex="-1" role="dialog" aria-hidden="true">
-                  <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel2">Konfirmasi</h4>
-                      </div>
-                      <div class="modal-body">
-                      <div class="row">
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <label for="kembali">Konfirmasi BPKB Sudah Jadi</label>
-                              <p>Anda Dapat Mengkonfirmasi Data BBN Yang Anda Urus BPKB nya Sudah Jadi Dengan Cara Klik Tombol <b>Konfirmasi</b></p>
                             </div>
                           </div>
                         </div>
@@ -392,78 +321,12 @@
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                        <button type="button" id="btn_submit3" class="btn btn-primary">Simpan</button>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-                </form>
-
-                <!-- BIAYA LEBIH -->
-
-                 <form id="form_update4" data-parsley-validate class="form-horizontal form-label-left" action="<?php echo site_url("us_bbn_satu/update4"); ?>" method="post">
-                <div class="modal fade 4" tabindex="-1" role="dialog" aria-hidden="true">
-                  <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel2">Konfirmasi</h4>
-                      </div>
-                      <div class="modal-body">
-                      <div class="row">
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <label for="kembali">Konfirmasi Biaya Lebih</label>
-                              <p>Anda Dapat Mengkonfirmasi Data Biaya Lebih Yang Anda Urus Dengan Cara Klik Tombol <b>Konfirmasi</b></p>
-                            </div>
-                          </div>
-                        </div>
                         <div class="row">
                           <div class="col-md-12">
                             <div class="form-group">
                               <label for="kembali">Biaya Lebih</label>
                               <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
                               <input id="biaya_lebih_jumlah" name="biaya_lebih_jumlah" type="text" class="form-control" placeholder="Biaya Lebih"></input>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                        <button type="button" id="btn_submit4" class="btn btn-primary">Simpan</button>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-                </form>
-
-                <!-- SERAH STNK -->
-
-                 
-              <form id="form_update5" data-parsley-validate class="form-horizontal form-label-left" action="<?php echo site_url("us_bbn_satu/update5"); ?>" method="post">
-                <div class="modal fade 5" tabindex="-1" role="dialog" aria-hidden="true">
-                  <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel2">Konfirmasi</h4>
-                      </div>
-                      <div class="modal-body">
-                        <div class="row">
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <label for="kembali">Serah STNK</label>
-                              <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
-                              <p>Anda Dapat Mengkonfirmasi Anda Telah Menyerahkan STNK Dengan Cara Klik Tombol <b>Konfirmasi</b></p>
                             </div>
                           </div>
                         </div>
@@ -475,42 +338,7 @@
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                        <button type="button" id="btn_submit5" class="btn btn-primary">Konfirmasi</button>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-                </form>
-
-
-                <!-- SERAH BPKB -->
-
-                 
-              <form id="form_update6" data-parsley-validate class="form-horizontal form-label-left" action="<?php echo site_url("us_bbn_satu/update6"); ?>" method="post">
-                <div class="modal fade 6" tabindex="-1" role="dialog" aria-hidden="true">
-                  <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel2">Konfirmasi</h4>
-                      </div>
-                      <div class="modal-body">
                         <div class="row">
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <label for="kembali">Serah BPKB</label>
-                              <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
-                              <p>Anda Dapat Mengkonfirmasi Anda Telah Menyerahkan BPKB Dengan Cara Klik Tombol <b>Konfirmasi</b></p>
-                            </div>
-                          </div>
-                        </div>
-                         <div class="row">
                           <div class="col-md-12">
                             <div class="form-group">
                               <label for="kembali">Tgl. Serah BPKB</label>
@@ -518,16 +346,48 @@
                             </div>
                           </div>
                         </div>
+                        <div class="form-group">
+                              <label for="kembali">Tgl. Pembayaran</label>
+                              <input type="text" id="tanggal" name="bayar_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Pembayaran"  data-date-format="dd-mm-yyyy">
+                            </div>
+                            <div class="form-group">
+                              <label for="kembali">Metode Pembayaran</label>
+                              <input id="bayar_metode" name="bayar_metode" type="text" class="form-control" placeholder="Metode Pembayaran"></input>
+                            </div>
+                            <div class="form-group">
+                              <label for="kembali">No. Kartu Debit</label>
+                              <input id="bayar_no_cc" name="bayar_no_cc" type="text" class="form-control" placeholder="No. Kartu Debit"></input>
+                            </div>
+                            <div class="form-group">
+                              <label for="kembali">Ref ID Debit</label>
+                              <input id="bayar_ref_cc" name="bayar_ref_cc" type="text" class="form-control" placeholder="Ref ID Debit"></input>
+                            </div>
+                            <div class="form-group">
+                              <label for="kembali">Jumlah Bayar</label>
+                              <input id="bayar_jumlah" name="bayar_jumlah" type="text" class="form-control" placeholder="Jumlah Bayar"></input>
+                            </div>
+
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                        <button type="button" id="btn_submit6" class="btn btn-primary">Konfirmasi</button>
+                        <button type="button" id="btn_submit1" class="btn btn-primary">Konfirmasi</button>
                       </div>
 
                     </div>
                   </div>
                 </div>
                 </form>
+
+
+                <!-- STNK -->
+
+
+
+
+               
+
+
+              
 
                 <!-- PEMBAYARAN -->
 

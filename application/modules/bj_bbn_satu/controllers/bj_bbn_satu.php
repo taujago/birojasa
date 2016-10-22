@@ -42,6 +42,9 @@ class bj_bbn_satu extends biro_jasa_controller{
           $samsat = $this->dm->datawilayah('id', 'samsat', $data['id_samsat'], 'nama')->row_array();
           $pengurus = $this->dm->datawilayah('id', 'pengguna', $data['user_entri'], 'nama')->row_array();
 
+          $dealer = $this->dm->datawilayah('id', 'dealer', $data['kode_dealer'], 'nama')->row_array();
+          
+
           $data_array['arr_tahun'] = $this->cm->arr_tahun();
 
           $model = $this->dm->datawilayah('id_model', 'm_model', $data['id_model'], 'model')->row_array();
@@ -53,7 +56,7 @@ class bj_bbn_satu extends biro_jasa_controller{
           $warna = $this->dm->datawilayah('WARNA_ID', 'm_warna', $data['id_warna'], 'WARNA_NAMA')->row_array();
          
 
-
+        $data['nama_dealer'] =  $dealer['nama'];
         $data['tgl_entri'] = flipdate($data['tgl_entri']);
         $data['tgl_faktur'] = flipdate($data['tgl_faktur']);
         $data['rp_pajak_kendaraan'] = rupiah($data['rp_pajak_kendaraan']);
@@ -118,7 +121,11 @@ function baru(){
 
         $data_array['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
 
+        $data_array['arr_type'] = $this->cm->arr_type("estimasi_bbn_satu", $id_birojasa, "tipe_kendaraan", "tipe_kendaraan");
+
         $data_array['arr_merek'] = $this->cm->arr_dropdown("m_merek", "kode", "nama", "nama");
+
+        $data_array['arr_dealer'] = $this->cm->arr_dropdown4("dealer", "id", "nama", $id_birojasa);
 
         $data_array['arr_jenis'] = $this->cm->arr_dropdown3("m_jenis", "id_jenis", "jenis", "jenis", "id_birojasa", $id_birojasa);
 
@@ -178,10 +185,19 @@ function baru(){
 
          $id_birojasa = $userdata['birojasa_id'];
         // echo $this->db->last_query(); exit();
-
-         
+         $this->db->select('*');
+         $this->db->where('id', $data['kode_dealer']);
+         $rs = $this->db->get('dealer')->row();
+         $data['dealer'] = $rs->id.''.$rs->nama;
+         // echo $this->db->last_query();
+         // show_array($dealer);
+         // echo $kode_dealer;
+         // exit();
 
           $data['action'] = 'update';
+
+          $data['arr_type'] = $this->cm->arr_type("estimasi_bbn_satu", $id_birojasa, "tipe_kendaraan", "tipe_kendaraan");
+          $data['arr_dealer'] = $this->cm->arr_dropdown4("dealer", "id", "nama", $id_birojasa);
 
          $data['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
 
@@ -242,8 +258,7 @@ function simpan(){
         $this->form_validation->set_rules('silinder','Silinder','required'); 
         $this->form_validation->set_rules('bahan_bakar','Bahan Bakar','required'); 
         $this->form_validation->set_rules('tahun_buat','Tahun Buat','required'); 
-        $this->form_validation->set_rules('kode_dealer','Kode Dealer','required'); 
-        $this->form_validation->set_rules('nama_dealer','Nama Dealer','required'); 
+        $this->form_validation->set_rules('kode_dealer','Dealer','required');  
         $this->form_validation->set_rules('id_desa','Desa','required'); 
         $this->form_validation->set_rules('id_kecamatan','Kecamatan','required');
         $this->form_validation->set_rules('id_provinsi','Provinsi','required');
@@ -258,6 +273,8 @@ function simpan(){
 
 
         //show_array($data);
+
+
 
 
 
@@ -431,8 +448,7 @@ function update(){
         $this->form_validation->set_rules('silinder','Silinder','required'); 
         $this->form_validation->set_rules('bahan_bakar','Bahan Bakar','required'); 
         $this->form_validation->set_rules('tahun_buat','Tahun Buat','required'); 
-        $this->form_validation->set_rules('kode_dealer','Kode Dealer','required'); 
-        $this->form_validation->set_rules('nama_dealer','Nama Dealer','required'); 
+        $this->form_validation->set_rules('kode_dealer','Kode Dealer','required');  
         $this->form_validation->set_rules('id_desa','Desa','required'); 
         $this->form_validation->set_rules('id_kecamatan','Kecamatan','required');
         $this->form_validation->set_rules('id_provinsi','Provinsi','required');
@@ -623,37 +639,53 @@ function get_biaya(){
 
     $post = $this->input->post();
 
-    extract($post);
 
-    
-    $this->db->where("id_warna_tnkb",$id_warna_tnkb);
-    $this->db->where("id_samsat",$id_samsat);
-    $this->db->where("tahun_kendaraan",$tahun_buat);
-    $this->db->where("tipe_kendaraan",$type);
-    $this->db->where("id_birojasa",$data_bj["birojasa_id"]); ///    $userdata['birojasa_id'];
-    $data = $this->db->get("estimasi_bbn_satu")->row_array();
-    // echo $this->db->last_query(); 
-    // exit();
-    
+     $this->load->library('form_validation');
+        $this->form_validation->set_rules('no_rangka','No. Rangka','required');
+        $this->form_validation->set_rules('no_mesin','No. Mesin','required');     
+         
+        $this->form_validation->set_message('required', 'Field %s Harus diisi ');
+        
+        $this->form_validation->set_error_delimiters('', '<br>');
 
- 
+        if($this->form_validation->run() == TRUE ) { 
 
-    if (empty($data)) {
-    $data['rp_daftar_bpkb'] = '';
-    $data['rp_daftar_stnk'] = '';
-    $data['rp_pajak_kendaraan'] = '';
-    $data['rp_admin_fee'] = '';
-    $data['total'] = '';
-    }else{
-    $data['total'] = rupiah($data['rp_daftar_bpkb'] + $data['rp_daftar_stnk']  + $data['rp_pajak_kendaraan'] +  $data['rp_admin_fee'] );
-    $data['rp_daftar_bpkb'] = rupiah( $data['rp_daftar_bpkb']);
-    $data['rp_daftar_stnk'] = rupiah( $data['rp_daftar_stnk']);
-    $data['rp_pajak_kendaraan'] = rupiah( $data['rp_pajak_kendaraan']);
-    $data['rp_admin_fee'] = rupiah( $data['rp_admin_fee']);
-  }
-   
+        
+        $userdata = $this->session->userdata('bj_login');
+        $birojasa = $userdata['birojasa_id'];
 
-    echo json_encode($data);
+        $primarykey = array('tipe_kendaraan' => $post['type'],
+                            'tahun_buat' => $post['tahun_buat'],
+                            'id_warna_tnkb' => $post['id_warna_tnkb'],
+                            'id_samsat' => $post['id_samsat'],
+                            'birojasa' => $birojasa
+         );
+        $biaya = $this->dm->biaya($primarykey)->row_array();
+        if (empty($biaya)) {
+            $arr = array("error"=>true,'message'=>"BELUM ADA ESTIMASI BIAYA UNTUK DATA INI </BR> MOHON PERIKSA KEMBALI DATA ANDA");
+            $arr['total'] = '';
+          $arr['rp_daftar_bpkb'] = '';
+          $arr['rp_daftar_stnk'] = '';
+          $arr['rp_pajak_kendaraan'] = '';
+          $arr['rp_admin_fee'] = '';
+        }
+        else{
+           $arr = array("error"=>false);
+        $arr['total'] = rupiah($biaya['rp_daftar_bpkb'] + $biaya['rp_daftar_stnk']  + $biaya['rp_pajak_kendaraan'] +  $biaya['rp_admin_fee'] );
+          $arr['rp_daftar_bpkb'] = rupiah( $biaya['rp_daftar_bpkb']);
+          $arr['rp_daftar_stnk'] = rupiah( $biaya['rp_daftar_stnk']);
+          $arr['rp_pajak_kendaraan'] = rupiah( $biaya['rp_pajak_kendaraan']);
+          $arr['rp_admin_fee'] = rupiah( $biaya['rp_admin_fee']);
+
+        
+    }
+}
+else {
+    $arr = array("error"=>true,'message'=>validation_errors());
+}
+
+
+    echo json_encode($arr);
 
 }
 

@@ -71,7 +71,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Entri 
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="tanggal" class="tanggal form-control col-md-7 col-xs-12 input-style" name="tgl_entri"  placeholder="Tanggal Entri"  data-date-format="dd-mm-yyyy" value="<?php echo isset($tgl_entri)?$tgl_entri:""; ?>">
+                        <input type="text" id="tanggal" class="tanggal form-control col-md-7 col-xs-12 input-style" name="tgl_entri"  placeholder="Tanggal Entri BBN 1"  data-date-format="dd-mm-yyyy" value="<?php echo isset($tgl_entri)?$tgl_entri:""; ?>">
                       </div>
                     </div>
                     
@@ -116,7 +116,9 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Type
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="type" name="type" required="required" class="form-control col-md-7 col-xs-12" placeholder="Type" value="<?php echo isset($type)?$type:""; ?>">
+                      <?php echo form_dropdown("type",$arr_type,isset($type)?$type:"",'id="type" class="form-control select2" style="width: 100%;"'); ?>
+
+                        
                       </div>
                     </div>
                     <div class="form-group">
@@ -172,17 +174,13 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Kode Dealer
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Deaelar
                       </label>
+                      
+
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="kode_dealer" name="kode_dealer" required="required" class="form-control col-md-7 col-xs-12" placeholder="Kode Dealer" value="<?php echo isset($kode_dealer)?$kode_dealer:""; ?>">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nama Dealer
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="nama_dealer" name="nama_dealer" required="required" class="form-control col-md-7 col-xs-12" placeholder="Nama Dealer" value="<?php echo isset($nama_dealer)?$nama_dealer:""; ?>">
+                      <?php echo form_dropdown("kode_dealer",$arr_dealer,isset($kode_dealer)?$kode_dealer:"",'id="kode_dealer" class="form-control input-style"'); ?>
+                        
                       </div>
                     </div>
                     <div class="form-group">
@@ -267,7 +265,13 @@
                     </div>
 
 
-
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Pengurus
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                       <a class="btn btn-primary" id="hitung">Hitung</a>
+                       </div> 
+                    </div>
 
                     
              <div class="form-group">

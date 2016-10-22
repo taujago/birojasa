@@ -8,9 +8,12 @@ $(document).ready(function() {
 
 $(".rupiah").autoNumeric('init'); 
 
- 
 
-$('.rp').focus(function(){
+
+
+
+
+$('#hitung').click(function(){
     console.log('test');
 
     $.ajax({
@@ -19,13 +22,37 @@ $('.rp').focus(function(){
         type : 'post',
         dataType : 'json',
         success : function(obj) {
+
+            console.log(obj.error);
+
+            if(obj.error == false) { // berhasil 
+
+                // alert('hooooo.. error false');
+                     console.log(obj.error);
             $("#rp_daftar_stnk").val(obj.rp_daftar_stnk);
             $("#rp_daftar_bpkb").val(obj.rp_daftar_bpkb);
             $("#rp_pajak_kendaraan").val(obj.rp_pajak_kendaraan);
             $("#rp_admin_fee").val(obj.rp_admin_fee);
             $("#total").val(obj.total);
+            }
+            else {
+                 BootstrapDialog.alert({
+                            type: BootstrapDialog.TYPE_DANGER,
+                            title: 'Error',
+                            message: obj.message 
+                             
+                        });
+                        $("#rp_daftar_stnk").val(obj.rp_daftar_stnk);
+            $("#rp_daftar_bpkb").val(obj.rp_daftar_bpkb);
+            $("#rp_pajak_kendaraan").val(obj.rp_pajak_kendaraan);
+            $("#rp_admin_fee").val(obj.rp_admin_fee);
+            $("#total").val(obj.total);
+            }
+
+            
         }
     });
+    return false;
 
 });
 

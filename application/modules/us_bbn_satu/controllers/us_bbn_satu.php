@@ -56,7 +56,7 @@ class us_bbn_satu extends user_controller{
           $samsat = $this->dm->datawilayah('id', 'samsat', $data['id_samsat'], 'nama')->row_array();
           $pengurus = $this->dm->datawilayah('id', 'pengguna', $data['user_entri'], 'nama')->row_array();
 
-          
+          $dealer = $this->dm->datawilayah('id', 'dealer', $data['kode_dealer'], 'nama')->row_array();
 
           $model = $this->dm->datawilayah('id_model', 'm_model', $data['id_model'], 'model')->row_array();
 
@@ -72,7 +72,7 @@ class us_bbn_satu extends user_controller{
          
 
 
-
+        $data['nama_dealer'] =  $dealer['nama'];
         $data["jenis"] = $jenis['jenis'];
         $data["model"] = $model['model'];
         $data["merek"] = $merek['nama'];
@@ -243,7 +243,7 @@ function update(){
         }
     }
     else{
-        $arr = array("error"=>true, 'message'=>"DATA BBN INI TELAH ANDA KONFIRMASI SEBELUMNYA");
+        $arr = array("error"=>true, 'message'=>"ERROR DATABASE");
     }
         echo json_encode($arr);
 
@@ -290,193 +290,7 @@ function update1(){
 
 }
 
-function update2(){
 
-    
-    $post = $this->input->post();
-    $id = $post['id'];
-    
-
-    $this->load->library('form_validation');
-
-    $this->db->where('id', $id);
-    $this->db->where('status', 2);
-    $vld = $this->db->get('bj_bbn_satu');
-
-    
-    if($vld->num_rows() > 0){
-
-
-        $post['status']=3;
-        $this->db->where("id",$id);
-        $post['stnk_tgl'] = flipdate($post['stnk_tgl']);
-        $res = $this->db->update('bj_bbn_satu', $post);
-        if($res){
-            $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
-            $arr['status'] = ".".$post['status'];
-            $arr['nama_status'] = $this->status_button[$post['status']];
-        }
-        else {
-             $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
-        }
-    }
-    else{
-        $arr = array("error"=>true, 'message'=>"DATA BBN INI TELAH ANDA KONFIRMASI SEBELUMNYA");
-    }
-        echo json_encode($arr);
-
-}
-
-function update3(){
-
-    
-    $post = $this->input->post();
-    $id = $post['id'];
-
-
-    $this->load->library('form_validation');
-
-    $this->db->where('id', $id);
-    $this->db->where('status', 3);
-    $vld = $this->db->get('bj_bbn_satu');
-
-    
-    if($vld->num_rows() > 0){
-
-
-        $post['status']=4;
-        $this->db->where("id",$id);
-        $post['bpkb_tgl'] = flipdate($post['bpkb_tgl']);
-        $res = $this->db->update('bj_bbn_satu', $post);
-        if($res){
-            $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
-            $arr['status'] = ".".$post['status'];
-            $arr['nama_status'] = $this->status_button[$post['status']];
-        }
-        else {
-             $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
-        }
-    }
-    else{
-        $arr = array("error"=>true, 'message'=>"DATA BBN INI TELAH ANDA KONFIRMASI SEBELUMNYA");
-    }
-        echo json_encode($arr);
-
-}
-
-
-function update4(){
-
-    $userdata = $this->session->userdata('user_login');
-    $post = $this->input->post();
-    $id = $post['id'];
-    $post['biaya_lebih_user'] = $userdata['id'];
-
-
-    $this->load->library('form_validation');
-
-    $this->db->where('id', $id);
-    $this->db->where('status', 4);
-    $vld = $this->db->get('bj_bbn_satu');
-
-    
-    if($vld->num_rows() > 0){
-
-
-        $post['status']=5;
-        $this->db->where("id",$id);
-        $res = $this->db->update('bj_bbn_satu', $post);
-        if($res){
-            $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
-             $arr['status'] = ".".$post['status'];
-            $arr['nama_status'] = $this->status_button[$post['status']];
-        }
-        else {
-             $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
-        }
-    }
-    else{
-        $arr = array("error"=>true, 'message'=>"DATA BBN INI TELAH ANDA KONFIRMASI SEBELUMNYA");
-    }
-        echo json_encode($arr);
-
-}
-
-function update5(){
-
-    $userdata = $this->session->userdata('user_login');
-    $post = $this->input->post();
-    $id = $post['id'];
-    $post['stnk_serah_user'] = $userdata['id'];
-
-
-    $this->load->library('form_validation');
-
-    $this->db->where('id', $id);
-    $this->db->where('status', 5);
-    $post['stnk_serah_tgl'] = flipdate($post['stnk_serah_tgl']);
-    $vld = $this->db->get('bj_bbn_satu');
-
-    
-    if($vld->num_rows() > 0){
-
-
-        $post['status']=6;
-        $this->db->where("id",$id);
-        $res = $this->db->update('bj_bbn_satu', $post);
-        if($res){
-            $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
-             $arr['status'] = ".".$post['status'];
-            $arr['nama_status'] = $this->status_button[$post['status']];
-        }
-        else {
-             $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
-        }
-    }
-    else{
-        $arr = array("error"=>true, 'message'=>"DATA BBN INI TELAH ANDA KONFIRMASI SEBELUMNYA");
-    }
-        echo json_encode($arr);
-
-}
-
-function update6(){
-
-    $userdata = $this->session->userdata('user_login');
-    $post = $this->input->post();
-    $id = $post['id'];
-    $post['bpkb_serah_user'] = $userdata['id'];
-
-
-    $this->load->library('form_validation');
-
-    $this->db->where('id', $id);
-    $this->db->where('status', 6);
-    $post['bpkb_serah_tgl'] = flipdate($post['bpkb_serah_tgl']);
-    $vld = $this->db->get('bj_bbn_satu');
-
-    
-    if($vld->num_rows() > 0){
-
-
-        $post['status']=7;
-        $this->db->where("id",$id);
-        $res = $this->db->update('bj_bbn_satu', $post);
-        if($res){
-            $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
-             $arr['status'] = ".".$post['status'];
-            $arr['nama_status'] = $this->status_button[$post['status']];
-        }
-        else {
-             $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
-        }
-    }
-    else{
-        $arr = array("error"=>true, 'message'=>"DATA BBN INI TELAH ANDA KONFIRMASI SEBELUMNYA");
-    }
-        echo json_encode($arr);
-
-}
 
 
 function update7(){
