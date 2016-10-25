@@ -19,7 +19,7 @@ class bj_es_bbn_satu_model extends CI_Model {
 		 extract($param);
 
 		 $kolom = array(0=>"bbn1.id",
-							"tipe_kendaraan",
+							"nm_tipe",
 							"tahun_kendaraan",
 							"warna_tnkb",
 							"nm_samsat",
@@ -29,11 +29,12 @@ class bj_es_bbn_satu_model extends CI_Model {
 
 
 		 	$this->db->where('bbn1.id_birojasa', $birojasa);
-		 	$this->db->select('bbn1.*, polda.polda_nama as nm_polda, s.nama as nm_samsat, w.warna_tnkb as warna_tnkb');
+		 	$this->db->select('bbn1.*, polda.polda_nama as nm_polda, s.nama as nm_samsat, w.warna_tnkb as warna_tnkb, t.tipe as nm_tipe');
 
 		 	$this->db->from("estimasi_bbn_satu bbn1");
 		 	$this->db->join('m_polda polda','bbn1.id_polda=polda.polda_id');
 		 	$this->db->join('samsat s', 'bbn1.id_samsat = s.id');
+		 	$this->db->join('m_tipe t', 'bbn1.tipe_kendaraan = t.id');
 		 	$this->db->join('m_warna_tnkb w', 'bbn1.id_warna_tnkb = w.id_warna_tnkb','left');
 
 			

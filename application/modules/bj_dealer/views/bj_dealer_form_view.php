@@ -12,11 +12,16 @@
       <strong><h3 class="panel-title">Tambah data </h3></strong>
     </div>
     <div class="panel-body" id="data_umum">
-
+      <div class="form-group">
+      <label class="col-sm-3 control-label">Kode Dealer</label>
+      <div class="col-sm-9">
+        <input type="text" name="id" id="id" class="form-control input-style" placeholder="Kode Dealer" value="<?php echo isset($id)?$id:""; ?>">
+      </div>
+    </div>
     <div class="form-group">
       <label class="col-sm-3 control-label">Nama Dealer</label>
       <div class="col-sm-9">
-        <input type="hidden" name="id" id="id" value="<?php echo isset($id)?$id:""; ?>">
+        <input type="hidden" name="old_id" id="old_id" value="<?php echo isset($id)?$id:""; ?>">
         <input type="text" name="nama" id="nama" class="form-control input-style" placeholder="Nama" 
         value="<?php echo isset($nama)?$nama:""; ?>">
       </div>

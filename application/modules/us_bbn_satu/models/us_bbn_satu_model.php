@@ -8,6 +8,15 @@ class us_bbn_satu_model extends CI_Model {
 	}
 
 
+	function get_user($id){
+		$this->db->select('*');
+		$this->db->where('id', $id);
+		$res = $this->db->get('pengguna')->row();
+		$nama = $res->nama;
+		return $nama;
+	}
+
+
 
 
  function data($param)

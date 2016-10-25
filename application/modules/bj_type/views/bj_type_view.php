@@ -9,7 +9,7 @@
     <script src="<?php echo base_url("assets") ?>/js/bootstrap-datepicker.js"></script>
      <script src="<?php echo base_url("assets") ?>/js/jquery.dataTables.min.js"></script>           
               <div class="x_title">
-                  <h2>Data Dealer <small>Dealer </small></h2>
+                  <h2>Data Samsat <small>Jenis </small></h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <a href="<?php echo site_url($this->controller.'/baru'); ?>"><button type="button" class="btn btn-primary">Tambah Data</button>
                     </a>
@@ -21,8 +21,8 @@
           <form role="form" action="" id="btn-cari">
             <div class="col-md-3">
               <div class="form-group">
-              <label for="nama">Nama </label>
-                <input id="nama" name="nama" type="text" class="form-control" placeholder="Nama"></input>
+              <label for="nama">Type </label>
+                <input id="tipe" name="tipe" type="text" class="form-control" placeholder="Jenis"></input>
               </div>
             </div>
             <div class="col-md-1">
@@ -42,7 +42,7 @@
             
 
 
-<table width="100%" border="0" id="dealer" class="table table-striped 
+<table width="100%" border="0" id="jenis" class="table table-striped 
              table-bordered table-hover dataTable no-footer" role="grid" style='text-align:center;vertical-align:middle'>
 
 <thead>
@@ -50,12 +50,9 @@
 
 
         
-        <th width="7%" height="50" style='text-align:center;vertical-align:middle'>Kode Dealer</th>
-        <th width="23%" style='text-align:center;vertical-align:middle'>Nama</th>
-        <th width="21%" style='text-align:center;vertical-align:middle'>Alamat </th>
-        <th width="11%" style='text-align:center;vertical-align:middle'>Telpon</th>
-        <th width="14%" style='text-align:center;vertical-align:middle'>Email</th>
-        <th width="14%" style='text-align:center;vertical-align:middle'>#</th>
+        <th width="7%" height="50" style='text-align:center;vertical-align:middle'>ID</th>
+        <th width="23%" style='text-align:center;vertical-align:middle'>Type</th>
+        <th width="21%" style='text-align:center;vertical-align:middle'># </th>
     </tr>
   
 </thead>

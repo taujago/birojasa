@@ -234,10 +234,23 @@ $(".tanggal").datepicker().on('changeDate', function(ev){
                 $("#no_mesin").val(obj.Data.NoMesin);
                 $("#no_faktur").val(obj.Data.NoFaktur);
                 $("#tgl_faktur").val(obj.Data.TglFaktur);
-                $("#kode_dealer").val(obj.Data.KodeDealer);
-                $("#nama_dealer").val(obj.Data.NamaDealer);
+                
                 $("#nama_pemilik").val(obj.Data.Pemilik1);
                 $("#alamat_pemilik").val(obj.Data.Alamat1);
+                
+                // var type = [obj.Data.KodeDealer, obj.Data.NamaDealer];
+                
+                $.ajax({
+                    url : '<?php echo site_url("$this->controller/dealer") ?>',
+                    data : {KodeDealer : obj.Data.KodeDealer, NamaDealer : obj.Data.NamaDealer},
+                    type : 'post', 
+                        success : function(result) {
+                        $("#kode_dealer").html(result)
+                    }
+                });
+
+                // $("#kode_dealer").val(obj.Data.KodeDealer);
+                // alert(obj.Data.KodeDealer);
 
 
             }

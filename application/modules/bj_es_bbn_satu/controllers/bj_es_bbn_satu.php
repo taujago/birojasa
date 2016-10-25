@@ -41,6 +41,8 @@ function baru(){
         $data_array['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
 
         $data_array['arr_warna'] = $this->cm->arr_dropdown("m_warna_tnkb", "id_warna_tnkb", "warna_tnkb", "warna_tnkb");
+        $data_array['arr_merk'] = $this->cm->arr_dropdown("m_merek", "kode", "nama", "nama");
+        $data_array['arr_tipe'] = $this->cm->arr_dropdown("m_tipe", "id", "tipe", "tipe");
 
         $data_array['arr_pilih_polda'] = $this->dm->arr_pilih_polda();
 
@@ -66,8 +68,10 @@ function simpan(){
 
 
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('tipe_kendaraan','Tipe Kendaraan','required');    
+        $this->form_validation->set_rules('tipe_kendaraan','Tipe Kendaraan','required');   
+        $this->form_validation->set_rules('merk_kendaraan','Tipe Kendaraan','required');
         $this->form_validation->set_rules('tahun_kendaraan','Tahun Kendaraan','required');
+
         $this->form_validation->set_rules('id_warna_tnkb','Warna TNKB','required'); 
         $this->form_validation->set_rules('id_polda','Polda','required');
         $this->form_validation->set_rules('id_samsat','Samsat','required');    
@@ -95,15 +99,27 @@ function simpan(){
 
 if($this->form_validation->run() == TRUE ) { 
 
-        
-        $res = $this->db->insert('estimasi_bbn_satu', $post); 
-        
+        $this->db->where('tipe_kendaraan', $post['tipe_kendaraan']);
+        $this->db->where('merk_kendaraan', $post['merk_kendaraan']);
+        $this->db->where('tahun_kendaraan', $post['tahun_kendaraan']);
+        $this->db->where('id_polda', $post['id_polda']);
+        $this->db->where('id_warna_tnkb', $post['id_warna_tnkb']);
+        $this->db->where('id_samsat', $post['id_samsat']);
+        $get = $this->db->get('estimasi_bbn_satu');
+
+        if ($get->num_rows()>0) {
+            $arr = array("error"=>true,'message'=>"Data Ini Sudah Ada Sebelumnya");
+        }else{
+            
+            $res = $this->db->insert('estimasi_bbn_satu', $post); 
         if($res){
             $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
         }
         else {
              $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
         }
+    }
+            
 }
 else {
     $arr = array("error"=>true,'message'=>validation_errors());
@@ -230,7 +246,7 @@ else {
         	 
         	   $arr_data[] = array(
         		$row['id'],
-        		$row['tipe_kendaraan'],
+        		$row['nm_tipe'],
         		$row['tahun_kendaraan'],
         		$row['warna_tnkb'],
                 $row['nm_samsat'],
@@ -290,6 +306,8 @@ else {
          $data['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
 
        $data['arr_warna'] = $this->cm->arr_dropdown("m_warna_tnkb", "id_warna_tnkb", "warna_tnkb", "warna_tnkb");
+       $data['arr_merk'] = $this->cm->arr_dropdown("m_merek", "kode", "nama", "nama");
+        $data['arr_tipe'] = $this->cm->arr_dropdown("m_tipe", "id", "tipe", "tipe");
 
         // $data['arr_samsat'] = $this->cm->arr_dropdown2("samsat", "id","nama", "nama", "nama");
 

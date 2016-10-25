@@ -28,8 +28,13 @@
       <label class="col-sm-3 control-label">Tipe Kendaraan</label>
       <div class="col-sm-9">
         <input type="hidden" name="id" id="id" value="<?php echo isset($id)?$id:""; ?>">
-        <input type="text" name="tipe_kendaraan" id="tipe_kendaraan" class="form-control input-style" placeholder="Tipe Kendaraan" 
-        value="<?php echo isset($tipe_kendaraan)?$tipe_kendaraan:""; ?>">
+        <?php echo form_dropdown("tipe_kendaraan",$arr_tipe,isset($tipe_kendaraan)?$tipe_kendaraan:'','id="tipe_kendaraan" class="form-control input-style"'); ?>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Merk Kendaraan</label>
+      <div class="col-sm-9">
+        <?php echo form_dropdown("merk_kendaraan",$arr_merk,isset($merk_kendaraan)?$merk_kendaraan:'','id="merk_kendaraan" class="form-control input-style"'); ?>
       </div>
     </div>
     <div class="form-group">

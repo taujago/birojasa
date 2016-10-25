@@ -5,21 +5,22 @@
     </style>
     
 
-    <link href="<?php echo base_url("assets") ?>/css/datepicker.css" rel="stylesheet">
+    <link href="<?php echo base_url("assets") ?>/css/datepicker.css" rel="stylesheet" >
     <script src="<?php echo base_url("assets") ?>/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="<?php echo base_url();?>assets/js/autoNumeric.js"></script>
 
         
 
 
 </br>
 
-
+<?php if($status==1){ ?>
 <div class="row">
-          
           <div class="col-md-4" style="font-size: 20px;">
-            <button id="proses" type="button" class="btn btn-primary form-control" data-toggle="modal" data-target=".<?php echo $status; ?>"><?php echo $nama_status; ?></button>
+            <button id="proses" type="button" class="btn btn-primary form-control" data-toggle="modal" data-target=".1">PROSES</button>
           </div>
 </div>
+<?php } ?>
 
 <div class="row">
 
@@ -249,7 +250,7 @@
         <th width="70%"><?php echo $kecamatan; ?></th>
    </tr>
    <tr>
-        <th width="20%">Desa</th>
+        <th width="20%">Desa/Kel.</th>
         <th width="1%">:</th>
         <th width="70%"><?php echo $desa; ?></th>
    </tr>
@@ -261,12 +262,136 @@
 </div>
 </div>
 
+<?php if($status==2){ ?>
+<div class="row">
+    <div class="col-md-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>Detail Hasil Pengerjaan</h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+
+
+
+
+<table width="100%" border="0" class="table table-striped table-hover no-footer" role="grid">
+<thead>
+  <tr>
+        <th colspan="2" align="center">Detail Hasil Pengerjaan</th>
+  </tr>
+</thead>
+<tbody>
+    <tr>
+        <th width="20%">Terakhir Diupdate</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $tgl_update; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">Tgl. Masuk Samsat</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $samsat_masuk_tgl; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">User Masuk Samsat  </th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $nama_samsat_masuk_user; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">No. STNK</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $stnk_no; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">Tgl. STNK</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $stnk_tgl; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">No. BPKB</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $bpkb_no; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">Tgl. BPKB</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $bpkb_tgl; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">User Lebih Biaya</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $nama_biaya_lebih_user; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">User Serah STNK</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $nama_stnk_serah_user; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">Tgl. Serah STNK</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $stnk_serah_tgl; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">User Serah BPKB</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $nama_bpkb_serah_user; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">Tgl. Serah BPKB</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $bpkb_serah_tgl; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">Tgl. Bayar</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $bayar_tgl; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">User Bayar</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $nama_bayar_user; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">Metode Bayar </th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $bayar_metode; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">No. CC Bayar</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $bayar_no_cc; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">Ref. CC Bayar</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $bayar_ref_cc; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">Bayar Jumlah</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $bayar_jumlah; ?></th>
+   </tr>
+  </tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<?php } ?>
+
 
 
 <!-- SAMSAT -->
 
                  
-              <form id="form_update1" data-parsley-validate class="form-horizontal form-label-left" action="<?php echo site_url("us_bbn_satu/update1"); ?>" method="post">
+              <form id="form_update1" data-parsley-validate class="form-horizontal form-label-left" action="" method="post">
                 <div class="modal fade 1" tabindex="-1" role="dialog" aria-hidden="true">
                   <div class="modal-dialog modal-sm">
                     <div class="modal-content">
@@ -282,7 +407,7 @@
                             <div class="form-group">
                               <label for="kembali">Tgl. Masuk Samsat</label>
                               <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
-                              <input type="text" id="tanggal" name="samsat_masuk_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Masuk Samsat"  data-date-format="dd-mm-yyyy">
+                              <input type="text" id="tanggal" name="samsat_masuk_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Masuk Samsat"  data-date-format="dd-mm-yyyy" value="<?php echo isset($samsat_masuk_tgl)?$samsat_masuk_tgl:'' ?>">
                             </div>
                           </div>
                         </div>
@@ -290,8 +415,8 @@
                           <div class="col-md-12">
                             <div class="form-group">
                               <label for="kembali">Tgl. STNK</label>
-                              <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
-                              <input type="text" id="tanggal" name="stnk_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Jadi STNK"  data-date-format="dd-mm-yyyy">
+                              
+                              <input type="text" id="tanggal" name="stnk_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Jadi STNK"  data-date-format="dd-mm-yyyy" value="<?php echo isset($stnk_tgl)?$stnk_tgl:'' ?>">
                             </div>
                           </div>
                         </div>
@@ -299,7 +424,7 @@
                           <div class="col-md-12">
                             <div class="form-group">
                               <label for="kembali">No. STNK</label>
-                              <input id="stnk_no" name="stnk_no" type="text" class="form-control" placeholder="No STNK"></input>
+                              <input id="stnk_no" name="stnk_no" type="text" class="form-control" placeholder="No STNK" value="<?php echo isset($stnk_no)?$stnk_no:'' ?>"></input>
                             </div>
                           </div>
                         </div>
@@ -307,8 +432,7 @@
                           <div class="col-md-12">
                             <div class="form-group">
                               <label for="kembali">Tgl. BPKB</label>
-                              <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
-                              <input type="text" id="tanggal" name="bpkb_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Jadi BPKB"  data-date-format="dd-mm-yyyy">
+                              <input type="text" id="tanggal" name="bpkb_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Jadi BPKB"  data-date-format="dd-mm-yyyy" value="<?php echo isset($bpkb_tgl)?$bpkb_tgl:'' ?>">
                             </div>
                           </div>
                         </div>
@@ -316,8 +440,7 @@
                           <div class="col-md-12">
                             <div class="form-group">
                               <label for="kembali">No. BPKB</label>
-                              <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
-                              <input id="bpkb_no" name="bpkb_no" type="text" class="form-control" placeholder="No BPKB"></input>
+                              <input id="bpkb_no" name="bpkb_no" type="text" class="form-control" placeholder="No BPKB" value="<?php echo isset($bpkb_no)?$bpkb_no:'' ?>"></input>
                             </div>
                           </div>
                         </div>
@@ -325,8 +448,7 @@
                           <div class="col-md-12">
                             <div class="form-group">
                               <label for="kembali">Biaya Lebih</label>
-                              <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
-                              <input id="biaya_lebih_jumlah" name="biaya_lebih_jumlah" type="text" class="form-control" placeholder="Biaya Lebih"></input>
+                              <input id="biaya_lebih_jumlah" name="biaya_lebih_jumlah" type="text" class="form-control rp" placeholder="Biaya Lebih" data-a-sign="" data-a-dec="," data-a-sep="." value="<?php echo isset($biaya_lebih_jumlah)?$biaya_lebih_jumlah:'' ?>"></input>
                             </div>
                           </div>
                         </div>
@@ -334,7 +456,7 @@
                           <div class="col-md-12">
                             <div class="form-group">
                               <label for="kembali">Tgl. Serah STNK</label>
-                              <input type="text" id="tanggal" name="stnk_serah_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Serah STNK"  data-date-format="dd-mm-yyyy">
+                              <input type="text" id="tanggal" name="stnk_serah_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Serah STNK"  data-date-format="dd-mm-yyyy" value="<?php echo isset($stnk_serah_tgl)?$stnk_serah_tgl:'' ?>">
                             </div>
                           </div>
                         </div>
@@ -342,35 +464,36 @@
                           <div class="col-md-12">
                             <div class="form-group">
                               <label for="kembali">Tgl. Serah BPKB</label>
-                              <input type="text" id="tanggal" name="bpkb_serah_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Jadi BPKB"  data-date-format="dd-mm-yyyy">
+                              <input type="text" id="tanggal" name="bpkb_serah_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Jadi BPKB"  data-date-format="dd-mm-yyyy" value="<?php echo isset($stnk_serah_tgl)?$stnk_serah_tgl:'' ?>">
                             </div>
                           </div>
                         </div>
                         <div class="form-group">
                               <label for="kembali">Tgl. Pembayaran</label>
-                              <input type="text" id="tanggal" name="bayar_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Pembayaran"  data-date-format="dd-mm-yyyy">
+                              <input type="text" id="tanggal" name="bayar_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Pembayaran"  data-date-format="dd-mm-yyyy" value="<?php echo isset($bayar_tgl)?$bayar_tgl:'' ?>">
                             </div>
                             <div class="form-group">
                               <label for="kembali">Metode Pembayaran</label>
-                              <input id="bayar_metode" name="bayar_metode" type="text" class="form-control" placeholder="Metode Pembayaran"></input>
+                              <input id="bayar_metode" name="bayar_metode" type="text" class="form-control" placeholder="Metode Pembayaran" value="<?php echo isset($bayar_metode)?$bayar_metode:'' ?>"></input>
                             </div>
                             <div class="form-group">
                               <label for="kembali">No. Kartu Debit</label>
-                              <input id="bayar_no_cc" name="bayar_no_cc" type="text" class="form-control" placeholder="No. Kartu Debit"></input>
+                              <input id="bayar_no_cc" name="bayar_no_cc" type="text" class="form-control" placeholder="No. Kartu Debit" value="<?php echo isset($bayar_no_cc)?$bayar_no_cc:'' ?>"></input>
                             </div>
                             <div class="form-group">
                               <label for="kembali">Ref ID Debit</label>
-                              <input id="bayar_ref_cc" name="bayar_ref_cc" type="text" class="form-control" placeholder="Ref ID Debit"></input>
+                              <input id="bayar_ref_cc" name="bayar_ref_cc" type="text" class="form-control" placeholder="Ref ID Debit" value="<?php echo isset($bayar_ref_cc)?$bayar_ref_cc:'' ?>"></input>
                             </div>
                             <div class="form-group">
                               <label for="kembali">Jumlah Bayar</label>
-                              <input id="bayar_jumlah" name="bayar_jumlah" type="text" class="form-control" placeholder="Jumlah Bayar"></input>
+                              <input id="bayar_jumlah" name="bayar_jumlah" type="text" class="form-control rp" placeholder="Jumlah Bayar" data-a-sign="" data-a-dec="," data-a-sep="." value="<?php echo isset($bayar_jumlah)?$bayar_jumlah:'' ?>"></input>
                             </div>
 
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
                         <button type="button" id="btn_submit1" class="btn btn-primary">Konfirmasi</button>
+                        <button type="button" id="btn_submit2" class="btn btn-success">Selesai</button>
                       </div>
 
                     </div>
@@ -389,91 +512,12 @@
 
               
 
-                <!-- PEMBAYARAN -->
-
-                <form id="form_update7" data-parsley-validate class="form-horizontal form-label-left" action="<?php echo site_url("us_bbn_satu/update7"); ?>" method="post">
-                <div class="modal fade 7" tabindex="-1" role="dialog" aria-hidden="true">
-                  <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel2">Konfirmasi</h4>
-                      </div>
-                      <div class="modal-body">
-                        <div class="row">
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <label for="kembali">Pembayaran</label>
-                              <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
-                              <p>Anda Dapat Mengkonfirmasi Pembayaran Dengan Cara Klik Tombol <b>Konfirmasi</b></p>
-                            </div>
-                            <div class="form-group">
-                              <label for="kembali">Tgl. Pembayaran</label>
-                              <input type="text" id="tanggal" name="bayar_tgl" class="tanggal ui-datepicker form-control" placeholder="Tanggal Pembayaran"  data-date-format="dd-mm-yyyy">
-                            </div>
-                            <div class="form-group">
-                              <label for="kembali">Metode Pembayaran</label>
-                              <input id="bayar_metode" name="bayar_metode" type="text" class="form-control" placeholder="Metode Pembayaran"></input>
-                            </div>
-                            <div class="form-group">
-                              <label for="kembali">No. Kartu Debit</label>
-                              <input id="bayar_no_cc" name="bayar_no_cc" type="text" class="form-control" placeholder="No. Kartu Debit"></input>
-                            </div>
-                            <div class="form-group">
-                              <label for="kembali">Ref ID Debit</label>
-                              <input id="bayar_ref_cc" name="bayar_ref_cc" type="text" class="form-control" placeholder="Ref ID Debit"></input>
-                            </div>
-                            <div class="form-group">
-                              <label for="kembali">Jumlah Bayar</label>
-                              <input id="bayar_jumlah" name="bayar_jumlah" type="text" class="form-control" placeholder="Jumlah Bayar"></input>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                        <button type="button" id="btn_submit7" class="btn btn-primary">Konfirmasi</button>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-                </form>
+               
 
 
 
 
-                <div class="modal fade 8" tabindex="-1" role="dialog" aria-hidden="true">
-                  <div class="modal-dialog modal-sm">
-                    <div class="modal-content">
-
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel2">Selesai</h4>
-                      </div>
-                      <div class="modal-body">
-                        <div class="row">
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <label for="kembali">Proses Selesai</label>
-                              <p>Proses Telah Selesai Di Kerjakan Dengan Baik</p>
-                              <p><b>TERIMAKASIH</b></p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="modal-footer">
-                        
-                        <a href="<?php echo site_url('us_bbn_satu/index') ?>">
-                        <button type="button" class="btn btn-primary">Selesai</button></a>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
+                
 
 
 

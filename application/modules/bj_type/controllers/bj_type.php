@@ -1,85 +1,43 @@
 <?php 
-class bj_dealer extends biro_jasa_controller{
+class bj_type extends biro_jasa_controller{
 	var $controller;
-	function bj_dealer(){
+	function bj_type(){
 		parent::__construct();
 
 		$this->controller = get_class($this);
 		$this->load->model($this->controller.'_model','dm');
 		
-		//$this->load->helper("serviceurl");
-		
 	}
 
- function cekEmail(){
-        $email = $this->input->post('email');
-        $valid = true;
-        $this->db->where('email', $email);
-        $jumlah = $this->db->get("dealer")->num_rows();    
-        if($jumlah == 1) {
-            $valid = false;
-        }
-        
-        echo json_encode(array('valid' => $valid));
-    
-    }
-function cekId(){
-        $id = $this->input->post('id');
-        $valid = true;
-        $this->db->where('id', $id);
-        $jumlah = $this->db->get("dealer")->num_rows();    
-        if($jumlah == 1) {
-            $valid = false;
-        }
-        
-        echo json_encode(array('valid' => $valid));
-    
-    }
+
+
+
+
+
+
 
 function index(){
 		$data_array=array();
 		$content = $this->load->view($this->controller."_view",$data_array,true);
 
-		$this->set_subtitle("Dealer");
-		$this->set_title("Dealer");
+		$this->set_subtitle("Data Type");
+		$this->set_title("Data Type");
 		$this->set_content($content);
 		$this->cetak();
 }
 
 
 function baru(){
-        $data_array=array();
-
+    
         $data_array['action'] = 'simpan';
+
         $content = $this->load->view($this->controller."_form_view",$data_array,true);
-        $this->set_subtitle("Tambah Dealer");
-        $this->set_title("Tambah Dealer");
+        $this->set_subtitle("Tambah Type");
+        $this->set_title("Tambah Type");
         $this->set_content($content);
         $this->cetak();
-}
-
-
-function cek_email($email){
-    $this->db->where("email",$email);
-    if($this->db->get("dealer")->num_rows() > 0)
-    {
-         $this->form_validation->set_message('cek_email', ' %s Sudah ada');
-         return false;
     }
 
-}
-
-
-
-function cek_id($id){
-    $this->db->where("id",$id);
-    if($this->db->get("dealer")->num_rows() > 0)
-    {
-         $this->form_validation->set_message('cek_id', ' %s Sudah ada');
-         return false;
-    }
-
-}
 
 
 
@@ -87,32 +45,28 @@ function simpan(){
 
 
     $post = $this->input->post();
-    unset($post['old_id']);
        
 
 
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('id','Kode Dealer','callback_cek_id');    
-        $this->form_validation->set_rules('nama','NAMA','required');
-        $this->form_validation->set_rules('telp','NO. TELP','required');
-        $this->form_validation->set_rules('alamat','ALAMAT','required');   
-        $this->form_validation->set_rules('email','Email','callback_cek_email');    
-        // $this->form_validation->set_rules('pelaksana_nip','NIP','required');         
+        $this->form_validation->set_rules('tipe','Type','required');
+          
+          
          
         $this->form_validation->set_message('required', ' %s Harus diisi ');
         
         $this->form_validation->set_error_delimiters('', '<br>');
 
      
-        $userdata = $this->session->userdata('bj_login');
-        $post['id_birojasa'] = $userdata['birojasa_id'];
+
         //show_array($data);
 
 if($this->form_validation->run() == TRUE ) { 
 
+        $userdata = $this->session->userdata('bj_login');
+        $post['id_birojasa'] = $userdata['birojasa_id'];
         
-        $res = $this->db->insert('dealer', $post); 
-        
+        $res = $this->db->insert('m_tipe', $post); 
         if($res){
             $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
         }
@@ -136,37 +90,22 @@ function update(){
 
 
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('nama','NAMA','required');
-        $this->form_validation->set_rules('alamat','ALAMAT','required'); 
-        $this->form_validation->set_rules('telp','NO. TELP','required'); 
-        $this->form_validation->set_rules('email','EMAIL','required');
-
-        // if ($post['email']!=$post['old_email']) {
-        //            $this->form_validation->set_rules('email','Email','callback_cek_email_update'); 
-        // }  
-        if ($post['id']!=$post['old_id']) {
-                   $this->form_validation->set_rules('id','Kode Dealer','callback_cek_id'); 
-        }else{
-
-        }         
-         
+        $this->form_validation->set_rules('tipe','Type','required');     
         $this->form_validation->set_message('required', ' %s Harus diisi ');
         
         $this->form_validation->set_error_delimiters('', '<br>');
 
      
 
-        // show_array($data);
-        // exit;
-
+        //show_array($data);
 
 if($this->form_validation->run() == TRUE ) { 
-        $id = $post['old_id'];
-        unset($post['old_id']);
-        $this->db->where("id",$id);
-        $res = $this->db->update('dealer', $post); 
+
+        $this->db->where("id",$post['id']);
+        $res = $this->db->update('m_tipe', $post); 
+
         if($res){
-            $arr = array("error"=>false,'message'=>"BERHASIL DIUPDATE ");
+            $arr = array("error"=>false,'message'=>"BERHASIL DIUPDATE");
         }
         else {
              $arr = array("error"=>true,'message'=>"GAGAL  DIUPDATE");
@@ -191,9 +130,11 @@ else {
         $sord = isset($_REQUEST['order'][0]['dir'])?$_REQUEST['order'][0]['dir']:"asc"; // get the direction if(!$sidx) $sidx =1;  
         
   
-        $nama = $_REQUEST['columns'][1]['search']['value'];
+        $tipe = $_REQUEST['columns'][1]['search']['value'];
+        
         $userdata = $this->session->userdata('bj_login');
-        $birojasa = $userdata['birojasa_id'];
+        $birojasa = $userdata['birojasa_id']; 
+        // show_array($userdata);
 
 
       //  order[0][column]
@@ -201,7 +142,7 @@ else {
 				"sort_by" => $sidx,
 				"sort_direction" => $sord,
 				"limit" => null,
-				"nama" => $nama, 
+				"tipe" => $tipe,
                 "birojasa" => $birojasa
 				
 				 
@@ -219,36 +160,31 @@ else {
           
         
         $result = $this->dm->data($req_param)->result_array();
+        // echo $this->db->last_query();
         
 
        
         $arr_data = array();
         foreach($result as $row) : 
-		// $daft_id = $row['daft_id'];
-        $id = $row['id'];
-        $hapus = "<a href ='#' onclick=\"hapus('$id')\" class='btn btn-danger btn-xs'><i class='fa fa-trash'></i>Hapus</a>
-        <a href ='sa_dealer/editdata?id=$id' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i>Edit</a>";
+		$id = $row['id'];
 
         $action = "<div class='btn-group'>
-                              <button type='button' class='btn btn-primary'>Pending</button>
+                              <button type='button' class='btn btn-primary'>Action</button>
                               <button type='button' class='btn btn-primary dropdown-toggle' data-toggle='dropdown'>
                                 <span class='caret'></span>
                                 <span class='sr-only'>Toggle Dropdown</span>
                               </button>
                               <ul class='dropdown-menu' role='menu'>
                                 <li><a href='#' onclick=\"hapus('$id')\" ><i class='fa fa-trash'></i> Hapus</a></li>
-                                <li><a href='bj_dealer/editdata?id=$id'><i class='fa fa-edit'></i> Edit</a></li>
+                                <li><a href='bj_type/editdata?id=$id'><i class='fa fa-edit'></i> Edit</a></li>
                               </ul>
                             </div>";
         	
         	 
         	$arr_data[] = array(
         		$row['id'],
-        		$row['nama'],
-        		$row['alamat'],
-        		$row['telp'], 
-        		$row['email'],
-        		$action
+        		$row['tipe'],
+        	   $action
         		
          			 
         		  				);
@@ -263,41 +199,19 @@ else {
         echo json_encode($responce); 
     }
 
-    function editsimpan(){
-    	
-    	$post = $this->input->post();
-    	$id = $post['id'];
+   
 
-
-    	$data = array(  'id' => $post['id'],
-						'nama' => $post['nama'],
-						'email' => $post['email'],
-						'alamat' => $post['alamat'],
-						'no_siup' => $post['no_siup'],
-						'no_npwp' => $post['no_npwp'],
-						'no_tdp' => $post['no_tdp'],
-						'telp' => $post['telp'],
-						'hp' => $post['hp'],
-
-
-						);
-    	
-
-    	$this->db->where('id', $id);
-    	$this->db->update('biro_jasa', $data);
-    	redirect('sa_birojasa');
-
-    }
 
     function editdata(){
-    	 $get = $this->input->get(); 
-    	 $id = $get['id'];
+    	
+         $get = $this->input->get(); 
+         $id = $get['id'];
 
-    	 $this->db->where('id',$id);
-    	 $dealer = $this->db->get('dealer');
-    	 $data = $dealer->row_array();
+         $this->db->where('id',$id);
+         $jenis = $this->db->get('m_tipe');
+         $data_array = $jenis->row_array();
 
-         $data['action'] = 'update';
+         $data_array['action'] = 'update';
          // show_array($data); exit;
     	 
 		
@@ -314,12 +228,13 @@ else {
     	// 		'hp' => $data->hp,
 
     	// 	);
-		$content = $this->load->view($this->controller."_form_view",$data,true);
 
-         // $content = $this->load->view($this->controller."_form_view",$data,true);
+        
 
-		$this->set_subtitle("Edit Dealer");
-		$this->set_title("Edit Dealer");
+        $content = $this->load->view($this->controller."_form_view",$data_array,true);
+
+		$this->set_subtitle("Edit Jenis");
+		$this->set_title("Edit Jenis");
 		$this->set_content($content);
 		$this->cetak();
 
@@ -330,11 +245,11 @@ else {
 
     function hapusdata(){
     	$get = $this->input->post();
-    	$id = $get['id'];
+    	$id = $get['tipe'];
 
     	$data = array('id' => $id, );
 
-    	$res = $this->db->delete('dealer', $data);
+    	$res = $this->db->delete('m_tipe', $data);
         if($res){
             $arr = array("error"=>false,"message"=>"DATA BERHASIL DIHAPUS");
         }

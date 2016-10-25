@@ -280,6 +280,8 @@ function simpan(){
 
 if($this->form_validation->run() == TRUE ) { 
 
+
+
         $post['status'] = 1;
         $post['tgl_faktur'] = flipdate($post['tgl_faktur']);
         $post['tgl_entri'] = flipdate($post['tgl_entri']);
@@ -755,6 +757,49 @@ function get_data_type(){
     $this->db->where("NO_RANGKA", $no_rangka );
     $data_type = $this->db->get("t_type")->row();
     echo json_encode($data_type);
+}
+
+function dealer(){
+    $post = $this->input->post();
+
+    $userdata = $this->session->userdata('bj_login');
+    $birojasa = $userdata['birojasa_id'];
+
+    // show_array($post);
+    // echo $post['NamaDealer'];
+    // exit;
+
+    //echo "nomor rangka  $no_rangka ";
+    $this->db->where("id", $post['KodeDealer']);
+    $this->db->where("id_birojasa", $birojasa);
+    $type = $this->db->get("dealer");
+
+    if ($type->num_rows()<1) {
+      $data['id_birojasa'] = $birojasa;
+      $data['id'] = $post['KodeDealer'];
+      $data['nama'] = $post['NamaDealer'];
+      $this->db->insert('dealer', $data);
+    }
+
+            // $ret = array('' => '- Pilih Satu -', );
+            //     foreach($res->result_array() as $row) : 
+            //             $ret[$row[$vINDEX]] = $row[$vINDEX].' - '.$row[$vVALUE];
+            //     endforeach;
+
+    $this->db->where("id_birojasa", $birojasa);
+    $this->db->order_by("id");
+    $rs = $this->db->get("dealer");
+    foreach($rs->result() as $row ) :
+
+      if ($row->id==$post['KodeDealer']) {
+        echo "<option value=$row->id selected> $row->id - $row->nama</option>";
+      }else{
+        echo "<option value=$row->id> $row->id - $row->nama</option>";
+      }
+    endforeach;
+
+
+    
 }
 
 	

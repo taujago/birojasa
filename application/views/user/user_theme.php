@@ -107,8 +107,8 @@ $userdata = $this->session->userdata('user_login');
                     </li>
                   </ul>
                 </li>
-                </li>
-                <li><a href="<?php echo site_url('/'); ?>us_add_user"><i class="fa fa-users"></i> User </span></a>
+                
+                <li><a href="<?php echo site_url('/'); ?>bj_add_user"><i class="fa fa-users"></i> User </span></a>
                 </li>
               </ul>
             </div>
@@ -148,10 +148,15 @@ $userdata = $this->session->userdata('user_login');
                   </li>
                 </ul>
               </li>
+
+              
+
             </ul>
           </nav>
         </div>
+
       </div>
+
       <div class="right_col" role="main">
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
@@ -162,13 +167,17 @@ $userdata = $this->session->userdata('user_login');
                 </div>
               </div>
               <div>
+
       <?php echo $content ?>
+
       </div>
               <div class="clearfix"></div>
             </div>
           </div>
         </div>
-        <footer>
+
+
+              <footer>
           <div class="copyright-info">
             <p class="pull-right"><a href="https://www.tigapilarmajumandiri.com">Tiga Pilar Maju Mandiri</a>  
             </p>
@@ -230,9 +239,6 @@ $userdata = $this->session->userdata('user_login');
     <!-- AdminLTE for demo purposes -->
     <script src="<?php echo base_url('assets/dist/js/demo.js'); ?>"></script>
 
-      <script src="<?php echo base_url('assets/js/custom.js'); ?>"></script>
-  <!-- form wizard -->
-
 
 
   <!-- /datepicker -->
@@ -240,4 +246,29 @@ $userdata = $this->session->userdata('user_login');
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- coba  -->
 

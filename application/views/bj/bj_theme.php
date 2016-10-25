@@ -121,6 +121,8 @@ $userdata = $this->session->userdata('bj_login');
                     </li>
                     <li><a href="<?php echo site_url('bj_samsat'); ?>">Samsat</a>
                     </li>
+                    <li><a href="<?php echo site_url('bj_type'); ?>">Type</a>
+                    </li>
                     <li><a href="<?php echo site_url('bj_warna'); ?>">Warna</a>
                     </li>
                     <li><a href="<?php echo site_url('bj_jenis'); ?>">Jenis</a>
