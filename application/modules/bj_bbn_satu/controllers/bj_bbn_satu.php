@@ -21,7 +21,14 @@ class bj_bbn_satu extends biro_jasa_controller{
          $get = $this->input->get(); 
          $id = $get['id'];
 
-         $this->db->where('id',$id);
+
+         $this->db->select('bbn1.*, pb.nama as nm_pengurus_bpkb, ps.nama as nm_pengurus_stnk, t.tipe as nm_tipe');
+
+        $this->db->from("bj_bbn_satu bbn1");
+        $this->db->join('pengguna ps','bbn1.pengurus_stnk=ps.id');
+        $this->db->join('pengguna pb','bbn1.pengurus_bpkb=pb.id');
+        $this->db->join('m_tipe t','bbn1.type=t.id');
+        $this->db->where('bbn1.id',$id);
          $bbn = $this->db->get('bj_bbn_satu');
          // echo $this->db->last_query(); exit();
 
@@ -74,7 +81,6 @@ class bj_bbn_satu extends biro_jasa_controller{
         $data['kecamatan'] = $kecamatan['kecamatan'];
         $data['polda'] = $polda['polda_nama'];
         $data['samsat'] = $samsat['nama'];
-        $data['pengurus'] = $pengurus['nama'];
     
 
 
@@ -121,9 +127,9 @@ function baru(){
 
         $data_array['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
 
-        $data_array['arr_type'] = $this->cm->arr_type("estimasi_bbn_satu", $id_birojasa, "tipe_kendaraan", "tipe_kendaraan");
+        $data_array['arr_merek'] = $this->cm->arr_dropdown3("m_merek", "kode", "nama", "nama", "id_birojasa", $id_birojasa);
 
-        $data_array['arr_merek'] = $this->cm->arr_dropdown("m_merek", "kode", "nama", "nama");
+        $data_array['arr_type'] = array('' => "- Pilih Merk Terlebih Dahulu -", );
 
         $data_array['arr_dealer'] = $this->cm->arr_dropdown4("dealer", "id", "nama", $id_birojasa);
 
@@ -196,7 +202,8 @@ function baru(){
 
           $data['action'] = 'update';
 
-          $data['arr_type'] = $this->cm->arr_type("estimasi_bbn_satu", $id_birojasa, "tipe_kendaraan", "tipe_kendaraan");
+          $data['arr_merek'] = $this->cm->arr_dropdown3("m_merek", "kode", "nama", "nama", "id_birojasa", $id_birojasa);
+        $data['arr_type'] = $this->cm->arr_dropdown3("m_tipe", "id", "tipe", "tipe", "id_merk", $data['id_merek']);
           $data['arr_dealer'] = $this->cm->arr_dropdown4("dealer", "id", "nama", $id_birojasa);
 
          $data['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
@@ -205,7 +212,7 @@ function baru(){
 
          $data['arr_tahun'] = $this->cm->arr_tahun();
 
-        $data['arr_merek'] = $this->cm->arr_dropdown("m_merek", "kode", "nama", "nama");
+        
 
         $data['arr_jenis'] = $this->cm->arr_dropdown("m_jenis", "id_jenis", "jenis", "jenis");
 
@@ -280,9 +287,13 @@ function simpan(){
 
 if($this->form_validation->run() == TRUE ) { 
 
-
-
-        $post['status'] = 1;
+  $this->db->where('no_rangka', $post['no_rangka']);
+  $this->db->where('tahun_buat', $post['tahun_buat']);
+  $get = $this->db->get('bj_bbn_satu');
+  if ($get->num_rows>0) {
+    $arr = array("error"=>true,'message'=>"Data Tersebut Sudah Di Input Sebelumnya");
+  }else{
+    $post['status'] = 1;
         $post['tgl_faktur'] = flipdate($post['tgl_faktur']);
         $post['tgl_entri'] = flipdate($post['tgl_entri']);
 
@@ -324,6 +335,9 @@ if($this->form_validation->run() == TRUE ) {
              $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
         }
     }
+  }
+
+        
 }
 else {
     $arr = array("error"=>true,'message'=>validation_errors());
@@ -380,6 +394,8 @@ else {
           
         
         $result = $this->dm->data($req_param)->result_array();
+
+        // echo $this->db->last_query();
         
 
        
@@ -387,6 +403,8 @@ else {
         foreach($result as $row) : 
         // $daft_id = $row['daft_id'];
         $id = $row['id'];
+        $id_pengurus_bpkb = $row['pengurus_bpkb'];
+        $id_pengurus_stnk = $row['pengurus_stnk'];
         $no_rangka = $row['no_rangka'];
         $action = "<div class='btn-group'>
                               <button type='button' class='btn btn-primary'>Pending</button>
@@ -399,6 +417,9 @@ else {
                                 <li><a href='bj_bbn_satu/editdata?id=$id'><i class='fa fa-edit'></i> Edit</a></li>
                               </ul>
                             </div>";
+
+          $pengurus = '<b>BPKB :</b> <br /><a href='. site_url('bj_add_user/editdata?id='.$id_pengurus_bpkb).' >'.$row['nm_pengurus_bpkb'].'</a><br />'.
+                      '<b>STNK :</b> <br /><a href='. site_url('bj_add_user/editdata?id='.$id_pengurus_stnk).' >'.$row['nm_pengurus_stnk'].'</a><br />';
         // <a href ='bj_bbn_satu/editdata?id=$id' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i>Edit</a>";
         $nama ="<a href='bj_bbn_satu/lihatdata?id=$id'>$no_rangka</a>";
         $tgl_entri = flipdate($row['tgl_entri']);
@@ -415,7 +436,7 @@ else {
                 rupiah($row['rp_daftar_stnk']),
                 rupiah($row['rp_pajak_kendaraan']),
                 rupiah($row['rp_admin_fee']),
-                $row['bj_nama_user'],
+                $pengurus,
                 
                 $action
                 
@@ -748,16 +769,38 @@ function get_data_service(){
 }
 
 
-function get_data_type(){
-    $post = $this->input->post();
+// function get_data_type(){
+//     $post = $this->input->post();
 
-    $no_rangka  = substr($post['no_rangka'], 0, 10); 
+//     $no_rangka  = substr($post['no_rangka'], 0, 10); 
 
-    //echo "nomor rangka  $no_rangka ";
-    $this->db->where("NO_RANGKA", $no_rangka );
-    $data_type = $this->db->get("t_type")->row();
-    echo json_encode($data_type);
+//     //echo "nomor rangka  $no_rangka ";
+//     $this->db->where("NO_RANGKA", $no_rangka );
+//     $data_type = $this->db->get("t_type")->row();
+//     echo json_encode($data_type);
+// }
+
+function get_tipe(){
+    $data = $this->input->post();
+
+    
+    $id_merk = $data['id_merek'];
+
+    $userdata = $this->session->userdata('bj_login');
+    $birojasa = $userdata['birojasa_id'];
+
+    $this->db->where("id_merk",$id_merk);
+    $this->db->where("id_birojasa", $birojasa);
+    $this->db->order_by("tipe");
+    $rs = $this->db->get("m_tipe");
+    echo "<option value=''>- Pilih Tipe -</option>";
+    foreach($rs->result() as $row ) :
+        echo "<option value=$row->id>$row->tipe </option>";
+    endforeach;
+
+
 }
+
 
 function dealer(){
     $post = $this->input->post();

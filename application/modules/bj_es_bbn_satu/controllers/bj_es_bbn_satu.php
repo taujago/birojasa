@@ -41,8 +41,9 @@ function baru(){
         $data_array['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
 
         $data_array['arr_warna'] = $this->cm->arr_dropdown("m_warna_tnkb", "id_warna_tnkb", "warna_tnkb", "warna_tnkb");
-        $data_array['arr_merk'] = $this->cm->arr_dropdown("m_merek", "kode", "nama", "nama");
-        $data_array['arr_tipe'] = $this->cm->arr_dropdown("m_tipe", "id", "tipe", "tipe");
+        $data_array['arr_merk'] = $this->cm->arr_dropdown3("m_merek", "kode", "nama", "nama", "id_birojasa", $birojasa);
+
+        $data_array['arr_tipe'] = array('' => "- Pilih Merk Terlebih Dahulu -", );
 
         $data_array['arr_pilih_polda'] = $this->dm->arr_pilih_polda();
 
@@ -289,10 +290,34 @@ else {
 }
 
 
+function get_tipe(){
+    $data = $this->input->post();
+
+    
+    $id_merk = $data['merk_kendaraan'];
+
+    $userdata = $this->session->userdata('bj_login');
+    $birojasa = $userdata['birojasa_id'];
+
+    $this->db->where("id_merk",$id_merk);
+    $this->db->where("id_birojasa", $birojasa);
+    $this->db->order_by("tipe");
+    $rs = $this->db->get("m_tipe");
+    echo "<option value=''>- Pilih Tipe -</option>";
+    foreach($rs->result() as $row ) :
+        echo "<option value=$row->id>$row->tipe </option>";
+    endforeach;
+
+
+}
+
+
    
     function editdata(){
     	 $get = $this->input->get(); 
     	 $id = $get['id'];
+         $userdata = $this->session->userdata('bj_login');
+        $birojasa = $userdata['birojasa_id'];
 
     	 $this->db->where('id',$id);
     	 $estimasi_bbn_satu = $this->db->get('estimasi_bbn_satu');
@@ -305,9 +330,10 @@ else {
 
          $data['arr_polda'] = $this->cm->arr_dropdown("m_polda", "polda_id", "polda_nama", "polda_nama");
 
-       $data['arr_warna'] = $this->cm->arr_dropdown("m_warna_tnkb", "id_warna_tnkb", "warna_tnkb", "warna_tnkb");
-       $data['arr_merk'] = $this->cm->arr_dropdown("m_merek", "kode", "nama", "nama");
-        $data['arr_tipe'] = $this->cm->arr_dropdown("m_tipe", "id", "tipe", "tipe");
+        $data['arr_warna'] = $this->cm->arr_dropdown("m_warna_tnkb", "id_warna_tnkb", "warna_tnkb", "warna_tnkb");
+
+        $data['arr_merk'] = $this->cm->arr_dropdown3("m_merek", "kode", "nama", "nama", "id_birojasa", $birojasa);
+        $data['arr_tipe'] = $this->cm->arr_dropdown3("m_tipe", "id", "tipe", "tipe", "id_merk", $data['merk_kendaraan']);
 
         // $data['arr_samsat'] = $this->cm->arr_dropdown2("samsat", "id","nama", "nama", "nama");
 

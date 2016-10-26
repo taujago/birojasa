@@ -32,6 +32,9 @@ class us_bbn_satu extends user_controller{
 
 
     function lihatdata(){
+
+        
+
          $get = $this->input->get(); 
          $id = $get['id'];
 
@@ -40,6 +43,17 @@ class us_bbn_satu extends user_controller{
          // echo $this->db->last_query(); exit();
 
          $data = $bbn->row_array();
+
+        $userdata = $this->session->userdata('user_login');
+        $pengguna = $userdata['id'];
+
+         if ($data['pengurus_stnk']==$pengguna) {
+            
+             $data['pengerjaan_stnk'] = 'stnk';
+         }
+         if($data['pengurus_bpkb']==$pengguna){
+            $data['pengerjaan_bpkb']= 'bpkb';
+         }
         
 
          // show_array($data);exit;
@@ -65,11 +79,11 @@ class us_bbn_satu extends user_controller{
 
           $warna = $this->dm->datawilayah('WARNA_ID', 'm_warna', $data['id_warna'], 'WARNA_NAMA')->row_array();
 
-          $data['nama_samsat_masuk_user'] = $this->dm->get_user($data['samsat_masuk_user']);
-          $data['nama_stnk_serah_user'] = $this->dm->get_user($data['stnk_serah_user']);
-          $data['nama_bpkb_serah_user'] = $this->dm->get_user($data['bpkb_serah_user']);
-          $data['nama_bayar_user'] = $this->dm->get_user($data['bayar_user']);
-          $data['nama_biaya_lebih_user'] = $this->dm->get_user($data['biaya_lebih_user']);
+          // $data['nama_samsat_masuk_user'] = $this->dm->get_user($data['samsat_masuk_user']);
+          // $data['nama_stnk_serah_user'] = $this->dm->get_user($data['stnk_serah_user']);
+          // $data['nama_bpkb_serah_user'] = $this->dm->get_user($data['bpkb_serah_user']);
+          // $data['nama_bayar_user'] = $this->dm->get_user($data['bayar_user']);
+          // $data['nama_biaya_lebih_user'] = $this->dm->get_user($data['biaya_lebih_user']);
 
 
         $data['nama_dealer'] =  $dealer['nama'];
@@ -84,13 +98,22 @@ class us_bbn_satu extends user_controller{
         $data['kecamatan'] = $kecamatan['kecamatan'];
         $data['polda'] = $polda['polda_nama'];
         $data['samsat'] = $samsat['nama'];
-        $data['pengurus'] = $pengurus['nama'];
+        $data['v_rp_daftar_stnk'] = $data['rp_daftar_stnk'];
+        $data['v_rp_daftar_bpkb'] = $data['rp_daftar_bpkb'];
+        $data['v_rp_admin_fee'] = $data['rp_admin_fee'];
+        $data['v_rp_pajak_kendaraan'] = $data['rp_pajak_kendaraan'];
+        $data['v_bayar_jumlah_stnk'] = $data['bayar_jumlah_stnk'];
+        $data['v_bayar_jumlah_bpkb'] = $data['bayar_jumlah_bpkb'];
+        $data['v_biaya_lebih_jumlah_stnk'] = $data['biaya_lebih_jumlah_stnk'];
+        // $data['pengurus'] = $pengurus['nama'];
         $data['nama_status'] = $this->status_button[$data['status']];
         $data['rp_daftar_stnk'] = rupiah($data['rp_daftar_stnk']);
         $data['rp_daftar_bpkb'] = rupiah($data['rp_daftar_bpkb']);
         $data['rp_admin_fee'] = rupiah($data['rp_admin_fee']);
         $data['rp_pajak_kendaraan'] = rupiah($data['rp_pajak_kendaraan']);
-        $data['bayar_jumlah'] = rupiah($data['bayar_jumlah']);
+        $data['bayar_jumlah_stnk'] = rupiah($data['bayar_jumlah_stnk']);
+        $data['bayar_jumlah_bpkb'] = rupiah($data['bayar_jumlah_bpkb']);
+
 
         
         $data['samsat_masuk_tgl'] = flipdate($data['samsat_masuk_tgl']);
@@ -100,7 +123,8 @@ class us_bbn_satu extends user_controller{
         $data['tgl_entri'] = flipdate($data['tgl_entri']);
         $data['bpkb_tgl'] = flipdate($data['bpkb_tgl']);
         $data['tgl_faktur'] = flipdate($data['tgl_faktur']);
-        $data['bayar_tgl'] = flipdate($data['bayar_tgl']);
+        $data['bayar_tgl_stnk'] = flipdate($data['bayar_tgl_stnk']);
+        $data['bayar_tgl_bpkb'] = flipdate($data['bayar_tgl_bpkb']);
 
         
 
@@ -266,7 +290,7 @@ function update(){
 
 
 
-function update1(){
+function update_stnk1(){
 
     $userdata = $this->session->userdata('user_login');
     $post = $this->input->post();
@@ -276,13 +300,11 @@ function update1(){
     $post['samsat_masuk_user'] = $userdata['id'];
     $post['samsat_masuk_tgl'] = flipdate($post['samsat_masuk_tgl']);
     $post['stnk_serah_tgl'] = flipdate($post['stnk_serah_tgl']);
-    $post['bpkb_serah_tgl'] = flipdate($post['bpkb_serah_tgl']);
     $post['stnk_tgl'] = flipdate($post['stnk_tgl']);
-    $post['bpkb_tgl'] = flipdate($post['bpkb_tgl']);
-    $post['bayar_tgl'] = flipdate($post['bayar_tgl']);
+    $post['bayar_tgl_stnk'] = flipdate($post['bayar_tgl_stnk']);
 
-    $post['biaya_lebih_jumlah'] = bersih($post['biaya_lebih_jumlah']);
-    $post['bayar_jumlah'] = bersih($post['bayar_jumlah']);
+    $post['biaya_lebih_jumlah_stnk'] = bersih($post['biaya_lebih_jumlah_stnk']);
+    $post['bayar_jumlah_stnk'] = bersih($post['bayar_jumlah_stnk']);
     // unset($post['bayar_jumlah']);
 
     foreach ($post as $key => $value) {
@@ -303,16 +325,16 @@ function update1(){
         $post['stnk_serah_user'] = $userdata['id'];
     }
 
-    if (!empty($post['biaya_lebih_jumlah'])) {
+    if (!empty($post['biaya_lebih_jumlah_stnk'])) {
         $post['biaya_lebih_user'] = $userdata['id'];
     }
 
-    if (!empty($post['bpkb_serah_tgl'])) {
-        $post['bpkb_serah_user'] = $userdata['id'];
-    }
+    // if (!empty($post['bpkb_serah_tgl'])) {
+    //     $post['bpkb_serah_user'] = $userdata['id'];
+    // }
 
-    if (!empty($post['bayar_tgl'])) {
-        $post['bayar_user'] = $userdata['id'];
+    if (!empty($post['bayar_tgl_stnk'])) {
+        $post['bayar_user_stnk'] = $userdata['id'];
     }
     if (!empty($post['stnk_serah_tgl'])) {
         $post['stnk_serah_user'] = $userdata['id'];
@@ -321,7 +343,7 @@ function update1(){
     $this->load->library('form_validation');
 
     $this->db->where('id', $id);
-    $this->db->where('status', 1);
+    $this->db->where('status_stnk', 0);
     $vld = $this->db->get('bj_bbn_satu');
 
 
@@ -349,7 +371,169 @@ function update1(){
 }
 
 
-function update2(){
+function update_bpkb1(){
+
+    $userdata = $this->session->userdata('user_login');
+    $post = $this->input->post();
+    $id = $post['id'];
+
+    
+    $post['bpkb_serah_tgl'] = flipdate($post['bpkb_serah_tgl']);
+    $post['bpkb_tgl'] = flipdate($post['bpkb_tgl']);
+    $post['bayar_tgl_bpkb'] = flipdate($post['bayar_tgl_bpkb']);
+
+    $post['biaya_lebih_jumlah_bpkb'] = bersih($post['biaya_lebih_jumlah_bpkb']);
+    $post['bayar_jumlah_bpkb'] = bersih($post['bayar_jumlah_bpkb']);
+    // unset($post['bayar_jumlah']);
+
+    foreach ($post as $key => $value) {
+        if(empty($value)){
+            unset($post[$key]);
+        }
+    }
+
+    // show_array($post);
+    // echo count($post);
+    // exit;
+
+    
+
+    if (!empty($post['bpkb_serah_tanggal'])) {
+        $post['bpkb_serah_user'] = $userdata['id'];
+    }
+
+    if (!empty($post['biaya_lebih_jumlah_bpkb'])) {
+        $post['biaya_lebih_user'] = $userdata['id'];
+    }
+
+    // if (!empty($post['bpkb_serah_tgl'])) {
+    //     $post['bpkb_serah_user'] = $userdata['id'];
+    // }
+
+    if (!empty($post['bayar_tgl_bpkb'])) {
+        $post['bayar_user_bpkb'] = $userdata['id'];
+    }
+    if (!empty($post['bpkb_serah_tgl'])) {
+        $post['bpkb_serah_user'] = $userdata['id'];
+    }
+
+    $this->load->library('form_validation');
+
+    $this->db->where('id', $id);
+    $this->db->where('status_bpkb', 0);
+    $vld = $this->db->get('bj_bbn_satu');
+
+
+    
+    if($vld->num_rows() > 0){
+
+
+        // $post['status']=2;
+        $this->db->where("id",$id);
+        $this->db->set('tgl_update', 'NOW()', FALSE);
+        $res = $this->db->update('bj_bbn_satu', $post);
+        if($res){
+            $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
+            
+        }
+        else {
+             $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
+        }
+    }
+    else{
+        $arr = array("error"=>true, 'message'=>"DATA BBN INI TELAH ANDA KONFIRMASI SEBELUMNYA");
+    }
+        echo json_encode($arr);
+
+}
+
+
+function update_bpkb2(){
+
+    
+    $post = $this->input->post();
+    
+   
+    // show_array($post);
+    // exit;
+    
+    $this->load->library('form_validation');
+    $this->form_validation->set_rules('bpkb_tgl','Tgl. BPKB','required');
+    $this->form_validation->set_rules('biaya_lebih_jumlah_bpkb','Biaya Lebih','required');
+    $this->form_validation->set_rules('bpkb_serah_tgl','Tgl. Serah BPKB','required');
+    $this->form_validation->set_rules('bayar_tgl_bpkb','Tgl. Pembayaran','required');
+    $this->form_validation->set_rules('bayar_metode_bpkb','Metode Bayar','required');
+    $this->form_validation->set_rules('bayar_ref_cc_bpkb','Ref. ID Debit','required');
+    $this->form_validation->set_rules('bayar_no_cc_bpkb','No. Kartu Debit','required');
+    $this->form_validation->set_rules('bpkb_no','No. BPKB','required');
+    $this->form_validation->set_rules('bayar_jumlah_bpkb','Jumlah Pembayaran','required');
+         
+    $this->form_validation->set_message('required', 'Anda Belum Mengisi Field %s');
+        
+    $this->form_validation->set_error_delimiters('', '<br>');
+
+    $userdata = $this->session->userdata('user_login');
+    $id = $post['id'];
+    
+    $post['bpkb_serah_tgl'] = flipdate($post['bpkb_serah_tgl']);
+    $post['bpkb_tgl'] = flipdate($post['bpkb_tgl']);
+    $post['bayar_tgl_bpkb'] = flipdate($post['bayar_tgl_bpkb']);
+
+    $post['biaya_lebih_jumlah_bpkb'] = bersih($post['biaya_lebih_jumlah_bpkb']);
+    $post['bayar_jumlah_bpkb'] = bersih($post['bayar_jumlah_bpkb']);
+    
+    $post['status_bpkb'] = '1';
+
+    $this->db->where('id', $id);
+    $this->db->where('status_bpkb', 0);
+    $vld = $this->db->get('bj_bbn_satu');
+
+    
+
+     if (!empty($post['bpkb_serah_tanggal'])) {
+        $post['bpkb_serah_user'] = $userdata['id'];
+    }
+
+    if (!empty($post['biaya_lebih_jumlah_bpkb'])) {
+        $post['biaya_lebih_user'] = $userdata['id'];
+    }
+
+    // if (!empty($post['bpkb_serah_tgl'])) {
+    //     $post['bpkb_serah_user'] = $userdata['id'];
+    // }
+
+    if (!empty($post['bayar_tgl_bpkb'])) {
+        $post['bayar_user_bpkb'] = $userdata['id'];
+    }
+    if (!empty($post['bpkb_serah_tgl'])) {
+        $post['bpkb_serah_user'] = $userdata['id'];
+    }
+
+    
+   if($this->form_validation->run() == TRUE ){
+
+
+        // $post['status']=2;
+        $this->db->where("id",$id);
+        $this->db->set('tgl_update', 'NOW()', FALSE);
+        $res = $this->db->update('bj_bbn_satu', $post);
+        if($res){
+            $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
+            
+        }
+        else {
+             $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
+        }
+    }
+    else{
+        $arr = array("error"=>true,'message'=>validation_errors());
+    }
+        echo json_encode($arr);
+
+}
+
+
+function update_stnk2(){
 
     
     $post = $this->input->post();
@@ -361,17 +545,14 @@ function update2(){
     $this->load->library('form_validation');
     $this->form_validation->set_rules('samsat_masuk_tgl','No. STNK','required');
     $this->form_validation->set_rules('stnk_tgl','Tgl. STNK','required');
-    $this->form_validation->set_rules('bpkb_tgl','Tgl. BPKB','required');
-    $this->form_validation->set_rules('bpkb_no','No. BPKB','required');
-    $this->form_validation->set_rules('biaya_lebih_jumlah','Biaya Lebih','required');
+    $this->form_validation->set_rules('biaya_lebih_jumlah_stnk','Biaya Lebih','required');
     $this->form_validation->set_rules('stnk_serah_tgl','Tgl. Serah STNK','required');
-    $this->form_validation->set_rules('bpkb_serah_tgl','Tgl. Serah BPKB','required');
-    $this->form_validation->set_rules('bayar_tgl','Tgl. Pembayaran','required');
-    $this->form_validation->set_rules('bayar_metode','Metode Bayar','required');
-    $this->form_validation->set_rules('bayar_ref_cc','Ref. ID Debit','required');
-    $this->form_validation->set_rules('bayar_no_cc','No. Kartu Debit','required');
+    $this->form_validation->set_rules('bayar_tgl_stnk','Tgl. Pembayaran','required');
+    $this->form_validation->set_rules('bayar_metode_stnk','Metode Bayar','required');
+    $this->form_validation->set_rules('bayar_ref_cc_stnk','Ref. ID Debit','required');
+    $this->form_validation->set_rules('bayar_no_cc_stnk','No. Kartu Debit','required');
     $this->form_validation->set_rules('stnk_no','No. STNK','required');
-    $this->form_validation->set_rules('bayar_jumlah','Jumlah Pembayaran','required');
+    $this->form_validation->set_rules('bayar_jumlah_stnk','Jumlah Pembayaran','required');
          
     $this->form_validation->set_message('required', 'Anda Belum Mengisi Field %s');
         
@@ -382,18 +563,16 @@ function update2(){
     $post['samsat_masuk_user'] = $userdata['id'];
     $post['samsat_masuk_tgl'] = flipdate($post['samsat_masuk_tgl']);
     $post['stnk_serah_tgl'] = flipdate($post['stnk_serah_tgl']);
-    $post['bpkb_serah_tgl'] = flipdate($post['bpkb_serah_tgl']);
     $post['stnk_tgl'] = flipdate($post['stnk_tgl']);
-    $post['bpkb_tgl'] = flipdate($post['bpkb_tgl']);
-    $post['bayar_tgl'] = flipdate($post['bayar_tgl']);
+    $post['bayar_tgl_stnk'] = flipdate($post['bayar_tgl_stnk']);
 
-    $post['biaya_lebih_jumlah'] = bersih($post['biaya_lebih_jumlah']);
-    $post['bayar_jumlah'] = bersih($post['bayar_jumlah']);
+    $post['biaya_lebih_jumlah_stnk'] = bersih($post['biaya_lebih_jumlah_stnk']);
+    $post['bayar_jumlah_stnk'] = bersih($post['bayar_jumlah_stnk']);
     
-    $post['status'] = '2';
+    $post['status_stnk'] = '1';
 
     $this->db->where('id', $id);
-    $this->db->where('status', 1);
+    $this->db->where('status_stnk', 0);
     $vld = $this->db->get('bj_bbn_satu');
 
     if (empty($post['samsat_masuk_tgl'])) {
@@ -408,12 +587,9 @@ function update2(){
         $post['biaya_lebih_user'] = $userdata['id'];
     }
 
-    if (!empty($post['bpkb_serah_tgl'])) {
-        $post['bpkb_serah_user'] = $userdata['id'];
-    }
 
-    if (!empty($post['bayar_tgl'])) {
-        $post['bayar_user'] = $userdata['id'];
+    if (!empty($post['bayar_tgl_stnk'])) {
+        $post['bayar_user_stnk'] = $userdata['id'];
     }
     if (!empty($post['stnk_serah_tgl'])) {
         $post['stnk_serah_user'] = $userdata['id'];

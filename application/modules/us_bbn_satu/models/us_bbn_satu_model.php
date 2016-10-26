@@ -43,7 +43,7 @@ class us_bbn_satu_model extends CI_Model {
 
 
 		 	$this->db->select('*')->from("bj_bbn_satu");
-		 	$this->db->where('user_entri', $id);		
+		 	$this->db->where('pengurus_stnk', $id)->or_where('pengurus_bpkb', $id);		
 
 
 		 $tanggal_awal = flipdate($tanggal_awal);

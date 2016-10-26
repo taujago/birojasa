@@ -6,6 +6,7 @@ class bj_type extends biro_jasa_controller{
 
 		$this->controller = get_class($this);
 		$this->load->model($this->controller.'_model','dm');
+        $this->load->model('coremodel','cm');
 		
 	}
 
@@ -18,6 +19,9 @@ class bj_type extends biro_jasa_controller{
 
 function index(){
 		$data_array=array();
+        $userdata = $this->session->userdata('bj_login');
+        $id_birojasa = $userdata['birojasa_id'];
+        $data_array['arr_merek'] = $this->cm->arr_dropdown3("m_merek", "kode", "nama", "nama", "id_birojasa", $id_birojasa);
 		$content = $this->load->view($this->controller."_view",$data_array,true);
 
 		$this->set_subtitle("Data Type");
@@ -28,8 +32,12 @@ function index(){
 
 
 function baru(){
-    
+        $userdata = $this->session->userdata('bj_login');
+        $id_birojasa = $userdata['birojasa_id'];
         $data_array['action'] = 'simpan';
+
+        
+        $data_array['arr_merek'] = $this->cm->arr_dropdown3("m_merek", "kode", "nama", "nama", "id_birojasa", $id_birojasa);
 
         $content = $this->load->view($this->controller."_form_view",$data_array,true);
         $this->set_subtitle("Tambah Type");
@@ -131,6 +139,7 @@ else {
         
   
         $tipe = $_REQUEST['columns'][1]['search']['value'];
+        $merk = $_REQUEST['columns'][2]['search']['value'];
         
         $userdata = $this->session->userdata('bj_login');
         $birojasa = $userdata['birojasa_id']; 
@@ -143,6 +152,7 @@ else {
 				"sort_direction" => $sord,
 				"limit" => null,
 				"tipe" => $tipe,
+                "merk" => $merk,
                 "birojasa" => $birojasa
 				
 				 
@@ -182,8 +192,8 @@ else {
         	
         	 
         	$arr_data[] = array(
-        		$row['id'],
         		$row['tipe'],
+                $row['merk'],
         	   $action
         		
          			 
@@ -206,12 +216,17 @@ else {
     	
          $get = $this->input->get(); 
          $id = $get['id'];
+         $userdata = $this->session->userdata('bj_login');
+        $id_birojasa = $userdata['birojasa_id'];
+        
 
          $this->db->where('id',$id);
          $jenis = $this->db->get('m_tipe');
          $data_array = $jenis->row_array();
 
          $data_array['action'] = 'update';
+
+         $data_array['arr_merek'] = $this->cm->arr_dropdown3("m_merek", "kode", "nama", "nama", "id_birojasa", $id_birojasa);
          // show_array($data); exit;
     	 
 		
@@ -233,8 +248,8 @@ else {
 
         $content = $this->load->view($this->controller."_form_view",$data_array,true);
 
-		$this->set_subtitle("Edit Jenis");
-		$this->set_title("Edit Jenis");
+		$this->set_subtitle("Edit Type");
+		$this->set_title("Edit Type");
 		$this->set_content($content);
 		$this->cetak();
 

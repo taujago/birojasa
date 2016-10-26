@@ -86,6 +86,7 @@ $(".tanggal").datepicker().on('changeDate', function(ev){
                              
                         });   
                       $('#form_data').data('bootstrapValidator').resetForm(true);
+                      window.location = "<?php echo site_url('bj_bbn_satu') ?>";
             }
             else {
                  BootstrapDialog.alert({
@@ -121,6 +122,7 @@ $(".tanggal").datepicker().on('changeDate', function(ev){
                              
                         });   
                      // $('#form_data').data('bootstrapValidator').resetForm(true);
+                     window.location = '<?php echo site_url("$this->controller"); ?>'
             }
             else {
                  BootstrapDialog.alert({
@@ -151,7 +153,20 @@ $(".tanggal").datepicker().on('changeDate', function(ev){
       });
 
     });
-              
+         
+         $("#id_merek").change(function(){
+
+    $.ajax({
+
+            url : '<?php echo site_url("$this->controller/get_tipe") ?>',
+            data : { id_merek : $(this).val() },
+            type : 'post', 
+            success : function(result) {
+                $("#type").html(result)
+            }
+    });
+
+});     
             
 
   $("#id_polda").change(function(){

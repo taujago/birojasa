@@ -12,6 +12,14 @@
     </div>
     <div class="panel-body" id="data_umum">
 
+
+    
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Merk</label>
+      <div class="col-sm-9">
+        <?php echo form_dropdown("id_merk",$arr_merek,isset($id_merk)?$id_merk:"",'id="id_merk" class="form-control select2" style="width: 100%;"'); ?>
+      </div>
+    </div>
     <div class="form-group">
       <label class="col-sm-3 control-label">Type</label>
       <div class="col-sm-9">

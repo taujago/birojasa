@@ -23,18 +23,17 @@
       <strong><h3 class="panel-title">Tambah data </h3></strong>
     </div>
     <div class="panel-body" id="data_umum">
-
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Merk Kendaraan</label>
+      <div class="col-sm-9">
+        <?php echo form_dropdown("merk_kendaraan",$arr_merk,isset($merk_kendaraan)?$merk_kendaraan:'','id="merk_kendaraan" class="form-control input-style"'); ?>
+      </div>
+    </div>
     <div class="form-group">
       <label class="col-sm-3 control-label">Tipe Kendaraan</label>
       <div class="col-sm-9">
         <input type="hidden" name="id" id="id" value="<?php echo isset($id)?$id:""; ?>">
         <?php echo form_dropdown("tipe_kendaraan",$arr_tipe,isset($tipe_kendaraan)?$tipe_kendaraan:'','id="tipe_kendaraan" class="form-control input-style"'); ?>
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="col-sm-3 control-label">Merk Kendaraan</label>
-      <div class="col-sm-9">
-        <?php echo form_dropdown("merk_kendaraan",$arr_merk,isset($merk_kendaraan)?$merk_kendaraan:'','id="merk_kendaraan" class="form-control input-style"'); ?>
       </div>
     </div>
     <div class="form-group">

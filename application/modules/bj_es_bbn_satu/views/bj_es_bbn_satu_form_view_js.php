@@ -157,6 +157,20 @@ $("#id_polda").change(function(){
 
 });
 
+$("#merk_kendaraan").change(function(){
+
+    $.ajax({
+
+            url : '<?php echo site_url("$this->controller/get_tipe") ?>',
+            data : { merk_kendaraan : $(this).val() },
+            type : 'post', 
+            success : function(result) {
+                $("#tipe_kendaraan").html(result)
+            }
+    });
+
+});
+
 
 
 });

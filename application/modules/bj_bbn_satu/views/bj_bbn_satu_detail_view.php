@@ -66,7 +66,7 @@
 	<tr>
         <th>Type</th>
         <th>:</th>
-        <th><?php echo $type; ?></th>
+        <th><?php echo $nm_tipe; ?></th>
   </tr>
 	<tr>
         <th >Jenis</th>
@@ -222,11 +222,8 @@
         <th width="1%">:</th>
         <th width="70%"><?php echo $tgl_entri; ?></th>
    </tr>
-   <tr>
-        <th width="20%">Pengurus</th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $pengurus; ?></th>
-   </tr>
+   
+   
    <tr>
         <th width="20%">Daftar STNK</th>
         <th width="1%">:</th>
@@ -249,6 +246,38 @@
    </tr>
   </tbody>
 </table>
+
+<table width="100%" border="0" class="table table-striped table-hover no-footer" role="grid">
+<thead>
+  <tr>
+        <th colspan="2" align="center" style="font-size: 20px;">Status Pengerjaan</th>
+  </tr>
+</thead>
+<tbody style="font-size: 16px;">
+    <tr>
+        <th width="20%">Pengurus STNK</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $nm_pengurus_stnk; ?></th>
+   </tr>
+    <tr>
+        <th width="20%">STNK </th>
+        <th width="1%">:</th>
+        <th width="70%"><?php if($status_stnk==0){ echo 'Belum Selesai';}else{ echo 'Selesai';} ?></th>
+   </tr>
+   <tr>
+        <th width="20%">Pengurus BPKB</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $nm_pengurus_bpkb; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">BPKB </th>
+        <th width="1%">:</th>
+        <th width="70%"><?php if($status_bpkb==0){ echo 'Belum Selesai';}else{ echo 'Selesai';} ?></th>
+   </tr>
+   
+  </tbody>
+</table>
+
 
 </div>
 </div>

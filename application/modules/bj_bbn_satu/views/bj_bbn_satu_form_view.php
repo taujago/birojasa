@@ -248,10 +248,17 @@
 
 
                     <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Pengurus
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Pengurus STNK
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <?php echo form_dropdown("user_entri",$arr_user,isset($user_entri)?$user_entri:"",'id="user_entri" class="form-control input-style"'); ?>
+                        <?php echo form_dropdown("pengurus_stnk",$arr_user,isset($pengurus_stnk)?$pengurus_stnk:"",'id="pengurus_stnk" class="form-control input-style"'); ?>
+                       </div> 
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Pengurus BPKB
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <?php echo form_dropdown("pengurus_bpkb",$arr_user,isset($pengurus_bpkb)?$pengurus_bpkb:"",'id="pengurus_bpkb" class="form-control input-style"'); ?>
                        </div> 
                     </div>
                     

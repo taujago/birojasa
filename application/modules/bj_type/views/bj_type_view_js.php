@@ -22,6 +22,7 @@ $(document).ready(function(){
 		 	  
 
 		 	  dt.column(1).search($("#tipe").val())
+        dt.column(2).search($("#merk").val())
 				 .draw();
 
 				 return false;

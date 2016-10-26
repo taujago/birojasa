@@ -23,20 +23,22 @@ class bj_bbn_satu_model extends CI_Model {
 							"no_faktur",
 							"tgl_faktur",
 							"tgl_entri",
-							"bj_nama_user",
 							"rp_daftar_stnk",
 							'rp_daftar_bpkb',
 							"rp_pajak_kendaraan",
-							"rp_admin_fee"
+							"rp_admin_fee",
+							"ps.nama as nm_pengurus_bpkb",
+							"pb.nama as nm_pengurus_stnk",
 							
 		 	);
 
 
 
-		 	$this->db->select('bbn1.*, p.nama as bj_nama_user');
+		 	$this->db->select('bbn1.*, pb.nama as nm_pengurus_bpkb, ps.nama as nm_pengurus_stnk');
 
 		 	$this->db->from("bj_bbn_satu bbn1");
-		 	$this->db->join('pengguna p','bbn1.user_entri=p.id');
+		 	$this->db->join('pengguna ps','bbn1.pengurus_stnk=ps.id');
+		 	$this->db->join('pengguna pb','bbn1.pengurus_bpkb=pb.id');
 		 	$this->db->where('id_birojasa', $id_birojasa);
 		
 
