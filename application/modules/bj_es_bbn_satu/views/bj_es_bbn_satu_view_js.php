@@ -21,7 +21,8 @@ $(document).ready(function(){
               // alert('hello');
               
 
-              dt.column(1).search($("#tipe_kendaraan").val())
+              dt.column(1).search($("#merk_kendaraan").val())
+              dt.column(2).search($("#tipe_kendaraan").val())
                  .draw();
 
                  return false;
@@ -30,6 +31,7 @@ $(document).ready(function(){
 
          $("#btn_reset").click(function(){
             $("#tipe_kendaraan").val('');
+            $("#merk_kendaraan").val('');
 
             $("#btn_submit").click();
          });
@@ -39,7 +41,19 @@ $(document).ready(function(){
     
 
 
+$("#merk_kendaraan").change(function(){
 
+    $.ajax({
+
+            url : '<?php echo site_url("$this->controller/get_tipe") ?>',
+            data : { merk_kendaraan : $(this).val() },
+            type : 'post', 
+            success : function(result) {
+                $("#tipe_kendaraan").html(result)
+            }
+    });
+
+});
 
 function hapus(id){
 

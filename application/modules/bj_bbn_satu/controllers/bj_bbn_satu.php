@@ -64,12 +64,25 @@ class bj_bbn_satu extends biro_jasa_controller{
          
 
         $data['nama_dealer'] =  $dealer['nama'];
+         $data['samsat_masuk_tgl'] = flipdate($data['samsat_masuk_tgl']);
+        $data['stnk_serah_tgl'] = flipdate($data['stnk_serah_tgl']);
+        $data['bpkb_serah_tgl'] = flipdate($data['bpkb_serah_tgl']);
+        $data['stnk_tgl'] = flipdate($data['stnk_tgl']);
         $data['tgl_entri'] = flipdate($data['tgl_entri']);
+        $data['bpkb_tgl'] = flipdate($data['bpkb_tgl']);
         $data['tgl_faktur'] = flipdate($data['tgl_faktur']);
-        $data['rp_pajak_kendaraan'] = rupiah($data['rp_pajak_kendaraan']);
+        $data['bayar_tgl_stnk'] = flipdate($data['bayar_tgl_stnk']);
+        $data['bayar_tgl_bpkb'] = flipdate($data['bayar_tgl_bpkb']);
+
         $data['rp_daftar_stnk'] = rupiah($data['rp_daftar_stnk']);
         $data['rp_daftar_bpkb'] = rupiah($data['rp_daftar_bpkb']);
         $data['rp_admin_fee'] = rupiah($data['rp_admin_fee']);
+        $data['rp_pajak_kendaraan'] = rupiah($data['rp_pajak_kendaraan']);
+        $data['bayar_jumlah_stnk'] = rupiah($data['bayar_jumlah_stnk']);
+        $data['bayar_jumlah_bpkb'] = rupiah($data['bayar_jumlah_bpkb']);
+
+
+        
         $data["jenis"] = $jenis['jenis'];
         $data["model"] = $model['model'];
         $data["merek"] = $merek['nama'];
@@ -103,6 +116,10 @@ class bj_bbn_satu extends biro_jasa_controller{
 
 function index(){
 		$data_array=array();
+    $userdata = $this->session->userdata('bj_login');
+    $id_birojasa = $userdata['birojasa_id'];
+    $data_array['arr_dealer'] = $this->cm->arr_dropdown4("dealer", "id", "nama", $id_birojasa);
+
 		$content = $this->load->view($this->controller."_view",$data_array,true);
 
 		$this->set_subtitle("Pengurusan BBN 1");
@@ -272,14 +289,15 @@ function simpan(){
         $this->form_validation->set_rules('id_kota','Kota','required');
         $this->form_validation->set_rules('id_polda','Polda','required');
         $this->form_validation->set_rules('id_samsat','Samsat','required');
-        $this->form_validation->set_rules('tgl_entri','Tanggal Entri','required');         
+        $this->form_validation->set_rules('tgl_pengajuan','Tanggal Pengajuan','required');         
          
         $this->form_validation->set_message('required', 'Field %s Harus diisi ');
         
         $this->form_validation->set_error_delimiters('', '<br>');
 
+        
+        
 
-        //show_array($data);
 
 
 
@@ -295,7 +313,7 @@ if($this->form_validation->run() == TRUE ) {
   }else{
     $post['status'] = 1;
         $post['tgl_faktur'] = flipdate($post['tgl_faktur']);
-        $post['tgl_entri'] = flipdate($post['tgl_entri']);
+        $post['tgl_pengajuan'] = flipdate($post['tgl_pengajuan']);
 
         $userdata = $this->session->userdata('bj_login');
         $birojasa = $userdata['birojasa_id'];
@@ -314,7 +332,8 @@ if($this->form_validation->run() == TRUE ) {
         $stnk = $biaya['rp_daftar_stnk'];
         $bpkb = $biaya['rp_daftar_bpkb'];
         $pajak = $biaya['rp_pajak_kendaraan'];
-        $admin = $biaya['rp_admin_fee'];
+        $ppn = ($biaya['rp_admin_fee']/100)*10;
+        $admin = $biaya['rp_admin_fee']+$ppn;
 
         $post['rp_daftar_stnk']=$stnk;
         $post['rp_daftar_bpkb']=$bpkb;
@@ -323,9 +342,11 @@ if($this->form_validation->run() == TRUE ) {
 
          $post['total']=$post['total'];
 
-        
-        
+          
 
+        
+        
+        $this->db->set('tgl_entri', 'NOW()', FALSE);
         $res = $this->db->insert('bj_bbn_satu', $post); 
         
         if($res){
@@ -364,6 +385,7 @@ else {
         $tanggal_awal = $_REQUEST['columns'][1]['search']['value'];
         $tanggal_akhir = $_REQUEST['columns'][2]['search']['value'];
         $no_rangka = $_REQUEST['columns'][3]['search']['value'];
+        $kode_dealer = $_REQUEST['columns'][4]['search']['value'];
         $userdata = $this->session->userdata('bj_login');
         $id_birojasa = $userdata['birojasa_id'];
         // $userdata = $this->session->userdata('bj_login');
@@ -379,6 +401,7 @@ else {
                 "tanggal_awal" => $tanggal_awal,
                 "tanggal_akhir" => $tanggal_akhir,
                 "no_rangka" => $no_rangka, 
+                "kode_dealer" => $kode_dealer, 
                 "id_birojasa" => $id_birojasa    
         );     
            
@@ -406,6 +429,32 @@ else {
         $id_pengurus_bpkb = $row['pengurus_bpkb'];
         $id_pengurus_stnk = $row['pengurus_stnk'];
         $no_rangka = $row['no_rangka'];
+        if ($row['status_stnk']==1&&$row['status_bpkb']==1) {
+          if ($row['status_kwitansi']==1) {
+            $action = "<div class='btn-group'>
+                              <button type='button' class='btn btn-success'>Done</button>
+                              <button type='button' class='btn btn-success dropdown-toggle' data-toggle='dropdown'>
+                                <span class='caret'></span>
+                                <span class='sr-only'>Toggle Dropdown</span>
+                              </button>
+                              <ul class='dropdown-menu' role='menu'>
+                                <li><a href='#' onclick=\"printkwitansi('$id')\" ><i class='fa fa-trash'></i> Cetak Kwitansi</a></li>
+                              </ul>
+                            </div>";          
+              }else{
+                $action = "<div class='btn-group'>
+                              <button type='button' class='btn btn-danger'>Kwitansi</button>
+                              <button type='button' class='btn btn-danger dropdown-toggle' data-toggle='dropdown'>
+                                <span class='caret'></span>
+                                <span class='sr-only'>Toggle Dropdown</span>
+                              </button>
+                              <ul class='dropdown-menu' role='menu'>
+                                <li><a href='#' onclick=\"printkwitansi('$id')\" ><i class='fa fa-trash'></i> Cetak Kwitansi</a></li>
+                              </ul>
+                            </div>";   
+          }
+          
+        }else{
         $action = "<div class='btn-group'>
                               <button type='button' class='btn btn-primary'>Pending</button>
                               <button type='button' class='btn btn-primary dropdown-toggle' data-toggle='dropdown'>
@@ -417,6 +466,8 @@ else {
                                 <li><a href='bj_bbn_satu/editdata?id=$id'><i class='fa fa-edit'></i> Edit</a></li>
                               </ul>
                             </div>";
+
+          }
 
           $pengurus = '<b>BPKB :</b> <br /><a href='. site_url('bj_add_user/editdata?id='.$id_pengurus_bpkb).' >'.$row['nm_pengurus_bpkb'].'</a><br />'.
                       '<b>STNK :</b> <br /><a href='. site_url('bj_add_user/editdata?id='.$id_pengurus_stnk).' >'.$row['nm_pengurus_stnk'].'</a><br />';
@@ -694,11 +745,17 @@ function get_biaya(){
         }
         else{
            $arr = array("error"=>false);
-        $arr['total'] = rupiah($biaya['rp_daftar_bpkb'] + $biaya['rp_daftar_stnk']  + $biaya['rp_pajak_kendaraan'] +  $biaya['rp_admin_fee'] );
+           $ppn = ($biaya['rp_admin_fee']/100)*10;
+        $arr['total'] = rupiah($biaya['rp_daftar_bpkb'] + $biaya['rp_daftar_stnk']  + $biaya['rp_pajak_kendaraan'] +  $biaya['rp_admin_fee'] + $ppn );
+
+
+
+        
+
           $arr['rp_daftar_bpkb'] = rupiah( $biaya['rp_daftar_bpkb']);
           $arr['rp_daftar_stnk'] = rupiah( $biaya['rp_daftar_stnk']);
           $arr['rp_pajak_kendaraan'] = rupiah( $biaya['rp_pajak_kendaraan']);
-          $arr['rp_admin_fee'] = rupiah( $biaya['rp_admin_fee']);
+          $arr['rp_admin_fee'] = rupiah( $biaya['rp_admin_fee']+$ppn);
 
         
     }
@@ -843,6 +900,144 @@ function dealer(){
 
 
     
+}
+
+
+function printkwitansi(){
+    $get = $this->input->get(); 
+    $userdata = $this->session->userdata('bj_login');
+    $birojasa = $userdata['birojasa_id'];
+
+    $id = $get['id'];
+
+    $this->db->where('id', $birojasa);
+    $this->db->set('tgl_cetak_kwitansi', 'NOW()', FALSE);
+    $data['birojasa'] = $this->db->get('biro_jasa')->row_array();
+     
+    $dataupdate = array('status_kwitansi' => 1, );
+
+    $this->db->where('id', $id);
+    $this->db->update('bj_bbn_satu', $dataupdate);
+
+
+
+
+    $this->db->select('bbn1.*, pb.nama as nm_pengurus_bpkb, ps.nama as nm_pengurus_stnk, m.model as model, j.jenis as jenis, mr.nama as merk');
+
+      $this->db->from("bj_bbn_satu bbn1");
+      $this->db->join('m_model m','bbn1.id_model=m.id_model');
+      $this->db->join('m_jenis j','bbn1.id_jenis=j.id_jenis');
+      $this->db->join('m_merek mr','bbn1.id_merek=mr.kode');
+      $this->db->join('pengguna ps','bbn1.pengurus_stnk=ps.id');
+      $this->db->join('pengguna pb','bbn1.pengurus_bpkb=pb.id');
+      // $this->db->where('id_birojasa', $id_birojasa);
+
+     
+      $this->db->where("bbn1.id",$id);
+
+     $resx = $this->db->get();
+
+    $data['controller'] = get_class($this);
+    $data['header'] = "Kwitansi";
+    $data['query'] = $resx->row_array();
+    
+    
+    // show_array($data);exit;
+    $data['title'] = $data['header'];
+    $this->load->library('Pdf');
+        $pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->SetTitle( $data['header']);
+        // $pdf->Orientation('L');
+        $pdf->SetMargins(10, 10, 10);
+        $pdf->SetHeaderMargin(10);
+        $pdf->SetFooterMargin(10);
+        $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+        $pdf->SetAutoPageBreak(true,10);
+        $pdf->SetAuthor('PKPD  taujago@gmail.com');
+         
+            
+        $pdf->setPrintHeader(false);
+        $pdf->setPrintFooter(true);
+
+         // add a page
+        $pdf->AddPage('L');
+
+ 
+
+         $html = $this->load->view("pdf/cetak_kwitansi",$data,true);
+         $pdf->writeHTML($html, true, false, true, false, '');
+
+ 
+         $pdf->Output($data['header']. $this->session->userdata("tahun") .'.pdf', 'FI');
+}
+
+
+
+function pdf(){
+    $post = $this->input->get(); 
+    
+
+    $kode_dealer = $post['kode_dealer'];
+    $tanggal_awal = $post['tanggal_awal'];
+    $tanggal_akhir = $post['tanggal_akhir'];
+
+
+    $this->db->select('bbn1.*, pb.nama as nm_pengurus_bpkb, ps.nama as nm_pengurus_stnk, m.model as model, j.jenis as jenis, mr.nama as merk');
+
+      $this->db->from("bj_bbn_satu bbn1");
+      $this->db->join('m_model m','bbn1.id_model=m.id_model');
+      $this->db->join('m_jenis j','bbn1.id_jenis=j.id_jenis');
+      $this->db->join('m_merek mr','bbn1.id_merek=mr.kode');
+      $this->db->join('pengguna ps','bbn1.pengurus_stnk=ps.id');
+      $this->db->join('pengguna pb','bbn1.pengurus_bpkb=pb.id');
+      // $this->db->where('id_birojasa', $id_birojasa);
+      
+
+
+      $tanggal_awal = flipdate($tanggal_awal);
+      $tanggal_akhir = flipdate($tanggal_akhir);
+     
+    if(!empty($tanggal_awal) and !empty($tanggal_akhir) ) {
+      $this->db->where("tgl_pengajuan between '$tanggal_awal' and '$tanggal_akhir'",null,false);    
+     }
+
+     if(!empty($kode_dealer)) {
+      $this->db->like("bbn1.kode_dealer",$kode_dealer);
+     }
+
+     $resx = $this->db->get();
+
+    $data['controller'] = get_class($this);
+    $data['header'] = "Report BBN 1";
+    $data['query']  = $resx->result();
+    $data['title'] = $data['header'];
+    $this->load->library('Pdf');
+        $pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->SetTitle( $data['header']);
+        // $pdf->Orientation('L');
+        $pdf->SetMargins(10, 10, 10);
+        $pdf->SetHeaderMargin(10);
+        $pdf->SetFooterMargin(10);
+        $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+        $pdf->SetAutoPageBreak(true,10);
+        $pdf->SetAuthor('PKPD  taujago@gmail.com');
+         
+            
+        $pdf->setPrintHeader(false);
+        $pdf->setPrintFooter(true);
+
+         // add a page
+        $pdf->AddPage('L');
+
+ 
+
+         $html = $this->load->view("pdf/cetak_data_view",$data,true);
+         $pdf->writeHTML($html, true, false, true, false, '');
+
+ 
+         $pdf->Output($data['header']. $this->session->userdata("tahun") .'.pdf', 'I');
 }
 
 	

@@ -36,18 +36,31 @@
                 <input id="no_rangka" name="no_rangka" type="text" class="form-control" placeholder="No. Rangka"></input>
               </div>
             </div>
-            <div class="col-md-1">
+            <div class="col-md-2">
               <div class="form-group">
-                <label></label>
-                <button type="submit" class="btn btn-primary form-control" id="btn_submit"><i class="fa">Cari</i></button>
+                <label for="Tanggal">Dealer</label>
+                <?php echo form_dropdown("kode_dealer",$arr_dealer,isset($kode_dealer)?$kode_dealer:"",'id="kode_dealer" class="form-control input-style"'); ?>
               </div>
             </div>
             <div class="col-md-1">
               <div class="form-group">
                 <label></label>
-                <button type="reset" class="btn btn-danger form-control" id="btn_reset"><i class="fa">Reset</i></button>
+                <button type="submit" class="btn btn-primary form-control" id="btn_submit" style="border-radius: 5px"><i class="fa">Cari</i></button>
               </div>
             </div>
+            <div class="col-md-1">
+              <div class="form-group">
+                <label></label>
+                <button type="button" class="btn btn-success form-control" id="cetak" style="border-radius: 5px"><i class="fa">Cetak</i></button>
+              </div>
+            </div>
+            <div class="col-md-1">
+              <div class="form-group">
+                <label></label>
+                <button type="reset" class="btn btn-danger form-control" id="btn_reset" style="border-radius: 5px"><i class="fa">Reset</i></button>
+              </div>
+            </div>
+            
           
           </form>
             

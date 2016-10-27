@@ -19,10 +19,16 @@
 
 
           <form role="form" action="" id="btn-cari">
-            <div class="col-md-3">
+            <div class="col-md-2">
               <div class="form-group">
               <label for="nama">Tipe Kendaraan </label>
-                <input id="tipe_kendaraan" name="tipe_kendaraan" type="text" class="form-control" placeholder="Tipe Kendaraan"></input>
+                <?php echo form_dropdown("merk_kendaraan",$arr_merk,isset($merk_kendaraan)?$merk_kendaraan:'','id="merk_kendaraan" class="form-control input-style"'); ?>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+              <label for="nama">Tipe Kendaraan </label>
+                <?php echo form_dropdown("tipe_kendaraan",$arr_tipe,isset($tipe_kendaraan)?$tipe_kendaraan:'','id="tipe_kendaraan" class="form-control input-style"'); ?>
               </div>
             </div>
             <div class="col-md-1">

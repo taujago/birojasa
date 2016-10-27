@@ -21,6 +21,14 @@ class bj_es_bbn_satu extends biro_jasa_controller{
 
 function index(){
 		$data_array=array();
+
+        $userdata = $this->session->userdata('bj_login');
+        $birojasa = $userdata['birojasa_id'];
+
+        $data_array['arr_merk'] = $this->cm->arr_dropdown3("m_merek", "kode", "nama", "nama", "id_birojasa", $birojasa);
+
+        $data_array['arr_tipe'] = array('' => "- Pilih Merk Terlebih Dahulu -", );
+
 		$content = $this->load->view($this->controller."_view",$data_array,true);
 
 		$this->set_subtitle("Estimasi Pengurusan");
@@ -86,7 +94,11 @@ function simpan(){
         $post['rp_daftar_stnk'] = bersih($post['rp_daftar_stnk'])     ; 
         $post['rp_daftar_bpkb'] = bersih($post['rp_daftar_bpkb'])     ; 
         $post['rp_pajak_kendaraan'] = bersih($post['rp_pajak_kendaraan']); 
-        $post['rp_admin_fee'] = bersih($post['rp_admin_fee'])  ; 
+        $post['rp_admin_fee'] = bersih($post['rp_admin_fee']); 
+
+        
+
+
 
          
         $this->form_validation->set_message('required', ' %s Harus diisi ');
@@ -190,7 +202,8 @@ else {
         $sord = isset($_REQUEST['order'][0]['dir'])?$_REQUEST['order'][0]['dir']:"asc"; // get the direction if(!$sidx) $sidx =1;  
         
   
-        $tipe_kendaraan = $_REQUEST['columns'][1]['search']['value'];
+        $merk_kendaraan = $_REQUEST['columns'][1]['search']['value'];
+        $tipe_kendaraan = $_REQUEST['columns'][2]['search']['value'];
         $userdata = $this->session->userdata("bj_login");
         $birojasa = $userdata['birojasa_id'];
 
@@ -199,6 +212,7 @@ else {
 				"sort_by" => $sidx,
 				"sort_direction" => $sord,
 				"limit" => null,
+                "merk_kendaraan" => $merk_kendaraan,
 				"tipe_kendaraan" => $tipe_kendaraan,
                 "birojasa" => $birojasa
 				

@@ -40,7 +40,9 @@ class bj_es_bbn_satu_model extends CI_Model {
 			
 
 
-		 
+		if(!empty($merk_kendaraan)) {
+		 	$this->db->like("bbn1.merk_kendaraan",$merk_kendaraan);
+		 }		 
 
 		 if(!empty($tipe_kendaraan)) {
 		 	$this->db->like("bbn1.tipe_kendaraan",$tipe_kendaraan);

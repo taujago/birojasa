@@ -255,6 +255,16 @@
 </thead>
 <tbody style="font-size: 16px;">
     <tr>
+        <th width="20%">Tgl. Masuk Samsat</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $samsat_masuk_tgl; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">Terakhir Diupdate</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $tgl_update; ?></th>
+   </tr>
+    <tr>
         <th width="20%">Pengurus STNK</th>
         <th width="1%">:</th>
         <th width="70%"><?php echo $nm_pengurus_stnk; ?></th>
@@ -275,6 +285,7 @@
         <th width="70%"><?php if($status_bpkb==0){ echo 'Belum Selesai';}else{ echo 'Selesai';} ?></th>
    </tr>
    
+   
   </tbody>
 </table>
 
@@ -283,3 +294,168 @@
 </div>
 </div>
 </div>
+
+<?php 
+  if ($status_bpkb==1) {
+  ?>    
+  <div class="row">
+    <div class="col-md-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>Detail Hasil Pengerjaan BPKB</h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+
+
+
+
+<table width="100%" border="0" class="table table-striped table-hover no-footer" role="grid">
+<thead>
+  <tr>
+        <th colspan="2" align="center">Detail Hasil Pengerjaan</th>
+  </tr>
+</thead>
+<tbody>
+    
+   
+   <tr>
+        <th width="20%">No. BPKB</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $bpkb_no; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">Tgl. BPKB</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $bpkb_tgl; ?></th>
+   </tr>
+
+   <tr>
+        <th width="20%">Tgl. Serah BPKB</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $bpkb_serah_tgl; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">Tgl. Bayar</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $bayar_tgl_bpkb; ?></th>
+   </tr>
+   
+   <tr>
+        <th width="20%">Metode Bayar </th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $bayar_metode_bpkb; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">No. CC Bayar</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $bayar_no_cc_bpkb; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">Ref. CC Bayar</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $bayar_ref_cc_bpkb; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">Bayar Jumlah</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $bayar_jumlah_bpkb; ?></th>
+   </tr>
+  </tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+
+<?php         
+      }else{    
+
+}  ?>
+
+<?php 
+      if ($status_stnk==1) {?>
+      <div class="row">
+    <div class="col-md-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>Detail Hasil Pengerjaan STNK</h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+
+
+
+
+<table width="100%" border="0" class="table table-striped table-hover no-footer" role="grid">
+<thead>
+  <tr>
+        <th colspan="2" align="center">Detail Hasil Pengerjaan</th>
+  </tr>
+</thead>
+<tbody>
+    
+   
+   <tr>
+        <th width="20%">No. STNK</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $stnk_no; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">Tgl. STNK</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $stnk_tgl; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">Tgl. Serah STNK</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $stnk_serah_tgl; ?></th>
+   </tr>
+   
+   <tr>
+        <th width="20%">Tgl. Bayar</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $bayar_tgl_stnk; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">Metode Bayar </th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $bayar_metode_stnk; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">No. CC Bayar</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $bayar_no_cc_stnk; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">Ref. CC Bayar</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $bayar_ref_cc_stnk; ?></th>
+   </tr>
+   <tr>
+        <th width="20%">Bayar Jumlah</th>
+        <th width="1%">:</th>
+        <th width="70%"><?php echo $bayar_jumlah_stnk; ?></th>
+   </tr>
+  </tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+  <?php  
+      }else{
+
+ } ?>

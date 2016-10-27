@@ -68,10 +68,10 @@
 
 
                     <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Entri 
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Pengajuan 
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="tanggal" class="tanggal form-control col-md-7 col-xs-12 input-style" name="tgl_entri"  placeholder="Tanggal Entri BBN 1"  data-date-format="dd-mm-yyyy" value="<?php echo isset($tgl_entri)?$tgl_entri:""; ?>">
+                        <input type="text" id="tanggal" class="tanggal form-control col-md-7 col-xs-12 input-style" name="tgl_pengajuan"  placeholder="Tanggal Pengajuan BBN 1"  data-date-format="dd-mm-yyyy" value="<?php echo isset($tgl_pengajuan)?$tgl_pengajuan:""; ?>">
                       </div>
                     </div>
                     
