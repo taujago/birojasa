@@ -77,7 +77,7 @@ class us_bbn_satu extends user_controller{
 
           $merek = $this->dm->datawilayah('kode', 'm_merek', $data['id_merek'], 'nama')->row_array();
 
-          $warna = $this->dm->datawilayah('WARNA_ID', 'm_warna', $data['id_warna'], 'WARNA_NAMA')->row_array();
+          
 
           // $data['nama_samsat_masuk_user'] = $this->dm->get_user($data['samsat_masuk_user']);
           // $data['nama_stnk_serah_user'] = $this->dm->get_user($data['stnk_serah_user']);
@@ -90,7 +90,6 @@ class us_bbn_satu extends user_controller{
         $data["jenis"] = $jenis['jenis'];
         $data["model"] = $model['model'];
         $data["merek"] = $merek['nama'];
-        $data["warna"] = $warna['WARNA_NAMA'];
         
         $data["kota"] = $kota['kota'];
         $data['provinsi'] = $provinsi['provinsi'];

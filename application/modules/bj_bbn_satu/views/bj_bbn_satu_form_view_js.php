@@ -252,6 +252,7 @@ $(".tanggal").datepicker().on('changeDate', function(ev){
                 
                 $("#nama_pemilik").val(obj.Data.Pemilik1);
                 $("#alamat_pemilik").val(obj.Data.Alamat1);
+                $("#warna").val(obj.Data.Warna);
                 
                 // var type = [obj.Data.KodeDealer, obj.Data.NamaDealer];
                 

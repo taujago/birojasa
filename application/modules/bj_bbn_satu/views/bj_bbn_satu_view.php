@@ -2,6 +2,11 @@
     $userdata = $this->session->userdata('bj_login');
     ?>    
 
+
+    <style type="text/css">
+    .datepicker{ z-index: 1151 !important; }
+    </style>
+
      <link href="<?php echo base_url("assets") ?>/css/datepicker.css" rel="stylesheet">
     <script src="<?php echo base_url("assets") ?>/js/bootstrap-datepicker.js"></script>
      <script src="<?php echo base_url("assets") ?>/js/jquery.dataTables.min.js"></script>           
@@ -19,13 +24,13 @@
             <div class="col-md-2">
               <div class="form-group">
                 <label for="Tanggal">Tanggal Awal</label>
-                <input name="tanggal_awal" id="tanggal_awal" type="text" class="form-control tanggal_awal" placeholder="Tanggal Awal" data-date-format="dd-mm-yyyy"></input>
+                <input name="tanggal_awal" id="tanggal_awal" type="text" class="form-control tanggal" placeholder="Tanggal Awal" data-date-format="dd-mm-yyyy"></input>
               </div>
             </div>
             <div class="col-md-2">
               <div class="form-group">
                 <label for="Tanggal">Tanggal Akhir</label>
-                <input name="tanggal_akhir" id="tanggal_akhir" type="text" class="form-control tanggal_akhir" placeholder="Tanggal Akhir" data-date-format="dd-mm-yyyy"></input>
+                <input name="tanggal_akhir" id="tanggal_akhir" type="text" class="form-control tanggal" placeholder="Tanggal Akhir" data-date-format="dd-mm-yyyy"></input>
               </div>
             </div>
 
@@ -71,12 +76,11 @@
 <thead>
   <tr>
 
-    <th width="3%" rowspan="2" style='text-align:center;vertical-align:middle'>ID</th>
+    
     <th width="10%" rowspan="2" style='text-align:center;vertical-align:middle'>Tgl. Entri</th>
-    <th width="15%" rowspan="2" style='text-align:center;vertical-align:middle'>No. Rangka</th>
-    <th width="10%" rowspan="2" style='text-align:center;vertical-align:middle'>No. Faktur</th>
+    <th width="15%" rowspan="2" style='text-align:center;vertical-align:middle'>No. Rangka/Mesin/Faktur</th>
     <th width="40%" colspan="4" style='text-align:center;vertical-align:middle'>Biaya</th>
-    <th width="10%" rowspan="2" style='text-align:center;vertical-align:middle'>Pengurus</th>
+    <th width="20%" rowspan="2" style='text-align:center;vertical-align:middle'>Pengurus</th>
     <th width="20%" rowspan="2" style='text-align:center;vertical-align:middle'>#</th>
   </tr>
   <tr> 
@@ -89,6 +93,44 @@
 </thead>
 </table>
                   
+
+<div class="modal fade" id="dealer" tabindex="-1" role="dialog" aria-labelledby="dealerModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="dealerModal">Serah Dealer</h4>
+      </div>
+      <div class="modal-body">
+        <form action="" id="form_serah_dealer" method="post">
+          <table width="100%"  class='table table-bordered'>
+             
+              <tr>
+                <td width="30%" >Tanggal Serah Dealer</td>
+                <TD>
+                  <input name="tgl_serah_dealer" id="tgl" type="text" class="form-control tanggal" placeholder="Tanggal Serah Dealer" data-date-format="dd-mm-yyyy"></input>
+                  <input type="hidden" class="form-control" name="id" id="id"  />
+                </TD>
+              </tr>
+              <tr>
+                <td width="30%" >Nama Penerima</td>
+                <TD>
+                  <input name="nama_penerima_dealer" id="nama_penerima_dealer" type="text" class="form-control" placeholder="Nama Penerima" ></input>
+                  
+                </TD>
+              </tr>  
+            </table>   
+          </form>   
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+          <button type="button" id="btn_simpan_serah_dealer" class="btn btn-primary" onclick="return serah_dealer_simpan()">Simpan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
 <?php 
 $this->load->view($this->controller.'_view_js');

@@ -592,6 +592,14 @@
                         <div class="row">
                           <div class="col-md-12">
                             <div class="form-group">
+                              <label for="kembali">No. Polisi</label>
+                              <input id="no_pol" name="no_pol" type="text" class="form-control" placeholder="No Polisi" value="<?php echo isset($no_pol)?$no_pol:'' ?>"></input>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
                               <label for="kembali">Biaya Lebih</label>
                               <input id="biaya_lebih_jumlah_bpkb" name="biaya_lebih_jumlah_bpkb" type="text" class="form-control rp" placeholder="Biaya Lebih" data-a-sign="" data-a-dec="," data-a-sep="." value="<?php echo isset($biaya_lebih_jumlah_bpkb)?$biaya_lebih_jumlah_bpkb:'' ?>"></input>
                             </div>

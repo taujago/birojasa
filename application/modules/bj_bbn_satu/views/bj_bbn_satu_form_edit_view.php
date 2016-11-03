@@ -29,11 +29,11 @@
 
 
                     <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Entri 
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Pengajuan
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
                       <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
-                        <input type="text" id="tanggal" class="tanggal form-control col-md-7 col-xs-12" name="tgl_entri" class="form-control input-style" placeholder="Tanggal BBN2"  data-date-format="dd-mm-yyyy" value="<?php echo $tgl_entri; ?>">
+                        <input type="text" id="tanggal" class="tanggal form-control col-md-7 col-xs-12" name="tgl_pengajuan" class="form-control input-style" placeholder="Tanggal BBN2"  data-date-format="dd-mm-yyyy" value="<?php echo $tgl_pengajuan; ?>">
                       </div>
                     </div>
                     <div class="form-group">

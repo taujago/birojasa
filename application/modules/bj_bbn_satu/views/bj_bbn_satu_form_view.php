@@ -148,7 +148,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Warna Kendaraan
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <?php echo form_dropdown("id_warna",$arr_warna,isset($id_warna)?$id_warna:"",'id="id_warna" class="form-control input-style"'); ?>
+                        <input type="text" id="warna" name="warna" required="required" class="form-control col-md-7 col-xs-12" placeholder="Warna Kendaraan" value="<?php echo isset($warna)?$warna:""; ?>">
                        </div> 
                     </div>
 
@@ -172,6 +172,13 @@
                       <div class="col-md-6 col-sm-6 col-xs-12">
                       <?php echo form_dropdown("tahun_buat",$arr_tahun,isset($tahun_buat)?$tahun_buat:"",'id="tahun_buat" class="form-control input-style"'); ?>
                       </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Warna TNKB
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <?php echo form_dropdown("id_warna_tnkb",$arr_warna_tnkb,isset($id_warna_tnkb)?$id_warna_tnkb:"",'id="id_warna_tnkb" class="form-control input-style"'); ?>
+                       </div> 
                     </div>
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Deaelar
@@ -263,17 +270,11 @@
                     </div>
                     
 
-                     <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Warna TNKB
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <?php echo form_dropdown("id_warna_tnkb",$arr_warna_tnkb,isset($id_warna_tnkb)?$id_warna_tnkb:"",'id="id_warna_tnkb" class="form-control input-style"'); ?>
-                       </div> 
-                    </div>
+                     
 
 
                     <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Pengurus
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
                        <a class="btn btn-primary" id="hitung">Hitung</a>
@@ -331,7 +332,8 @@
 
                         <?php
                           if ($action=='simpan') { ?>
-                            <button type="reset" class="btn btn-danger">Batal</button>
+                            <button type="reset" class="btn btn-success">Bersihkan</button>
+                            <a href="<?php echo site_url($this->controller); ?>" class="btn btn-danger">Batal</a>
                           <?php 
                           }else{ ?>
                             <a href="<?php echo site_url($this->controller); ?>"><button type="reset" class="btn btn-danger">Batal</button></a>

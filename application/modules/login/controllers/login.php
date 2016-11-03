@@ -26,6 +26,10 @@ class Login extends CI_Controller {
 		$this->session->unset_userdata("user_login",true);
 		redirect("login");
 	}
+	function logout_dealer(){
+		$this->session->unset_userdata("dealer_login",true);
+		redirect("login");
+	}
 	
 
 	
@@ -71,7 +75,7 @@ function cek_password($password) {
 		 $this->db->where("p.email",$username);
 		 $this->db->where("p.password",$password);
 		 $res = $this->db->get();
-
+		 // echo $this->db->last_query();exit;
 		 if($res->num_rows()==0) {
 
 		 	redirect('login');
@@ -112,6 +116,15 @@ function cek_password($password) {
 		 		$datalogin = $this->session->userdata("user_login");
 
 		 		redirect('user');
+		 	}
+		 	else if ($member['level'] == 4) {
+
+		 		$this->session->set_userdata('dealer_login', $member);
+
+		 		$datalogin = $this->session->userdata("dealer_login");
+
+		 		redirect('dealer');
+		 		// show_array($member);exit;
 		 	}
 
 		 	else {

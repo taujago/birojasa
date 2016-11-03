@@ -117,8 +117,8 @@ $userdata = $this->session->userdata('bj_login');
                 </li>
                 <li><a><i class="fa fa-minus-square-o"></i> Data Master <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
-                    <li><a href="<?php echo site_url('bj_dealer'); ?>">Dealer</a>
-                    </li>
+                    <!-- <li><a href="<?php echo site_url('bj_dealer'); ?>">Dealer</a> -->
+                    <!-- </li> -->
                     <li><a href="<?php echo site_url('bj_samsat'); ?>">Samsat</a>
                     </li>
                     <li><a href="<?php echo site_url('bj_merk'); ?>">Merk</a>
