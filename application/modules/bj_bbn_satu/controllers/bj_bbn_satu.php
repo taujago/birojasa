@@ -489,8 +489,8 @@ else {
             if ($row['status_serah_dealer']==1) {
 
               $action = "<div class='btn-group'>
-                              <button type='button' class='btn btn-info'>Selesai</button>
-                              <button type='button' class='btn btn-info dropdown-toggle' data-toggle='dropdown'>
+                              <button type='button' class='btn btn-default'>Selesai</button>
+                              <button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown'>
                                 <span class='caret'></span>
                                 <span class='sr-only'>Toggle Dropdown</span>
                               </button>
@@ -502,8 +502,8 @@ else {
 
 
             $action = "<div class='btn-group'>
-                              <button type='button' class='btn btn-success'>Done</button>
-                              <button type='button' class='btn btn-success dropdown-toggle' data-toggle='dropdown'>
+                              <button type='button' class='btn btn-default'>Done</button>
+                              <button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown'>
                                 <span class='caret'></span>
                                 <span class='sr-only'>Toggle Dropdown</span>
                               </button>
@@ -514,8 +514,8 @@ else {
                 }         
               }else{
                 $action = "<div class='btn-group'>
-                              <button type='button' class='btn btn-danger'>Kwitansi</button>
-                              <button type='button' class='btn btn-danger dropdown-toggle' data-toggle='dropdown'>
+                              <button type='button' class='btn btn-default'>Kwitansi</button>
+                              <button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown'>
                                 <span class='caret'></span>
                                 <span class='sr-only'>Toggle Dropdown</span>
                               </button>
@@ -527,8 +527,8 @@ else {
           
         }else{
         $action = "<div class='btn-group'>
-                              <button type='button' class='btn btn-primary'>Pending</button>
-                              <button type='button' class='btn btn-primary dropdown-toggle' data-toggle='dropdown'>
+                              <button type='button' class='btn btn-default'>Pending</button>
+                              <button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown'>
                                 <span class='caret'></span>
                                 <span class='sr-only'>Toggle Dropdown</span>
                               </button>

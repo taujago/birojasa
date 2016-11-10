@@ -13,17 +13,13 @@
               <div class="x_title">
                   <h2>Tambah Data <small>Pengurusan BBN 1 </small></h2>
                   <ul class="nav navbar-right panel_toolbox">
-                  <a href="<?php echo site_url('bj_serah_dealer'); ?>"><button type="button" class="btn btn-default">Serah Dealer</button>
+                    <a href="<?php echo site_url('bj_bbn_satu'); ?>"><button type="button" class="btn btn-primary">Data BBN 1</button>
                     </a>
-                    <a href="<?php echo site_url($this->controller.'/baru'); ?>"><button type="button" class="btn btn-default">Tambah Data</button>
-                    </a>
-
                   </ul>
                   <div class="clearfix"></div>
                 </div>
 
-
-          <form role="form" action="" id="btn-cari">
+<form role="form" action="" id="btn-cari">
             <div class="col-md-2">
               <div class="form-group">
                 <label for="Tanggal">Tanggal Awal</label>
@@ -53,19 +49,19 @@
             <div class="col-md-1">
               <div class="form-group">
                 <label></label>
-                <button type="submit" class="btn btn-default form-control" id="btn_submit" style="border-radius: 5px"><i class="fa">Cari</i></button>
+                <button type="submit" class="btn btn-primary form-control" id="btn_submit" style="border-radius: 5px"><i class="fa">Cari</i></button>
               </div>
             </div>
             <div class="col-md-1">
               <div class="form-group">
                 <label></label>
-                <button type="button" class="btn btn-default form-control" id="cetak" style="border-radius: 5px"><i class="fa">Cetak</i></button>
+                <button type="button" class="btn btn-success form-control" id="cetak" style="border-radius: 5px"><i class="fa">Cetak</i></button>
               </div>
             </div>
             <div class="col-md-1">
               <div class="form-group">
                 <label></label>
-                <button type="reset" class="btn btn-default form-control" id="btn_reset" style="border-radius: 5px"><i class="fa">Reset</i></button>
+                <button type="reset" class="btn btn-danger form-control" id="btn_reset" style="border-radius: 5px"><i class="fa">Reset</i></button>
               </div>
             </div>
             
@@ -74,17 +70,23 @@
             
 
 
-<table width="100%" border="0" id="bj_bbn_satu" class="table table-striped 
+<form id="form_data" class="form-horizontal" method="post" action="<?php echo site_url("$this->controller/$action"); ?>" role="form"> 
+              <div class="panel panel-primary">
+                <div class="panel-heading">
+                  <strong><h4 class="box-title">Data Belum Serah Ke Dealer</h4></strong>
+                </div><!-- /.box-header -->
+                <div class="panel-body">
+                  <table width="100%" border="0" id="bj_bbn_satu" class="table table-striped 
              table-bordered table-hover dataTable no-footer" role="grid" style='text-align:center;vertical-align:middle'>
 <thead>
   <tr>
 
-    
-    <th width="10%" rowspan="2" style='text-align:center;vertical-align:middle'>Tgl. Entri</th>
+    <th width="10%" rowspan="2" style='text-align:center;vertical-align:middle'>#</th>
+    <th width="20%" rowspan="2" style='text-align:center;vertical-align:middle'>Tgl. Pengajuan</th>
     <th width="15%" rowspan="2" style='text-align:center;vertical-align:middle'>No. Rangka/Mesin/Faktur</th>
     <th width="40%" colspan="4" style='text-align:center;vertical-align:middle'>Biaya</th>
     <th width="20%" rowspan="2" style='text-align:center;vertical-align:middle'>Pengurus</th>
-    <th width="20%" rowspan="2" style='text-align:center;vertical-align:middle'>#</th>
+    
   </tr>
   <tr> 
         <th width="10%" style='text-align:center;vertical-align:middle'>BPKB</th>
@@ -95,7 +97,28 @@
   
 </thead>
 </table>
-                  
+<br />
+<br />
+<div class="col-md-12">
+<button id="jkdsjk" style="border-radius: 8;" type="button" class="btn btn-lg btn-default" onclick="return modal_dealer()" >Simpan</button>
+        <a href="<?php echo site_url("$this->controller"); ?>"><button style="border-radius: 8;" id="reset" type="button" class="btn btn-lg btn-default">Cancel</button></a> 
+        </div>
+                </div><!-- /.box-body -->
+
+              </div><!-- /.box -->
+            
+
+
+
+      
+    
+
+          
+
+
+
+ 
+
 
 <div class="modal fade" id="dealer" tabindex="-1" role="dialog" aria-labelledby="dealerModal">
   <div class="modal-dialog" role="document">
@@ -105,14 +128,14 @@
         <h4 class="modal-title" id="dealerModal">Serah Dealer</h4>
       </div>
       <div class="modal-body">
-        <form action="" id="form_serah_dealer" method="post">
+       
           <table width="100%"  class='table table-bordered'>
              
               <tr>
                 <td width="30%" >Tanggal Serah Dealer</td>
                 <TD>
                   <input name="tgl_serah_dealer" id="tgl" type="text" class="form-control tanggal" placeholder="Tanggal Serah Dealer" data-date-format="dd-mm-yyyy"></input>
-                  <input type="hidden" class="form-control" name="id" id="id"  />
+                  
                 </TD>
               </tr>
               <tr>
@@ -122,8 +145,7 @@
                   
                 </TD>
               </tr>  
-            </table>   
-          </form>   
+            </table>  
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
@@ -134,6 +156,7 @@
   </div>
 
 
+</form>
 
 <?php 
 $this->load->view($this->controller.'_view_js');
