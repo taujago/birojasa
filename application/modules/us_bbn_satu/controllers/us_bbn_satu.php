@@ -63,8 +63,9 @@ class us_bbn_satu extends user_controller{
          $provinsi = $this->dm->datawilayah('id', 'tiger_provinsi', $data['id_provinsi'], 'provinsi')->row_array();
           $kecamatan = $this->dm->datawilayah('id', 'tiger_kecamatan', $data['id_kecamatan'], 'kecamatan')->row_array();
           $desa = $this->dm->datawilayah('id', 'tiger_desa', $data['id_desa'], 'desa')->row_array();
+          $tipe = $this->dm->datawilayah('id', 'm_tipe', $data['type'], 'tipe')->row_array();
 
-          $jenis = $this->dm->datawilayah('id_jenis', 'm_jenis', $data['id_jenis'], 'jenis')->row_array();
+          $jenis = $this->dm->datawilayah('id_jenis', 'm_jenis', $data['jenis'], 'jenis')->row_array();
 
           $polda = $this->dm->datawilayah('polda_id', 'm_polda', $data['id_polda'], 'polda_nama')->row_array();
 
@@ -73,7 +74,7 @@ class us_bbn_satu extends user_controller{
 
           $dealer = $this->dm->datawilayah('id', 'dealer', $data['kode_dealer'], 'nama')->row_array();
 
-          $model = $this->dm->datawilayah('id_model', 'm_model', $data['id_model'], 'model')->row_array();
+          $model = $this->dm->datawilayah('id_model', 'm_model', $data['model'], 'model')->row_array();
 
           $merek = $this->dm->datawilayah('kode', 'm_merek', $data['id_merek'], 'nama')->row_array();
 
@@ -90,12 +91,29 @@ class us_bbn_satu extends user_controller{
         $data["jenis"] = $jenis['jenis'];
         $data["model"] = $model['model'];
         $data["merek"] = $merek['nama'];
+
+
+        if (!empty($kota['kota'])) {
+          $data['kota'] = $kota['kota'];
+        }
         
-        $data["kota"] = $kota['kota'];
-        $data['provinsi'] = $provinsi['provinsi'];
-        $data['desa'] = $desa['desa'];
-        $data['kecamatan'] = $kecamatan['kecamatan'];
+        if (!empty($desa['desa'])) {
+          $data['desa'] = $desa['desa'];
+        }
+        if (!empty($kecamatan['kecamatan'])) {
+          $data['kecamatan'] = $kecamatan['kecamatan'];
+        }
+
+        if (!empty($provinsi['provinsi'])) {
+          $data['provinsi'] = $provinsi['provinsi'];
+        }
+        
+        // $data["kota"] = $kota['kota'];
+        // $data['provinsi'] = $provinsi['provinsi'];
+        // $data['desa'] = $desa['desa'];
+        // $data['kecamatan'] = $kecamatan['kecamatan'];
         $data['polda'] = $polda['polda_nama'];
+        $data['type'] = $tipe['tipe'];
         $data['samsat'] = $samsat['nama'];
         $data['v_rp_daftar_stnk'] = $data['rp_daftar_stnk'];
         $data['v_rp_daftar_bpkb'] = $data['rp_daftar_bpkb'];

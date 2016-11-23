@@ -157,22 +157,22 @@
    <tr>
         <th width="20%">Provinsi</th>
         <th width="1%">:</th>
-        <th width="70%"><?php echo $provinsi; ?></th>
+        <th width="70%"><?php echo isset($provinsi)?$provinsi:"Tidak Terisi"; ?></th>
    </tr>
    <tr>
         <th width="20%">Kota</th>
         <th width="1%">:</th>
-        <th width="70%"><?php echo $kota; ?></th>
+        <th width="70%"><?php echo isset($kota)?$kota:"Tidak Terisi"; ?></th>
    </tr>
    <tr>
         <th width="20%">Kecamatan</th>
         <th width="1%">:</th>
-        <th width="70%"><?php echo $kecamatan; ?></th>
+        <th width="70%"><?php echo isset($kecamatan)?$kecamatan:"Tidak Terisi"; ?></th>
    </tr>
    <tr>
         <th width="20%">Desa</th>
         <th width="1%">:</th>
-        <th width="70%"><?php echo $desa; ?></th>
+        <th width="70%"><?php echo isset($desa)?$desa:"Tidak Terisi"; ?></th>
    </tr>
   </tbody>
 </table>

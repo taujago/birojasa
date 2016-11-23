@@ -168,6 +168,122 @@
   </tr>
 </table>
 
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+
+<table width="100%">
+  <tr>
+    <td width="100%" align="left" class="judul" >PT. <?php echo $birojasa['nama']; ?></td>
+  </tr>
+  <tr>
+    <td width="100%" align="left" class="subtitle"><?php echo $birojasa['alamat']; ?></td>
+  </tr>
+  <tr>
+    <td width="100%" align="left" class="subtitle"><?php echo $birojasa['no_siup']; ?></td>
+  </tr>
+  <tr>
+    <td width="100%" align="left" class="subtitle"><?php echo $birojasa['telp']; ?></td>
+  </tr>
+</table>
+<br />
+<hr style="height: 3px" />&nbsp;
+<br />&nbsp;
+
+
+<table width="100%" align="center" class="isi">
+  <tr>
+    <td width="100%">
+      Bukti Bayar
+    </td>
+  </tr>
+</table>
+
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<table width="100%" class="xx" >
+  <tr>
+    <td width="20%">
+      Telah Terima Dari
+    </td>
+    <td width="70%">
+      : <?php echo $birojasa['nama']; ?>
+    </td>
+  </tr>
+  <tr>
+    <td width="20%">
+      &nbsp;
+    </td>
+    <td width="70%">
+      &nbsp;
+    </td>
+  </tr>
+  <tr>
+    <td width="20%">
+      Uang Sejumlah 
+    </td>
+    <td width="70%">
+      : (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
+    </td>
+  </tr>
+  <tr>
+    <td width="20%">
+      &nbsp;
+    </td>
+    <td width="70%">
+      &nbsp;
+    </td>
+  </tr>
+  <tr>
+    <td width="20%">
+      Untuk Pembayaran
+    </td>
+    <td width="70%">
+      : Pengurusan STNK Dengan No. Rangka <b><?php echo $query['no_rangka']; ?></b>
+    </td>
+  </tr>
+</table>
+
+
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+<br />&nbsp;
+
+<table width="100%">
+  <tr>
+    <td width="70%">&nbsp;</td>
+    <td width="30%" style="font-size: 12px">Jakarta, <?php echo flipdate($query['tgl_cetak_kwitansi']); ?></td>
+  </tr>
+  <tr>
+    <td width="70%">&nbsp;</td>
+    <td width="30%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="70%" style="font-size: 20px"><b>Rp. <?php echo rupiah($query['bayar_jumlah_stnk']); ?>,-</b></td>
+    <td width="30%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="70%">&nbsp;</td>
+    <td width="30%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="70%">&nbsp;</td>
+    <td width="30%" style="font-size: 12px"><?php echo $query['nm_pengurus_stnk']; ?></td>
+  </tr>
+</table>
+
 
 
 

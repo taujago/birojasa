@@ -154,19 +154,11 @@ $(".tanggal").datepicker().on('changeDate', function(ev){
 
     });
          
-         $("#id_merek").change(function(){
+//          $("#id_merek").change(function(){
 
-    $.ajax({
+    
 
-            url : '<?php echo site_url("$this->controller/get_tipe") ?>',
-            data : { id_merek : $(this).val() },
-            type : 'post', 
-            success : function(result) {
-                $("#type").html(result)
-            }
-    });
-
-});     
+// });     
             
 
   $("#id_polda").change(function(){
@@ -265,6 +257,36 @@ $(".tanggal").datepicker().on('changeDate', function(ev){
                     }
                 });
 
+                $.ajax({
+                    url : '<?php echo site_url("$this->controller/merk") ?>',
+                    data : {Merk : obj.Data.Merk},
+                    type : 'post', 
+                        success : function(result) {
+                        $("#id_merek").html(result);
+                        // alert($("#id_merek").val());
+                        get_type($("#id_merek").val());
+                    }
+                });
+
+                $.ajax({
+                    url : '<?php echo site_url("$this->controller/jenis") ?>',
+                    data : {Jenis : obj.Data.Jenis},
+                    type : 'post', 
+                        success : function(result) {
+                        $("#id_jenis").html(result);
+                        model($("#id_jenis").val(), obj.Data.Model);
+                    }
+                });
+
+                // $.ajax({
+                //     url : '<?php echo site_url("$this->controller/model") ?>',
+                //     data : {Merk : obj.Data.Model},
+                //     type : 'post', 
+                //         success : function(result) {
+                //         $("#id_model").html(result)
+                //     }
+                // });
+
                 // $("#kode_dealer").val(obj.Data.KodeDealer);
                 // alert(obj.Data.KodeDealer);
 
@@ -297,6 +319,30 @@ $(".tanggal").datepicker().on('changeDate', function(ev){
 
 
 });
+
+function get_type(id_merk){
+    $.ajax({
+
+            url : '<?php echo site_url("$this->controller/get_tipe") ?>',
+            data : { id_merek : id_merk },
+            type : 'post', 
+            success : function(result) {
+                $("#type").html(result)
+            }
+    });
+}
+
+function model(jenis, model){
+    $.ajax({
+
+            url : '<?php echo site_url("$this->controller/get_model") ?>',
+            data : { id_jenis : jenis, model : model },
+            type : 'post', 
+            success : function(result) {
+                $("#id_model").html(result)
+            }
+      });
+}
 
 
 </script>

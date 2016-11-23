@@ -52,7 +52,7 @@ function simpan(){
     $data = array(
       'id'     => $id,
       'nama_serah_dealer' => $userdata_id,
-      // 'status_serah_dealer' => 1,
+      'status_serah_dealer' => 1,
       'nama_penerima_dealer' => $this->input->post('nama_penerima_dealer'),
       'tgl_serah_dealer' => flipdate($tgl_serah_dealer),
     );
@@ -272,7 +272,7 @@ function cetak_serah_dealer(){
 
  
 
-         $html = $this->load->view("pdf/cetak_data_view",$data,true);
+         $html = $this->load->view("pdf/cetak_serah_dealer",$data,true);
          $pdf->writeHTML($html, true, false, true, false, '');
 
  

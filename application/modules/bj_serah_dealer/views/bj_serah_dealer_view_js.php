@@ -67,7 +67,7 @@ function serah_dealer_simpan(){
                             message: obj.message
                              
                         });   
-                      $('#form_data').data('bootstrapValidator').resetForm(true);
+                      // $('#form_data').data('bootstrapValidator').resetForm(true);
                       
             }
             else {

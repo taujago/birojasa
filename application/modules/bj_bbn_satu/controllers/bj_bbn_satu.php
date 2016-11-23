@@ -22,19 +22,22 @@ class bj_bbn_satu extends biro_jasa_controller{
          $id = $get['id'];
 
 
-         $this->db->select('bbn1.*, pb.nama as nm_pengurus_bpkb, ps.nama as nm_pengurus_stnk, t.tipe as nm_tipe');
+         $this->db->select('bbn1.*, pb.nama as nm_pengurus_bpkb, ps.nama as nm_pengurus_stnk, t.tipe as nm_tipe, j.jenis as jenis, m.model as model' );
 
         $this->db->from("bj_bbn_satu bbn1");
         $this->db->join('pengguna ps','bbn1.pengurus_stnk=ps.id');
         $this->db->join('pengguna pb','bbn1.pengurus_bpkb=pb.id');
         $this->db->join('m_tipe t','bbn1.type=t.id');
+        $this->db->join('m_jenis j','bbn1.jenis=j.id_jenis');
+        // $this->db->join('tiger_kota kt','bbn1.id_kota=kt.id');
+        $this->db->join('m_model m','bbn1.model=m.id_model');
         $this->db->where('bbn1.id',$id);
          $bbn = $this->db->get('bj_bbn_satu');
          // echo $this->db->last_query(); exit();
 
          $data = $bbn->row_array();
 
-        
+        // show_array($data);exit();        
 
 
          $kota = $this->dm->datawilayah('id', 'tiger_kota', $data['id_kota'], 'kota')->row_array();
@@ -42,7 +45,7 @@ class bj_bbn_satu extends biro_jasa_controller{
           $kecamatan = $this->dm->datawilayah('id', 'tiger_kecamatan', $data['id_kecamatan'], 'kecamatan')->row_array();
           $desa = $this->dm->datawilayah('id', 'tiger_desa', $data['id_desa'], 'desa')->row_array();
 
-          $jenis = $this->dm->datawilayah('id_jenis', 'm_jenis', $data['id_jenis'], 'jenis')->row_array();
+          // $jenis = $this->dm->datawilayah('id_jenis', 'm_jenis', $data['id_jenis'], 'jenis')->row_array();
 
           $polda = $this->dm->datawilayah('polda_id', 'm_polda', $data['id_polda'], 'polda_nama')->row_array();
 
@@ -54,7 +57,7 @@ class bj_bbn_satu extends biro_jasa_controller{
 
           $data_array['arr_tahun'] = $this->cm->arr_tahun();
 
-          $model = $this->dm->datawilayah('id_model', 'm_model', $data['id_model'], 'model')->row_array();
+          // $model = $this->dm->datawilayah('id_model', 'm_model', $data['id_model'], 'model')->row_array();
 
           $merek = $this->dm->datawilayah('kode', 'm_merek', $data['id_merek'], 'nama')->row_array();
           // echo $data['id_merek'];
@@ -83,15 +86,34 @@ class bj_bbn_satu extends biro_jasa_controller{
 
 
         
-        $data["jenis"] = $jenis['jenis'];
-        $data["model"] = $model['model'];
+        // $data["jenis"] = $jenis['jenis'];
+        // $data["model"] = $model['model'];
+        $data["merek"] = $merek['nama'];
+        // // $data["warna"] = $warna['WARNA_NAMA'];
+        // if (!empty($kota['kota'])) {
+        //   $data["kota"] = $kota['kota'];
+        // }
+
         $data["merek"] = $merek['nama'];
         // $data["warna"] = $warna['WARNA_NAMA'];
+        if (!empty($kota['kota'])) {
+          $data['kota'] = $kota['kota'];
+        }
         
-        $data["kota"] = $kota['kota'];
-        $data['provinsi'] = $provinsi['provinsi'];
-        $data['desa'] = $desa['desa'];
-        $data['kecamatan'] = $kecamatan['kecamatan'];
+        if (!empty($desa['desa'])) {
+          $data['desa'] = $desa['desa'];
+        }
+        if (!empty($kecamatan['kecamatan'])) {
+          $data['kecamatan'] = $kecamatan['kecamatan'];
+        }
+
+        if (!empty($provinsi['provinsi'])) {
+          $data['provinsi'] = $provinsi['provinsi'];
+        }
+        
+        
+        // $data['desa'] = $desa['desa'];
+        // $data['kecamatan'] = $kecamatan['kecamatan'];
         $data['polda'] = $polda['polda_nama'];
         $data['samsat'] = $samsat['nama'];
     
@@ -737,22 +759,100 @@ else {
 }
 
 function get_model(){
-    $data = $this->input->post();
+    $post = $this->input->post();
 
     $userdata = $this->session->userdata('bj_login');
 
     $birojasa = $userdata['birojasa_id'];
 
-    $id_jenis = $data['id_jenis'];
+    $id_jenis = $post['id_jenis'];
+    $model = $post['model'];
+
+    // show_array($post);
+    // echo $id_jenis;
+    // echo $model;
+    // echo $birojasa;
+    // $id_model = '';
+
     $this->db->where("id_birojasa", $birojasa);
     $this->db->where("id_jenis",$id_jenis);
+    $this->db->where("model",$model);
+    $get_model = $this->db->get('m_model');
+    echo $this->db->last_query();
+    if ($get_model->num_rows()==0) {
+      $data['id_birojasa'] = $birojasa;
+      $data['id_jenis'] = $id_jenis;
+      $data['model'] = $model;
+      $this->db->insert('m_model', $data); 
+      echo $this->db->last_query();
+      $id_model = $this->db->insert_id();
+
+
+    }
+
+    
+    if (!empty($id_model)) {
+      $this->db->where("id_model",$id_model);
+    }
+    $this->db->where("id_birojasa", $birojasa);
+    $this->db->where("id_jenis",$id_jenis);
+    $this->db->where("model",$model);
+    
     $this->db->order_by("model");
     $rs = $this->db->get("m_model");
     foreach($rs->result() as $row ) :
-        echo "<option value=$row->id_model>$row->model </option>";
+      echo "<option value=$row->id_model>- $row->model</option>";
+      // if ($row->id_model==$id_model) {
+      //   echo "<option value=$row->id_model selected>- $row->model</option>";
+      // }else{
+      //   echo "<option value=$row->id_model>- $row->model</option>";
+      // }
     endforeach;
 
 
+}
+
+
+function jenis(){
+    $post = $this->input->post();
+
+    $userdata = $this->session->userdata('bj_login');
+    $birojasa = $userdata['birojasa_id'];
+
+    // show_array($post);
+    // echo $post['NamaDealer'];
+    // exit;
+
+    //echo "nomor rangka  $no_rangka ";
+    $this->db->where("jenis", $post['Jenis']);
+    $this->db->where("id_birojasa", $birojasa);
+    $type = $this->db->get("m_jenis");
+
+    if ($type->num_rows()==0) {
+      $data['id_birojasa'] = $birojasa;
+      $data['jenis'] = $post['Jenis'];
+      $this->db->insert('m_jenis', $data);
+    }
+
+            // $ret = array('' => '- Pilih Satu -', );
+            //     foreach($res->result_array() as $row) : 
+            //             $ret[$row[$vINDEX]] = $row[$vINDEX].' - '.$row[$vVALUE];
+            //     endforeach;
+
+    $this->db->where("jenis", $post['Jenis']);
+    $this->db->order_by("id_jenis");
+    $rs = $this->db->get("m_jenis");
+    foreach($rs->result() as $row ) :
+
+      if ($row->id_jenis==$post['Jenis']) {
+        echo "<option value=$row->id_jenis selected>- $row->jenis</option>";
+      }else{
+        echo "<option value=$row->id_jenis>- $row->jenis</option>";
+      }
+    endforeach;
+
+
+    
 }
 
  function get_kabupaten(){
@@ -968,8 +1068,8 @@ function dealer(){
     $this->db->where("id_birojasa", $birojasa);
     $type = $this->db->get("dealer");
 
-    if ($type->num_rows()<1) {
-      // $data['id_birojasa'] = $birojasa;
+    if ($type->num_rows()==0) {
+      $data['id_birojasa'] = $birojasa;
       $data['id'] = $post['KodeDealer'];
       $data['nama'] = $post['NamaDealer'];
       $this->db->insert('dealer', $data);
@@ -997,6 +1097,52 @@ function dealer(){
 }
 
 
+function merk(){
+    $post = $this->input->post();
+
+    $userdata = $this->session->userdata('bj_login');
+    $birojasa = $userdata['birojasa_id'];
+
+    // show_array($post);
+    // echo $post['NamaDealer'];
+    // exit;
+
+    //echo "nomor rangka  $no_rangka ";
+    $this->db->where("nama", $post['Merk']);
+    $this->db->where("id_birojasa", $birojasa);
+    $type = $this->db->get("m_merek");
+
+    if ($type->num_rows()==0) {
+      $data['id_birojasa'] = $birojasa;
+      $data['kode'] = $post['Merk'];
+      $data['nama'] = $post['Merk'];
+      $this->db->insert('m_merek', $data);
+    }
+
+            // $ret = array('' => '- Pilih Satu -', );
+            //     foreach($res->result_array() as $row) : 
+            //             $ret[$row[$vINDEX]] = $row[$vINDEX].' - '.$row[$vVALUE];
+            //     endforeach;
+
+    $this->db->where("kode", $post['Merk']);
+    $this->db->order_by("kode");
+    $rs = $this->db->get("m_merek");
+    foreach($rs->result() as $row ) :
+
+      if ($row->kode==$post['Merk']) {
+        echo "<option value=$row->kode selected>- $row->nama</option>";
+      }else{
+        echo "<option value=$row->kode>- $row->nama</option>";
+      }
+    endforeach;
+
+
+    
+}
+
+
+
+
 function printkwitansi(){
     $get = $this->input->get(); 
     $userdata = $this->session->userdata('bj_login');
@@ -1016,12 +1162,13 @@ function printkwitansi(){
 
 
 
-    $this->db->select('bbn1.*, pb.nama as nm_pengurus_bpkb, ps.nama as nm_pengurus_stnk, m.model as model, j.jenis as jenis, mr.nama as merk');
+    $this->db->select('bbn1.*, pb.nama as nm_pengurus_bpkb, ps.nama as nm_pengurus_stnk, m.model as model, j.jenis as jenis, mr.nama as merk, t.tipe as type');
 
       $this->db->from("bj_bbn_satu bbn1");
-      $this->db->join('m_model m','bbn1.id_model=m.id_model');
-      $this->db->join('m_jenis j','bbn1.id_jenis=j.id_jenis');
+      $this->db->join('m_model m','bbn1.model=m.id_model');
+      $this->db->join('m_jenis j','bbn1.jenis=j.id_jenis');
       $this->db->join('m_merek mr','bbn1.id_merek=mr.kode');
+      $this->db->join('m_tipe t','bbn1.type=t.id');
       $this->db->join('pengguna ps','bbn1.pengurus_stnk=ps.id');
       $this->db->join('pengguna pb','bbn1.pengurus_bpkb=pb.id');
       // $this->db->where('id_birojasa', $id_birojasa);

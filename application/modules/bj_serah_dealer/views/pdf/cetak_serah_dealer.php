@@ -43,7 +43,7 @@
 
 <table width="100%">
   <tr>
-    <td width="100%" align="center"><h1>Data Report BBN 1</h1></td>
+    <td width="100%" align="center"><h1>Dokumen Penyerahan Dealer</h1></td>
   </tr>
   
 </table>
@@ -56,12 +56,13 @@
     <th width="3%">No</th>
     <th width="13%">Nama Pemilik</th>
     <th width="13%">Type</th>
+    <th width="11%">No. Polisi</th>
     <th width="10%">No. BPKB</th>
     <th width="10%">Total PKB</th>
     <th width="10%">Biaya Proses</th>
     <th width="10%">Fee</th>
     <th width="8%">Total</th>
-    <th width="11%">Pengurus STNK</th>
+    
     <th width="12%">Pengurus BPKB</th>
   </tr>
   <?php 
@@ -81,12 +82,13 @@
     <td><?php echo $x+1; ?></td>
     <td><?php echo $row->nama_pemilik; ?></td>
     <td><?php echo $row->nm_type; ?></td>
+    <td><?php echo $row->no_pol; ?></td>
     <td><?php echo $row->bpkb_no; ?></td>
     <td><?php echo $pkb; ?></td>
     <td><?php echo rupiah($biaya_proses); ?></td>
     <td><?php echo rupiah($row->rp_admin_fee); ?></td>
     <td><?php echo rupiah($total); ?></td>
-    <td><?php echo $row->nm_pengurus_stnk; ?></td>
+    
     <td><?php echo $row->nm_pengurus_bpkb; ?></td>
   </tr>
   <?php endforeach; ?>
@@ -94,10 +96,11 @@
   <tr>
     <td colspan="4">Total</td>
     <td>&nbsp;</td>
+    <td>&nbsp;</td>
     <td><b><?php echo rupiah($total_biaya); ?></b></td>
     <td><b><?php echo rupiah($total_fee); ?></b></td>
     <td><b><?php echo rupiah($total_biaya+$total_fee); ?></b></td>
-    <td>&nbsp;</td>
+    
     <td>&nbsp;</td>
   </tr>
 </table>

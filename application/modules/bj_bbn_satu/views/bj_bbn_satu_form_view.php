@@ -125,7 +125,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Jenis
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <?php echo form_dropdown("id_jenis",$arr_jenis,isset($id_jenis)?$id_jenis:"",'id="id_jenis" class="form-control input-style"'); ?>
+                        <?php echo form_dropdown("jenis",$arr_jenis,isset($id_jenis)?$id_jenis:"",'id="id_jenis" class="form-control input-style"'); ?>
                        </div> 
                     </div>
                    <div class="form-group">
@@ -135,9 +135,9 @@
 
                         <?php 
                         if ($action=='simpan') {
-                          echo form_dropdown("id_model",$arr_model_baru,isset($id_model)?$id_model:"",'id="id_model" class="form-control input-style"');
+                          echo form_dropdown("model",$arr_model_baru,isset($id_model)?$id_model:"",'id="id_model" class="form-control input-style"');
                         }else{
-                          echo form_dropdown("id_model",$arr_model,isset($id_model)?$id_model:"",'id="id_model" class="form-control input-style"');
+                          echo form_dropdown("model",$arr_model,isset($id_model)?$id_model:"",'id="id_model" class="form-control input-style"');
                         }
                          ?>
                         
