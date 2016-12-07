@@ -218,6 +218,21 @@ $(".tanggal").datepicker().on('changeDate', function(ev){
     });
 
 
+
+   $("#id_merk").change(function(){
+
+    $.ajax({
+
+            url : '<?php echo site_url("$this->controller/get_type") ?>',
+            data : { id_merk : $(this).val() },
+            type : 'post', 
+            success : function(result) {
+                $("#type").html(result)
+            }
+      });
+
+    });
+
   $('.tgl').daterangepicker({
     singleDatePicker: true,
     calender_style: "picker_4"

@@ -219,7 +219,7 @@ function baru(){
          $id_kota = $data['id_kota'];
          $id_kecamatan = $data['id_kecamatan'];
          $id_polda = $data['id_polda'];
-         $id_jenis = $data['id_jenis'];
+         $id_jenis = $data['jenis'];
          $data['tgl_faktur'] = flipdate($data['tgl_faktur']);
         $data['tgl_pengajuan'] = flipdate($data['tgl_pengajuan']);
 
@@ -1104,19 +1104,27 @@ function merk(){
     $birojasa = $userdata['birojasa_id'];
 
     // show_array($post);
-    // echo $post['NamaDealer'];
+    // // echo $post['NamaDealer'];
     // exit;
 
     //echo "nomor rangka  $no_rangka ";
+
     $this->db->where("nama", $post['Merk']);
     $this->db->where("id_birojasa", $birojasa);
     $type = $this->db->get("m_merek");
 
-    if ($type->num_rows()==0) {
+    if ($type->num_rows()==0&&!(empty($psot['Merk']))) {
       $data['id_birojasa'] = $birojasa;
       $data['kode'] = $post['Merk'];
       $data['nama'] = $post['Merk'];
       $this->db->insert('m_merek', $data);
+      $this->db->where("kode", $post['Merk']);
+    $this->db->order_by("kode");
+    $rs = $this->db->get("m_merek");
+    }else{
+
+    $this->db->order_by("kode");
+    $rs = $this->db->get("m_merek");
     }
 
             // $ret = array('' => '- Pilih Satu -', );
@@ -1124,9 +1132,9 @@ function merk(){
             //             $ret[$row[$vINDEX]] = $row[$vINDEX].' - '.$row[$vVALUE];
             //     endforeach;
 
-    $this->db->where("kode", $post['Merk']);
-    $this->db->order_by("kode");
-    $rs = $this->db->get("m_merek");
+    // $this->db->where("kode", $post['Merk']);
+    // $this->db->order_by("kode");
+    // $rs = $this->db->get("m_merek");
     foreach($rs->result() as $row ) :
 
       if ($row->kode==$post['Merk']) {

@@ -125,7 +125,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Jenis
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <?php echo form_dropdown("jenis",$arr_jenis,isset($id_jenis)?$id_jenis:"",'id="id_jenis" class="form-control input-style"'); ?>
+                        <?php echo form_dropdown("jenis",$arr_jenis,isset($jenis)?$jenis:"",'id="id_jenis" class="form-control input-style"'); ?>
                        </div> 
                     </div>
                    <div class="form-group">
@@ -135,9 +135,9 @@
 
                         <?php 
                         if ($action=='simpan') {
-                          echo form_dropdown("model",$arr_model_baru,isset($id_model)?$id_model:"",'id="id_model" class="form-control input-style"');
+                          echo form_dropdown("model",$arr_model_baru,isset($model)?$model:"",'id="id_model" class="form-control input-style"');
                         }else{
-                          echo form_dropdown("model",$arr_model,isset($id_model)?$id_model:"",'id="id_model" class="form-control input-style"');
+                          echo form_dropdown("model",$arr_model,isset($model)?$model:"",'id="id_model" class="form-control input-style"');
                         }
                          ?>
                         
@@ -204,54 +204,9 @@
                         <textarea name="alamat_pemilik" id="alamat_pemilik" class="form-control" rows="3" placeholder='Alamat'><?php echo isset($alamat_pemilik)?$alamat_pemilik:""; ?></textarea>
                        </div> 
                     </div>
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Provinsi
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <?php echo form_dropdown("id_provinsi",$arr_provinsi,isset($id_provinsi)?$id_provinsi:"",'id="id_provinsi" class="form-control input-style"'); ?>
-                       </div> 
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Kabupaten
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-
-                        <?php 
-                        if ($action=='simpan') {
-                          echo form_dropdown("id_kota",$arr_kota_baru,'','id="id_kota" class="form-control input-style"');
-                        }else{
-                          echo form_dropdown("id_kota",$arr_kota,isset($id_kota)?$id_kota:"",'id="id_kota" class="form-control input-style"');
-                        }
-                         ?>
-                       </div> 
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Kecamatan
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <?php
-                        if ($action=='simpan') {
-                           echo form_dropdown("id_kecamatan",$arr_kecamatan_baru,'','id="id_kecamatan" class="form-control input-style"');
-                         } else{
-                          echo form_dropdown("id_kecamatan",$arr_kecamatan,isset($id_kecamatan)?$id_kecamatan:"",'id="id_kecamatan" class="form-control input-style"');
-                         }
-                         ?>
-                       </div> 
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Kelurahan/Desa
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <?php 
-                        if ($action=='simpan') {
-                          echo form_dropdown("id_desa",$arr_desa_baru,'','id="id_desa" class="form-control input-style"');
-                        }else{
-                          echo form_dropdown("id_desa",$arr_desa,isset($id_desa)?$id_desa:"",'id="id_desa" class="form-control input-style"');
-                        }
-                         ?>
-                        
-                        </div>
-                    </div>
+                    
+                   
+                   
 
 
                     <div class="form-group">
