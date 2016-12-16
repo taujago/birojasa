@@ -4,6 +4,8 @@
 
 
 
+
+
     <link href="<?php echo base_url("assets") ?>/plugins/select2/select2.min.css" rel="stylesheet" >
     
 
@@ -109,15 +111,28 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Merek
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
+                      <div class="col-md-6 no-padding">
                         <?php echo form_dropdown("id_merek",$arr_merek,isset($id_merek)?$id_merek:"",'id="id_merek" class="form-control select2" style="width: 100%;"'); ?>
+                      </div>
+                      <div class="col-md-1"></div>
+                      <div class="col-md-5" id="label_merk" style="font-size: 20px;"> 
+                        
+                      </div>
+
+                        
                        </div> 
                     </div>
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Type
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
+                      <div class="col-md-6 no-padding">
                       <?php echo form_dropdown("type",$arr_type,isset($type)?$type:"",'id="type" class="form-control select2" style="width: 100%;"'); ?>
-
+                      </div>
+                      <div class="col-md-1"></div>
+                      <div class="col-md-5" id="label_type" style="font-size: 20px;"> 
+                        
+                      </div>
                         
                       </div>
                     </div>
@@ -125,14 +140,20 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Jenis
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
+                      <div class="col-md-6 no-padding">
                         <?php echo form_dropdown("jenis",$arr_jenis,isset($jenis)?$jenis:"",'id="id_jenis" class="form-control input-style"'); ?>
+                        </div>
+                        <div class="col-md-1"></div>
+                      <div class="col-md-5" id="label_jenis" style="font-size: 20px;"> 
+                        
+                      </div>
                        </div> 
                     </div>
                    <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Model
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-
+                      <div class="col-md-6 no-padding">
                         <?php 
                         if ($action=='simpan') {
                           echo form_dropdown("model",$arr_model_baru,isset($model)?$model:"",'id="id_model" class="form-control input-style"');
@@ -140,7 +161,11 @@
                           echo form_dropdown("model",$arr_model,isset($model)?$model:"",'id="id_model" class="form-control input-style"');
                         }
                          ?>
-                        
+                        </div>
+                        <div class="col-md-1"></div>
+                      <div class="col-md-5" id="label_model" style="font-size: 20px;"> 
+                      
+                      </div>
                        </div> 
                     </div>
 

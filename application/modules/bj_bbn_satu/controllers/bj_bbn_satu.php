@@ -764,7 +764,7 @@ function get_model(){
     $userdata = $this->session->userdata('bj_login');
 
     $birojasa = $userdata['birojasa_id'];
-
+    $post['id_birojasa'] = $birojasa;
     $id_jenis = $post['id_jenis'];
     $model = $post['model'];
 
@@ -778,30 +778,38 @@ function get_model(){
     $this->db->where("id_jenis",$id_jenis);
     $this->db->where("model",$model);
     $get_model = $this->db->get('m_model');
-    echo $this->db->last_query();
+    // echo $this->db->last_query();
     if ($get_model->num_rows()==0) {
-      $data['id_birojasa'] = $birojasa;
-      $data['id_jenis'] = $id_jenis;
-      $data['model'] = $model;
-      $this->db->insert('m_model', $data); 
+      // $data['id_birojasa'] = $birojasa;
+      // $data['id_jenis'] = $id_jenis;
+      // $data['model'] = $model;
+      $this->db->insert('m_model', $post); 
       echo $this->db->last_query();
       $id_model = $this->db->insert_id();
 
 
+    }else{
+      $rs = $get_model->row_array();
+      $id_model = $rs['id_model'];
     }
 
     
-    if (!empty($id_model)) {
-      $this->db->where("id_model",$id_model);
-    }
+    
     $this->db->where("id_birojasa", $birojasa);
     $this->db->where("id_jenis",$id_jenis);
-    $this->db->where("model",$model);
+    // $this->db->where("model",$model);
     
     $this->db->order_by("model");
     $rs = $this->db->get("m_model");
+    echo "<option value=''></option>";
     foreach($rs->result() as $row ) :
-      echo "<option value=$row->id_model>- $row->model</option>";
+
+      if ($row->id_model==$id_model) {
+        echo "<option value=$row->id_model selected>$row->model</option>";
+      }else{
+        echo "<option value=$row->id_model>$row->model</option>";
+      }
+      
       // if ($row->id_model==$id_model) {
       //   echo "<option value=$row->id_model selected>- $row->model</option>";
       // }else{
@@ -811,6 +819,56 @@ function get_model(){
 
 
 }
+
+function warna_tnkb(){
+    $post = $this->input->post();
+
+    $userdata = $this->session->userdata('bj_login');
+    $birojasa = $userdata['birojasa_id'];
+
+    // show_array($post);
+    // echo $post['NamaDealer'];
+    // exit;
+    if (!empty($post['warna_tnkb'])) {
+      $this->db->where("warna_tnkb", $post['warna_tnkb']);
+    $warna_tnkb = $this->db->get("m_warna_tnkb");
+
+    if ($type->num_rows()==0) {
+      
+      
+      $this->db->insert('m_warna_tnkb', $post);
+     $id_warna_tnkb = $this->db->insert_id();
+    }else{
+      $rs = $warna->row();
+      $id_warna_tnkb = $rs['id'];
+    }
+    }else{
+      $id_warna_tnkb = '';
+    }
+    
+
+            // $ret = array('' => '- Pilih Satu -', );
+            //     foreach($res->result_array() as $row) : 
+            //             $ret[$row[$vINDEX]] = $row[$vINDEX].' - '.$row[$vVALUE];
+            //     endforeach;
+
+    
+    $this->db->order_by("warna_tnkb");
+    $rs = $this->db->get("m_warna_tnkb");
+    echo "<option value=''></option>";
+    foreach($rs->result() as $row ) :
+
+      if ($row->id_warna_tnkb==$id_warna_tnkb) {
+        echo "<option value=$row->id_warna_tnkb selected>$row->warna_tnkb</option>";
+      }else{
+        echo "<option value=$row->id_warna_tnkb>$row->warna_tnkb</option>";
+      }
+    endforeach;
+
+
+    
+}
+
 
 
 function jenis(){
@@ -839,15 +897,16 @@ function jenis(){
             //             $ret[$row[$vINDEX]] = $row[$vINDEX].' - '.$row[$vVALUE];
             //     endforeach;
 
-    $this->db->where("jenis", $post['Jenis']);
+    $this->db->where("id_birojasa", $birojasa);
     $this->db->order_by("id_jenis");
     $rs = $this->db->get("m_jenis");
+
     foreach($rs->result() as $row ) :
 
-      if ($row->id_jenis==$post['Jenis']) {
-        echo "<option value=$row->id_jenis selected>- $row->jenis</option>";
+      if ($row->jenis==$post['Jenis']) {
+        echo "<option value=$row->id_jenis selected>$row->jenis</option>";
       }else{
-        echo "<option value=$row->id_jenis>- $row->jenis</option>";
+        echo "<option value=$row->id_jenis>$row->jenis</option>";
       }
     endforeach;
 
@@ -1035,10 +1094,35 @@ function get_tipe(){
     $data = $this->input->post();
 
     
-    $id_merk = $data['id_merek'];
+    $id_merk = $data['id_merk'];
+    $type = $data['type'];
+    $data['tipe'] = $type;
+    unset($data['type']);
 
     $userdata = $this->session->userdata('bj_login');
     $birojasa = $userdata['birojasa_id'];
+    $data['id_birojasa'] = $birojasa;
+    $this->db->where("id_birojasa", $birojasa);
+    $this->db->where("id_merk",$id_merk);
+    $this->db->where("tipe",$type);
+    $get_tipe = $this->db->get('m_tipe');
+
+    // show_array($data);
+    // echo $this->db->last_query();
+    if ($get_tipe->num_rows()==0) {
+      
+      // $data['id_merk'] = $id_merk;
+      // $data['tipe'] = $type;
+      $this->db->insert('m_tipe', $data); 
+      // echo $this->db->last_query();
+      $id_tipe = $this->db->insert_id();
+
+
+    }else{
+      $tipe = $get_tipe->row_array();
+      $id_tipe = $tipe['id'];
+    }
+
 
     $this->db->where("id_merk",$id_merk);
     $this->db->where("id_birojasa", $birojasa);
@@ -1046,7 +1130,11 @@ function get_tipe(){
     $rs = $this->db->get("m_tipe");
     echo "<option value=''>- Pilih Tipe -</option>";
     foreach($rs->result() as $row ) :
+      if ($row->id==$id_tipe) {
+        echo "<option value=$row->id selected>$row->tipe </option>";
+      }else{
         echo "<option value=$row->id>$row->tipe </option>";
+      }
     endforeach;
 
 
@@ -1138,9 +1226,9 @@ function merk(){
     foreach($rs->result() as $row ) :
 
       if ($row->kode==$post['Merk']) {
-        echo "<option value=$row->kode selected>- $row->nama</option>";
+        echo "<option value=$row->kode selected> $row->nama</option>";
       }else{
-        echo "<option value=$row->kode>- $row->nama</option>";
+        echo "<option value=$row->kode> $row->nama</option>";
       }
     endforeach;
 
