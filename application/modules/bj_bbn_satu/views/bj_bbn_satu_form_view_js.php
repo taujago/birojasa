@@ -219,7 +219,7 @@ $(".tanggal").datepicker().on('changeDate', function(ev){
 
 
 
-   $("#id_merk").change(function(){
+   $("#id_merek").change(function(){
 
     $.ajax({
 

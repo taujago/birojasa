@@ -957,6 +957,21 @@ function jenis(){
 }
 
 
+ function get_type(){
+    $data = $this->input->post();
+
+    $id_merk = $data['id_merk'];
+    $this->db->where("id_merk",$id_merk);
+    $this->db->order_by("tipe");
+    $rs = $this->db->get("m_tipe");
+    foreach($rs->result() as $row ) :
+        echo "<option value=$row->id>$row->tipe </option>";
+    endforeach;
+
+
+}
+
+
 
 
 function get_biaya(){
