@@ -13,9 +13,9 @@
               <div class="x_title">
                   <h2>Tambah Data <small>Pengurusan BBN 1 </small></h2>
                   <ul class="nav navbar-right panel_toolbox">
-                  <a href="<?php echo site_url('bj_serah_dealer'); ?>"><button type="button" class="btn btn-default">Serah Dealer</button>
+                  <a href="<?php echo site_url('bj_serah_dealer'); ?>"><button type="button" class="btn btn-success">Serah Dealer</button>
                     </a>
-                    <a href="<?php echo site_url($this->controller.'/baru'); ?>"><button type="button" class="btn btn-default">Tambah Data</button>
+                    <a href="<?php echo site_url($this->controller.'/baru'); ?>"><button type="button" class="btn btn-primary">Tambah Data</button>
                     </a>
 
                   </ul>
@@ -53,19 +53,19 @@
             <div class="col-md-1">
               <div class="form-group">
                 <label></label>
-                <button type="submit" class="btn btn-default form-control" id="btn_submit" style="border-radius: 5px"><i class="fa">Cari</i></button>
+                <button type="submit" class="btn btn-primary form-control" id="btn_submit" style="border-radius: 5px"><i class="fa">Cari</i></button>
               </div>
             </div>
             <div class="col-md-1">
               <div class="form-group">
                 <label></label>
-                <button type="button" class="btn btn-default form-control" id="cetak" style="border-radius: 5px"><i class="fa">Cetak</i></button>
+                <button type="button" class="btn btn-success form-control" id="cetak" style="border-radius: 5px"><i class="fa">Cetak</i></button>
               </div>
             </div>
             <div class="col-md-1">
               <div class="form-group">
                 <label></label>
-                <button type="reset" class="btn btn-default form-control" id="btn_reset" style="border-radius: 5px"><i class="fa">Reset</i></button>
+                <button type="reset" class="btn btn-danger form-control" id="btn_reset" style="border-radius: 5px"><i class="fa">Reset</i></button>
               </div>
             </div>
             

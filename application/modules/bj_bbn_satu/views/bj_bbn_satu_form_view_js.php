@@ -34,6 +34,11 @@ $('#hitung').click(function(){
             $("#rp_pajak_kendaraan").val(obj.rp_pajak_kendaraan);
             $("#rp_admin_fee").val(obj.rp_admin_fee);
             $("#total").val(obj.total);
+            document.getElementById("rp_daftar_stnk").setAttribute("disabled", true)
+            document.getElementById("rp_daftar_bpkb").setAttribute("disabled", true)
+            document.getElementById("rp_pajak_kendaraan").setAttribute("disabled", true)
+            document.getElementById("rp_admin_fee").setAttribute("disabled", true)
+            document.getElementById("total").setAttribute("disabled", false)
             }
             else {
                  BootstrapDialog.alert({
@@ -42,11 +47,13 @@ $('#hitung').click(function(){
                             message: obj.message 
                              
                         });
-                        $("#rp_daftar_stnk").val(obj.rp_daftar_stnk);
+            $("#rp_daftar_stnk").val(obj.rp_daftar_stnk);
             $("#rp_daftar_bpkb").val(obj.rp_daftar_bpkb);
             $("#rp_pajak_kendaraan").val(obj.rp_pajak_kendaraan);
             $("#rp_admin_fee").val(obj.rp_admin_fee);
             $("#total").val(obj.total);
+
+            
             }
 
             

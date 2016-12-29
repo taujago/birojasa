@@ -184,13 +184,7 @@
                         <input type="text" id="silinder" name="silinder" required="required" class="form-control col-md-7 col-xs-12" placeholder="Silinder" value="<?php echo isset($silinder)?$silinder:""; ?>">
                       </div>
                     </div>
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Bahan Bakar
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="bahan_bakar" name="bahan_bakar" required="required" class="form-control col-md-7 col-xs-12" placeholder="Bahan Bakar" value="<?php echo isset($bahan_bakar)?$bahan_bakar:""; ?>">
-                      </div>
-                    </div>
+                    
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Tahun Buat
                       </label>
@@ -266,7 +260,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Biaya STNK
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="rp_daftar_stnk" name="rp_daftar_stnk" required="required" class="rupiah form-control col-md-7 col-xs-12 rp" placeholder="Biaya STNK"  data-a-sign="" data-a-dec="," data-a-sep="." readonly="true" value="<?php echo isset($rp_daftar_stnk)?$rp_daftar_stnk:""; ?>">
+                        <input type="text" id="rp_daftar_stnk" name="rp_daftar_stnk" required="required" class="rupiah form-control col-md-7 col-xs-12 rp" placeholder="Biaya STNK"  data-a-sign="" data-a-dec="," data-a-sep="." value="<?php echo isset($rp_daftar_stnk)?$rp_daftar_stnk:""; ?>">
                       </div>
                     </div>
       
@@ -274,7 +268,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Biaya BPKB
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="rp_daftar_bpkb" name="rp_daftar_bpkb" required="required" class="rupiah form-control col-md-7 col-xs-12 rp" placeholder="Biaya BPKB"  data-a-sign="" data-a-dec="," data-a-sep="." readonly="true" value="<?php echo isset($rp_daftar_bpkb)?$rp_daftar_bpkb:""; ?>">
+                        <input type="text" id="rp_daftar_bpkb" name="rp_daftar_bpkb" required="required" class="rupiah form-control col-md-7 col-xs-12 rp" placeholder="Biaya BPKB"  data-a-sign="" data-a-dec="," data-a-sep="."  value="<?php echo isset($rp_daftar_bpkb)?$rp_daftar_bpkb:""; ?>">
                       </div>
                     </div>
                     
@@ -284,7 +278,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Pajak Kendaraan
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="rp_pajak_kendaraan" name="rp_pajak_kendaraan" required="required" class="rupiah form-control col-md-7 col-xs-12 rp" placeholder="Pajak Kendaraan"  data-a-sign="" data-a-dec="," data-a-sep="." readonly="true" value="<?php echo isset($rp_pajak_kendaraan)?$rp_pajak_kendaraan:""; ?>">
+                        <input type="text" id="rp_pajak_kendaraan" name="rp_pajak_kendaraan" required="required" class="rupiah form-control col-md-7 col-xs-12 rp" placeholder="Pajak Kendaraan"  data-a-sign="" data-a-dec="," data-a-sep="."  value="<?php echo isset($rp_pajak_kendaraan)?$rp_pajak_kendaraan:""; ?>">
                       </div>
                     </div>
                     
@@ -292,7 +286,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Admin Fee
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="rp_admin_fee" name="rp_admin_fee" required="required" class="rupiah form-control col-md-7 col-xs-12 rp" placeholder="Admin Fee"  data-a-sign="" data-a-dec="," data-a-sep="." readonly="true" value="<?php echo isset($rp_admin_fee)?$rp_admin_fee:""; ?>">
+                        <input type="text" id="rp_admin_fee" name="rp_admin_fee" required="required" class="rupiah form-control col-md-7 col-xs-12 rp" placeholder="Admin Fee"  data-a-sign="" data-a-dec="," data-a-sep="." value="<?php echo isset($rp_admin_fee)?$rp_admin_fee:""; ?>">
                       </div>
                     </div>
                     
@@ -300,7 +294,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Total Estimasi Biaya
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="total" name="total" required="required" class="form-control col-md-7 col-xs-12 rp" placeholder="Admin Fee"  data-a-sign="" data-a-dec="," data-a-sep="." readonly="true" value="<?php echo isset($rp_total)?$rp_total:""; ?>">
+                        <input type="text" id="total" name="total" required="required" class="form-control col-md-7 col-xs-12 rp" placeholder="Admin Fee"  data-a-sign="" data-a-dec="," data-a-sep="." value="<?php echo isset($rp_total)?$rp_total:""; ?>" disabled>
                       </div>
                     </div>         
                                                                                                     

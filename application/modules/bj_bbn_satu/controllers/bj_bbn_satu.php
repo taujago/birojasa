@@ -344,19 +344,13 @@ function simpan(){
         $this->form_validation->set_rules('no_mesin','No. Mesin','required'); 
         $this->form_validation->set_rules('no_faktur','No. Faktur','required'); 
         $this->form_validation->set_rules('tgl_faktur','Tanggal Faktur','required'); 
-        // $this->form_validation->set_rules('id_merek','Merk','required'); 
+ 
         $this->form_validation->set_rules('type','Type','required'); 
-        // $this->form_validation->set_rules('id_model','Model','required');     
-        // $this->form_validation->set_rules('id_jenis','Jenis','required'); 
-        // $this->form_validation->set_rules('id_warna','Warna','required'); 
-        $this->form_validation->set_rules('silinder','Silinder','required'); 
-        $this->form_validation->set_rules('bahan_bakar','Bahan Bakar','required'); 
+     
+        $this->form_validation->set_rules('silinder','Silinder','required');  
         $this->form_validation->set_rules('tahun_buat','Tahun Buat','required'); 
         $this->form_validation->set_rules('kode_dealer','Dealer','required');  
-        // $this->form_validation->set_rules('id_desa','Desa','required'); 
-        // $this->form_validation->set_rules('id_kecamatan','Kecamatan','required');
-        // $this->form_validation->set_rules('id_provinsi','Provinsi','required');
-        // $this->form_validation->set_rules('id_kota','Kota','required');
+      
         $this->form_validation->set_rules('id_polda','Polda','required');
         $this->form_validation->set_rules('id_samsat','Samsat','required');
         $this->form_validation->set_rules('tgl_pengajuan','Tanggal Pengajuan','required');         
@@ -396,9 +390,42 @@ if($this->form_validation->run() == TRUE ) {
          );
         $biaya = $this->dm->biaya($primarykey)->row_array();
         if (empty($biaya)) {
+          if (!empty($post['rp_daftar_stnk'])&&!empty($post['rp_daftar_bpkb'])&&!empty($post['rp_pajak_kendaraan'])&&!empty($post['rp_admin_fee'])) {
+            $post['rp_daftar_stnk'] = bersih($post['rp_daftar_stnk']);
+            $post['rp_daftar_bpkb'] = bersih($post['rp_daftar_bpkb']);
+            $post['rp_pajak_kendaraan'] = bersih($post['rp_pajak_kendaraan']);
+            $post['rp_admin_fee'] = bersih($post['rp_admin_fee']);
+            $estimasi = array('tipe_kendaraan' => $post['type'],
+                            'tahun_kendaraan' => $post['tahun_buat'],
+                            'id_warna_tnkb' => $post['id_warna_tnkb'],
+                            'id_samsat' => $post['id_samsat'],
+                            'id_birojasa' => $birojasa,
+                            'rp_daftar_stnk' => $post['rp_daftar_stnk'],
+                            'id_polda' => $post['id_polda'],
+                            'rp_daftar_bpkb' => $post['rp_daftar_bpkb'],
+                            'rp_pajak_kendaraan' => $post['rp_pajak_kendaraan'],
+                            'rp_admin_fee' => $post['rp_admin_fee'], 
+                            'merk_kendaraan' => $post['id_merek']);
+
+            $esin = $this->db->insert('estimasi_bbn_satu', $estimasi); 
+            if($esin){
+              $this->db->set('tgl_entri', 'NOW()', FALSE);
+              $res = $this->db->insert('bj_bbn_satu', $post); 
+        
+              if($res){
+                $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
+              }else {
+                $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
+                }
+            }else {
+             $arr = array("error"=>true,'message'=>"ESTIMASI GAGAL  DISIMPAN");
+            }
+
+
+          }else{
             $arr = array("error"=>true,'message'=>"BELUM ADA ESTIMASI BIAYA UNTUK DATA INI </BR> MOHON PERIKSA KEMBALI DATA ANDA");
-        }
-        else{
+          }
+        }else{
         $stnk = $biaya['rp_daftar_stnk'];
         $bpkb = $biaya['rp_daftar_bpkb'];
         $pajak = $biaya['rp_pajak_kendaraan'];
@@ -410,7 +437,7 @@ if($this->form_validation->run() == TRUE ) {
         $post['rp_pajak_kendaraan']=$pajak;
         $post['rp_admin_fee']=$admin;
 
-         $post['total']=$post['total'];
+         // $post['total']=$post['total'];
 
           
 
@@ -511,8 +538,8 @@ else {
             if ($row['status_serah_dealer']==1) {
 
               $action = "<div class='btn-group'>
-                              <button type='button' class='btn btn-default'>Selesai</button>
-                              <button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown'>
+                              <button type='button' class='btn btn-info'>Selesai</button>
+                              <button type='button' class='btn btn-info dropdown-toggle' data-toggle='dropdown'>
                                 <span class='caret'></span>
                                 <span class='sr-only'>Toggle Dropdown</span>
                               </button>
@@ -524,8 +551,8 @@ else {
 
 
             $action = "<div class='btn-group'>
-                              <button type='button' class='btn btn-default'>Done</button>
-                              <button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown'>
+                              <button type='button' class='btn btn-success'>Done</button>
+                              <button type='button' class='btn btn-success dropdown-toggle' data-toggle='dropdown'>
                                 <span class='caret'></span>
                                 <span class='sr-only'>Toggle Dropdown</span>
                               </button>
@@ -536,8 +563,8 @@ else {
                 }         
               }else{
                 $action = "<div class='btn-group'>
-                              <button type='button' class='btn btn-default'>Kwitansi</button>
-                              <button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown'>
+                              <button type='button' class='btn btn-primary'>Kwitansi</button>
+                              <button type='button' class='btn btn-primary dropdown-toggle' data-toggle='dropdown'>
                                 <span class='caret'></span>
                                 <span class='sr-only'>Toggle Dropdown</span>
                               </button>
@@ -549,8 +576,8 @@ else {
           
         }else{
         $action = "<div class='btn-group'>
-                              <button type='button' class='btn btn-default'>Pending</button>
-                              <button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown'>
+                              <button type='button' class='btn btn-danger'>Pending</button>
+                              <button type='button' class='btn btn-danger dropdown-toggle' data-toggle='dropdown'>
                                 <span class='caret'></span>
                                 <span class='sr-only'>Toggle Dropdown</span>
                               </button>
@@ -635,7 +662,6 @@ function update(){
         $this->form_validation->set_rules('type','Type','required'); 
         // $this->form_validation->set_rules('id_model','Model','required');   
         $this->form_validation->set_rules('silinder','Silinder','required'); 
-        $this->form_validation->set_rules('bahan_bakar','Bahan Bakar','required'); 
         $this->form_validation->set_rules('tahun_buat','Tahun Buat','required'); 
         $this->form_validation->set_rules('kode_dealer','Kode Dealer','required');  
         // $this->form_validation->set_rules('id_desa','Desa','required'); 

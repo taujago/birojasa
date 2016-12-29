@@ -195,11 +195,7 @@
         <th>:</th>
         <th><?php echo $silinder; ?></th>
   </tr>
-  <tr>
-        <th>Bahan Bakar</th>
-        <th>:</th>
-        <th><?php echo $bahan_bakar; ?></th>
-  </tr>
+
   <tr>
         <th>Tahun Buat</th>
         <th>:</th>
