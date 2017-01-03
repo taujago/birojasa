@@ -1102,8 +1102,10 @@ function get_data_service(){
     $hasil = $this->execute_service($data_polda->url, $json_data) ;
 
     $arr = json_decode($hasil);
-
-    $arr->Data->TglFaktur = flipdate(todate2($arr->Data->TglFaktur)); 
+    // if ($data_polda->id==10) {
+    //   $arr->Data->TglFaktur = flipdate(todate2($arr->Data->TglFaktur));
+    // }
+    //  
 
    // show_array($arr);
 

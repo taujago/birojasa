@@ -8,13 +8,7 @@
               <div class="x_title">
                   <h2>Tambah Data <small>Pengurusan BBN 1 </small></h2>
                   <ul class="nav navbar-right panel_toolbox">
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-plus"></i></a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="<?php echo site_url($this->controller.'/baru'); ?>">Tambah Data</a>
-                        </li>
-                      </ul>
-                    </li>
+                    
                   </ul>
                   <div class="clearfix"></div>
                 </div>

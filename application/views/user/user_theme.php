@@ -107,9 +107,6 @@ $userdata = $this->session->userdata('user_login');
                     </li>
                   </ul>
                 </li>
-                
-                <li><a href="<?php echo site_url('/'); ?>bj_add_user"><i class="fa fa-users"></i> User </span></a>
-                </li>
               </ul>
             </div>
             <div class="menu_section">
