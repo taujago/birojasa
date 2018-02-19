@@ -107,6 +107,30 @@ $userdata = $this->session->userdata('user_login');
                     </li>
                   </ul>
                 </li>
+                <li><a><i class="fa fa-folder-open-o"></i> BPKB <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu" style="display: none">
+                    <li><a href="<?php echo site_url('us_serah_bpkb'); ?>">Penyerahan Berkas</a>
+                    </li>
+                    <li><a href="<?php echo site_url('us_serah_bpkb_detail'); ?>">Detail Penyerahan</a>
+                    </li>
+                    <li><a href="<?php echo site_url('us_terima_bpkb'); ?>">Penerimaan Berkas</a>
+                    </li>
+                    <li><a href="<?php echo site_url('us_terima_bpkb_detail'); ?>">Detail Penerimaan</a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-folder-open-o"></i> STNK <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu" style="display: none">
+                    <li><a href="<?php echo site_url('us_serah_stnk'); ?>">Penyerahan Berkas</a>
+                    </li>
+                    <li><a href="<?php echo site_url('us_serah_stnk_detail'); ?>">Detail Penyerahan</a>
+                    </li>
+                    <li><a href="<?php echo site_url('us_terima_stnk'); ?>">Penerimaan Berkas</a>
+                    </li>
+                    <li><a href="<?php echo site_url('us_terima_stnk_detail'); ?>">Detail Penerimaan</a>
+                    </li>
+                  </ul>
+                </li>
               </ul>
             </div>
             <div class="menu_section">
@@ -209,9 +233,9 @@ $userdata = $this->session->userdata('user_login');
        <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
 
   <!-- gauge js -->
-  <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/gauge/gauge.min.js"></script>
+ <!--  <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/gauge/gauge.min.js"></script>
   <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/gauge/gauge_demo.js"></script>
-  <!-- bootstrap progress js -->
+ -->  <!-- bootstrap progress js -->
   <script src="<?php echo base_url(); ?>assets/js/progressbar/bootstrap-progressbar.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/nicescroll/jquery.nicescroll.min.js"></script>
   <!-- icheck -->

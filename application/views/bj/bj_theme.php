@@ -131,6 +131,8 @@ $userdata = $this->session->userdata('bj_login');
                     </li>
                     <li><a href="<?php echo site_url('bj_model'); ?>">Model</a>
                     </li>
+                    <li><a href="<?php echo site_url('bj_dealer'); ?>">Dealer</a>
+                    </li>
                   </ul>
                 </li>
                 <li><a href="<?php echo site_url('/'); ?>bj_add_user"><i class="fa fa-users"></i> User </span></a>

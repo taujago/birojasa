@@ -16,13 +16,6 @@
 
 </br>
 
-<!-- <?php if($status==1){ ?>
-<div class="row">
-          <div class="col-md-4" style="font-size: 20px;">
-            <button id="proses" type="button" class="btn btn-primary form-control" data-toggle="modal" data-target=".1">PROSES</button>
-          </div>
-</div>
-<?php } ?> -->
 <div class="row">
 <?php if(!empty($pengerjaan_stnk)){ 
       if ($status_stnk==1) {

@@ -44,7 +44,7 @@ class us_bbn_satu_model extends CI_Model {
 
 		 	$this->db->select('*')->from("bj_bbn_satu");
 		 	$this->db->where('pengurus_stnk', $id)->or_where('pengurus_bpkb', $id);		
-
+		 	$this->db->order_by('tgl_pengajuan', 'desc');
 
 		 $tanggal_awal = flipdate($tanggal_awal);
 			$tanggal_akhir = flipdate($tanggal_akhir);
@@ -56,6 +56,7 @@ class us_bbn_satu_model extends CI_Model {
 		 if(!empty($no_rangka)) {
 		 	$this->db->like("no_rangka",$no_rangka);
 		 }
+
 
 		($param['limit'] != null ? $this->db->limit($param['limit']['end'], $param['limit']['start']) : '');
 		//$this->db->limit($param['limit']['end'], $param['limit']['start']) ;

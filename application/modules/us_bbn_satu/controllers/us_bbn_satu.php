@@ -244,7 +244,7 @@ function index(){
              
             $arr_data[] = array(
                 $row['id'],
-                $row['tgl_entri'],
+                flipdate($row['tgl_entri']),
                 $nama,
                 $row['no_mesin'],
                 $row['nama_pemilik'],

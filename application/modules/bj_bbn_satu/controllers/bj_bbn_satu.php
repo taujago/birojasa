@@ -127,7 +127,7 @@ class bj_bbn_satu extends biro_jasa_controller{
          // $content = $this->load->view($this->controller."_form_view",$data,true);
 
         $this->set_subtitle("Detail Data");
-        $this->set_title("Detail Data BBN 2");
+        $this->set_title("Detail Data BBN 1");
         $this->set_content($content);
         $this->cetak();
 
@@ -340,19 +340,25 @@ function simpan(){
 
 
         $this->load->library('form_validation');
+        $this->form_validation->set_rules('id_polda','Polda','required');
+        $this->form_validation->set_rules('id_samsat','Samsat','required');
         $this->form_validation->set_rules('no_rangka','No. Rangka','required');
         $this->form_validation->set_rules('no_mesin','No. Mesin','required'); 
         $this->form_validation->set_rules('no_faktur','No. Faktur','required'); 
-        $this->form_validation->set_rules('tgl_faktur','Tanggal Faktur','required'); 
- 
+        $this->form_validation->set_rules('tgl_faktur','Tanggal Faktur','required');
+        $this->form_validation->set_rules('id_merek','Merek','required');
         $this->form_validation->set_rules('type','Type','required'); 
-     
+        $this->form_validation->set_rules('jenis','Jenis','required');
+        $this->form_validation->set_rules('model','Model','required');
+        $this->form_validation->set_rules('warna','Warna Kendaraan','required');
         $this->form_validation->set_rules('silinder','Silinder','required');  
-        $this->form_validation->set_rules('tahun_buat','Tahun Buat','required'); 
-        $this->form_validation->set_rules('kode_dealer','Dealer','required');  
-      
-        $this->form_validation->set_rules('id_polda','Polda','required');
-        $this->form_validation->set_rules('id_samsat','Samsat','required');
+        $this->form_validation->set_rules('tahun_buat','Tahun Buat','required');
+        $this->form_validation->set_rules('id_warna_tnkb','Warna TNKB','required'); 
+        $this->form_validation->set_rules('kode_dealer','Dealer','required');
+        $this->form_validation->set_rules('nama_pemilik','Nama Pemilik','required');
+        $this->form_validation->set_rules('alamat_pemilik','Alamat Pemilik','required'); 
+        $this->form_validation->set_rules('pengurus_stnk','Pengurus STNK','required'); 
+        $this->form_validation->set_rules('pengurus_bpkb','Pengurus BPKB','required');
         $this->form_validation->set_rules('tgl_pengajuan','Tanggal Pengajuan','required');         
          
         $this->form_validation->set_message('required', 'Field %s Harus diisi ');
@@ -516,6 +522,7 @@ else {
         $result = $this->dm->data($req_param)->result_array();
 
         // echo $this->db->last_query();
+        // exit();
         $totalbpkb = 0;
         $totalstnk = 0;
         $totalpajak = 0;
@@ -597,6 +604,9 @@ else {
                 $no_faktur
                 </a>
                 ";
+
+
+
         $tgl_entri = flipdate($row['tgl_entri']);
             
              
@@ -654,23 +664,26 @@ function update(){
     $post = $this->input->post();
    
         $this->load->library('form_validation');
+        $this->form_validation->set_rules('id_polda','Polda','required');
+        $this->form_validation->set_rules('id_samsat','Samsat','required');
         $this->form_validation->set_rules('no_rangka','No. Rangka','required');
         $this->form_validation->set_rules('no_mesin','No. Mesin','required'); 
         $this->form_validation->set_rules('no_faktur','No. Faktur','required'); 
-        $this->form_validation->set_rules('tgl_faktur','Tanggal Faktur','required'); 
-        // $this->form_validation->set_rules('id_merek','Merk','required'); 
+        $this->form_validation->set_rules('tgl_faktur','Tanggal Faktur','required');
+        $this->form_validation->set_rules('id_merek','Merek','required');
         $this->form_validation->set_rules('type','Type','required'); 
-        // $this->form_validation->set_rules('id_model','Model','required');   
-        $this->form_validation->set_rules('silinder','Silinder','required'); 
-        $this->form_validation->set_rules('tahun_buat','Tahun Buat','required'); 
-        $this->form_validation->set_rules('kode_dealer','Kode Dealer','required');  
-        // $this->form_validation->set_rules('id_desa','Desa','required'); 
-        // $this->form_validation->set_rules('id_kecamatan','Kecamatan','required');
-        // $this->form_validation->set_rules('id_provinsi','Provinsi','required');
-        // $this->form_validation->set_rules('id_kota','Kota','required');
-        $this->form_validation->set_rules('id_polda','Polda','required');
-        $this->form_validation->set_rules('id_samsat','Samsat','required');
-        $this->form_validation->set_rules('tgl_pengajuan','Tanggal Pengajuan','required');         
+        $this->form_validation->set_rules('jenis','Jenis','required');
+        $this->form_validation->set_rules('model','Model','required');
+        $this->form_validation->set_rules('warna','Warna Kendaraan','required');
+        $this->form_validation->set_rules('silinder','Silinder','required');  
+        $this->form_validation->set_rules('tahun_buat','Tahun Buat','required');
+        $this->form_validation->set_rules('id_warna_tnkb','Warna TNKB','required'); 
+        $this->form_validation->set_rules('kode_dealer','Dealer','required');
+        $this->form_validation->set_rules('nama_pemilik','Nama Pemilik','required');
+        $this->form_validation->set_rules('alamat_pemilik','Alamat Pemilik','required'); 
+        $this->form_validation->set_rules('pengurus_stnk','Pengurus STNK','required'); 
+        $this->form_validation->set_rules('pengurus_bpkb','Pengurus BPKB','required');
+        $this->form_validation->set_rules('tgl_pengajuan','Tanggal Pengajuan','required');        
          
         $this->form_validation->set_message('required', 'Field %s Harus diisi ');
         

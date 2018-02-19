@@ -32,76 +32,71 @@
                 <div class="x_content">
 
 <table width="100%" border="0" class="table table-striped table-hover no-footer" role="grid">
-<thead>
-  <tr>
-        <th colspan="2" align="center" style="font-size: 20px;">Detail Kendaraan </th>
-  </tr>
-</thead>
 <tbody style="font-size: 16px;">
 	<tr>
-        <th width="20%">No. Rangka</th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $no_rangka; ?></th>
+        <td width="20%">No. Rangka</td>
+        <td width="2%">:</td>
+        <td width="78%"><?php echo $no_rangka; ?></td>
   </tr>
 	<tr>
-        <th>No. Mesin</th>
-        <th>:</th>
-        <th><?php echo $no_mesin; ?></th>
+        <td>No. Mesin</td>
+        <td>:</td>
+        <td><?php echo $no_mesin; ?></td>
   </tr>
    <tr>
-        <th >No. Faktur</th>
-        <th >:</th>
-        <th ><?php echo $no_faktur; ?></th>
+        <td >No. Faktur</td>
+        <td >:</td>
+        <td ><?php echo $no_faktur; ?></td>
   </tr>
   <tr>
-        <th>Tgl. Faktur</th>
-        <th>:</th>
-        <th><?php echo $tgl_faktur; ?></th>
+        <td>Tgl. Faktur</td>
+        <td>:</td>
+        <td><?php echo $tgl_faktur; ?></td>
   </tr>
 	<tr>
-        <th>Merk</th>
-        <th> : </th>
-        <th><?php echo $merek; ?></th>
+        <td>Merk</td>
+        <td> : </td>
+        <td><?php echo $merek; ?></td>
   </tr>
 	<tr>
-        <th>Type</th>
-        <th>:</th>
-        <th><?php echo $nm_tipe; ?></th>
+        <td>Type</td>
+        <td>:</td>
+        <td><?php echo $nm_tipe; ?></td>
   </tr>
 	<tr>
-        <th >Jenis</th>
-        <th>:</th>
-        <th ><?php echo $jenis; ?></th>
+        <td >Jenis</td>
+        <td>:</td>
+        <td ><?php echo $jenis; ?></td>
   </tr>
   <tr>
-        <th >Model</th>
-        <th>:</th>
-        <th><?php echo $model; ?></th>
+        <td >Model</td>
+        <td>:</td>
+        <td><?php echo $model; ?></td>
   </tr>
   <tr>
-        <th>Warna</th>
-        <th>:</th>
-        <th><?php echo $warna; ?></th>
+        <td>Warna</td>
+        <td>:</td>
+        <td><?php echo $warna; ?></td>
   </tr>
   <tr>
-        <th>Silinder</th>
-        <th>:</th>
-        <th><?php echo $silinder; ?></th>
+        <td>Silinder</td>
+        <td>:</td>
+        <td><?php echo $silinder; ?></td>
   </tr>
   <tr>
-        <th>Tahun Buat</th>
-        <th>:</th>
-        <th><?php echo $tahun_buat; ?></th>
+        <td>Tahun Buat</td>
+        <td>:</td>
+        <td><?php echo $tahun_buat; ?></td>
   </tr>
   <tr>
-        <th>Kode Dealer</th>
-        <th>:</th>
-        <th><?php echo $kode_dealer; ?></th>
+        <td>Kode Dealer</td>
+        <td>:</td>
+        <td><?php echo $kode_dealer; ?></td>
   </tr>
   <tr>
-        <th>Nama Dealer</th>
-        <th>:</th>
-        <th><?php echo $nama_dealer; ?></th>
+        <td>Nama Dealer</td>
+        <td>:</td>
+        <td><?php echo $nama_dealer; ?></td>
   </tr>
 
 </tbody>
@@ -133,21 +128,16 @@
 
 
 <table width="100%" border="0" class="table table-striped table-hover no-footer" role="grid">
-<thead>
-  <tr>
-        <th colspan="2" align="center" style="font-size: 20px;">Data Pemilik Kendaraan</th>
-  </tr>
-</thead>
 <tbody style="font-size: 16px;">
     <tr>
-        <th width="20%">Nama</th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $nama_pemilik; ?></th>
+        <td width="20%">Nama</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php echo $nama_pemilik; ?></td>
    </tr>
    <tr>
-        <th width="20%">Alamat</th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $alamat_pemilik; ?></th>
+        <td width="20%">Alamat</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php echo $alamat_pemilik; ?></td>
    </tr>
   </tbody>
 </table>
@@ -176,88 +166,79 @@
 
 
 <table width="100%" border="0" class="table table-striped table-hover no-footer" role="grid">
-<thead>
-  <tr>
-        <th colspan="2" align="center" style="font-size: 20px;">Data Pengurusan</th>
-  </tr>
-</thead>
+
 <tbody style="font-size: 16px;">
     <tr>
-        <th width="20%">Polda</th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $polda; ?></th>
+        <td width="20%">Polda</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php echo $polda; ?></td>
    </tr>
    <tr>
-        <th width="20%">Samsat</th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $samsat; ?></th>
+        <td width="20%">Samsat</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php echo $samsat; ?></td>
    </tr>
    <tr>
-        <th width="20%">Tgl. Entri</th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $tgl_entri; ?></th>
+        <td width="20%">Tgl. Entri</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php echo $tgl_entri; ?></td>
    </tr>
    
    
    <tr>
-        <th width="20%">Daftar STNK</th>
-        <th width="1%">:</th>
-        <th width="70%">Rp. <?php echo $rp_daftar_stnk; ?>,00</th>
+        <td width="20%">Daftar Estimasi STNK</td>
+        <td width="1%">:</td>
+        <td width="70%">Rp. <?php echo $rp_daftar_stnk; ?>,00</td>
    </tr>
    <tr>
-        <th width="20%">Daftar BPKB</th>
-        <th width="1%">:</th>
-        <th width="70%">Rp. <?php echo $rp_daftar_bpkb; ?>,00</th>
+        <td width="20%">Daftar Estimasi BPKB</td>
+        <td width="1%">:</td>
+        <td width="70%">Rp. <?php echo $rp_daftar_bpkb; ?>,00</td>
    </tr>
    <tr>
-        <th width="20%">Pajak Kendaraan</th>
-        <th width="1%">:</th>
-        <th width="70%">Rp. <?php echo $rp_pajak_kendaraan; ?>,00</th>
+        <td width="20%">Pajak Estimasi Kendaraan</td>
+        <td width="1%">:</td>
+        <td width="70%">Rp. <?php echo $rp_pajak_kendaraan; ?>,00</td>
    </tr>
    <tr>
-        <th width="20%">Admin Fee</th>
-        <th width="1%">:</th>
-        <th width="70%">Rp. <?php echo $rp_admin_fee; ?>,00</th>
+        <td width="20%">Admin Estimasi Fee</td>
+        <td width="1%">:</td>
+        <td width="70%">Rp. <?php echo $rp_admin_fee; ?>,00</td>
    </tr>
   </tbody>
 </table>
 
 <table width="100%" border="0" class="table table-striped table-hover no-footer" role="grid">
-<thead>
-  <tr>
-        <th colspan="2" align="center" style="font-size: 20px;">Status Pengerjaan</th>
-  </tr>
-</thead>
 <tbody style="font-size: 16px;">
     <tr>
-        <th width="20%">Tgl. Masuk Samsat</th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $samsat_masuk_tgl; ?></th>
+        <td width="20%">Tgl. Masuk Samsat</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php echo $samsat_masuk_tgl; ?></td>
    </tr>
    <tr>
-        <th width="20%">Terakhir Diupdate</th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $tgl_update; ?></th>
+        <td width="20%">Terakhir Diupdate</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php echo $tgl_update; ?></td>
    </tr>
     <tr>
-        <th width="20%">Pengurus STNK</th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $nm_pengurus_stnk; ?></th>
+        <td width="20%">Pengurus STNK</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php echo $nm_pengurus_stnk; ?></td>
    </tr>
     <tr>
-        <th width="20%">STNK </th>
-        <th width="1%">:</th>
-        <th width="70%"><?php if($status_stnk==0){ echo 'Belum Selesai';}else{ echo 'Selesai';} ?></th>
+        <td width="20%">STNK </td>
+        <td width="1%">:</td>
+        <td width="70%"><?php if($status_stnk==0){ echo 'Belum Selesai';}else{ echo 'Selesai';} ?></td>
    </tr>
    <tr>
-        <th width="20%">Pengurus BPKB</th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $nm_pengurus_bpkb; ?></th>
+        <td width="20%">Pengurus BPKB</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php echo $nm_pengurus_bpkb; ?></td>
    </tr>
    <tr>
-        <th width="20%">BPKB </th>
-        <th width="1%">:</th>
-        <th width="70%"><?php if($status_bpkb==0){ echo 'Belum Selesai';}else{ echo 'Selesai';} ?></th>
+        <td width="20%">BPKB </td>
+        <td width="1%">:</td>
+        <td width="70%"><?php if($status_bpkb==0){ echo 'Belum Selesai';}else{ echo 'Selesai';} ?></td>
    </tr>
    
    
@@ -291,55 +272,51 @@
 
 
 <table width="100%" border="0" class="table table-striped table-hover no-footer" role="grid">
-<thead>
-  <tr>
-        <th colspan="2" align="center">Detail Hasil Pengerjaan</th>
-  </tr>
-</thead>
+
 <tbody>
     
    
    <tr>
-        <th width="20%">No. BPKB</th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $bpkb_no; ?></th>
+        <td width="20%">No. BPKB</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php echo $bpkb_no; ?></td>
    </tr>
    <tr>
-        <th width="20%">Tgl. BPKB</th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $bpkb_tgl; ?></th>
+        <td width="20%">Tgl. BPKB</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php echo $bpkb_tgl; ?></td>
    </tr>
 
    <tr>
-        <th width="20%">Tgl. Serah BPKB</th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $bpkb_serah_tgl; ?></th>
+        <td width="20%">Tgl. Serah BPKB</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php echo $bpkb_serah_tgl; ?></td>
    </tr>
    <tr>
-        <th width="20%">Tgl. Bayar</th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $bayar_tgl_bpkb; ?></th>
+        <td width="20%">Tgl. Bayar</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php echo $bayar_tgl_bpkb; ?></td>
    </tr>
    
    <tr>
-        <th width="20%">Metode Bayar </th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $bayar_metode_bpkb; ?></th>
+        <td width="20%">Metode Bayar </td>
+        <td width="1%">:</td>
+        <td width="70%"><?php echo $bayar_metode_bpkb; ?></td>
    </tr>
    <tr>
-        <th width="20%">No. CC Bayar</th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $bayar_no_cc_bpkb; ?></th>
+        <td width="20%">No. CC Bayar</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php echo $bayar_no_cc_bpkb; ?></td>
    </tr>
    <tr>
-        <th width="20%">Ref. CC Bayar</th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $bayar_ref_cc_bpkb; ?></th>
+        <td width="20%">Ref. CC Bayar</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php echo $bayar_ref_cc_bpkb; ?></td>
    </tr>
    <tr>
-        <th width="20%">Bayar Jumlah</th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $bayar_jumlah_bpkb; ?></th>
+        <td width="20%">Bayar Jumlah</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php echo $bayar_jumlah_bpkb; ?></td>
    </tr>
   </tbody>
 </table>
@@ -374,54 +351,50 @@
 
 
 <table width="100%" border="0" class="table table-striped table-hover no-footer" role="grid">
-<thead>
-  <tr>
-        <th colspan="2" align="center">Detail Hasil Pengerjaan</th>
-  </tr>
-</thead>
+
 <tbody>
     
    
    <tr>
-        <th width="20%">No. STNK</th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $stnk_no; ?></th>
+        <td width="20%">No. STNK</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php echo $stnk_no; ?></td>
    </tr>
    <tr>
-        <th width="20%">Tgl. STNK</th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $stnk_tgl; ?></th>
+        <td width="20%">Tgl. STNK</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php echo $stnk_tgl; ?></td>
    </tr>
    <tr>
-        <th width="20%">Tgl. Serah STNK</th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $stnk_serah_tgl; ?></th>
+        <td width="20%">Tgl. Serah STNK</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php echo $stnk_serah_tgl; ?></td>
    </tr>
    
    <tr>
-        <th width="20%">Tgl. Bayar</th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $bayar_tgl_stnk; ?></th>
+        <td width="20%">Tgl. Bayar</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php echo $bayar_tgl_stnk; ?></td>
    </tr>
    <tr>
-        <th width="20%">Metode Bayar </th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $bayar_metode_stnk; ?></th>
+        <td width="20%">Metode Bayar </td>
+        <td width="1%">:</td>
+        <td width="70%"><?php echo $bayar_metode_stnk; ?></td>
    </tr>
    <tr>
-        <th width="20%">No. CC Bayar</th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $bayar_no_cc_stnk; ?></th>
+        <td width="20%">No. CC Bayar</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php echo $bayar_no_cc_stnk; ?></td>
    </tr>
    <tr>
-        <th width="20%">Ref. CC Bayar</th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $bayar_ref_cc_stnk; ?></th>
+        <td width="20%">Ref. CC Bayar</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php echo $bayar_ref_cc_stnk; ?></td>
    </tr>
    <tr>
-        <th width="20%">Bayar Jumlah</th>
-        <th width="1%">:</th>
-        <th width="70%"><?php echo $bayar_jumlah_stnk; ?></th>
+        <td width="20%">Bayar Jumlah</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php echo $bayar_jumlah_stnk; ?></td>
    </tr>
   </tbody>
 </table>
@@ -434,3 +407,7 @@
       }else{
 
  } ?>
+
+  
+   <div class="col-md-2"><a href="<?php echo site_url('bj_bbn_satu'); ?>" class="btn btn-primary"> Back </a></div>
+ 

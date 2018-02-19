@@ -230,7 +230,7 @@ else {
         <a href ='sa_dealer/editdata?id=$id' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i>Edit</a>";
 
         $action = "<div class='btn-group'>
-                              <button type='button' class='btn btn-primary'>Pending</button>
+                              <button type='button' class='btn btn-primary'>Action</button>
                               <button type='button' class='btn btn-primary dropdown-toggle' data-toggle='dropdown'>
                                 <span class='caret'></span>
                                 <span class='sr-only'>Toggle Dropdown</span>

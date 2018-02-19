@@ -1,7 +1,8 @@
     <?php
     $userdata = $this->session->userdata('bj_login');
     ?>    
-     <script src="<?php echo base_url("assets") ?>/js/jquery.dataTables.min.js"></script>           
+     <script src="<?php echo base_url("assets") ?>/js/jquery.dataTables.min.js"></script> 
+         
               <div class="x_title">
                   <h2>Tambah Data <small>Biaya Estimasi BBN 1 </small></h2>
                   <ul class="nav navbar-right panel_toolbox">

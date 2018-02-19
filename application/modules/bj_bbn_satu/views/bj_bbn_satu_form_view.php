@@ -200,7 +200,7 @@
                        </div> 
                     </div>
                     <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Deaelar
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Dealer
                       </label>
                       
 
@@ -251,7 +251,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                       <a class="btn btn-primary" id="hitung">Hitung</a>
+                       <a class="btn btn-primary" id="hitung">Estimasi Biaya</a>
                        </div> 
                     </div>
 
@@ -310,7 +310,7 @@
                             <a href="<?php echo site_url($this->controller); ?>" class="btn btn-danger">Batal</a>
                           <?php 
                           }else{ ?>
-                            <a href="<?php echo site_url($this->controller); ?>"><button type="reset" class="btn btn-danger">Batal</button></a>
+                            <a href="<?php echo site_url($this->controller); ?>"><button type="button" class="btn btn-danger">Batal</button></a>
                             <?php 
                           }
                          ?>
