@@ -69,6 +69,7 @@ function simpan(){
 
     $post = $this->input->post();
     
+    
        
 
 
@@ -77,11 +78,10 @@ function simpan(){
         $this->form_validation->set_rules('no_mesin','No. Mesin','required');
         $this->form_validation->set_rules('no_faktur','No. Faktur','required');
         $this->form_validation->set_rules('nama_pemilik','Nama Pemilik','required'); 
-        $this->form_validation->set_rules('alamat_pemilik','ALAMAT','required');
+        $this->form_validation->set_rules('alamat_pemilik','Alamat','required');
         $this->form_validation->set_rules('bpkb_no','No. BPKB','required');
         $this->form_validation->set_rules('bpkb_tgl','Tgl. BPKB','required');  
-        $this->form_validation->set_rules('bayar_jumlah_bpkb','Biaya Admin','callback_cek_');    
-        // $this->form_validation->set_rules('pelaksana_nip','NIP','required');         
+        $this->form_validation->set_rules('bayar_jumlah_bpkb','Biaya Admin','required');          
          
         $this->form_validation->set_message('required', ' %s Harus diisi ');
         

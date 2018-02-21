@@ -60,13 +60,13 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">Nama Pemilik</label>
       <div class="col-sm-9">
-        <input type="text" name="nama_pemlik" id="nama_pemlik" class="form-control input-style" placeholder="Nama Pemilik . . ." readonly>
+        <input type="text" name="nama_pemilik" id="nama_pemilik" class="form-control input-style" placeholder="Nama Pemilik . . ." readonly>
       </div>
     </div>
     <div class="form-group">
       <label class="col-sm-3 control-label">Alamat</label>
       <div class="col-sm-9">
-        <textarea class="form-control input-style" id="alamat" name="alamat" readonly></textarea>
+        <textarea class="form-control input-style" id="alamat_pemilik" name="alamat_pemilik" readonly></textarea>
       </div>
     </div>
 

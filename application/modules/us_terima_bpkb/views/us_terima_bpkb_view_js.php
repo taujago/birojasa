@@ -18,8 +18,8 @@
                 $("#no_rangka").val(obj.no_rangka);
                 $("#no_mesin").val(obj.no_mesin);
                 $("#no_faktur").val(obj.no_faktur);
-                $("#nama_pemlik").val(obj.nama_pemilik);
-                $("#alamat").val(obj.alamat_pemilik);
+                $("#nama_pemilik").val(obj.nama_pemilik);
+                $("#alamat_pemilik").val(obj.alamat_pemilik);
                 
                 
                 
@@ -35,7 +35,7 @@
 
     $.ajax({
         url:'<?php echo site_url("$this->controller/simpan"); ?>',
-        data : $('#form_data').serialize(),
+        data : $('#form_simpan').serialize(),
         type : 'post',
         dataType : 'json',
         success : function(obj){
@@ -68,6 +68,6 @@
     return false;
 });
 
-		 
+
 	});
 </script>
