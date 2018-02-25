@@ -338,6 +338,14 @@ function simpan(){
 
     $post = $this->input->post();
 
+  $this->load->library('upload');
+
+
+
+
+      
+
+
 
         $this->load->library('form_validation');
         $this->form_validation->set_rules('id_polda','Polda','required');
@@ -374,6 +382,59 @@ function simpan(){
 
 
 if($this->form_validation->run() == TRUE ) { 
+
+
+        $config['upload_path'] = './assets/file_upload';
+        $path = $config['upload_path'];
+        $config['allowed_types'] = 'gif|jpg|jpeg|png';
+        $config['encrypt_name'] = 'TRUE';
+
+
+       $this->load->library('upload', $config);
+       $_FILES['file']['field'] = array('faktur', 'ktp', 'cek_fisik', 'siup', 'tdp', 'domisili', 'npwp', 'sk');
+
+       // show_array($_FILES['file']);
+       // exit();
+       
+       for ($i = 0; $i<8; $i++){
+        
+
+      $_FILES['userfile']['name']     = $_FILES['file']['name'][$i];
+      $_FILES['userfile']['type']     = $_FILES['file']['type'][$i];
+      $_FILES['userfile']['tmp_name'] = $_FILES['file']['tmp_name'][$i];
+      $_FILES['userfile']['error']    = $_FILES['file']['error'][$i];
+      $_FILES['userfile']['size']     = $_FILES['file']['size'][$i];
+
+     $config = array(
+        'encrypt_name' => 'TRUE',
+        'allowed_types' => 'jpg|jpeg|png|gif',
+        'max_size'      => 3000,
+        'overwrite'     => FALSE,
+        'upload_path' => $path );
+
+     $this->upload->initialize($config);
+
+      if (!$this->upload->do_upload()) {
+        // echo $this->upload->display_errors();
+      }else{
+        $data_name = $this->upload->data();
+         $filename_arr[] = array('nama' => $data_name['file_name'], 
+                                  'field' => $_FILES['file']['field'][$i]); 
+      }
+
+
+     }
+
+
+     
+   
+
+      foreach ($filename_arr as $key) {
+        $post[$key['field']] = $key['nama'];
+      }
+
+
+
 
   $this->db->where('no_rangka', $post['no_rangka']);
   $this->db->where('tahun_buat', $post['tahun_buat']);
@@ -1011,6 +1072,21 @@ function jenis(){
 }
 
 
+ function get_dealer(){
+
+    $data = $this->input->post();
+
+    $userdata = $this->session->userdata('bj_login');
+    $birojasa = $userdata['birojasa_id'];
+    $this->db->where("id_birojasa",$birojasa);
+    $this->db->order_by("nama");
+    $rs = $this->db->get("dealer");
+    foreach($rs->result() as $row ) :
+        echo "<option value=$row->id>$row->id - $row->nama </option>";
+    endforeach;
+
+
+}
 
 
 function get_biaya(){
@@ -1330,6 +1406,8 @@ function printkwitansi(){
 
      $resx = $this->db->get();
 
+     echo $this->db->last_query();
+
     $data['controller'] = get_class($this);
     $data['header'] = "Kwitansi";
     $data['query'] = $resx->row_array();
@@ -1432,8 +1510,93 @@ function pdf(){
          $pdf->Output($data['header']. $this->session->userdata("tahun") .'.pdf', 'I');
 }
 
-	
+	function simpan_tipe(){
+     $post = $this->input->post();
+       
+
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('tipe','Type','required');
+          
+          
+         
+        $this->form_validation->set_message('required', ' %s Harus diisi ');
+        
+        $this->form_validation->set_error_delimiters('', '<br>');
+
+     
+
+        //show_array($data);
+
+if($this->form_validation->run() == TRUE ) { 
+
+        $userdata = $this->session->userdata('bj_login');
+        $post['id_birojasa'] = $userdata['birojasa_id'];
+        
+        $res = $this->db->insert('m_tipe', $post); 
+        if($res){
+            $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
+        }
+        else {
+             $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
+        }
+}
+else {
+    $arr = array("error"=>true,'message'=>validation_errors());
+}
+        echo json_encode($arr);
+  }
+
+  function simpan_dealer(){
+
+      $post = $this->input->post();
+       
+
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('id','Kode Dealer','callback_cek_id');    
+        $this->form_validation->set_rules('nama','NAMA','required');
+        $this->form_validation->set_rules('telp','NO. TELP','required');
+        $this->form_validation->set_rules('alamat','ALAMAT','required');   
+        $this->form_validation->set_rules('email','Email','callback_cek_email');    
+        // $this->form_validation->set_rules('pelaksana_nip','NIP','required');         
+         
+        $this->form_validation->set_message('required', ' %s Harus diisi ');
+        
+        $this->form_validation->set_error_delimiters('', '<br>');
+
+     
+        $userdata = $this->session->userdata('bj_login');
+        $post['id_birojasa'] = $userdata['birojasa_id'];
+        //show_array($data);
+
+if($this->form_validation->run() == TRUE ) { 
+
+        
+        $res = $this->db->insert('dealer', $post); 
+        
+        if($res){
+            $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
+        }
+        else {
+             $arr = array("error"=>true,'message'=>"GAGAL  DISIMPAN");
+        }
+}
+else {
+    $arr = array("error"=>true,'message'=>validation_errors());
+}
+        echo json_encode($arr);
+
+  }
+
+
+
 
 }
+
+
+
+
+
 
 ?>

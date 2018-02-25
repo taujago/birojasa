@@ -76,7 +76,9 @@ $(".tanggal").datepicker().on('changeDate', function(ev){
 
     $.ajax({
         url:'<?php echo site_url("$this->controller/simpan"); ?>',
-        data : $('#form_data').serialize(),
+        data : new FormData($('#form_data')[0]),
+        contentType: false,
+        processData: false,
         type : 'post',
         dataType : 'json',
         success : function(obj){
@@ -224,6 +226,19 @@ $(".tanggal").datepicker().on('changeDate', function(ev){
 
     });
 
+    $("#reload_tipe").click(function(){
+
+    $.ajax({
+
+            url : '<?php echo site_url("$this->controller/get_type") ?>',
+            data : { id_merk : $('#id_merek').val() },
+            type : 'post', 
+            success : function(result) {
+                $("#type").html(result)
+            }
+      });
+
+    });
 
 
    $("#id_merek").change(function(){
@@ -250,7 +265,7 @@ $(".tanggal").datepicker().on('changeDate', function(ev){
 
 // request nomor rangka. kirim data id_polda dan nomor rangka 
 
- $("#no_rangka").blur(function(){
+ $("#query").click(function(){
        // alert('hell yea..');
 
        $.ajax({
@@ -362,6 +377,9 @@ $(".tanggal").datepicker().on('changeDate', function(ev){
 
 
 });
+
+
+
 
 function get_type(id_merk, type){
     $.ajax({

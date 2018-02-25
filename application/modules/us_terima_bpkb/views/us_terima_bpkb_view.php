@@ -10,11 +10,19 @@
 
      <form role="form" action="" id="btn-cari">
             
-            
+            <div class="col-md-2">
+              <div class="form-group">
+                <label>&nbsp;</label>
+                <select class="form-control input-style" name="jenis" id="jenis">
+                  <option value="no_rangka">No. Rangka</option>
+                  <option value="no_mesin">No. Mesin</option>
+                </select>
+              </div>
+            </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label>&nbsp;</label>
-                <input id="in_mesin" name="in_mesin" type="text" class="form-control input-style" placeholder="Input Mesin" />
+                <input id="in_mesin" name="in_mesin" type="text" class="form-control input-style" placeholder="Input Mesin/Rangka" />
               </div>
             </div>
             <div class="col-md-2">
@@ -29,7 +37,7 @@
         action="<?php echo site_url("$this->controller/$action"); ?>" role="form"> 
 
  
-<div class="col-md-6">
+<div class="col-md-12">
 <div class="panel panel-primary ">
       <div class="panel-heading">
       <strong><h3 class="panel-title">Data</h3></strong>
@@ -69,19 +77,8 @@
         <textarea class="form-control input-style" id="alamat_pemilik" name="alamat_pemilik" readonly></textarea>
       </div>
     </div>
+    <br /> &nbsp;
 
-  </div>
-</div>
-</div>
-<div class="col-md-6">
-<div class="panel panel-primary ">
-      <div class="panel-heading">
-      <strong><h3 class="panel-title">Data Update</h3></strong>
-    </div>
-    <div class="panel-body">
-
-    
-    
     <div class="form-group">
       <label class="col-sm-3 control-label">No. BPKB</label>
       <div class="col-sm-9">
@@ -97,7 +94,7 @@
     <div class="form-group">
       <label class="col-sm-3 control-label">Biaya Admin</label>
       <div class="col-sm-9">
-        <input type="text" name="bayar_jumlah_bpkb" id="bayar_jumlah_bpkb" class="rupiah form-control input-style" placeholder="Biaya Admin . . .">
+        <input type="text" name="bayar_jumlah_bpkb" id="bayar_jumlah_bpkb" class="rupiah form-control input-style" placeholder="Biaya Admin . . ." data-a-sign="" data-a-dec="," data-a-sep=".">
       </div>
     </div>
     <div class="form-group pull-center">
@@ -109,6 +106,7 @@
   </div>
 </div>
 </div>
+
   </form>
 
 

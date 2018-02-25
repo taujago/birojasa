@@ -250,7 +250,6 @@ function index(){
                 $row['nama_pemilik'],
                 rupiah($row['rp_daftar_stnk']),
                 rupiah($row['rp_daftar_bpkb']),
-                rupiah($row['rp_pajak_kendaraan']),
                 rupiah($row['rp_admin_fee']),
                 $hapus
                 

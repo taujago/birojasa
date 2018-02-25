@@ -22,7 +22,7 @@ class bj_bbn_dua extends biro_jasa_controller{
 
 function index(){
 		$data_array=array();
-		$content = $this->load->view($this->controller."_view",$data_array,true);
+		$content = $this->load->view("construction",$data_array,true);
 
 		$this->set_subtitle("Pengurusan BBN 2");
 		$this->set_title("Pngurusan BBN 2");

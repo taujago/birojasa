@@ -13,7 +13,9 @@
               <div class="x_title">
                   <h2>Tambah Data <small>Pengurusan BBN 1 </small></h2>
                   <ul class="nav navbar-right panel_toolbox">
-                  <a href="<?php echo site_url('bj_serah_dealer'); ?>"><button type="button" class="btn btn-success">Serah Dealer</button>
+                  <a href="<?php echo site_url('bj_invoice_bpkb'); ?>"><button type="button" class="btn btn-success">Serah BPKB</button>
+                    </a>
+                    <a href="<?php echo site_url('bj_invoice_stnk'); ?>"><button type="button" class="btn btn-success">Serah STNK</button>
                     </a>
                     <a href="<?php echo site_url($this->controller.'/baru'); ?>"><button type="button" class="btn btn-primary">Tambah Data</button>
                     </a>

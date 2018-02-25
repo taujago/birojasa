@@ -11,7 +11,7 @@
             
             <div class="col-md-4">
               <div class="form-group">
-                <label>Nama Polda</label>
+                <label>Nama Samsat</label>
                 <?php echo form_dropdown("samsat",$arr_samsat,'','id="samsat" class="form-control input-style"'); ?>
               </div>
             </div>

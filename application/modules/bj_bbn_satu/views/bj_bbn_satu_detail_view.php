@@ -408,6 +408,94 @@
 
  } ?>
 
+
+ <div class="row">
+    <div class="col-md-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>File Upload</h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+
+
+<b>
+
+<table width="100%" border="0" class="table table-striped table-hover no-footer" role="grid">
+
+<tbody>
+    
+   
+   <tr>
+        <td width="20%">Faktur</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php if(!empty($faktur)) { ?>
+          <img src="<?php echo base_url().'assets/file_upload/'.$faktur; ?>" height="300" width="300">
+        <?php }else{ echo 'Data Tidak di-input'; }; ?></td>
+   </tr>
+   <tr>
+        <td width="20%">KTP</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php if(!empty($ktp)) { ?>
+          <img src="<?php echo base_url().'assets/file_upload/'.$ktp; ?>" height="300" width="300">
+        <?php }else{ echo 'Data Tidak di-input'; }; ?></td>
+   </tr>
+   <tr>
+        <td width="20%">Cek Fisik</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php if(!empty($cek_fisik)) { ?>
+          <img src="<?php echo base_url().'assets/file_upload/'.$cek_fisik; ?>" height="300" width="300">
+        <?php }else{ echo 'Data Tidak di-input'; }; ?></td>
+   </tr>
+   
+   <tr>
+        <td width="20%">SIUP</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php if(!empty($siup)) { ?>
+          <img src="<?php echo base_url().'assets/file_upload/'.$siup; ?>" height="300" width="300">
+        <?php }else{ echo 'Data Tidak di-input'; }; ?></td>
+   </tr>
+   <tr>
+        <td width="20%">TDP </td>
+        <td width="1%">:</td>
+        <td width="70%"><?php if(!empty($tdp)) { ?>
+          <img src="<?php echo base_url().'assets/file_upload/'.$tdp; ?>" height="300" width="300">
+        <?php }else{ echo 'Data Tidak di-input'; }; ?></td>
+   </tr>
+   <tr>
+        <td width="20%">Domisili</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php if(!empty($domisili)) { ?>
+          <img src="<?php echo base_url().'assets/file_upload/'.$domisili; ?>" height="300" width="300">
+        <?php }else{ echo 'Data Tidak di-input'; }; ?></td>
+   </tr>
+   <tr>
+        <td width="20%">NPWP</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php if(!empty($npwp)) { ?>
+          <img src="<?php echo base_url().'assets/file_upload/'.$npwp; ?>" height="300" width="300">
+        <?php }else{ echo 'Data Tidak di-input'; }; ?></td>
+   </tr>
+   <tr>
+        <td width="20%">Surat Kuasa</td>
+        <td width="1%">:</td>
+        <td width="70%"><?php if(!empty($sk)) { ?>
+          <img src="<?php echo base_url().'assets/file_upload/'.$sk; ?>" height="300" width="300">
+        <?php }else{ echo 'Data Tidak di-input'; }; ?></td>
+   </tr>
+  </tbody>
+</table>
+</b>
+</div>
+</div>
+</div>
+</div>
+
   
    <div class="col-md-2"><a href="<?php echo site_url('bj_bbn_satu'); ?>" class="btn btn-primary"> Back </a></div>
  

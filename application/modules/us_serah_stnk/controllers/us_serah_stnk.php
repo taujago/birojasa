@@ -112,7 +112,8 @@ if(!empty($chb)) {
             $data_update = array('no_ref_stnk' => $no_ref_stnk,
                                 'stnk_serah_samsat' => 1, 
                                 'samsat_masuk_tgl' => $tanggal, 
-                                'samsat_masuk_user' => $userdata['id']);
+                                'samsat_masuk_user' => $userdata['id'], 
+                                'status' => 1,);
 
             foreach ($chb as $key => $value) {
                 $this->db->where('id', $value);

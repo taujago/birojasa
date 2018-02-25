@@ -3,9 +3,11 @@
     ?>
 
 
-
-
-
+<?php 
+    $this->load->view('tambah_modal');
+?>
+     <script src="<?php echo base_url("assets"); ?>/fileinput/js/fileinput.min.js"></script>
+ <link href="<?php echo base_url("assets"); ?>/fileinput/css/fileinput.min.css" rel="stylesheet">
     <link href="<?php echo base_url("assets") ?>/plugins/select2/select2.min.css" rel="stylesheet" >
     
 
@@ -38,7 +40,7 @@
                 <div class="x_content">
                   <br />
                   
-                  <form id="form_data" data-parsley-validate class="form-horizontal form-label-left" action="<?php echo site_url("$this->controller/$action"); ?>" method="post">
+                  <form id="form_data" data-parsley-validate class="form-horizontal form-label-left" action="<?php echo site_url("$this->controller/$action"); ?>" method="post" enctype="multipart/form-data">
 
 
 
@@ -76,14 +78,19 @@
                         <input type="text" id="tanggal" class="tanggal form-control col-md-7 col-xs-12 input-style" name="tgl_pengajuan"  placeholder="Tanggal Pengajuan BBN 1"  data-date-format="dd-mm-yyyy" value="<?php echo isset($tgl_pengajuan)?$tgl_pengajuan:""; ?>">
                       </div>
                     </div>
-                    
                     <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nomor Rangka
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nomor Rangka
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                      <input type="hidden" name="id_birojasa" id="id_birojasa" value="<?php echo $userdata['birojasa_id']; ?>"></input>
+                      <div class="col-md-6 no-padding">
+                        <input type="hidden" name="id_birojasa" id="id_birojasa" value="<?php echo $userdata['birojasa_id']; ?>">
                         <input type="text" id="no_rangka" name="no_rangka" required="required" class="form-control col-md-7 col-xs-12" placeholder="Nomor Rangka" value="<?php echo isset($no_rangka)?$no_rangka:""; ?>">
+                        </div>
+                        <div class="col-md-1"></div>
+                      <div class="col-md-5"> 
+                          <button type="button" class="btn btn-primary" id="query"><i class="fa fa-search"> </i>Cari</button>
                       </div>
+                       </div> 
                     </div>
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nomor Mesin
@@ -133,6 +140,12 @@
                       <div class="col-md-5" id="label_type" style="font-size: 20px;"> 
                         
                       </div>
+                      <div class="col-md-2">
+                           <button id="proses" type="button" class="btn btn-primary" data-toggle="modal" data-target=".2"><i class="fa fa-plus"></i></button>
+                        </div>
+                        <div class="col-md-2">
+                           <button type="button"  id="reload_tipe" class="btn btn-primary" ><i class="fa fa-refresh"></i></button>
+                        </div>
                         
                       </div>
                     </div>
@@ -147,6 +160,7 @@
                       <div class="col-md-5" id="label_jenis" style="font-size: 20px;"> 
                         
                       </div>
+                      
                        </div> 
                     </div>
                    <div class="form-group">
@@ -205,7 +219,17 @@
                       
 
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                      <?php echo form_dropdown("kode_dealer",$arr_dealer,isset($kode_dealer)?$kode_dealer:"",'id="kode_dealer" class="form-control input-style"'); ?>
+                        <div class="col-md-6 no-padding">
+                          <?php echo form_dropdown("kode_dealer",$arr_dealer,isset($kode_dealer)?$kode_dealer:"",'id="kode_dealer" class="form-control input-style"'); ?>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-2">
+                           <button id="proses" type="button" class="btn btn-primary" data-toggle="modal" data-target=".1"><i class="fa fa-plus"></i></button>
+                        </div>
+                        <div class="col-md-2">
+                           <button type="button"  id="reload_dealer" class="btn btn-primary" ><i class="fa fa-refresh"></i></button>
+                        </div>
+
                         
                       </div>
                     </div>
@@ -223,7 +247,55 @@
                         <textarea name="alamat_pemilik" id="alamat_pemilik" class="form-control" rows="3" placeholder='Alamat'><?php echo isset($alamat_pemilik)?$alamat_pemilik:""; ?></textarea>
                        </div> 
                     </div>
-                    
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Faktur
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="file" name="file[]" id="faktur" class="file" data-show-preview="true" accept="image/*"/>
+                      </div>
+                    </div><div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">KTP
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="file" name="file[]" id="ktp" class="file" data-show-preview="true" accept="image/*"/>
+                      </div>
+                    </div><div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Cek Fisik
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="file" name="file[]" id="cek_fisik" class="file" data-show-preview="true" accept="image/*"/>
+                      </div>
+                    </div><div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">SIUP
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="file" name="file[]" id="siup" class="file" data-show-preview="true" accept="image/*"/>
+                      </div>
+                    </div><div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">TDP
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="file" name="file[]" id="tdp" class="file" data-show-preview="true" accept="image/*"/>
+                      </div>
+                    </div><div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Domisili 
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="file" name="file[]" id="domisili" class="file" data-show-preview="true" accept="image/*"/>
+                      </div>
+                    </div><div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">NPWP
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="file" name="file[]" id="npwp" class="file" data-show-preview="true" accept="image/*"/>
+                      </div>
+                    </div><div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Surat Kuasa
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="file" name="file[]" id="sk" class="file" data-show-preview="true" accept="image/*"/>
+                      </div>
+                    </div>
                    
                    
 
@@ -327,7 +399,9 @@
 
 
 <?php 
+
 $this->load->view($this->controller.'_form_view_js');
 ?>
+
                 
          

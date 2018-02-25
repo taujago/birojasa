@@ -1,13 +1,19 @@
       <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+
+
+       <script src="<?php echo base_url("assets"); ?>/fileinput/js/fileinput.min.js"></script>
+
+
+    <link href="<?php echo base_url("assets"); ?>/fileinput/css/fileinput.min.css" rel="stylesheet">
      
         <!-- Main content -->
-        <form id="form_data" class="form-horizontal" method="post" 
-        action="<?php echo site_url("$this->controller/$action"); ?>" role="form"> 
+        <form id="form_data" class="form-horizontal" role="form" enctype="multipart/form-data"> 
 
  
 
 
-              <div class="panel panel-primary">
+    <div class="panel panel-primary">
       <div class="panel-heading">
       <strong><h3 class="panel-title">Tambah data </h3></strong>
     </div>
@@ -63,12 +69,21 @@
         <input type="text" name="email" id="email" class="form-control input-style" placeholder="Email . . ." value="<?php echo isset($email)?$email:""; ?>">
       </div>
     </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Logo</label>
+      <div class="col-sm-9">
+        <input type="file" name="logo" id="logo" class="file" data-show-preview="true" accept="image/*"/>
+      </div>
+    </div>
+    
+
     <div class="form-group pull-center">
         <div class="col-sm-offset-3 col-sm-9">
-          <button id="tombolsubmitsimpan" style="border-radius: 0;" type="submit" class="btn btn-lg btn-primary"  >Simpan</button>
+          <button  style="border-radius: 0;" type="submit" class="btn btn-lg btn-primary"  >Simpan</button>
           <a href="<?php echo site_url('sa_birojasa'); ?>"><button style="border-radius: 0;" id="reset" type="button" class="btn btn-lg btn-danger">Cancel</button></a>
         </div>
       </div>
+
 
   </div>
   </form>

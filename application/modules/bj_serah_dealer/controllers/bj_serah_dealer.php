@@ -47,24 +47,39 @@ function simpan(){
     // $show_array($post);
     // exit();
     // $f = array();
-  foreach($post as $id) {
-    $tgl_serah_dealer = $this->input->post('tgl_serah_dealer');
-    $data = array(
-      'id'     => $id,
-      'nama_serah_dealer' => $userdata_id,
-      'status_serah_dealer' => 1,
-      'nama_penerima_dealer' => $this->input->post('nama_penerima_dealer'),
-      'tgl_serah_dealer' => flipdate($tgl_serah_dealer),
-    );
-    // show_array($data);
-    // exit();
-    // $f = array('id' => $id);
+    $new_data = array();
+    if(!empty($post)){
+     
 
-    $this->db->where('id', $id);
-    $this->db->update('bj_bbn_satu', $data); 
+        foreach($post as $id) {
+            $tgl_serah_dealer = $this->input->post('tgl_serah_dealer');
+            $data = array(
+              'id'     => $id,
+              'nama_serah_dealer' => $userdata_id,
+              'status_serah_dealer' => 1,
+              'nama_penerima_dealer' => $this->input->post('nama_penerima_dealer'),
+              'tgl_serah_dealer' => flipdate($tgl_serah_dealer),
+            );
+            
+            
+          }
+          $this->db->where('id', $id);
+          $res = $this->db->update('bj_bbn_satu', $data); 
+          if ($res) {
+            $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
+          }else{
+            $arr = array("error"=>true,'message'=>"Gagal Disimpan");
+          }
+          
+
+    }else{
+
+      $arr = array("error"=>true,'message'=>"Pilih Salah Satu Data");
+
+
+    }
     
-  }
-  $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
+
 
   echo json_encode($arr);
 
@@ -218,6 +233,7 @@ function cetak_serah_dealer(){
     $post = $this->input->get(); 
     
 
+
     $kode_dealer = $post['kode_dealer'];
     $tanggal_awal = $post['tanggal_awal'];
     $tanggal_akhir = $post['tanggal_akhir'];
@@ -247,12 +263,26 @@ function cetak_serah_dealer(){
 
      $resx = $this->db->get();
 
+
+
+
     $data['controller'] = get_class($this);
     $data['header'] = "Report BBN 1";
     $data['query']  = $resx->result();
     $data['title'] = $data['header'];
+    $new_data = array_slice($data['query'], 0, 1, true);
+    if (count($data['query'])>5) {
+      $data['query'] =  array_slice($data['query'], 0, 5, true);
+      $data['dll'] = '.DLL';
+    }
+    $userdata = $this->session->userdata('bj_login');
+    $this->db->where('id', $userdata['birojasa_id']);
+      $data['birojasa'] = $this->db->get('biro_jasa')->row_array();
+
+
+    
     $this->load->library('Pdf');
-        $pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->SetTitle( $data['header']);
         // $pdf->Orientation('L');
         $pdf->SetMargins(10, 10, 10);
@@ -268,7 +298,7 @@ function cetak_serah_dealer(){
         $pdf->setPrintFooter(true);
 
          // add a page
-        $pdf->AddPage('L');
+        $pdf->AddPage('P');
 
  
 

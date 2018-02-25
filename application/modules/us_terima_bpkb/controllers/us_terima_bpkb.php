@@ -49,7 +49,7 @@ function get_data(){
 
    
 
-    $this->db->where('no_mesin', $post['no_mesin']);
+    $this->db->where($post['jenis'], $post['no_mesin']);
     $this->db->where('bpkb_serah_polda', 1);
     $this->db->where('status_bpkb', 0);
     $res = $this->db->get('bj_bbn_satu')->row_array();
@@ -88,14 +88,16 @@ function simpan(){
         $this->form_validation->set_error_delimiters('', '<br>');
 
      
-        $userdata = $this->session->userdata('bj_login');
-        $post['id_birojasa'] = $userdata['birojasa_id'];
-        //show_array($data);
+        
+        
 
 if($this->form_validation->run() == TRUE ) { 
-
-        
-        $res = $this->db->insert('dealer', $post); 
+        $post['bpkb_terima_tgl'] = date("Y-m-d");
+        $post['bayar_jumlah_bpkb'] = bersih($post['bayar_jumlah_bpkb']);
+        $post['bpkb_tgl'] = flipdate($post['bpkb_tgl']);
+        $post['status_bpkb'] = 1;
+        $this->db->where('id', $post['id']);
+        $res = $this->db->update('bj_bbn_satu', $post); 
         
         if($res){
             $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");

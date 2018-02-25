@@ -103,8 +103,6 @@ $userdata = $this->session->userdata('user_login');
                   <ul class="nav child_menu" style="display: none">
                     <li><a href="<?php echo site_url('us_bbn_satu'); ?>">BBN 1</a>
                     </li>
-                    <li><a href="<?php echo site_url('us_bbn_dua'); ?>">BBN 2</a>
-                    </li>
                   </ul>
                 </li>
                 <li><a><i class="fa fa-folder-open-o"></i> BPKB <span class="fa fa-chevron-down"></span></a>
@@ -125,9 +123,11 @@ $userdata = $this->session->userdata('user_login');
                     </li>
                     <li><a href="<?php echo site_url('us_serah_stnk_detail'); ?>">Detail Penyerahan</a>
                     </li>
-                    <li><a href="<?php echo site_url('us_terima_stnk'); ?>">Penerimaan Berkas</a>
+                     <li><a href="<?php echo site_url('us_input_notis'); ?>">Input Notis</a>
                     </li>
-                    <li><a href="<?php echo site_url('us_terima_stnk_detail'); ?>">Detail Penerimaan</a>
+                    <li><a href="<?php echo site_url('us_penyerahan_notis'); ?>">Penyerahan Notis</a>
+                    </li>
+                    <li><a href="<?php echo site_url('us_detail_terima_stnk'); ?>">Detail Penerimaan</a>
                     </li>
                   </ul>
                 </li>

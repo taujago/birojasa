@@ -11,9 +11,8 @@
             url : '<?php echo site_url("us_terima_bpkb/get_data") ?>',
            dataType : 'json',
             type : 'post',
-            data : {  no_mesin : $("#in_mesin").val() },
+            data : {  no_mesin : $("#in_mesin").val(), jenis : $('#jenis').val() },
             success : function(obj) {
-                // console.log(obj);
                 $("#id").val(obj.id);
                 $("#no_rangka").val(obj.no_rangka);
                 $("#no_mesin").val(obj.no_mesin);
@@ -44,15 +43,28 @@
 
             if(obj.error == false) { // berhasil 
 
-                // alert('hooooo.. error false');
-                     BootstrapDialog.alert({
+                BootstrapDialog.show({
                             type: BootstrapDialog.TYPE_PRIMARY,
                             title: 'Informasi',
-                            message: obj.message
+                            message: obj.message,
+                            buttons: [{
+					                label: 'Tutup',
+					                action: function(dialog) {
+            							 $("#id").val('');
+						                $("#no_rangka").val('');
+						                $("#no_mesin").val('');
+						                $("#no_faktur").val('');
+						                $("#nama_pemilik").val('');
+						                $("#alamat_pemilik").val('');
+						                $("#bpkb_no").val('');
+						                $("#bayar_jumlah_bpkb").val('');
+						                $("#bpkb_tgl").val('');
+						                $("#in_mesin").val('');
+        								dialog.close();
+					                }
+					            }]
                              
                         });   
-                      $('#form_data').data('bootstrapValidator').resetForm(true);
-                      window.location = "<?php echo site_url('bj_bbn_satu') ?>";
             }
             else {
                  BootstrapDialog.alert({

@@ -112,7 +112,7 @@ $("#cetak").click(function() {
   
   // window.alert(desa);
   
-  open('<?php echo site_url("$this->controller/pdf?"); ?>'+'tanggal_awal='+ tanggal_awal +'&tanggal_akhir='+tanggal_akhir+'&kode_dealer='+ kode_dealer);
+  open('<?php echo site_url("$this->controller/cetak_serah_dealer?"); ?>'+'tanggal_awal='+ tanggal_awal +'&tanggal_akhir='+tanggal_akhir+'&kode_dealer='+ kode_dealer);
 
 });
 

@@ -109,8 +109,35 @@ function simpan(){
 
     $post = $this->input->post();
     unset($post['id']);
-       
 
+
+
+    $config['upload_path'] = './assets/logo_birojasa';
+                $path = $config['upload_path'];
+                $config['allowed_types'] = 'gif|jpg|jpeg|png';
+                $config['encrypt_name'] = 'TRUE';
+
+
+             $this->load->library('upload', $config);
+
+        $filename_arr = array();
+        foreach ($_FILES as $key => $value) {
+            if (!empty($value['tmp_name']) && $value['size'] > 0) {
+            if (!$this->upload->do_upload($key)) {
+               // some errors
+            } else {
+                // Code After Files Upload Success GOES HERE
+                $data_name = $this->upload->data();
+                $filename_arr[] = $data_name['file_name'];
+            }
+        }
+    }
+     $post['logo'] = $filename_arr[0];
+
+    // show_array($filename_arr);
+       
+    // show_array($post);
+    // exit();
 
         $this->load->library('form_validation');
         $this->form_validation->set_rules('no_npwp','NPWP','required');    
@@ -124,11 +151,11 @@ function simpan(){
 
      
 
-        //show_array($data);
+        // show_array($data);
 
 if($this->form_validation->run() == TRUE ) { 
 
-        
+       
         $res = $this->db->insert('biro_jasa', $post); 
         
         if($res){

@@ -20,7 +20,9 @@ class bj_es_bbn_dua extends biro_jasa_controller{
 
 function index(){
 		$data_array=array();
-		$content = $this->load->view($this->controller."_view",$data_array,true);
+		// $content = $this->load->view($this->controller."_view",$data_array,true);
+
+        $content = "<h1>UNDER CONSTRUCTION</h1>";
 
 		$this->set_subtitle("Estimasi Pengurusan");
 		$this->set_title("Estimasi BBN 2");

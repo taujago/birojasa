@@ -43,6 +43,23 @@
 
 <table width="100%">
   <tr>
+    <td rowspan="4" width="60%"><img src="<?php echo base_url().'assets/logo_birojasa/'.$birojasa['logo']; ?>" height="50" width="50"></td>
+    <td width="40%"><b><?php echo $birojasa['nama']; ?></b></td>
+  </tr>
+  <tr>
+    <td><?php echo $birojasa['alamat']; ?></td>
+  </tr>
+  <tr>
+    <td>Telp. <?php echo $birojasa['telp']; ?></td>
+  </tr>
+  <tr>
+    <td>Email. <?php echo $birojasa['email']; ?></td>
+  </tr>
+</table>
+
+
+<table width="100%">
+  <tr>
     <td width="100%" align="center"><h1>Dokumen Penyerahan Dealer</h1></td>
   </tr>
   

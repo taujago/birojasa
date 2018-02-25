@@ -24,7 +24,7 @@
   ?>
       
           <div class="col-md-4" style="font-size: 20px;">
-            <button id="proses" type="button" class="btn btn-primary form-control" data-toggle="modal" data-target=".2">STNK</button>
+            <button id="proses" type="button" class="btn btn-primary form-control" data-toggle="modal" data-target=".1">STNK</button>
           </div>
 
 <?php } } ?>

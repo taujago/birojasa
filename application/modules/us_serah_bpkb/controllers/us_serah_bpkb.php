@@ -110,7 +110,8 @@ if(!empty($chb)) {
         if($res){
 
             $data_update = array('no_ref_bpkb' => $no_ref_bpkb,
-                                'bpkb_serah_polda' => 1);
+                                'bpkb_serah_polda' => 1, 
+                                'status' => 1);
 
             foreach ($chb as $key => $value) {
                 $this->db->where('id', $value);
