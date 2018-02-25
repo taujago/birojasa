@@ -117,6 +117,18 @@ $userdata = $this->session->userdata('user_login');
                     </li>
                   </ul>
                 </li>
+                <li><a><i class="fa fa-folder-open-o"></i> STCK <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu" style="display: none">
+                    <li><a href="<?php echo site_url('us_serah_bpkb'); ?>">Penyerahan Berkas</a>
+                    </li>
+                    <li><a href="<?php echo site_url('us_serah_bpkb_detail'); ?>">Detail Penyerahan</a>
+                    </li>
+                    <li><a href="<?php echo site_url('us_terima_bpkb'); ?>">Penerimaan Berkas</a>
+                    </li>
+                    <li><a href="<?php echo site_url('us_terima_bpkb_detail'); ?>">Detail Penerimaan</a>
+                    </li>
+                  </ul>
+                </li>
                 <li><a><i class="fa fa-folder-open-o"></i> STNK <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
                     <li><a href="<?php echo site_url('us_serah_stnk'); ?>">Penyerahan Berkas</a>

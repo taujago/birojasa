@@ -37,7 +37,7 @@
         action="<?php echo site_url("$this->controller/$action"); ?>" role="form"> 
 
  
-<div class="col-md-6">
+<div class="col-md-12">
 <div class="panel panel-primary ">
       <div class="panel-heading">
       <strong><h3 class="panel-title">Data</h3></strong>

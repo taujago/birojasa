@@ -23,7 +23,7 @@
 <input type="hidden" name="id_ref" id="id_ref" value="<?php echo $id_ref; ?>">
 
 <div class="col-md-12">
-	<button  type="button" class="btn btn-success col-md-4" id="cetak">Cetak Penyerahan Berkas</button> <a href="<?php echo site_url('us_serah_bpkb_detail') ?>" class="btn btn-danger col-md-2">Kembali</a>
+	<button  type="button" class="btn btn-success col-md-4" id="cetak">Cetak Berkas Finance</button> <button  type="button" class="btn btn-success col-md-4" id="cetak_pol">Cetak Berkas Polda</button> <a href="<?php echo site_url('us_serah_bpkb_detail') ?>" class="btn btn-danger col-md-2">Kembali</a>
 </div>
 
 <?php 

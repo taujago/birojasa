@@ -183,8 +183,12 @@ class us_serah_bpkb_detail extends user_controller{
         $pdf->AddPage('P');
 
  
-
-         $html = $this->load->view("pdf/cetak_detail_ref",$data,true);
+        if ($get['jenis']=='fin') {
+            $html = $this->load->view("pdf/cetak_detail_ref",$data,true);
+        }else{
+            $html = $this->load->view("pdf/cetak_detail_ref_pol",$data,true);
+        }
+         
          $pdf->writeHTML($html, true, false, true, false, '');
 
  

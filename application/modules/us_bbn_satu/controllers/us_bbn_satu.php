@@ -232,7 +232,7 @@ function index(){
         $no_rangka = $row['no_rangka'];
 
         if ($row['status'] < 2) {
-        $hapus = "<a href ='us_bbn_satu/lihatdata?id=$id' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i> Detail</a>";
+        $hapus = "<a href ='us_bbn_satu/lihatdata?id=$id' class='btn btn-primary btn-xs'><i class='fa fa-edit'></i> Status</a>";
         
         $nama ="<a href='us_bbn_satu/lihatdata?id=$id'>$no_rangka</a>";
         }else{
