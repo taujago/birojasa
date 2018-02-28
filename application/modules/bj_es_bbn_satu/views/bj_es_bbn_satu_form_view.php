@@ -75,6 +75,14 @@
       </div>
     </div>
     <div class="form-group">
+      <label class="col-sm-3 control-label">Rp. Daftar STCK</label>
+      <div class="col-sm-9">
+        <input type="text" 
+        data-a-sign="" data-a-dec="," data-a-sep="." 
+        name="rp_daftar_stck" id="rp_daftar_stck" class="rupiah form-control input-style" placeholder="Rp. Daftar STCK" value="<?php echo isset($rp_daftar_stck)?$rp_daftar_stck:""; ?>">
+      </div>
+    </div>
+    <div class="form-group">
       <label class="col-sm-3 control-label">Rp. Daftar BPKB</label>
       <div class="col-sm-9">
         <input  data-a-sign="" data-a-dec="," data-a-sep="."  type="text" name="rp_daftar_bpkb" id="rp_daftar_bpkb" class="rupiah form-control input-style" placeholder="Rp. Daftar BPKB" value="<?php echo isset($rp_daftar_bpkb)?$rp_daftar_bpkb:""; ?>">

@@ -37,7 +37,7 @@ class bj_es_bbn_satu_model extends CI_Model {
 		 	$this->db->join('m_tipe t', 'bbn1.tipe_kendaraan = t.id');
 		 	$this->db->join('m_warna_tnkb w', 'bbn1.id_warna_tnkb = w.id_warna_tnkb','left');
 
-			
+			$this->db->order_by('id', 'desc');
 
 
 		if(!empty($merk_kendaraan)) {

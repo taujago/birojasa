@@ -187,7 +187,7 @@ function get_data() {
                 $row['no_mesin'],
                 $row['no_faktur'],
                 $row['nama_pemilik'],
-                rupiah($row['rp_daftar_bpkb']),
+                rupiah($row['rp_daftar_stnk']),
                 
                      
                                 );

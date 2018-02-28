@@ -16,31 +16,7 @@
 
 </br>
 
-<div class="row">
-<?php if(!empty($pengerjaan_stnk)){ 
-      if ($status_stnk==1) {
-        
-      }else{
-  ?>
-      
-          <div class="col-md-4" style="font-size: 20px;">
-            <button id="proses" type="button" class="btn btn-primary form-control" data-toggle="modal" data-target=".1">STNK</button>
-          </div>
 
-<?php } } ?>
-<?php if(!empty($pengerjaan_bpkb)){ 
-  if ($status_bpkb==1) {
-        
-      }else{
-  ?>
-
-          <div class="col-md-4" style="font-size: 20px;">
-            <button id="proses" type="button" class="btn btn-primary form-control" data-toggle="modal" data-target=".1">BPKB</button>
-          </div>
-
-<?php } } ?>
-
-</div>
 
 <div class="row">
 

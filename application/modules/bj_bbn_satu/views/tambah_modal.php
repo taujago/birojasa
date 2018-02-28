@@ -48,6 +48,100 @@
 
 
 
+              <form id="form_jenis" data-parsley-validate class="form-horizontal form-label-left" action="" method="post">
+                <div class="modal fade 3" tabindex="-3" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel2">Tambah Jenis</h4>
+                      </div>
+                      <div class="modal-body">
+        
+                            <div class="form-group">
+                                <label>Jenis</label>
+                                  <input type="text" name="jenis" id="jenis" class="form-control input-style" placeholder="Jenis" >
+                              </div> 
+                           
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" id="simpan_jenis" class="btn btn-primary">Simpan</button>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                </form>
+
+
+                <form id="form_merk" data-parsley-validate class="form-horizontal form-label-left" action="" method="post">
+                <div class="modal fade 5" tabindex="-5" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel2">Tambah Merk</h4>
+                      </div>
+                      <div class="modal-body">
+        
+                            <div class="form-group">
+                                <label>Merk</label>
+                                  <input type="text" name="nama" id="merk" class="form-control input-style" placeholder="Merk" >
+                              </div> 
+                           
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" id="simpan_merk" class="btn btn-primary">Simpan</button>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                </form>
+
+
+                <form id="form_model" data-parsley-validate class="form-horizontal form-label-left" action="" method="post">
+                <div class="modal fade 4" tabindex="-4" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel2">Tambah Model</h4>
+                      </div>
+                      <div class="modal-body">
+        
+                            <div class="form-group">
+                              <label for="kembali">Jenis</label>
+                              <?php echo form_dropdown("id_jenis",$arr_jenis,isset($id_jenis)?$id_jenis:"",'id="jenis_modal" class="form-control select2" style="width: 100%;"'); ?>
+                            </div>
+                            <div class="form-group">
+                                <label>Model</label>
+                                  <input type="text" name="model" id="model_modal" class="form-control input-style" placeholder="Model">
+                              </div>
+                           
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                        <button type="button" id="simpan_model" class="btn btn-primary">Simpan</button>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                </form>
+
+
                 <form id="form_type" data-parsley-validate class="form-horizontal form-label-left" action="" method="post">
                 <div class="modal fade 2" tabindex="-2" role="dialog" aria-hidden="true">
                   <div class="modal-dialog modal-sm">
@@ -166,8 +260,12 @@
         data : $('#form_dealer').serialize(),
         type : 'post',
         dataType : 'json',
+        beforeSend : function(){
+            $('#myPleaseWait').modal('show');
+        },
         success : function(obj){
 
+            $('#myPleaseWait').modal('hide');
             // console.log(obj.error);
 
             if(obj.error == false) { // berhasil 
@@ -206,15 +304,118 @@
 });
 
 
- $("#simpan_type").click(function(){
+    $("#simpan_merk").click(function(){
  // console.log('tests');
 
     $.ajax({
-        url:'<?php echo site_url("$this->controller/simpan_tipe"); ?>',
-        data : $('#form_type').serialize(),
+        url:'<?php echo site_url("$this->controller/simpan_merk"); ?>',
+        data : $('#form_merk').serialize(),
         type : 'post',
         dataType : 'json',
+        beforeSend : function(){
+            $('#myPleaseWait').modal('show');
+        },
         success : function(obj){
+
+            $('#myPleaseWait').modal('hide');
+
+            // console.log(obj.error);
+
+            if(obj.error == false) { // berhasil 
+
+                // alert('hooooo.. error false');
+                     BootstrapDialog.alert({
+                            type: BootstrapDialog.TYPE_PRIMARY,
+                            title: 'Informasi',
+                            message: obj.message
+                             
+                        });   
+                      
+                        
+            }
+            else {
+                 BootstrapDialog.alert({
+                            type: BootstrapDialog.TYPE_DANGER,
+                            title: 'Error',
+                            message: obj.message 
+                             
+                        }); 
+
+                 
+            }
+        }
+    });
+
+    $('#nama').val('');
+    $('.modal').modal('hide');
+    return false;
+});
+
+
+
+
+    $("#simpan_jenis").click(function(){
+ // console.log('tests');
+
+    $.ajax({
+        url:'<?php echo site_url("$this->controller/simpan_jenis"); ?>',
+        data : $('#form_jenis').serialize(),
+        type : 'post',
+        dataType : 'json',
+        beforeSend : function(){
+            $('#myPleaseWait').modal('show');
+        },
+        success : function(obj){
+
+            $('#myPleaseWait').modal('hide');
+
+            // console.log(obj.error);
+
+            if(obj.error == false) { // berhasil 
+
+                // alert('hooooo.. error false');
+                     BootstrapDialog.alert({
+                            type: BootstrapDialog.TYPE_PRIMARY,
+                            title: 'Informasi',
+                            message: obj.message
+                             
+                        });   
+                      
+                        
+            }
+            else {
+                 BootstrapDialog.alert({
+                            type: BootstrapDialog.TYPE_DANGER,
+                            title: 'Error',
+                            message: obj.message 
+                             
+                        }); 
+
+                 
+            }
+        }
+    });
+
+    $('#jenis').val('');
+    $('.modal').modal('hide');
+    return false;
+});
+
+
+ $("#simpan_model").click(function(){
+ // console.log('tests');
+
+    $.ajax({
+        url:'<?php echo site_url("$this->controller/simpan_model"); ?>',
+        data : $('#form_model').serialize(),
+        type : 'post',
+        dataType : 'json',
+        beforeSend : function(){
+            $('#myPleaseWait').modal('show');
+        },
+        success : function(obj){
+
+            $('#myPleaseWait').modal('hide');
 
             // console.log(obj.error);
 
@@ -250,6 +451,135 @@
     return false;
 });
 
+
+
+
+ $("#simpan_type").click(function(){
+ // console.log('tests');
+
+    $.ajax({
+        url:'<?php echo site_url("$this->controller/simpan_tipe"); ?>',
+        data : $('#form_type').serialize(),
+        type : 'post',
+        dataType : 'json',
+        beforeSend : function(){
+            $('#myPleaseWait').modal('show');
+        },
+        success : function(obj){
+
+            $('#myPleaseWait').modal('hide');
+
+            // console.log(obj.error);
+
+            if(obj.error == false) { // berhasil 
+
+                // alert('hooooo.. error false');
+                     BootstrapDialog.alert({
+                            type: BootstrapDialog.TYPE_PRIMARY,
+                            title: 'Informasi',
+                            message: obj.message
+                             
+                        });   
+                      
+                        
+            }
+            else {
+                 BootstrapDialog.alert({
+                            type: BootstrapDialog.TYPE_DANGER,
+                            title: 'Error',
+                            message: obj.message 
+                             
+                        }); 
+
+                 
+            }
+        }
+    });
+
+    $('#merk_modal').val('');
+    $('#tipe_modal').val('');
+    $('.modal').modal('hide');
+
+    return false;
+});
+
+
+     $("#reload_tipe").click(function(){
+
+    $.ajax({
+
+            url : '<?php echo site_url("$this->controller/get_type") ?>',
+            data : { id_merk : $('#id_merek').val() },
+            type : 'post', 
+            beforeSend : function(){
+            $('#myPleaseWait').modal('show');
+        },
+            success : function(result) {
+              $('#myPleaseWait').modal('hide');
+                $("#type").html(result)
+            }
+      });
+
+    });
+
+
+     $("#reload_model").click(function(){
+
+    $.ajax({
+
+            url : '<?php echo site_url("$this->controller/get_data_model") ?>',
+            data : { id_jenis : $('#id_jenis').val() },
+            type : 'post', 
+            beforeSend : function(){
+            $('#myPleaseWait').modal('show');
+        },
+            success : function(result) {
+              $('#myPleaseWait').modal('hide');
+                $("#id_model").html(result)
+            }
+      });
+
+    });
+
+
+     $("#reload_merk").click(function(){
+      var birojasa = '';
+    $.ajax({
+
+            url : '<?php echo site_url("$this->controller/get_data_merk") ?>',
+            data : { birojasa : birojasa },
+            type : 'post', 
+            beforeSend : function(){
+            $('#myPleaseWait').modal('show');
+        },
+            success : function(result) {
+              $('#myPleaseWait').modal('hide');
+                $("#id_merek").html(result);
+                $('#merk_modal').html(result);
+            }
+      });
+
+    });
+
+     $("#reload_jenis").click(function(){
+      var birojasa = '';
+    $.ajax({
+
+            url : '<?php echo site_url("$this->controller/get_jenis") ?>',
+            data : { birojasa : birojasa },
+            type : 'post', 
+            beforeSend : function(){
+            $('#myPleaseWait').modal('show');
+        },
+            success : function(result) {
+              $('#myPleaseWait').modal('hide');
+                $("#id_jenis").html(result);
+                $('#jenis_modal').html(result);
+            }
+      });
+
+    });
+
     $('#reload_dealer').click(function(){
       var birojasa = '';
       $.ajax({
@@ -257,7 +587,13 @@
             url : '<?php echo site_url("$this->controller/get_dealer") ?>',
             data : { birojasa : birojasa },
             type : 'post', 
+            beforeSend : function(){
+            $('#myPleaseWait').modal('show');
+        },
+
+            
             success : function(result) {
+              $('#myPleaseWait').modal('hide');
                 $("#kode_dealer").html(result);
             }
         });

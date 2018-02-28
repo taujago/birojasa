@@ -65,6 +65,26 @@ $userdata = $this->session->userdata('user_login');
 
 <body class="nav-md">
 
+  <div class="modal fade bs-example-modal-sm" id="myPleaseWait" tabindex="-1"
+    role="dialog" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    <span class="glyphicon glyphicon-time">
+                    </span>Sedang memproses. Harap Tunggu...
+                 </h4>
+            </div>
+            <div class="modal-body">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-info progress-bar-striped active" style="width: 100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
   <div class="container body">
 
 
@@ -119,13 +139,13 @@ $userdata = $this->session->userdata('user_login');
                 </li>
                 <li><a><i class="fa fa-folder-open-o"></i> STCK <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
-                    <li><a href="<?php echo site_url('us_serah_bpkb'); ?>">Penyerahan Berkas</a>
+                    <li><a href="<?php echo site_url('us_serah_stck'); ?>">Penyerahan Berkas</a>
                     </li>
-                    <li><a href="<?php echo site_url('us_serah_bpkb_detail'); ?>">Detail Penyerahan</a>
+                    <li><a href="<?php echo site_url('us_serah_stck_detail'); ?>">Detail Penyerahan</a>
                     </li>
-                    <li><a href="<?php echo site_url('us_terima_bpkb'); ?>">Penerimaan Berkas</a>
+                    <li><a href="<?php echo site_url('us_terima_stck'); ?>">Penerimaan Berkas</a>
                     </li>
-                    <li><a href="<?php echo site_url('us_terima_bpkb_detail'); ?>">Detail Penerimaan</a>
+                    <li><a href="<?php echo site_url('us_terima_stck_detail'); ?>">Detail Penerimaan</a>
                     </li>
                   </ul>
                 </li>

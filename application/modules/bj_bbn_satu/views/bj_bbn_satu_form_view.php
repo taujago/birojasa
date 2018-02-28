@@ -6,6 +6,27 @@
 <?php 
     $this->load->view('tambah_modal');
 ?>
+
+
+<div class="modal fade bs-example-modal-sm" id="myPleaseWait" tabindex="-1"
+    role="dialog" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    <span class="glyphicon glyphicon-time">
+                    </span>Sedang memproses. Harap Tunggu...
+                 </h4>
+            </div>
+            <div class="modal-body">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-info progress-bar-striped active" style="width: 100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
      <script src="<?php echo base_url("assets"); ?>/fileinput/js/fileinput.min.js"></script>
  <link href="<?php echo base_url("assets"); ?>/fileinput/css/fileinput.min.css" rel="stylesheet">
     <link href="<?php echo base_url("assets") ?>/plugins/select2/select2.min.css" rel="stylesheet" >
@@ -86,7 +107,6 @@
                         <input type="hidden" name="id_birojasa" id="id_birojasa" value="<?php echo $userdata['birojasa_id']; ?>">
                         <input type="text" id="no_rangka" name="no_rangka" required="required" class="form-control col-md-7 col-xs-12" placeholder="Nomor Rangka" value="<?php echo isset($no_rangka)?$no_rangka:""; ?>">
                         </div>
-                        <div class="col-md-1"></div>
                       <div class="col-md-5"> 
                           <button type="button" class="btn btn-primary" id="query"><i class="fa fa-search"> </i>Cari</button>
                       </div>
@@ -125,6 +145,12 @@
                       <div class="col-md-5" id="label_merk" style="font-size: 20px;"> 
                         
                       </div>
+                      <div class="col-md-1">
+                           <button id="proses" type="button" class="btn btn-primary" data-toggle="modal" data-target=".5"><i class="fa fa-plus"></i></button>
+                        </div>
+                        <div class="col-md-1">
+                           <button type="button"  id="reload_merk" class="btn btn-primary" ><i class="fa fa-refresh"></i></button>
+                        </div>
 
                         
                        </div> 
@@ -138,12 +164,12 @@
                       </div>
                       <div class="col-md-1"></div>
                       <div class="col-md-5" id="label_type" style="font-size: 20px;"> 
-                        
+                       
                       </div>
-                      <div class="col-md-2">
+                      <div class="col-md-1">
                            <button id="proses" type="button" class="btn btn-primary" data-toggle="modal" data-target=".2"><i class="fa fa-plus"></i></button>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-1">
                            <button type="button"  id="reload_tipe" class="btn btn-primary" ><i class="fa fa-refresh"></i></button>
                         </div>
                         
@@ -160,6 +186,12 @@
                       <div class="col-md-5" id="label_jenis" style="font-size: 20px;"> 
                         
                       </div>
+                      <div class="col-md-1">
+                           <button id="proses" type="button" class="btn btn-primary" data-toggle="modal" data-target=".3"><i class="fa fa-plus"></i></button>
+                        </div>
+                        <div class="col-md-1">
+                           <button type="button"  id="reload_jenis" class="btn btn-primary" ><i class="fa fa-refresh"></i></button>
+                        </div>
                       
                        </div> 
                     </div>
@@ -180,6 +212,12 @@
                       <div class="col-md-5" id="label_model" style="font-size: 20px;"> 
                       
                       </div>
+                      <div class="col-md-1">
+                           <button id="proses" type="button" class="btn btn-primary" data-toggle="modal" data-target=".4"><i class="fa fa-plus"></i></button>
+                        </div>
+                        <div class="col-md-1">
+                           <button type="button"  id="reload_model" class="btn btn-primary" ><i class="fa fa-refresh"></i></button>
+                        </div>
                        </div> 
                     </div>
 
@@ -222,11 +260,10 @@
                         <div class="col-md-6 no-padding">
                           <?php echo form_dropdown("kode_dealer",$arr_dealer,isset($kode_dealer)?$kode_dealer:"",'id="kode_dealer" class="form-control input-style"'); ?>
                         </div>
-                        <div class="col-md-1"></div>
-                        <div class="col-md-2">
+                        <div class="col-md-1">
                            <button id="proses" type="button" class="btn btn-primary" data-toggle="modal" data-target=".1"><i class="fa fa-plus"></i></button>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-1">
                            <button type="button"  id="reload_dealer" class="btn btn-primary" ><i class="fa fa-refresh"></i></button>
                         </div>
 
@@ -326,7 +363,13 @@
                        <a class="btn btn-primary" id="hitung">Estimasi Biaya</a>
                        </div> 
                     </div>
-
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Biaya STCK
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="rp_daftar_stck" name="rp_daftar_stck" required="required" class="rupiah form-control col-md-7 col-xs-12 rp" placeholder="Biaya STCK"  data-a-sign="" data-a-dec="," data-a-sep="." value="<?php echo isset($rp_daftar_stck)?$rp_daftar_stck:""; ?>">
+                      </div>
+                    </div>
                     
              <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Biaya STNK

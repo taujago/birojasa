@@ -17,11 +17,6 @@ class us_input_notis extends user_controller{
 
 
 
-
-
-
-
-
 function index(){
 		
 
@@ -49,7 +44,7 @@ function get_data(){
 
    
 
-    $this->db->where($post['jenis'], $post['no_mesin']);
+    $this->db->like($post['jenis'], $post['no_mesin']);
     $this->db->where('stnk_serah_samsat', 1);
     $this->db->where('status_notis', 0);
     $res = $this->db->get('bj_bbn_satu')->row_array();

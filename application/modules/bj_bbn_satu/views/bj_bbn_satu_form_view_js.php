@@ -21,8 +21,11 @@ $('#hitung').click(function(){
         data :  $("#form_data").serialize(), 
         type : 'post',
         dataType : 'json',
+        beforeSend : function(){
+            $('#myPleaseWait').modal('show');
+        },
         success : function(obj) {
-
+            $('#myPleaseWait').modal('hide');
             console.log(obj.error);
 
             if(obj.error == false) { // berhasil 
@@ -30,11 +33,13 @@ $('#hitung').click(function(){
                 // alert('hooooo.. error false');
                      console.log(obj.error);
             $("#rp_daftar_stnk").val(obj.rp_daftar_stnk);
+            $("#rp_daftar_stck").val(obj.rp_daftar_stck);
             $("#rp_daftar_bpkb").val(obj.rp_daftar_bpkb);
             $("#rp_pajak_kendaraan").val(obj.rp_pajak_kendaraan);
             $("#rp_admin_fee").val(obj.rp_admin_fee);
             $("#total").val(obj.total);
             document.getElementById("rp_daftar_stnk").setAttribute("disabled", true)
+            document.getElementById("rp_daftar_stck").setAttribute("disabled", true)
             document.getElementById("rp_daftar_bpkb").setAttribute("disabled", true)
             document.getElementById("rp_pajak_kendaraan").setAttribute("disabled", true)
             document.getElementById("rp_admin_fee").setAttribute("disabled", true)
@@ -48,6 +53,7 @@ $('#hitung').click(function(){
                              
                         });
             $("#rp_daftar_stnk").val(obj.rp_daftar_stnk);
+            $("#rp_daftar_stck").val(obj.rp_daftar_stck);
             $("#rp_daftar_bpkb").val(obj.rp_daftar_bpkb);
             $("#rp_pajak_kendaraan").val(obj.rp_pajak_kendaraan);
             $("#rp_admin_fee").val(obj.rp_admin_fee);
@@ -81,8 +87,12 @@ $(".tanggal").datepicker().on('changeDate', function(ev){
         processData: false,
         type : 'post',
         dataType : 'json',
+        beforeSend : function(){
+            $('#myPleaseWait').modal('show');
+        },
         success : function(obj){
 
+            $('#myPleaseWait').modal('hide');
             console.log(obj.error);
 
             if(obj.error == false) { // berhasil 
@@ -114,10 +124,16 @@ $(".tanggal").datepicker().on('changeDate', function(ev){
   $("#update").click(function(){ 
     $.ajax({
         url:'<?php echo site_url("$this->controller/update"); ?>',
-        data : $('#form_data').serialize(),
+        data : new FormData($('#form_data')[0]),
+        contentType: false,
+        processData: false,
         type : 'post',
         dataType : 'json',
+        beforeSend : function(){
+            $('#myPleaseWait').modal('show');
+        },
         success : function(obj){
+            $('#myPleaseWait').modal('hide');
 
             console.log(obj.error);
 
@@ -153,7 +169,7 @@ $(".tanggal").datepicker().on('changeDate', function(ev){
 
     $.ajax({
 
-            url : '<?php echo site_url("$this->controller/get_model") ?>',
+            url : '<?php echo site_url("$this->controller/get_data_model") ?>',
             data : { id_jenis : $(this).val() },
             type : 'post', 
             success : function(result) {
@@ -226,19 +242,7 @@ $(".tanggal").datepicker().on('changeDate', function(ev){
 
     });
 
-    $("#reload_tipe").click(function(){
 
-    $.ajax({
-
-            url : '<?php echo site_url("$this->controller/get_type") ?>',
-            data : { id_merk : $('#id_merek').val() },
-            type : 'post', 
-            success : function(result) {
-                $("#type").html(result)
-            }
-      });
-
-    });
 
 
    $("#id_merek").change(function(){

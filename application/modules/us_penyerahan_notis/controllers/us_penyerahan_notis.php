@@ -123,6 +123,7 @@ class us_penyerahan_notis extends user_controller{
         $no_ref = $ref_stnk['no_ref'];
 
         $this->db->where('no_ref_stnk', $no_ref);
+        $this->db->where('status_notis', 0);
         $data_array['hasil'] = $this->db->get('bj_bbn_satu')->result_array();
         $data_array['id_ref'] = $get['id'];
 

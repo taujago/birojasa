@@ -87,7 +87,8 @@ function simpan(){
         $this->form_validation->set_rules('rp_daftar_stnk','Daftar STNK','required');
         $this->form_validation->set_rules('rp_daftar_bpkb','Daftar BPKB','required');    
         $this->form_validation->set_rules('rp_pajak_kendaraan','Pajak Kendaraan','required');
-        $this->form_validation->set_rules('rp_admin_fee','Admin Fee','required');    
+        $this->form_validation->set_rules('rp_admin_fee','Admin Fee','required');
+        $this->form_validation->set_rules('rp_daftar_stck','Daftar STCK','required');    
         // $this->form_validation->set_rules('pelaksana_nip','NIP','required');   
 
 
@@ -95,6 +96,7 @@ function simpan(){
         $post['rp_daftar_bpkb'] = bersih($post['rp_daftar_bpkb'])     ; 
         $post['rp_pajak_kendaraan'] = bersih($post['rp_pajak_kendaraan']); 
         $post['rp_admin_fee'] = bersih($post['rp_admin_fee']); 
+        $post['rp_daftar_stck'] = bersih($post['rp_daftar_stck']); 
 
         
 
@@ -161,8 +163,8 @@ function update(){
         $this->form_validation->set_error_delimiters('', '<br>');
 
 
-        $post['rp_daftar_stnk'] = bersih($post['rp_daftar_stnk'])     ; 
-        $post['rp_daftar_bpkb'] = bersih($post['rp_daftar_bpkb'])     ; 
+        $post['rp_daftar_stnk'] = bersih($post['rp_daftar_stnk']); 
+        $post['rp_daftar_bpkb'] = bersih($post['rp_daftar_bpkb']); 
         $post['rp_pajak_kendaraan'] = bersih($post['rp_pajak_kendaraan'])     ; 
         $post['rp_admin_fee'] = bersih($post['rp_admin_fee'])  ; 
 
@@ -199,7 +201,7 @@ else {
     	$start = $_REQUEST['start'];
         $limit = $_REQUEST['length']; // get how many rows we want to have into the grid 
         $sidx = isset($_REQUEST['order'][0]['column'])?$_REQUEST['order'][0]['column']:0; // get index row - i.e. user click to sort 
-        $sord = isset($_REQUEST['order'][0]['dir'])?$_REQUEST['order'][0]['dir']:"asc"; // get the direction if(!$sidx) $sidx =1;  
+        $sord = isset($_REQUEST['order'][0]['dir'])?$_REQUEST['order'][0]['dir']:"desc"; // get the direction if(!$sidx) $sidx =1;  
         
   
         $merk_kendaraan = $_REQUEST['columns'][1]['search']['value'];

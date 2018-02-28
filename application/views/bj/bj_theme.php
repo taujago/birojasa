@@ -64,6 +64,25 @@ $userdata = $this->session->userdata('bj_login');
 
 
 <body class="nav-md">
+  <div class="modal fade bs-example-modal-sm" id="myPleaseWait" tabindex="-1"
+    role="dialog" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    <span class="glyphicon glyphicon-time">
+                    </span>Sedang memproses. Harap Tunggu...
+                 </h4>
+            </div>
+            <div class="modal-body">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-info progress-bar-striped active" style="width: 100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
   <div class="container body">
 
@@ -103,16 +122,14 @@ $userdata = $this->session->userdata('bj_login');
                   <ul class="nav child_menu" style="display: none">
                     <li><a href="<?php echo site_url('bj_bbn_satu'); ?>">BBN 1</a>
                     </li>
-                    <li><a href="<?php echo site_url('#'); ?>">Barcoding</a>
-                    </li>
+                    
                   </ul>
                 </li>
                  <li><a><i class="fa fa-minus-square-o"></i> Data Master BBN <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
                     <li><a href="<?php echo site_url('bj_es_bbn_satu'); ?>">Estimasi BBN 1</a>
                     </li>
-                    <li><a href="<?php echo site_url('bj_es_bbn_dua'); ?>">Estimasi BBN 2</a>
-                    </li>
+                  
                   </ul>
                 </li>
                 <li><a><i class="fa fa-minus-square-o"></i> Data Master <span class="fa fa-chevron-down"></span></a>
