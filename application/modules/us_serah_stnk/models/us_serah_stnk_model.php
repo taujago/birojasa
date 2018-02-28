@@ -31,7 +31,8 @@ class us_serah_stnk_model extends CI_Model {
 
 		 	$this->db->select('*')->from("bj_bbn_satu");
 		 	$this->db->where('pengurus_stnk', $user_id);
-		 	$this->db->where('stnk_serah_samsat', 0);		
+		 	$this->db->where('stnk_serah_samsat', 0);
+		 	$this->db->where('status_terima_stck', 1);		
 		 	$this->db->order_by('tgl_pengajuan', 'desc');
 		
 		 
