@@ -86,7 +86,17 @@ $("#simpan").click(function(){
                             message: obj.message
                              
                         });   
-                      $('#form_data').data('bootstrapValidator').resetForm(true);
+                      $('#merk_kendaraan').val('');
+                      $('#tipe_kendaraan').val('');
+                      $('#tahun_kendaraan').val('');
+                      $('#id_warna_tnkb').val('');
+                      $('#id_polda').val('');
+                      $('#id_samsat').val('');
+                      $('#rp_daftar_stnk').val('');
+                      $('#rp_daftar_stck').val('');
+                      $('#rp_daftar_bpkb').val('');
+                      $('#rp_pajak_kendaraan').val('');
+                      $('#rp_admin_fee').val('');
             }
             else {
                  BootstrapDialog.alert({

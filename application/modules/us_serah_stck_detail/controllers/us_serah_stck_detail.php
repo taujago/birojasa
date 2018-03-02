@@ -35,6 +35,64 @@ class us_serah_stck_detail extends user_controller{
 		$this->cetak();
 }
 
+
+
+function hapusdata(){
+        $get = $this->input->post();
+        $id = $get['id'];
+
+        $userdata = $this->session->userdata('user_login');
+        $pengguna = $userdata['id'];
+        // echo $userdata['nama']; 
+        $id_birojasa = $userdata['birojasa_id']; 
+
+        $data = array('id' => $id, );
+        $this->db->select('no_ref_stck');
+        $this->db->where('id', $id);
+        $data_bbn = $this->db->get('bj_bbn_satu')->row_array();
+        $no_ref = $data_bbn['no_ref_stck'];
+        // echo $no_ref;
+
+        
+
+
+
+        
+        
+
+        
+        
+        $update_data = array('status_stck' => 0,
+                            'status_terima_stck' => 0,
+                            'status_terima_stck' => 0,
+                            'jumlah_bayar_stck' => 0, 
+                            'no_ref_stck' => ''
+                             );
+        $this->db->where('id', $id);
+        $res = $this->db->update('bj_bbn_satu', $update_data);
+        if($res){
+            $this->db->where('pengurus_stnk', $pengguna);
+            $this->db->where('no_ref_stck', $no_ref);
+            $jumlah_berkas = $this->db->get('bj_bbn_satu')->num_rows();
+
+            $update_ref = array('jumlah_berkas' => $jumlah_berkas, );
+
+            $this->db->where('id_user', $pengguna);
+            $this->db->where('id_birojasa', $id_birojasa);
+            $this->db->where('no_ref', $no_ref);
+            $this->db->update('ref_stck', $update_ref);
+
+            $arr = array("error"=>false,"message"=>"DATA BERHASIL DIUPDATE");
+        }
+        else {
+            $arr = array("error"=>true,"message"=>"DATA GAGAL DIUPDATE ".mysql_error());
+        }
+        //redirect('sa_birojasa');
+        echo json_encode($arr);
+    }
+
+
+
 	function get_data(){
 
         $userdata = $this->session->userdata('user_login');
@@ -117,13 +175,21 @@ class us_serah_stck_detail extends user_controller{
     	$data_array = array();
     	$get = $this->input->get();
 
+        $userdata = $this->session->userdata('user_login');
+        $pengguna = $userdata['id'];
+        // echo $userdata['nama']; 
+        $id_birojasa = $userdata['birojasa_id'];
+
     	$this->db->where('id', $get['id']);
     	$ref_stck = $this->db->get('ref_stck')->row_array();
     	
     	$no_ref = $ref_stck['no_ref'];
-
+        $this->db->where('pengurus_stnk', $pengguna);
     	$this->db->where('no_ref_stck', $no_ref);
     	$data_array['hasil'] = $this->db->get('bj_bbn_satu')->result_array();
+
+        // echo $this->db->last_query();
+        // exit();
     	$data_array['id_ref'] = $get['id'];
 
     	$content = $this->load->view($this->controller."_view_detail",$data_array,true);
@@ -140,7 +206,9 @@ class us_serah_stck_detail extends user_controller{
     	$data = array();
     	$get = $this->input->get();
 
-    	
+    	$userdata = $this->session->userdata('user_login');
+        $pengguna = $userdata['id'];
+        $id_birojasa = $userdata['birojasa_id'];
 
     	$this->db->select('s.*, sa.nama as nm_samsat')->from("ref_stck s");
         $this->db->join('samsat sa','s.id_samsat=sa.id');
@@ -152,7 +220,7 @@ class us_serah_stck_detail extends user_controller{
     	$data['birojasa'] = $this->db->get('biro_jasa')->row_array();
 
     	$no_ref = $ref_stck['no_ref'];
-
+        $this->db->where('pengurus_stnk', $pengguna);
     	$this->db->where('no_ref_stck', $no_ref);
     	$data['hasil'] = $this->db->get('bj_bbn_satu')->result_array();
     	$data['id_ref'] = $get['id'];

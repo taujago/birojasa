@@ -40,7 +40,7 @@ class bj_bbn_satu_model extends CI_Model {
 		 	$this->db->join('pengguna ps','bbn1.pengurus_stnk=ps.id');
 		 	$this->db->join('pengguna pb','bbn1.pengurus_bpkb=pb.id');
 		 	$this->db->where('id_birojasa', $id_birojasa);
-		 	$this->db->order_by('bbn1.tgl_entri', 'desc');
+		 	$this->db->order_by('bbn1.id', 'desc');
 		
 
 

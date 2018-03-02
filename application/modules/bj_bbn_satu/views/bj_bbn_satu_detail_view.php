@@ -191,6 +191,11 @@
         <td width="70%">Rp. <?php echo $rp_daftar_stnk; ?>,00</td>
    </tr>
    <tr>
+        <td width="20%">Daftar Estimasi STCK</td>
+        <td width="1%">:</td>
+        <td width="70%">Rp. <?php echo rupiah($rp_daftar_stck); ?>,00</td>
+   </tr>
+   <tr>
         <td width="20%">Daftar Estimasi BPKB</td>
         <td width="1%">:</td>
         <td width="70%">Rp. <?php echo $rp_daftar_bpkb; ?>,00</td>
@@ -221,14 +226,19 @@
         <td width="70%"><?php echo $tgl_update; ?></td>
    </tr>
     <tr>
-        <td width="20%">Pengurus STNK</td>
+        <td width="20%">Pengurus STNK & STCK</td>
         <td width="1%">:</td>
         <td width="70%"><?php echo $nm_pengurus_stnk; ?></td>
    </tr>
     <tr>
-        <td width="20%">STNK </td>
+        <td width="20%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status STNK </td>
         <td width="1%">:</td>
         <td width="70%"><?php if($status_stnk==0){ echo 'Belum Selesai';}else{ echo 'Selesai';} ?></td>
+   </tr>
+   <tr>
+        <td width="20%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status STCK </td>
+        <td width="1%">:</td>
+        <td width="70%"><?php if($status_terima_stck==0){ echo 'Belum Selesai';}else{ echo 'Selesai';} ?></td>
    </tr>
    <tr>
         <td width="20%">Pengurus BPKB</td>
@@ -236,7 +246,7 @@
         <td width="70%"><?php echo $nm_pengurus_bpkb; ?></td>
    </tr>
    <tr>
-        <td width="20%">BPKB </td>
+        <td width="20%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Status BPKB </td>
         <td width="1%">:</td>
         <td width="70%"><?php if($status_bpkb==0){ echo 'Belum Selesai';}else{ echo 'Selesai';} ?></td>
    </tr>
@@ -285,35 +295,8 @@
         <td width="20%">Tgl. BPKB</td>
         <td width="1%">:</td>
         <td width="70%"><?php echo $bpkb_tgl; ?></td>
-   </tr>
-
-   <tr>
-        <td width="20%">Tgl. Serah BPKB</td>
-        <td width="1%">:</td>
-        <td width="70%"><?php echo $bpkb_serah_tgl; ?></td>
-   </tr>
-   <tr>
-        <td width="20%">Tgl. Bayar</td>
-        <td width="1%">:</td>
-        <td width="70%"><?php echo $bayar_tgl_bpkb; ?></td>
-   </tr>
-   
-   <tr>
-        <td width="20%">Metode Bayar </td>
-        <td width="1%">:</td>
-        <td width="70%"><?php echo $bayar_metode_bpkb; ?></td>
-   </tr>
-   <tr>
-        <td width="20%">No. CC Bayar</td>
-        <td width="1%">:</td>
-        <td width="70%"><?php echo $bayar_no_cc_bpkb; ?></td>
-   </tr>
-   <tr>
-        <td width="20%">Ref. CC Bayar</td>
-        <td width="1%">:</td>
-        <td width="70%"><?php echo $bayar_ref_cc_bpkb; ?></td>
-   </tr>
-   <tr>
+  </tr>
+  <tr>
         <td width="20%">Bayar Jumlah</td>
         <td width="1%">:</td>
         <td width="70%"><?php echo $bayar_jumlah_bpkb; ?></td>
@@ -331,13 +314,14 @@
 
 }  ?>
 
+
 <?php 
       if ($status_stnk==1) {?>
       <div class="row">
     <div class="col-md-12">
               <div class="x_panel">
                 <div class="x_title">
-                  <h2>Detail Hasil Pengerjaan STNK</h2>
+                  <h2>Detail Hasil Pengerjaan STNK </h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -366,35 +350,60 @@
         <td width="70%"><?php echo $stnk_tgl; ?></td>
    </tr>
    <tr>
-        <td width="20%">Tgl. Serah STNK</td>
+        <td width="20%">Bayar Jumlah</td>
         <td width="1%">:</td>
-        <td width="70%"><?php echo $stnk_serah_tgl; ?></td>
+        <td width="70%"><?php echo $bayar_jumlah_stnk; ?></td>
    </tr>
+  </tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+  <?php  
+      }else{
+
+ } ?>
+
+<?php 
+      if ($status_terima_stck==1) {?>
+      <div class="row">
+    <div class="col-md-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>Detail Hasil Pengerjaan STCK </h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+
+
+
+
+<table width="100%" border="0" class="table table-striped table-hover no-footer" role="grid">
+
+<tbody>
+    
    
    <tr>
-        <td width="20%">Tgl. Bayar</td>
+        <td width="20%">No. REF STCK</td>
         <td width="1%">:</td>
-        <td width="70%"><?php echo $bayar_tgl_stnk; ?></td>
+        <td width="70%"><?php echo $no_ref_stck; ?></td>
    </tr>
    <tr>
-        <td width="20%">Metode Bayar </td>
+        <td width="20%">Tgl. STCK</td>
         <td width="1%">:</td>
-        <td width="70%"><?php echo $bayar_metode_stnk; ?></td>
-   </tr>
-   <tr>
-        <td width="20%">No. CC Bayar</td>
-        <td width="1%">:</td>
-        <td width="70%"><?php echo $bayar_no_cc_stnk; ?></td>
-   </tr>
-   <tr>
-        <td width="20%">Ref. CC Bayar</td>
-        <td width="1%">:</td>
-        <td width="70%"><?php echo $bayar_ref_cc_stnk; ?></td>
+        <td width="70%"><?php echo $stck_terima_tgl; ?></td>
    </tr>
    <tr>
         <td width="20%">Bayar Jumlah</td>
         <td width="1%">:</td>
-        <td width="70%"><?php echo $bayar_jumlah_stnk; ?></td>
+        <td width="70%"><?php echo rupiah($jumlah_bayar_stck); ?></td>
    </tr>
   </tbody>
 </table>

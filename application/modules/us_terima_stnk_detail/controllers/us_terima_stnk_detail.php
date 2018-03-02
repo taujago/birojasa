@@ -1,22 +1,22 @@
 <?php
-class us_terima_stck_detail extends user_controller{
-	var $controller;
+class us_terima_stnk_detail extends user_controller{
+    var $controller;
     
     
-	function us_terima_stck_detail(){
-		parent::__construct();
+    function us_terima_stnk_detail(){
+        parent::__construct();
 
-		$this->controller = get_class($this);
-		$this->load->model('us_terima_stck_detail_model','dm');
+        $this->controller = get_class($this);
+        $this->load->model('us_terima_stnk_detail_model','dm');
         $this->load->model("coremodel","cm");
-		$this->load->helper("tanggal");
+        $this->load->helper("tanggal");
 
-	
-		
-	}
+    
+        
+    }
 
-	function index(){
-		
+    function index(){
+        
 
         $data_array=array();
 
@@ -29,16 +29,16 @@ class us_terima_stck_detail extends user_controller{
 
 
 
-		$content = $this->load->view($this->controller."_view",$data_array,true);
+        $content = $this->load->view($this->controller."_view",$data_array,true);
 
 
-		$this->set_subtitle("Detail Penerimaan STCK Samsat");
-		$this->set_title("STCK");
-		$this->set_content($content);
-		$this->cetak();
+        $this->set_subtitle("Detail Penerimaan STNK Samsat");
+        $this->set_title("STNK");
+        $this->set_content($content);
+        $this->cetak();
 }
 
-	function get_data(){
+    function get_data(){
 
         $userdata = $this->session->userdata('user_login');
         $pengguna = $userdata['id'];
@@ -95,7 +95,7 @@ class us_terima_stck_detail extends user_controller{
                 $row['no_mesin'],
                 $row['no_faktur'],
                 $row['nama_pemilik'],
-                flipdate($row['stck_terima_tgl'])    
+                flipdate($row['stnk_tgl'])    
                                 );
         endforeach;
 
@@ -110,32 +110,32 @@ class us_terima_stck_detail extends user_controller{
 
 
     function lihatdata(){
-    	$data_array = array();
-    	$get = $this->input->get();
+        $data_array = array();
+        $get = $this->input->get();
 
-    	$this->db->where('id', $get['id']);
-    	$ref_bpkb = $this->db->get('ref_bpkb')->row_array();
-    	
-    	$no_ref = $ref_bpkb['no_ref'];
+        $this->db->where('id', $get['id']);
+        $ref_bpkb = $this->db->get('ref_bpkb')->row_array();
+        
+        $no_ref = $ref_bpkb['no_ref'];
 
-    	$this->db->where('no_ref_bpkb', $no_ref);
-    	$data_array['hasil'] = $this->db->get('bj_bbn_satu')->result_array();
-    	$data_array['id_ref'] = $get['id'];
+        $this->db->where('no_ref_bpkb', $no_ref);
+        $data_array['hasil'] = $this->db->get('bj_bbn_satu')->result_array();
+        $data_array['id_ref'] = $get['id'];
 
-    	$content = $this->load->view($this->controller."_view_detail",$data_array,true);
+        $content = $this->load->view($this->controller."_view_detail",$data_array,true);
 
 
-		$this->set_subtitle("Detail No. Referensi : ".$no_ref);
-		$this->set_title("BPKB");
-		$this->set_content($content);
-		$this->cetak();
-    	
+        $this->set_subtitle("Detail No. Referensi : ".$no_ref);
+        $this->set_title("BPKB");
+        $this->set_content($content);
+        $this->cetak();
+        
     }
 
 
 
-	function pdf(){
-		$userdata = $this->session->userdata('user_login');
+    function pdf(){
+        $userdata = $this->session->userdata('user_login');
         $pengguna = $userdata['id'];
 
     $post = $this->input->get(); 
@@ -156,15 +156,16 @@ class us_terima_stck_detail extends user_controller{
            $this->db->select('s.*, sa.nama as nm_samsat')->from("bj_bbn_satu s");
             $this->db->join('samsat sa','s.id_samsat=sa.id');
             $this->db->where('s.pengurus_stnk', $pengguna);       
-            $this->db->where('s.status_terima_stck', 1);
-            $this->db->order_by('s.stck_terima_tgl', 'desc');
+            $this->db->where('s.status_stnk', 1);
+            $this->db->order_by('s.stnk_tgl', 'desc');
+        
         
          
          $tanggal_awal = flipdate($tanggal_awal);
             $tanggal_akhir = flipdate($tanggal_akhir);
          
         if(!empty($tanggal_awal) and !empty($tanggal_akhir) ) {
-            $this->db->where("s.stck_terima_tgl between '$tanggal_awal' and '$tanggal_akhir'",null,false);      
+            $this->db->where("s.stnk_tgl between '$tanggal_awal' and '$tanggal_akhir'",null,false);      
          }
 
          if(!empty($samsat)) {
@@ -176,20 +177,20 @@ class us_terima_stck_detail extends user_controller{
 
 
      if (!empty($tanggal_awal) and !empty($tanggal_akhir)) {
-     	$data['tanggal'] = array('tgl_awal' => $tanggal_awal,
-		 							'tgl_akhir' => $tanggal_akhir );
+        $data['tanggal'] = array('tgl_awal' => $tanggal_awal,
+                                    'tgl_akhir' => $tanggal_akhir );
      }
 
       if(!empty($samsat)) {
-		
-		 	$this->db->where('id', $samsat);
-    		$data_samsat = $this->db->get('samsat')->row_array();
+        
+            $this->db->where('id', $samsat);
+            $data_samsat = $this->db->get('samsat')->row_array();
 
-    		$data['samsat'] = $data_samsat['nama'];
-		 }
+            $data['samsat'] = $data_samsat['nama'];
+         }
 
     $data['controller'] = get_class($this);
-    $data['header'] = "Detail Penerimaan Berkas STCK ";
+    $data['header'] = "Detail Penerimaan Berkas STNK ";
     $data['query']  = $resx->result_array();
     $data['title'] = $data['header'];
     $this->load->library('Pdf');

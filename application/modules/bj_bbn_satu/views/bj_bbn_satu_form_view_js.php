@@ -98,14 +98,20 @@ $(".tanggal").datepicker().on('changeDate', function(ev){
             if(obj.error == false) { // berhasil 
 
                 // alert('hooooo.. error false');
-                     BootstrapDialog.alert({
+                     BootstrapDialog.show({
                             type: BootstrapDialog.TYPE_PRIMARY,
                             title: 'Informasi',
-                            message: obj.message
+                            message: obj.message,
+                            buttons: [{
+                                    label: 'OK',
+                                    action: function(dialog) {
+                                        dialog.close();
+                                        window.location = "<?php echo site_url('bj_bbn_satu') ?>";
+                                    }
+                                }]
                              
-                        });   
-                      $('#form_data').data('bootstrapValidator').resetForm(true);
-                      window.location = "<?php echo site_url('bj_bbn_satu') ?>";
+                        }); 
+                      
             }
             else {
                  BootstrapDialog.alert({
@@ -140,14 +146,19 @@ $(".tanggal").datepicker().on('changeDate', function(ev){
             if(obj.error == false) { // berhasil 
 
                 // alert('hooooo.. error false');
-                     BootstrapDialog.alert({
+                    BootstrapDialog.show({
                             type: BootstrapDialog.TYPE_PRIMARY,
                             title: 'Informasi',
-                            message: obj.message
+                            message: obj.message,
+                            buttons: [{
+                                    label: 'OK',
+                                    action: function(dialog) {
+                                        dialog.close();
+                                        window.location = "<?php echo site_url('bj_bbn_satu') ?>";
+                                    }
+                                }]
                              
-                        });   
-                     // $('#form_data').data('bootstrapValidator').resetForm(true);
-                     window.location = '<?php echo site_url("$this->controller"); ?>'
+                        }); 
             }
             else {
                  BootstrapDialog.alert({

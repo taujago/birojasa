@@ -50,7 +50,7 @@
                             buttons: [{
 					                label: 'Tutup',
 					                action: function(dialog) {
-            							 $("#id").val('');
+            							$("#id").val('');
 						                $("#no_rangka").val('');
 						                $("#no_mesin").val('');
 						                $("#no_faktur").val('');

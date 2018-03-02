@@ -82,17 +82,18 @@
   <tr>
 
     
-    <th width="10%" rowspan="2" style='text-align:center;vertical-align:middle'>Tgl. Entri</th>
-    <th width="15%" rowspan="2" style='text-align:center;vertical-align:middle'>No. Rangka/Mesin/Faktur</th>
-    <th width="40%" colspan="4" style='text-align:center;vertical-align:middle'>Biaya</th>
-    <th width="20%" rowspan="2" style='text-align:center;vertical-align:middle'>Pengurus</th>
-    <th width="20%" rowspan="2" style='text-align:center;vertical-align:middle'>#</th>
+    <th rowspan="2" style='text-align:center;vertical-align:middle'>Tgl. Entri</th>
+    <th  rowspan="2" style='text-align:center;vertical-align:middle'>No. Rangka/Mesin/Faktur</th>
+    <th  colspan="5" style='text-align:center;vertical-align:middle'>Biaya</th>
+    <th  rowspan="2" style='text-align:center;vertical-align:middle'>Pengurus</th>
+    <th  rowspan="2" style='text-align:center;vertical-align:middle'>#</th>
   </tr>
   <tr> 
-        <th width="10%" style='text-align:center;vertical-align:middle'>BPKB</th>
-        <th width="10%" style='text-align:center;vertical-align:middle'>STNK</th>
-        <th width="10%" style='text-align:center;vertical-align:middle'>Pajak</th>
-        <th width="10%" style='text-align:center;vertical-align:middle'>Admin</th>
+        <th  style='text-align:center;vertical-align:middle'>BPKB</th>
+        <th  style='text-align:center;vertical-align:middle'>STNK</th>
+        <th  style='text-align:center;vertical-align:middle'>STCK</th>
+        <th  style='text-align:center;vertical-align:middle'>Pajak</th>
+        <th  style='text-align:center;vertical-align:middle'>Admin</th>
   </tr>
   
 </thead>

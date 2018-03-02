@@ -248,8 +248,9 @@ function index(){
                 $nama,
                 $row['no_mesin'],
                 $row['nama_pemilik'],
-                rupiah($row['rp_daftar_stnk']),
                 rupiah($row['rp_daftar_bpkb']),
+                rupiah($row['rp_daftar_stnk']),
+                rupiah($row['rp_daftar_stck']),
                 rupiah($row['rp_admin_fee']),
                 $hapus
                 

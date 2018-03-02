@@ -6,6 +6,7 @@
     <th>No. Faktur</th>
     <th>Nama Pemilik</th>
     <th>Estimasi</th>
+    <th>#</th>
   </tr>
 </thead>
 <tbody>
@@ -16,6 +17,9 @@
 			<td><?php echo $row['no_faktur']; ?></td>
 			<td><?php echo $row['nama_pemilik']; ?></td>
 			<td><?php echo rupiah($row['rp_daftar_bpkb']); ?></td>
+			<td><?php if ($row['status_bpkb']==1) {
+				echo '';
+			}else { ?><button class="bnt btn-danger" onclick="hapus(<?php echo $row['id']; ?>)"><i class="fa fa-trash"></i> hapus</button><?php } ?></td>
 		</tr>		
 	<?php endforeach ?>
 </tbody>

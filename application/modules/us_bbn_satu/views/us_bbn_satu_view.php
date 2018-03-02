@@ -62,14 +62,14 @@
         <th width="15%" rowspan="2" style='text-align:center;vertical-align:middle'>No. Rangka</th>
         <th width="15%" rowspan="2" style='text-align:center;vertical-align:middle'>No. Faktur</th>
         <th width="15%" rowspan="2" style='text-align:center;vertical-align:middle'>Nama Pemilik</th>
-        <th width="40%" colspan="3" style='text-align:center;vertical-align:middle'>Biaya</th>
+        <th width="40%" colspan="4" style='text-align:center;vertical-align:middle'>Biaya</th>
         <th width="12%" rowspan="2" style='text-align:center;vertical-align:middle'>#</th>
     </tr>
     <tr>
         <th width="10%" style='text-align:center;vertical-align:middle'>BPKB</th>
         <th width="10%" style='text-align:center;vertical-align:middle'>STNK</th>
+        <th width="10%" style='text-align:center;vertical-align:middle'>STCK</th>
         <th width="10%" style='text-align:center;vertical-align:middle'>Admin Fee</th>
-
     </tr>
   
 </thead>

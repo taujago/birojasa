@@ -159,7 +159,9 @@ $userdata = $this->session->userdata('user_login');
                     </li>
                     <li><a href="<?php echo site_url('us_penyerahan_notis'); ?>">Penyerahan Notis</a>
                     </li>
-                    <li><a href="<?php echo site_url('us_detail_terima_stnk'); ?>">Detail Penerimaan</a>
+                    <li><a href="<?php echo site_url('us_terima_stnk'); ?>">Penerimaan STNK</a>
+                    </li>
+                    <li><a href="<?php echo site_url('us_terima_stnk_detail'); ?>">Detail Penerimaan</a>
                     </li>
                   </ul>
                 </li>

@@ -118,11 +118,15 @@ class bj_invoice_bpkb_detail extends biro_jasa_controller{
     	$data_array = array();
     	$get = $this->input->get();
 
+        $userdata = $this->session->userdata('bj_login');
+        // echo $userdata['nama']; 
+        $id_birojasa = $userdata['birojasa_id']; 
+
     	$this->db->where('id', $get['id']);
     	$invoice_bpkb = $this->db->get('invoice_bpkb')->row_array();
     	
     	$no_invoice_bpkb = $invoice_bpkb['no_invoice'];
-
+        $this->db->where('id_birojasa', $id_birojasa);
     	$this->db->where('no_invoice_bpkb', $no_invoice_bpkb);
     	$data_array['hasil'] = $this->db->get('bj_bbn_satu')->result_array();
     	$data_array['id'] = $get['id'];
@@ -158,7 +162,7 @@ class bj_invoice_bpkb_detail extends biro_jasa_controller{
     	$data['birojasa'] = $this->db->get('biro_jasa')->row_array();
 
     	$no_invoice = $invoice_bpkb['no_invoice'];
-
+        $this->db->where('id_birojasa', $invoice_bpkb['id_birojasa']);
     	$this->db->where('no_invoice_bpkb', $no_invoice);
     	$data['hasil'] = $this->db->get('bj_bbn_satu')->result_array();
     	$data['id'] = $get['id'];

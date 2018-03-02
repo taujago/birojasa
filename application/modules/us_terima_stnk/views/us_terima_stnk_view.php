@@ -22,7 +22,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label>&nbsp;</label>
-                <input id="in_mesin" name="in_mesin" type="text" class="form-control input-style" placeholder="Input Mesin" />
+                <input id="in_mesin" name="in_mesin" type="text" class="form-control input-style" placeholder="Input No. Rangka/Mesin" />
               </div>
             </div>
             <div class="col-md-2">

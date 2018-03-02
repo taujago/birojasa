@@ -117,12 +117,15 @@ class bj_invoice_stnk_detail extends biro_jasa_controller{
     function lihatdata(){
     	$data_array = array();
     	$get = $this->input->get();
+        $userdata = $this->session->userdata('bj_login');
+        // echo $userdata['nama']; 
+        $id_birojasa = $userdata['birojasa_id']; 
 
     	$this->db->where('id', $get['id']);
     	$invoice_stnk = $this->db->get('invoice_stnk')->row_array();
     	
     	$no_invoice_stnk = $invoice_stnk['no_invoice'];
-
+        $this->db->where('id_birojasa', $id_birojasa);
     	$this->db->where('no_invoice_stnk', $no_invoice_stnk);
     	$data_array['hasil'] = $this->db->get('bj_bbn_satu')->result_array();
     	$data_array['id'] = $get['id'];
@@ -159,13 +162,14 @@ class bj_invoice_stnk_detail extends biro_jasa_controller{
 
     	$no_invoice = $invoice_bpkb['no_invoice'];
 
+        $this->db->where('id_birojasa', $invoice_bpkb['id_birojasa']);
     	$this->db->where('no_invoice_stnk', $no_invoice);
     	$data['hasil'] = $this->db->get('bj_bbn_satu')->result_array();
     	$data['id'] = $get['id'];
      	$data['data_inv'] = $invoice_bpkb;
    		// show_array($data);
     $data['controller'] = get_class($this);
-    $data['header'] = "Detail No. Referensi ".$no_invoice;
+    $data['header'] = "Detail No. Invoice ".$no_invoice;
     
     $data['title'] = $data['header'];
     $this->load->library('Pdf');

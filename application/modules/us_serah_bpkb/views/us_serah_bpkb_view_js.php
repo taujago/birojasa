@@ -20,14 +20,17 @@
     	
      
          $("#polda").change(function(){
-              // alert('hello');
+              
+
               
               dt.column(1).search($("#polda").val())
                  .draw();
 
                  $("#estimasi").val('0');
                  $("#id_polda").val($('#polda').val());
+                 alert(selchbox);
                  return false;
+
          });
 
 

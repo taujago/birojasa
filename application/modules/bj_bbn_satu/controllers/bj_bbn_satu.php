@@ -594,6 +594,7 @@ else {
         // exit();
         $totalbpkb = 0;
         $totalstnk = 0;
+        $totalstck = 0;
         $totalpajak = 0;
         $totaladmin = 0;
 
@@ -687,6 +688,7 @@ else {
                 $nama,
                 rupiah($row['rp_daftar_bpkb']),
                 rupiah($row['rp_daftar_stnk']),
+                rupiah($row['rp_daftar_stck']),
                 rupiah($row['rp_pajak_kendaraan']),
                 rupiah($row['rp_admin_fee']),
                 $pengurus,
@@ -694,7 +696,7 @@ else {
                 
                      
                                 );
-
+              $totalstck = $row['rp_daftar_stck']+$totalstck;
               $totalbpkb = $row['rp_daftar_bpkb']+$totalbpkb;
               $totalstnk = $row['rp_daftar_stnk']+$totalstnk;
               $totalpajak = $row['rp_pajak_kendaraan']+$totalpajak;
@@ -709,6 +711,7 @@ else {
               $spasi1,
               rupiah($totalbpkb),
               rupiah($totalstnk),
+              rupiah($totalstck),
               rupiah($totalpajak),
               rupiah($totaladmin),
               '',

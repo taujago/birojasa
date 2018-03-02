@@ -1,9 +1,9 @@
 <?php 
 
-class us_serah_bpkb_detail_model extends CI_Model {
+class us_terima_stnk_detail_model extends CI_Model {
 
 
-	function __construct(){
+	function us_terima_stnk_detail_model(){
 		parent::__construct();
 	}
 
@@ -18,21 +18,22 @@ class us_serah_bpkb_detail_model extends CI_Model {
 
 
 
-		 	$this->db->select('s.*, polda.polda_nama as nm_polda')->from("ref_bpkb s");
-		 	$this->db->join('m_polda polda','s.id_polda=polda.polda_id');
-		 	$this->db->where('s.id_user', $id);		
-		 	$this->db->order_by('s.tanggal', 'desc');
+		 	$this->db->select('s.*, sa.nama as nm_samsat')->from("bj_bbn_satu s");
+		 	$this->db->join('samsat sa','s.id_samsat=sa.id');
+		 	$this->db->where('s.pengurus_stnk', $id);		
+		 	$this->db->where('s.status_stnk', 1);
+		 	$this->db->order_by('s.stnk_tgl', 'desc');
 		
 		 
 		 $tanggal_awal = flipdate($tanggal_awal);
 			$tanggal_akhir = flipdate($tanggal_akhir);
 		 
 		if(!empty($tanggal_awal) and !empty($tanggal_akhir) ) {
-		 	$this->db->where("s.tanggal between '$tanggal_awal' and '$tanggal_akhir'",null,false);	 	
+		 	$this->db->where("s.stnk_tgl between '$tanggal_awal' and '$tanggal_akhir'",null,false);	 	
 		 }
 
-		 if(!empty($pol)) {
-		 	$this->db->where("s.id_polda",$pol);
+		 if(!empty($samsat)) {
+		 	$this->db->where("s.id_samsat",$samsat);
 		 }
 
 

@@ -1,9 +1,9 @@
 <?php 
-class us_detail_terima_stnk extends user_controller{
+class us_terima_stnk extends user_controller{
 	var $controller;
     
     
-	function us_detail_terima_stnk(){
+	function us_terima_stnk(){
 		parent::__construct();
 
 		$this->controller = get_class($this);

@@ -163,10 +163,11 @@ function update(){
         $this->form_validation->set_error_delimiters('', '<br>');
 
 
-        $post['rp_daftar_stnk'] = bersih($post['rp_daftar_stnk']); 
+        $post['rp_daftar_stnk'] = bersih($post['rp_daftar_stnk']);
+        $post['rp_daftar_stck'] = bersih($post['rp_daftar_stck']); 
         $post['rp_daftar_bpkb'] = bersih($post['rp_daftar_bpkb']); 
-        $post['rp_pajak_kendaraan'] = bersih($post['rp_pajak_kendaraan'])     ; 
-        $post['rp_admin_fee'] = bersih($post['rp_admin_fee'])  ; 
+        $post['rp_pajak_kendaraan'] = bersih($post['rp_pajak_kendaraan']); 
+        $post['rp_admin_fee'] = bersih($post['rp_admin_fee']); 
 
 
      
@@ -257,6 +258,7 @@ else {
                               </ul>
                             </div>";
         $biaya = 'BPKB : '.rupiah($row['rp_daftar_bpkb']).'<br />'.
+                 'STCK : '.rupiah($row['rp_daftar_stck']).'<br />'.
                  'STNK : '.rupiah($row['rp_daftar_stnk']).'<br />'.
                  'PAJAK : '.rupiah($row['rp_pajak_kendaraan']).'<br />'.
                  'FEE : '.rupiah($row['rp_admin_fee']).'<br />'; 
