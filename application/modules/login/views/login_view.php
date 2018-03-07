@@ -11,20 +11,10 @@
   <title>Biro Jasa | </title>
 
   <!-- Bootstrap core CSS -->
-  
-
-  <link href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <link href="<?php echo base_url(); ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="<?php echo base_url(); ?>assets/css/animate.min.css" rel="stylesheet">
-
-  <!-- Custom styling plus plugins -->
-  <link href="<?php echo base_url(); ?>assets/css/custom.css" rel="stylesheet">
-  <link href="<?php echo base_url(); ?>assets/css/icheck/flat/green.css" rel="stylesheet">
 
   
 
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-dialog.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/login/dialog/css/bootstrap-dialog.css">
 
   <!--[if lt IE 9]>
         <script src="../assets/js/ie8-responsive-file-warning.js"></script>
@@ -62,88 +52,105 @@
     </div>
 </div>
 
+<script src="<?php echo base_url(); ?>assets/js/jquery.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/jquery-1.11.1.min.js"></script>
+<!--===============================================================================================-->  
+  <link rel="icon" type="image/png" href="<?php echo base_url(); ?>assets/login/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+  <!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/login/vendor/bootstrap/css/bootstrap.min.css"> -->
 
+   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/login/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/login/vendor/animate/animate.css">
+<!--===============================================================================================-->  
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/login/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/login/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/login/vendor/select2/select2.min.css">
+<!--===============================================================================================-->  
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/login/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/login/css/util.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/login/css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+  
+  <div class="limiter">
+    <div class="container-login100">
+      <div class="wrap-login100">
+        <div class="login100-form-title" style="background-image: url(<?php echo base_url(); ?>assets/login/images/bg-01.jpg);">
+          <span class="login100-form-title-1">
+            Log in
+          </span>
+        </div>
 
-  <div class="">
-    <a class="hiddenanchor" id="toregister"></a>
-    <a class="hiddenanchor" id="tologin"></a>
+        <form role="form" action="" method="post" class="login-form login100-form validate-form" action="" role="form"  method="post">
+          <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+            <span class="label-input100">Username</span>
+            <input class="input100" type="text" name="form-username" id="form-username" placeholder="Enter username">
+            <span class="focus-input100"></span>
+          </div>
 
-    <div id="wrapper">
-      <div id="login" class="animate form">
-        <section class="login_content">
-          <form role="form" action="login/ceklogin" method="post" class="login-form">
-            <h1>Login</h1>
-            <div>
-              <input name="form-username" id="form-username" type="text" class="form-username form-control" placeholder="Username" />
-            </div>
-            <div>
-              <input name="form-password" id="form-password" type="password" class="form-password form-control" placeholder="Password" />
-              <input type="hidden" id="mask" name="mask" />
-            </div>
-            <div>
-            <button type="submit" class="btn btn-primary">Log in</button>
-              
-            </div>
-            <div class="clearfix"></div>
-            <div class="separator">
+          <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+            <span class="label-input100">Password</span>
+            <input class="input100" type="password" name="form-password" id="form-password" placeholder="Enter password">
+            <input type="hidden" id="mask" name="mask" />
+            <span class="focus-input100"></span>
+          </div>
 
-              <p class="change_link">Kesalahan
-                <a href="#toregister" class="to_register"> Lupa password? </a>
-              </p>
-              <div class="clearfix"></div>
-              <br />
-              <div>
-                <h1></i> Biro Jasa!</h1>
+          
 
-                <p>Dikelola oleh TIGA PILAR MAJU MANDIRI hak cipta dilindungi undang undang. </p>
-              </div>
-            </div>
-          </form>
-          <!-- form -->
-        </section>
-        <!-- content -->
-      </div>
-      <div id="register" class="animate form">
-        <section class="login_content">
-          <form>
-            <h1>Lupa Password</h1>
-            <div>
-              <input name="email" id="email" type="text" class="form-control" placeholder="Email" required="" />
-            </div>
-            <div>
-              <a class="btn btn-default submit" >Submit</a>
-            </div>
-            <div class="clearfix"></div>
-            <div class="separator">
-
-              <p class="change_link">Ingat Password ?
-                <a href="#tologin" class="to_register"> Log in </a>
-              </p>
-              <div class="clearfix"></div>
-              <br />
-              <div>
-                <h1></i> Biro Jasa!</h1>
-
-                <p>Dikelola oleh TIGA PILAR MAJU MANDIRI hak cipta dilindungi undang undang. </p>
-              </div>
-            </div>
-          </form>
-          <!-- form -->
-        </section>
-        <!-- content -->
+          <div class="container-login100-form-btn">
+            <button class="login100-form-btn" type="submit" id="sub">
+              Login
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
 
-    <script src="<?php echo base_url(); ?>assets/js/jquery-1.11.1.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/jquery.md5.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/bootstrap-dialog.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/jquery.backstretch.min.js"></script>
-     
+  
+<!--===============================================================================================-->
+  <script src="<?php echo base_url(); ?>assets/login/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
 
-        <?php 
+  <script src="<?php echo base_url(); ?>assets/login/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+  <script src="<?php echo base_url(); ?>assets/login/vendor/bootstrap/js/popper.js"></script>
+  <!-- <script src="<?php echo base_url(); ?>assets/login/vendor/bootstrap/js/bootstrap.min.js"></script> -->
+<!--===============================================================================================-->
+  <script src="<?php echo base_url(); ?>assets/login/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+  <script src="<?php echo base_url(); ?>assets/login/vendor/daterangepicker/moment.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/login/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+  <script src="<?php echo base_url(); ?>assets/login/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+  <script src="<?php echo base_url(); ?>assets/login/js/main.js"></script>
+
+<link href="<?php echo base_url(); ?>assets/bootstrapvalidator/css/bootstrapValidator.min.css" rel="stylesheet"/>
+<script src="<?php echo base_url(); ?>assets/bootstrapvalidator/js/bootstrapValidator.min.js" type="text/javascript"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/run_prettify.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.9/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.9/js/bootstrap-dialog.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/jquery.backstretch.min.js" type="text/javascript"></script>
+    <script src="<?php echo base_url(); ?>assets/js/jquery.md5.js" type="text/javascript"></script>
+     
+   <?php 
         $this->load->view("login_view_js");
-        ?>    
+      ?>  
+ 
+
+        
 
 </body>
 

@@ -21,6 +21,28 @@
       </div>
     </div>
 
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Link Web</label>
+      <div class="col-sm-9">
+        <input type="text" name="url" id="url" class="form-control input-style" value="<?php echo $url; ?>">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Pengguna</label>
+      <div class="col-sm-9">
+        <input type="text" name="id" id="id" class="form-control input-style" value="<?php echo $id; ?>">
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Pass</label>
+      <div class="col-sm-9">
+        <input type="text" name="id_key" id="id_key" class="form-control input-style" value="<?php echo $id_key; ?>">
+      </div>
+    </div>
+
     <div class="form-group pull-center">
         <div class="col-sm-offset-3 col-sm-9">
           <button id="tombolsubmitupdate" style="border-radius: 0;" type="submit" class="btn btn-lg btn-primary"  >Simpan</button>

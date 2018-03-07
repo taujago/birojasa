@@ -288,28 +288,36 @@ $(".tanggal").datepicker().on('changeDate', function(ev){
            dataType : 'json',
             type : 'post',
             data : {  id_polda : $("#id_polda").val(), no_rangka : $("#no_rangka").val()  },
+            beforeSend : function(){
+            $('#myPleaseWait').modal('show');
+            },
             success : function(obj) {
+                $('#myPleaseWait').modal('hide');
+
+            console.log(obj.error);
                 // console.log(obj);
-                $("#no_mesin").val(obj.Data.NoMesin);
-                $("#no_faktur").val(obj.Data.NoFaktur);
-                $("#tgl_faktur").val(obj.Data.TglFaktur);
+            if(obj.error == false) {
+
+                $("#no_mesin").val(obj.no_mesin);
+                $("#no_faktur").val(obj.no_faktur);
+                $("#tgl_faktur").val(obj.tgl_faktur);
                 
-                $("#nama_pemilik").val(obj.Data.Pemilik1);
-                $("#alamat_pemilik").val(obj.Data.Alamat1);
-                $("#warna").val(obj.Data.Warna);
-                $("#silinder").val(obj.Data.VolCilynder);
-                $("#tahun_buat").val(obj.Data.TahunBuat);
-                $("#warna_tnkb").val(obj.Data.WarnaTNKB);
-                $("#label_merk").html(obj.Data.Merk);
-                $("#label_type").html(obj.Data.Type);
-                $("#label_model").html(obj.Data.Model);
-                $("#label_jenis").html(obj.Data.Jenis);
+                $("#nama_pemilik").val(obj.pemilik);
+                $("#alamat_pemilik").val(obj.alamat);
+                $("#warna").val(obj.warna);
+                $("#silinder").val(obj.silinder);
+                $("#tahun_buat").val(obj.thn_buat);
+                $("#warna_tnkb").val(obj.warna_tnkb);
+                // $("#label_merk").html(obj.merk);
+                // $("#label_type").html(obj.tipe);
+                // $("#label_model").html(obj.model);
+                // $("#label_jenis").html(obj.jenis);
                 
                 // var type = [obj.Data.KodeDealer, obj.Data.NamaDealer];
                 
                 $.ajax({
                     url : '<?php echo site_url("$this->controller/dealer") ?>',
-                    data : {KodeDealer : obj.Data.KodeDealer, NamaDealer : obj.Data.NamaDealer},
+                    data : {KodeDealer : obj.KodeDealer, NamaDealer : obj.NamaDealer},
                     type : 'post', 
                         success : function(result) {
                         $("#kode_dealer").html(result)
@@ -318,19 +326,19 @@ $(".tanggal").datepicker().on('changeDate', function(ev){
 
                 $.ajax({
                     url : '<?php echo site_url("$this->controller/merk") ?>',
-                    data : {Merk : obj.Data.Merk},
+                    data : {Merk : obj.merk},
                     type : 'post', 
                         success : function(result) {
                         $("#id_merek").html(result);
                         
-                        get_type($("#id_merek").val(), obj.Data.Type);
+                        get_type($("#id_merek").val(), obj.tipe);
 
                     }
                 });
 
                 $.ajax({
                     url : '<?php echo site_url("$this->controller/warna_tnkb") ?>',
-                    data : {id_warna_tnkb : obj.Data.WarnaTNKB},
+                    data : {id_warna_tnkb : obj.warna_tnkb},
                     type : 'post', 
                         success : function(result) {
                         $("#id_warna_tnkb").html(result);
@@ -342,12 +350,12 @@ $(".tanggal").datepicker().on('changeDate', function(ev){
 
                 $.ajax({
                     url : '<?php echo site_url("$this->controller/jenis") ?>',
-                    data : {Jenis : obj.Data.Jenis},
+                    data : {Jenis : obj.jenis},
                     type : 'post', 
                         success : function(result) {
                         $("#id_jenis").html(result);
                         // alert($("#id_jenis").val());
-                        model($("#id_jenis").val(), obj.Data.Model);
+                        model($("#id_jenis").val(), obj.model);
                     }
                 });
 
@@ -362,6 +370,14 @@ $(".tanggal").datepicker().on('changeDate', function(ev){
 
                 // $("#kode_dealer").val(obj.Data.KodeDealer);
                 // alert(obj.Data.KodeDealer);
+            }else{
+                BootstrapDialog.alert({
+                            type: BootstrapDialog.TYPE_DANGER,
+                            title: 'Error',
+                            message: obj.message 
+                             
+                        });
+            }
 
 
             }
@@ -399,7 +415,7 @@ $(".tanggal").datepicker().on('changeDate', function(ev){
 function get_type(id_merk, type){
     $.ajax({
 
-            url : '<?php echo site_url("$this->controller/get_tipe") ?>',
+            url : '<?php echo site_url("$this->controller/get_data_tipe") ?>',
             data : { id_merk : id_merk, type : type },
             type : 'post', 
             success : function(result) {

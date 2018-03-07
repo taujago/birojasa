@@ -7,7 +7,31 @@ class bj_bbn_satu_model extends CI_Model {
 		parent::__construct();
 	}
 
+	function execute_service($url,$method,$json_data) {
 
+  $req_url = $url."/".$method;
+    $ch = curl_init();
+
+  //set the url, number of POST vars, POST data
+  curl_setopt($ch,CURLOPT_URL, $req_url);
+  curl_setopt($ch,CURLOPT_POST, 1);
+  curl_setopt($ch,CURLOPT_POSTFIELDS, $json_data);
+  curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+
+  //execute post
+  $result = curl_exec($ch);
+  // echo $result;  
+  $obj  = json_decode($result);
+  $array = (array) $obj;
+
+  $info = curl_getinfo($ch);
+
+  $error = ($info['http_code']=="200")?false:true;
+  // show_array($info);
+  // show_array($array); exit;
+  curl_close($ch);
+  return array("data"=>$array,"error"=>$error);
+}
 
 
  function data($param)
@@ -87,6 +111,8 @@ class bj_bbn_satu_model extends CI_Model {
 		return $rs;
 
 	}
+
+
 
 
 	function biaya($data){

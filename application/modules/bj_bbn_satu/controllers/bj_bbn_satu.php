@@ -432,11 +432,13 @@ if($this->form_validation->run() == TRUE ) {
 
 
      
-   
-
-      foreach ($filename_arr as $key) {
+   if (!empty($filename_arr)) {
+     foreach ($filename_arr as $key) {
         $post[$key['field']] = $key['nama'];
       }
+   }
+
+      
 
 
 
@@ -973,10 +975,10 @@ function get_model(){
 
     $this->db->where("id_birojasa", $birojasa);
     $this->db->where("id_jenis",$id_jenis);
-    $this->db->where("model",$model);
+    $this->db->like("model",$model);
     $get_model = $this->db->get('m_model');
     // echo $this->db->last_query();
-    if ($get_model->num_rows()==0) {
+    if ($get_model->num_rows()==0&&!empty($model)) {
       // $data['id_birojasa'] = $birojasa;
       // $data['id_jenis'] = $id_jenis;
       // $data['model'] = $model;
@@ -998,7 +1000,7 @@ function get_model(){
     
     $this->db->order_by("model");
     $rs = $this->db->get("m_model");
-    echo "<option value=''></option>";
+    echo "<option value=''>- Pilih Satu -</option>";
     foreach($rs->result() as $row ) :
 
       if ($row->id_model==$id_model) {
@@ -1052,7 +1054,7 @@ function warna_tnkb(){
     
     $this->db->order_by("warna_tnkb");
     $rs = $this->db->get("m_warna_tnkb");
-    echo "<option value=''></option>";
+    echo "<option value=''>- Pilih Satu -</option>";
     foreach($rs->result() as $row ) :
 
       if ($row->id_warna_tnkb==$id_warna_tnkb) {
@@ -1097,9 +1099,9 @@ function jenis(){
     $this->db->where("id_birojasa", $birojasa);
     $this->db->order_by("id_jenis");
     $rs = $this->db->get("m_jenis");
-
+        echo "<option value=''>- Pilih Satu -</option>";
     foreach($rs->result() as $row ) :
-
+        
       if ($row->jenis==$post['Jenis']) {
         echo "<option value=$row->id_jenis selected>$row->jenis</option>";
       }else{
@@ -1271,63 +1273,77 @@ else {
 
 }
 
+
+
+
 function get_data_service(){
     $post  = $this->input->post();
-    //show_array($post);
 
     $this->db->where("polda_id",$post['id_polda']);
     $data_polda  = $this->db->get("m_polda")->row();
 
- 
 
-    $data = $data_polda->id_key . date("Ymd") . "APMDATA". $post['no_rangka'];
-
-    // echo "data before signature " . $data . '<hr />';
-
-    $signature = sha1($data);
-
-     // echo "data after signature " .$signature . '<hr />';
-
-    $arr = array(
-        "Fn" => "APMDATA",
-        "ClientID" => $data_polda->id,
-        "Param" => array(
-            "Signature" => $signature, 
-            "NoRangka"  => $post['no_rangka']
-            )
-
-        );
-
-
-    $json_data = json_encode($arr); 
-
-   // echo $json_data . '<br />';  
-
-
-    // show_array($data_polda);
-
-   
-
-    $hasil = $this->execute_service($data_polda->url, $json_data) ;
-
-    $arr = json_decode($hasil);
-    // if ($data_polda->id==10) {
-    //   $arr->Data->TglFaktur = flipdate(todate2($arr->Data->TglFaktur));
-    // }
-    //  
-
-   // show_array($arr);
-
-
-    if($arr->Success == "1") {
-
-        echo json_encode($arr);
-
+    if ($post['id_polda']==10) {
+      $data = $this->get_service_metro($post['no_rangka'], $data_polda);
+      echo json_decode($data);
+    }else{
+      $data = array('error' => true, 'message' => 'No, Webservice for this Polda');
+      echo json_encode($data);
     }
+    
+    
 
     
 
-    // echo "hasilnya mana ? " . $hasil;
+}
+
+
+function get_service_metro($no_rangka, $data_polda){
+  $salt = 'Jk3iKlEr409';
+    $data['no_rangka'] = $no_rangka;
+    $data['jenis'] = '1';
+
+    $data_service = array("LoginInfo"=>array(
+              "LoginName" => $data_polda->id,
+              "Salt"    => $salt,
+              "AuthHash"  => md5($salt . md5($data_polda->id.$data_polda->id_key))
+              ),
+              "Criteria"=>array(
+                "Param" => $data['no_rangka'],
+                "ParamKind" => $data['jenis']
+              )
+               
+              );
+      $json_data = json_encode($data_service);
+    
+       
+      $ret_service = $this->dm->execute_service($data_polda->url,"ComplGetBerkasCheckPoint",$json_data);
+      // show_array($ret_service); exit;
+
+      if($ret_service['data']['Result'] == "1") {
+        extract($ret_service['data']);
+        $data = array('thn_buat' => $Data->ThnBuat,
+                      'bahan_bakar' => $Data->BahanBakar,
+                      'model' => $Data->Model,
+                      'jenis' => $Data->Jenis,
+                      'warna' => $Data->Warna,
+                      'alamat' => $Data->Alamat,
+                      'no_mesin' => $Data->NoMesin,
+                      'tipe' => $Data->Tipe,
+                      'merk' => $Data->Merk,
+                      'no_faktur' => $Data->NoFaktur,
+                      'tgl_faktur' => date("d-m-Y", strtotime($Data->TglFaktur)),
+                      'pemilik' => $Data->Pemilik,
+                      'silinder' => $Data->VolSilinder,
+                      'warna_tnk' => '',
+                      'error' => false,
+                      'dealer' => '' );
+        
+
+    }else{
+      $data = array('error' => true, 'message' => 'Tidak dapat menemukan data diserver<br/> Periksa Kembali Polda dan No. Rangka yang anda masukkan!');
+    }
+    echo json_encode($data);
 }
 
 
@@ -1361,12 +1377,10 @@ function get_data_tipe(){
 
     // show_array($data);
     // echo $this->db->last_query();
-    if ($get_tipe->num_rows()==0) {
+    if ($get_tipe->num_rows()==0&&!empty($data['tipe'])) {
       
-      // $data['id_merk'] = $id_merk;
-      // $data['tipe'] = $type;
+      
       $this->db->insert('m_tipe', $data); 
-      // echo $this->db->last_query();
       $id_tipe = $this->db->insert_id();
 
 
@@ -1443,26 +1457,27 @@ function merk(){
     $userdata = $this->session->userdata('bj_login');
     $birojasa = $userdata['birojasa_id'];
 
-    // show_array($post);
+    
     // // echo $post['NamaDealer'];
     // exit;
 
     //echo "nomor rangka  $no_rangka ";
 
-    $this->db->where("nama", $post['Merk']);
+    $this->db->like("nama", $post['Merk']);
     $this->db->where("id_birojasa", $birojasa);
     $type = $this->db->get("m_merek");
 
-    if ($type->num_rows()==0&&!(empty($psot['Merk']))) {
+    if ($type->num_rows()==0&&!(empty($post['Merk']))) {
       $data['id_birojasa'] = $birojasa;
       $data['kode'] = $post['Merk'];
       $data['nama'] = $post['Merk'];
       $this->db->insert('m_merek', $data);
-      $this->db->where("kode", $post['Merk']);
+
+      $this->db->where("id_birojasa", $birojasa);
     $this->db->order_by("kode");
     $rs = $this->db->get("m_merek");
     }else{
-
+      $this->db->where("id_birojasa", $birojasa);
     $this->db->order_by("kode");
     $rs = $this->db->get("m_merek");
     }
@@ -1475,6 +1490,7 @@ function merk(){
     // $this->db->where("kode", $post['Merk']);
     // $this->db->order_by("kode");
     // $rs = $this->db->get("m_merek");
+    echo "<option value=''> - Pilih Satu - </option>";
     foreach($rs->result() as $row ) :
 
       if ($row->kode==$post['Merk']) {

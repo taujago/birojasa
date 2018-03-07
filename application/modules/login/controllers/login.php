@@ -78,8 +78,8 @@ function cek_password($password) {
 		 // echo $this->db->last_query();exit;
 		 if($res->num_rows()==0) {
 
-		 	redirect('login');
-		 	// $ret = array("error"=>true,"message"=>"Kombinasi Email Dan Password Tidak Dikenali");
+		 	// redirect('login');
+		 	$ret = array("error"=>true,"message"=>"Kombinasi Email Dan Password Tidak Dikenali");
 
 		 }
 		 else {
@@ -95,7 +95,7 @@ function cek_password($password) {
 
 				$this->session->set_userdata('admin_login', $member);
 		 		$datalogin = $this->session->userdata("admin_login");
-		 		redirect('admin');
+		 		$ret = array("error"=>false,"message"=>" Selamat Datang Admin Birojasa", 'link' =>  site_url('admin') );
 
 		 		
 				
@@ -106,7 +106,8 @@ function cek_password($password) {
 		 		
 		 		$this->session->set_userdata('bj_login', $member);
 		 		$datalogin = $this->session->userdata("bj_login");
-		 		redirect('biro_jasa');
+		 		$ret = array("error"=>false,"message"=>" Selamat Datang Admin Birojasa", 'link' =>  site_url('biro_jasa') );
+		 		// redirect('biro_jasa');
 		 	}
 
 		 	else if ($member['level'] == 3) {
@@ -114,8 +115,8 @@ function cek_password($password) {
 		 		$this->session->set_userdata('user_login', $member);
 
 		 		$datalogin = $this->session->userdata("user_login");
-
-		 		redirect('user');
+		 		$ret = array("error"=>false,"message"=>" Selamat Datang Admin Dealer", 'link' =>  site_url('user') );
+		 		// redirect('user');
 		 	}
 		 	else if ($member['level'] == 4) {
 
@@ -123,15 +124,15 @@ function cek_password($password) {
 
 		 		$datalogin = $this->session->userdata("dealer_login");
 
-		 		redirect('dealer');
-		 		// show_array($member);exit;
+		 		$ret = array("error"=>false,"message"=>" Selamat Datang Admin Dealer", 'link' =>  site_url('delaer') );
 		 	}
 
 		 	else {
-		 		$ret = array("error"=>true,"message"=>"NOT An Option");
+		 		$ret = array("error"=>true,"message"=>"NOT An Option", 'link' =>  site_url('login') );
 		 	}
 
 		 }
+		 // show_array($datalogin);exit;
 
 
 		 echo json_encode($ret);
