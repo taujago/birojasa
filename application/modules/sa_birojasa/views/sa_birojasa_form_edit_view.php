@@ -1,9 +1,13 @@
 
 
      <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+       <script src="<?php echo base_url("assets"); ?>/fileinput/js/fileinput.min.js"></script>
+
+
+    <link href="<?php echo base_url("assets"); ?>/fileinput/css/fileinput.min.css" rel="stylesheet">
      
         <!-- Main content -->
-        <form id="form_edit" class="form-horizontal" method="post" action="<?php echo site_url("$this->controller/$action"); ?>" role="form"> 
+        <form id="form_edit" class="form-horizontal" role="form" enctype="multipart/form-data"> 
 
 
               <div class="panel panel-primary">
@@ -59,6 +63,12 @@
       <label class="col-sm-3 control-label">Email</label>
       <div class="col-sm-9">
         <input type="text" name="email" id="email" class="form-control input-style" placeholder="Email . . ." value="<?php echo $email; ?>">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">Logo</label>
+      <div class="col-sm-9">
+        <input type="file" name="logo" id="logo" class="file" data-show-preview="true" accept="image/*"/>
       </div>
     </div>
     <div class="form-group pull-center">

@@ -70,6 +70,26 @@
                 <button type="reset" class="btn btn-danger form-control" id="btn_reset" style="border-radius: 5px"><i class="fa">Reset</i></button>
               </div>
             </div>
+
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="Tanggal">Jenis Pengurusan</label>
+                <select class="form-control input-style" name="jenis" id="jenis">
+                  <option value="">- Pilih Satu -</option>
+                  <option value="bpkb">BPKB</option>
+                  <option value="stnk">STNK</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="Tanggal">Pengurus</label>
+                <?php echo form_dropdown("pengurus",$arr_pengurus,isset($pengurus)?$pengurus:"",'id="pengurus" class="form-control input-style"'); ?>
+              </div>
+            </div>
+
+            
+            
             
           
           </form>

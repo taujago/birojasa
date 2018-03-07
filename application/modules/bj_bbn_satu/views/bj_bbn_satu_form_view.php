@@ -363,19 +363,21 @@
                        <a class="btn btn-primary" id="hitung">Estimasi Biaya</a>
                        </div> 
                     </div>
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Biaya STCK
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="rp_daftar_stck" name="rp_daftar_stck" required="required" class="rupiah form-control col-md-7 col-xs-12 rp" placeholder="Biaya STCK"  data-a-sign="" data-a-dec="," data-a-sep="." value="<?php echo isset($rp_daftar_stck)?$rp_daftar_stck:""; ?>">
-                      </div>
-                    </div>
+                   
                     
              <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Biaya STNK
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
                         <input type="text" id="rp_daftar_stnk" name="rp_daftar_stnk" required="required" class="rupiah form-control col-md-7 col-xs-12 rp" placeholder="Biaya STNK"  data-a-sign="" data-a-dec="," data-a-sep="." value="<?php echo isset($rp_daftar_stnk)?$rp_daftar_stnk:""; ?>">
+                      </div>
+                    </div>
+
+                     <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Biaya STCK
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="rp_daftar_stck" name="rp_daftar_stck" required="required" class="rupiah form-control col-md-7 col-xs-12 rp" placeholder="Biaya STCK"  data-a-sign="" data-a-dec="," data-a-sep="." value="<?php echo isset($rp_daftar_stck)?$rp_daftar_stck:""; ?>">
                       </div>
                     </div>
       

@@ -218,7 +218,7 @@ function hapusdata(){
 
     	$this->db->where('id', $ref_stck['id_birojasa']);
     	$data['birojasa'] = $this->db->get('biro_jasa')->row_array();
-
+        
     	$no_ref = $ref_stck['no_ref'];
         $this->db->where('pengurus_stnk', $pengguna);
     	$this->db->where('no_ref_stck', $no_ref);

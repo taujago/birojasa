@@ -87,7 +87,7 @@
   $total_biaya = 0;
   
     foreach($hasil as $x => $row): 
-    $total_biaya = $total_biaya+$row['rp_daftar_stnk'];
+    $total_biaya = $total_biaya+$row['rp_daftar_stck'];
     
     ?>
   <tr>

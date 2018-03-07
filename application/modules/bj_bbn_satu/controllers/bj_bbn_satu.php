@@ -8,8 +8,8 @@ class bj_bbn_satu extends biro_jasa_controller{
 		$this->load->model('bj_bbn_satu_model','dm');
         $this->load->model("coremodel","cm");
         $this->load->helper("tanggal");
+        $this->load->helper("ubahangka");
 		
-		//$this->load->helper("serviceurl");
 		
 	}
 
@@ -141,6 +141,7 @@ function index(){
     $userdata = $this->session->userdata('bj_login');
     $id_birojasa = $userdata['birojasa_id'];
     $data_array['arr_dealer'] = $this->cm->arr_dropdown4("dealer", "id", "nama", $id_birojasa);
+    $data_array['arr_pengurus'] = $this->cm->arr_dropdown2("pengguna", "id", "nama", "nama", "birojasa_id", $id_birojasa);
 
 		$content = $this->load->view($this->controller."_view",$data_array,true);
 
@@ -496,7 +497,7 @@ if($this->form_validation->run() == TRUE ) {
 
 
           }else{
-            $arr = array("error"=>true,'message'=>"BELUM ADA ESTIMASI BIAYA UNTUK DATA INI </BR> MOHON PERIKSA KEMBALI DATA ANDA");
+            $arr = array("error"=>true,'message'=>"BELUM ADA ESTIMASI BIAYA UNTUK DATA INI </BR> SILAHKAN INPUT DATA UNTUK ESTIMASI DI FIELD ESTIMASI DIBAWAH");
           }
         }else{
         $stnk = $biaya['rp_daftar_stnk'];
@@ -558,6 +559,8 @@ else {
         $tanggal_akhir = $_REQUEST['columns'][2]['search']['value'];
         $no_rangka = $_REQUEST['columns'][3]['search']['value'];
         $kode_dealer = $_REQUEST['columns'][4]['search']['value'];
+        $jenis = $_REQUEST['columns'][5]['search']['value'];
+        $pengurus = $_REQUEST['columns'][6]['search']['value'];
         $userdata = $this->session->userdata('bj_login');
         $id_birojasa = $userdata['birojasa_id'];
         // $userdata = $this->session->userdata('bj_login');
@@ -574,7 +577,9 @@ else {
                 "tanggal_akhir" => $tanggal_akhir,
                 "no_rangka" => $no_rangka, 
                 "kode_dealer" => $kode_dealer, 
-                "id_birojasa" => $id_birojasa    
+                "id_birojasa" => $id_birojasa,
+                "jenis" => $jenis,
+                "pengurus" => $pengurus    
         );     
            
         $row = $this->dm->data($req_param)->result_array();
@@ -832,7 +837,7 @@ if($this->form_validation->run() == TRUE ) {
         $biaya = $this->dm->biaya($primarykey)->row_array();
 
         if(empty($biaya)){
-            $arr = array("error"=>true,'message'=>"BELUM ADA ESTIMASI BIAYA UNTUK DATA INI </BR> MOHON PERIKSA KEMBALI DATA EDITAN ANDA");
+            $arr = array("error"=>true,'message'=>"BELUM ADA ESTIMASI BIAYA UNTUK DATA INI </BR> SILAHKAN INPUT DATA UNTUK ESTIMASI DI FIELD ESTIMASI DIBAWAH");
         }
 
         else{
@@ -1567,6 +1572,8 @@ function pdf(){
     $kode_dealer = $post['kode_dealer'];
     $tanggal_awal = $post['tanggal_awal'];
     $tanggal_akhir = $post['tanggal_akhir'];
+    $jenis = $post['jenis'];
+    $pengurus = $post['pengurus'];
 
 
     $this->db->select('bbn1.*, pb.nama as nm_pengurus_bpkb, ps.nama as nm_pengurus_stnk, j.tipe as nm_type');
@@ -1590,6 +1597,17 @@ function pdf(){
      if(!empty($kode_dealer)) {
       $this->db->like("bbn1.kode_dealer",$kode_dealer);
      }
+
+     if(!empty($jenis)&&!empty($pengurus)){
+      if($jenis=='stnk'){
+        $this->db->where('bbn1.pengurus_stnk', $pengurus);
+      }else if ($jenis=='bpkb') {
+        $this->db->where('bbn1.pengurus_bpkb', $pengurus);
+      }
+
+      
+     }
+
 
      $resx = $this->db->get();
 

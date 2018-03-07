@@ -175,7 +175,27 @@ function update(){
 
     $post = $this->input->post();
    
-       
+       $config['upload_path'] = './assets/logo_birojasa';
+                $path = $config['upload_path'];
+                $config['allowed_types'] = 'gif|jpg|jpeg|png';
+                $config['encrypt_name'] = 'TRUE';
+
+
+             $this->load->library('upload', $config);
+
+        $filename_arr = array();
+        foreach ($_FILES as $key => $value) {
+            if (!empty($value['tmp_name']) && $value['size'] > 0) {
+            if (!$this->upload->do_upload($key)) {
+               // some errors
+            } else {
+                // Code After Files Upload Success GOES HERE
+                $data_name = $this->upload->data();
+                $filename_arr[] = $data_name['file_name'];
+            }
+        }
+    }
+     $post['logo'] = $filename_arr[0];
 
 
         $this->load->library('form_validation');
@@ -188,9 +208,11 @@ function update(){
         
         $this->form_validation->set_error_delimiters('', '<br>');
 
+
+
      
 
-        //show_array($data);
+        // show_array($post);
 
 if($this->form_validation->run() == TRUE ) { 
 

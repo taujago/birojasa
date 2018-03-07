@@ -75,14 +75,18 @@ $("#cetak").click(function() {
   var tanggal_awal;
   var tanggal_akhir;
   var kode_dealer;
+  var jenis;
+  var pengurus;
 
   tanggal_awal = $("#tanggal_awal").val();
   tanggal_akhir = $("#tanggal_akhir").val();
   kode_dealer = $("#kode_dealer").val();
+  jenis = $("#jenis").val();
+  pengurus = $("#pengurus").val();
   
   // window.alert(desa);
   
-  open('<?php echo site_url("$this->controller/pdf?"); ?>'+'tanggal_awal='+ tanggal_awal +'&tanggal_akhir='+tanggal_akhir+'&kode_dealer='+ kode_dealer);
+  open('<?php echo site_url("$this->controller/pdf?"); ?>'+'tanggal_awal='+ tanggal_awal +'&tanggal_akhir='+tanggal_akhir+'&kode_dealer='+ kode_dealer + '&jenis=' + jenis + '&pengurus=' + pengurus);
 
 });
 
@@ -109,6 +113,8 @@ $("#cetak").click(function() {
                 .column(2).search($("#tanggal_akhir").val())
                 .column(3).search($("#no_rangka").val())
                 .column(4).search($("#kode_dealer").val())
+                .column(5).search($("#jenis").val())
+                .column(6).search($("#pengurus").val())
                  .draw();
 
                  return false;
@@ -122,6 +128,8 @@ $("#cetak").click(function() {
             $("#no_rangka").val('');
             $("#kode_dealer").val('');
             $("#btn_submit").click();
+            $("#jenis").click();
+            $("#pengurus").click();
          });
 
 
@@ -138,8 +146,8 @@ function hapus(id){
 
 
 BootstrapDialog.show({
-            message : 'ANDA AKAN MENGHAPUS DATA BIRO JASA. ANDA YAKIN  ?  ',
-            title: 'KONFIRMASI HAPUS DATA  BIRO JASA',
+            message : 'ANDA AKAN MENGHAPUS DATA BBN. ANDA YAKIN  ?  ',
+            title: 'KONFIRMASI HAPUS DATA  BBN',
             draggable: true,
             buttons : [
               {

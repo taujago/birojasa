@@ -155,7 +155,9 @@ $("#form_data").submit(function(){
 $("#tombolsubmitupdate").click(function(){ 
     $.ajax({
         url:'<?php echo site_url("$this->controller/update"); ?>',
-        data : $('#form_edit').serialize(),
+        data : new FormData($('#form_edit')[0]),
+        contentType: false,
+        processData: false,
         type : 'post',
         dataType : 'json',
         success : function(obj){

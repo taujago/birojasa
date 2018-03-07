@@ -55,6 +55,16 @@ class bj_bbn_satu_model extends CI_Model {
 		 	$this->db->like("bbn1.kode_dealer",$kode_dealer);
 		 }
 
+		 if(!empty($jenis)&&!empty($pengurus)){
+		 	if($jenis=='stnk'){
+		 		$this->db->where('bbn1.pengurus_stnk', $pengurus);
+		 	}else if ($jenis=='bpkb') {
+		 		$this->db->where('bbn1.pengurus_bpkb', $pengurus);
+		 	}
+
+		 	
+		 }
+
 		 if(!empty($no_rangka)) {
 		 	$this->db->like("bbn1.no_rangka",$no_rangka);
 		 }
