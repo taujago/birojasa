@@ -7,6 +7,12 @@ function modal_dealer(id){
 }
 
 
+function modal_excel(){
+  $('#excel').modal('show');
+        
+}
+
+
 function serah_dealer_simpan(){
         
   $.ajax({
@@ -31,6 +37,44 @@ function serah_dealer_simpan(){
                       // window.location = "<?php echo site_url('bj_bbn_satu') ?>";\
                       $('#dealer').modal('hide');
                       $('#bj_bbn_satu').DataTable().ajax.reload();  
+            }
+            else {
+                 BootstrapDialog.alert({
+                            type: BootstrapDialog.TYPE_DANGER,
+                            title: 'Error',
+                            message: obj.message 
+                             
+                        }); 
+            }
+        }
+    });
+
+    return false;
+}
+
+
+
+function print_excel(){
+        
+  $.ajax({
+        url:'<?php echo site_url("$this->controller/cek_data_bbn"); ?>',
+        data : $('#form_cetak_excel').serialize(),
+        type : 'post',
+        dataType : 'json',
+        success : function(obj){
+
+            console.log(obj.error);
+
+            if(obj.error == false) { // berhasil 
+
+              nama = $('#form_cetak_excel input[name=nama_pemohon]').val();
+              tgl = $('#form_cetak_excel input[name=tgl]').val();
+
+
+
+              $('#excel').modal('hide');
+
+                open('<?php echo site_url("$this->controller/cetak_excel?"); ?>'+'tgl='+ tgl +'&nama_pemohon='+nama);
             }
             else {
                  BootstrapDialog.alert({
@@ -89,6 +133,8 @@ $("#cetak").click(function() {
   open('<?php echo site_url("$this->controller/pdf?"); ?>'+'tanggal_awal='+ tanggal_awal +'&tanggal_akhir='+tanggal_akhir+'&kode_dealer='+ kode_dealer + '&jenis=' + jenis + '&pengurus=' + pengurus);
 
 });
+
+
 
 
      var dt = $("#bj_bbn_satu").DataTable(

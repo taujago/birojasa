@@ -23,7 +23,17 @@
                   <br />
                   
                   <form id="form_data" data-parsley-validate class="form-horizontal form-label-left" action="<?php echo site_url("$this->controller/$action"); ?>" method="post">
-
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Jenis User 
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <select name="level" class="form-control col-md-7 col-xs-12">
+                          <option value="">- Pilih Satu -</option>
+                          <option value="3">Pengurus STNK/BPKB</option>
+                          <option value="4">Perivikator Pembayaran</option>
+                        </select>
+                      </div>
+                    </div>
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nama
                       </label>
@@ -60,6 +70,7 @@
                         <textarea name="alamat" id="alamat" class="form-control" rows="3" placeholder='Alamat'></textarea>
                       </div>
                     </div>
+                    
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Nomor HP
                       </label>

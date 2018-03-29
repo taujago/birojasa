@@ -1,7 +1,7 @@
 <?php 
 class bj_invoice_stnk extends biro_jasa_controller{
 	var $controller;
-	function bj_invoice_stnk(){
+	function __construct(){
 		parent::__construct();
 
 		$this->controller = get_class($this);
@@ -102,7 +102,8 @@ if(!empty($chb)) {
                             'id_dealer' => $kode_dealer, 
                             'no_tt_stnk' => $no_tt_stnk,
                             'diterima' => $diterima,
-                            'dibuat' => $dibuat );
+                            'dibuat' => $dibuat,
+                            'kode_unik' => rand(1, 999), );
 
     // show_array($data_inv_bpkb);
     // exit();

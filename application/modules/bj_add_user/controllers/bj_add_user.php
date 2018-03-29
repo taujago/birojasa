@@ -103,6 +103,7 @@ function simpan(){
 
         $this->load->library('form_validation');
         $this->form_validation->set_rules('nama','Nama Pengguna','required');    
+        $this->form_validation->set_rules('level','Jenis User','required'); 
         $this->form_validation->set_rules('nomor_hp','Nomor HP','required');   
         $this->form_validation->set_rules('pswd','callback_cek_passwd','required'); 
         $this->form_validation->set_rules('email','Email','callback_cek_email');    
@@ -116,7 +117,7 @@ function simpan(){
 
         $post['password'] = md5($post['pswd']);
 
-        $post['level'] = '3';
+        // $post['level'] = '3';
         unset($post['pswd']);
         unset($post['re_pswd']);
         //show_array($data);

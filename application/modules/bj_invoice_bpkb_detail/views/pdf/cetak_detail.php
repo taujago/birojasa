@@ -180,7 +180,7 @@
 
 <?php
   $pajak = ($total_biaya*10)/100;
-  $total = $pajak+$total_biaya;
+  $total = $pajak+$total_biaya+$data_inv['kode_unik'];
  ?>
 <table width="100%">
   <tr>
@@ -188,6 +188,12 @@
     <td width="30%">Sub. Total</td>
     <td width="5%"></td>
     <td width="15%" align="right"><?php echo rupiah($total_biaya); ?>,-</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>Kode Unik</td>
+    <td></td>
+    <td align="right"><?php echo rupiah($data_inv['kode_unik']); ?>,-</td>
   </tr>
   <tr>
     <td>&nbsp;</td>

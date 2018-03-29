@@ -3,7 +3,7 @@ class bj_invoice_bpkb_detail extends biro_jasa_controller{
 	var $controller;
     
     
-	function bj_invoice_bpkb_detail(){
+	function __construct(){
 		parent::__construct();
 
 		$this->controller = get_class($this);

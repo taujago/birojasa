@@ -26,31 +26,7 @@
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-</head>
 
-<body style="background:#F7F7F7;" class="hold-transition login-page">
-
-  <div class="modal fade bs-example-modal-sm" id="myPleaseWait" tabindex="-1"
-    role="dialog" aria-hidden="true" data-backdrop="static">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">
-                    <span class="glyphicon glyphicon-time">
-                    </span>Sedang memproses. Harap Tunggu...
-                 </h4>
-            </div>
-            <div class="modal-body">
-                <div class="progress">
-                    <div class="progress-bar progress-bar-info
-                    progress-bar-striped active"
-                    style="width: 100%">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script src="<?php echo base_url(); ?>assets/js/jquery.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery-1.11.1.min.js"></script>
@@ -77,9 +53,34 @@
 <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/login/css/util.css">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/login/css/main.css">
-<!--===============================================================================================-->
-</head>
-<body>
+
+  </head>
+<body style="background-color: #2ecc71;">
+
+
+
+
+  <div class="modal fade bs-example-modal-sm" id="myPleaseWait" tabindex="-1"
+    role="dialog" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    <span class="glyphicon glyphicon-time">
+                    </span>Sedang memproses. Harap Tunggu...
+                 </h4>
+            </div>
+            <div class="modal-body">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-info
+                    progress-bar-striped active"
+                    style="width: 100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
   
   <div class="limiter">
     <div class="container-login100">

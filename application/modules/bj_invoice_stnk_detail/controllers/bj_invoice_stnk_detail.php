@@ -3,7 +3,7 @@ class bj_invoice_stnk_detail extends biro_jasa_controller{
 	var $controller;
     
     
-	function bj_invoice_stnk_detail(){
+	function __construct(){
 		parent::__construct();
 
 		$this->controller = get_class($this);
@@ -168,6 +168,7 @@ class bj_invoice_stnk_detail extends biro_jasa_controller{
     	$data['id'] = $get['id'];
      	$data['data_inv'] = $invoice_bpkb;
    		// show_array($data);
+     //    exit();
     $data['controller'] = get_class($this);
     $data['header'] = "Detail No. Invoice ".$no_invoice;
     

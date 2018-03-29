@@ -411,7 +411,7 @@
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Total Estimasi Biaya
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="total" name="total" required="required" class="form-control col-md-7 col-xs-12 rp" placeholder="Admin Fee"  data-a-sign="" data-a-dec="," data-a-sep="." value="<?php echo isset($rp_total)?$rp_total:""; ?>" disabled>
+                        <input type="text" id="total" name="total" required="required" class="form-control col-md-7 col-xs-12 rp" placeholder="Total Estimasi"  data-a-sign="" data-a-dec="," data-a-sep="." value="<?php echo isset($rp_total)?$rp_total:""; ?>" disabled>
                       </div>
                     </div>         
                                                                                                     

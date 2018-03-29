@@ -63,8 +63,7 @@ class bj_user extends biro_jasa_controller {
 
 	function simpan(){
 		$post = $this->input->post();
-		show_array($post);
-		exit();
+
         $this->load->library('form_validation');
          $this->form_validation->set_rules('pswd_lama','Cek Password','callback_cek_password');
 

@@ -1,7 +1,7 @@
 <?php 
 class bj_bbn_satu extends biro_jasa_controller{
 	var $controller;
-	function bj_bbn_satu(){
+	function __construct(){
 		parent::__construct();
 
 		$this->controller = get_class($this);
@@ -25,12 +25,12 @@ class bj_bbn_satu extends biro_jasa_controller{
          $this->db->select('bbn1.*, pb.nama as nm_pengurus_bpkb, ps.nama as nm_pengurus_stnk, t.tipe as nm_tipe, j.jenis as jenis, m.model as model' );
 
         $this->db->from("bj_bbn_satu bbn1");
-        $this->db->join('pengguna ps','bbn1.pengurus_stnk=ps.id');
-        $this->db->join('pengguna pb','bbn1.pengurus_bpkb=pb.id');
-        $this->db->join('m_tipe t','bbn1.type=t.id');
-        $this->db->join('m_jenis j','bbn1.jenis=j.id_jenis');
+        $this->db->join('pengguna ps','bbn1.pengurus_stnk=ps.id', 'left');
+        $this->db->join('pengguna pb','bbn1.pengurus_bpkb=pb.id', 'left');
+        $this->db->join('m_tipe t','bbn1.type=t.id', 'left');
+        $this->db->join('m_jenis j','bbn1.jenis=j.id_jenis', 'left');
         // $this->db->join('tiger_kota kt','bbn1.id_kota=kt.id');
-        $this->db->join('m_model m','bbn1.model=m.id_model');
+        $this->db->join('m_model m','bbn1.model=m.id_model', 'left');
         $this->db->where('bbn1.id',$id);
          $bbn = $this->db->get('bj_bbn_satu');
          // echo $this->db->last_query(); exit();
@@ -389,6 +389,33 @@ function simpan(){
 if($this->form_validation->run() == TRUE ) { 
 
 
+
+      $norak = substr($post['no_rangka'], 0, 10);
+        
+
+                        
+            $newdata_reftype = array('no_rangka' => $norak, 
+                                    'model' => $post['model'],
+                                    'jenis' => $post['jenis'],
+                                    'type' => $post['type'],
+                                    'merk' => $post['id_merek'],
+                                     'thn_buat' => $post['tahun_buat'],
+                                     'silinder' => $post['silinder'] );
+
+            $this->db->where('no_rangka', $norak);
+            $reftype = $this->db->get('reftype');
+
+            if ($reftype->num_rows==0) {
+              $this->db->insert('reftype', $newdata_reftype);
+            }else{
+              $datareftype = $reftype->row_array();
+              $this->db->where('id', $datareftype['id']);
+              $this->db->update('reftype', $newdata_reftype);
+
+             
+            }
+
+
         $config['upload_path'] = './assets/file_upload';
         $path = $config['upload_path'];
         $config['allowed_types'] = 'gif|jpg|jpeg|png';
@@ -517,14 +544,21 @@ if($this->form_validation->run() == TRUE ) {
 
          // $post['total']=$post['total'];
 
-          
 
+         
+
+          
+             
         
         
         $this->db->set('tgl_entri', 'NOW()', FALSE);
         $res = $this->db->insert('bj_bbn_satu', $post); 
         
         if($res){
+
+           
+
+
             $arr = array("error"=>false,'message'=>"BERHASIL DISIMPAN");
         }
         else {
@@ -973,26 +1007,7 @@ function get_model(){
 
 
 
-    $this->db->where("id_birojasa", $birojasa);
-    $this->db->where("id_jenis",$id_jenis);
-    $this->db->like("model",$model);
-    $get_model = $this->db->get('m_model');
-    // echo $this->db->last_query();
-    if ($get_model->num_rows()==0&&!empty($model)) {
-      // $data['id_birojasa'] = $birojasa;
-      // $data['id_jenis'] = $id_jenis;
-      // $data['model'] = $model;
-      $this->db->insert('m_model', $post); 
-      echo $this->db->last_query();
-      $id_model = $this->db->insert_id();
 
-
-    }else{
-      $rs = $get_model->row_array();
-      $id_model = $rs['id_model'];
-    }
-
-    
     
     $this->db->where("id_birojasa", $birojasa);
     $this->db->where("id_jenis",$id_jenis);
@@ -1003,7 +1018,7 @@ function get_model(){
     echo "<option value=''>- Pilih Satu -</option>";
     foreach($rs->result() as $row ) :
 
-      if ($row->id_model==$id_model) {
+      if ($row->id_model==$model) {
         echo "<option value=$row->id_model selected>$row->model</option>";
       }else{
         echo "<option value=$row->id_model>$row->model</option>";
@@ -1085,7 +1100,7 @@ function jenis(){
     $this->db->where("id_birojasa", $birojasa);
     $type = $this->db->get("m_jenis");
 
-    if ($type->num_rows()==0) {
+    if ($type->num_rows()==0&&!empty($post['Jenis'])) {
       $data['id_birojasa'] = $birojasa;
       $data['jenis'] = $post['Jenis'];
       $this->db->insert('m_jenis', $data);
@@ -1317,27 +1332,64 @@ function get_service_metro($no_rangka, $data_polda){
       $json_data = json_encode($data_service);
     
        
-      $ret_service = $this->dm->execute_service($data_polda->url,"ComplGetBerkasCheckPoint",$json_data);
+      $ret_service = $this->dm->execute_service($data_polda->url,"ComplGetDataAtpmSub",$json_data);
       // show_array($ret_service); exit;
+
+      
 
       if($ret_service['data']['Result'] == "1") {
         extract($ret_service['data']);
+
+        $norak = substr($data['no_rangka'], 0, 10);
+
+      $this->db->where('no_rangka', $norak);
+      $reftype = $this->db->get('reftype');
+
+      if ($reftype->num_rows==0) {
+        
+      
+
         $data = array('thn_buat' => $Data->ThnBuat,
                       'bahan_bakar' => $Data->BahanBakar,
-                      'model' => $Data->Model,
-                      'jenis' => $Data->Jenis,
-                      'warna' => $Data->Warna,
+                      'model' => '',
+                      'jenis' => '',
+                      'warna' => '',
                       'alamat' => $Data->Alamat,
                       'no_mesin' => $Data->NoMesin,
-                      'tipe' => $Data->Tipe,
-                      'merk' => $Data->Merk,
+                      'tipe' => '',
+                      'merk' => '',
                       'no_faktur' => $Data->NoFaktur,
                       'tgl_faktur' => date("d-m-Y", strtotime($Data->TglFaktur)),
                       'pemilik' => $Data->Pemilik,
-                      'silinder' => $Data->VolSilinder,
-                      'warna_tnk' => '',
+                      'silinder' => '',
+                      'warna_tnkb' => '',
                       'error' => false,
                       'dealer' => '' );
+
+        }else{
+
+          $data_reftype = $reftype->row_array();
+
+          $data = array('thn_buat' => $data_reftype['thn_buat'],
+                      'bahan_bakar' => $data_reftype['bhn_bakar'],
+                      'model' => $data_reftype['model'],
+                      'jenis' => $data_reftype['jenis'],
+                      'warna' => '',
+                      'alamat' => $Data->Alamat,
+                      'no_mesin' => $Data->NoMesin,
+                      'tipe' => $data_reftype['type'],
+                      'merk' => $data_reftype['merk'],
+                      'no_faktur' => $Data->NoFaktur,
+                      'tgl_faktur' => date("d-m-Y", strtotime($Data->TglFaktur)),
+                      'pemilik' => $Data->Pemilik,
+                      'silinder' => $data_reftype['silinder'],
+                      'warna_tnkb' => '',
+                      'error' => false,
+                      'dealer' => '' );
+
+
+        }
+
         
 
     }else{
@@ -1360,34 +1412,12 @@ function get_data_type(){
 
 function get_data_tipe(){
     $data = $this->input->post();
-
+    $userdata = $this->session->userdata('bj_login');
+    $birojasa = $userdata['birojasa_id'];
     
     $id_merk = $data['id_merk'];
     $type = $data['type'];
-    $data['tipe'] = $type;
-    unset($data['type']);
 
-    $userdata = $this->session->userdata('bj_login');
-    $birojasa = $userdata['birojasa_id'];
-    $data['id_birojasa'] = $birojasa;
-    $this->db->where("id_birojasa", $birojasa);
-    $this->db->where("id_merk",$id_merk);
-    $this->db->where("tipe",$type);
-    $get_tipe = $this->db->get('m_tipe');
-
-    // show_array($data);
-    // echo $this->db->last_query();
-    if ($get_tipe->num_rows()==0&&!empty($data['tipe'])) {
-      
-      
-      $this->db->insert('m_tipe', $data); 
-      $id_tipe = $this->db->insert_id();
-
-
-    }else{
-      $tipe = $get_tipe->row_array();
-      $id_tipe = $tipe['id'];
-    }
 
 
     $this->db->where("id_merk",$id_merk);
@@ -1396,7 +1426,7 @@ function get_data_tipe(){
     $rs = $this->db->get("m_tipe");
     echo "<option value=''>- Pilih Satu -</option>";
     foreach($rs->result() as $row ) :
-      if ($row->id==$id_tipe) {
+      if ($row->id==$type) {
         echo "<option value=$row->id selected>$row->tipe </option>";
       }else{
         echo "<option value=$row->id>$row->tipe </option>";
@@ -1578,6 +1608,267 @@ function printkwitansi(){
  
          $pdf->Output($data['header']. $this->session->userdata("tahun") .'.pdf', 'FI');
 }
+
+
+function cek_data_bbn(){
+  $post = $this->input->post();
+
+  // show_array($post);
+  // exit();
+
+  $this->db->like('nama_pemilik', $post['nama_pemohon']);
+  $this->db->where('tgl_pengajuan', flipdate($post['tgl']));
+  $data = $this->db->get('bj_bbn_satu');
+
+  // echo $this->db->last_query();
+  // exit();
+
+  // show_array($data->result_array());
+  // exit();
+
+  if ($data->num_rows()>0) {
+    $res = array('error' => false);
+  }else{
+    $res = array('error' => true, 'message' => 'Data Kosong');
+  }
+
+  echo json_encode($res);
+
+}
+
+function cetak_excel(){
+       
+
+         $post = $this->input->get();
+
+         $tgl = $post['tgl']; 
+    
+         $userdata = $this->session->userdata('bj_login');
+        $birojasa = $userdata['birojasa_id'];
+
+    // show_array($post);
+    // exit();
+       
+    
+        $this->load->library('Excel');
+        $this->excel->setActiveSheetIndex(0);
+        $this->excel->getActiveSheet()->setTitle('Sheet 1');
+
+         $arr_kolom = array('a','b','c','d','e','f');
+
+        $this->excel->getActiveSheet()->getColumnDimension('A')->setWidth(9);   // no     
+        $this->excel->getActiveSheet()->getColumnDimension('B')->setWidth(21);  // nomor_kk 
+        $this->excel->getActiveSheet()->getColumnDimension('C')->setWidth(19); // nik
+        $this->excel->getActiveSheet()->getColumnDimension('D')->setWidth(22);  // nama 
+        $this->excel->getActiveSheet()->getColumnDimension('E')->setWidth(18); // tempat_lahir
+        $this->excel->getActiveSheet()->getColumnDimension('F')->setWidth(18);  // Pekerjaan
+
+
+
+         $baris = 1;
+
+        $Judul = array(
+                      'font'  => array(
+                          'bold'  => true,
+                          'size'  => 13,
+                          'name'  => 'Calibri'
+
+                      ),
+                      'alignment' => array(
+                            'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                        ),
+                      'fill' => array(
+                            'type' => PHPExcel_Style_Fill::FILL_SOLID,
+                            'color' => array('rgb' => 'F1F742')
+                        )
+                    );
+
+        // $this->excel->getActiveSheet()->getStyle('a'.$baris.':f'.$baris)->getFont()->getColor()->setRGB('6F6F6F');
+        $this->excel->getActiveSheet()->mergeCells('a'.$baris.':f'.$baris);
+        $this->excel->getActiveSheet()->setCellValue('a' . $baris, "DATA UNTUK PEMBUATAN STNK ".$post['tgl'])->getStyle('a'.$baris.':f'.$baris)->applyFromArray($Judul);
+       
+       // $this->format_center($arr_kolom,$baris);
+ 
+
+
+        
+
+        
+        
+        $day = date('D', strtotime($tgl));
+        $dayList = array(
+          'Sun' => 'Minggu',
+          'Mon' => 'Senin',
+          'Tue' => 'Selasa',
+          'Wed' => 'Rabu',
+          'Thu' => 'Kamis',
+          'Fri' => 'Jumat',
+          'Sat' => 'Sabtu'
+        );
+        
+        $baris +=2; 
+
+        $SubJudul = array(
+                    'font'  => array(
+                          'bold'  => true,
+                          'size'  => 11,
+                          'name'  => 'Calibri'
+
+                      )
+                    );
+
+        $this->excel->getActiveSheet()->mergeCells('a'.$baris.':b'.$baris);
+         $this->excel->getActiveSheet()->setCellValue('A' . $baris, "HARI / TANGGAL" )->getStyle('a'.$baris.':b'.$baris)->applyFromArray($SubJudul);
+
+
+         $this->excel->getActiveSheet()->mergeCells('c'.$baris.':f'.$baris);
+         $this->excel->getActiveSheet()->setCellValue('c' . $baris, ": ".flipdate($tgl).' / '.$dayList[$day])->getStyle('c'.$baris.':f'.$baris)->applyFromArray($SubJudul);
+        // $this->format_center($arr_kolom,$baris);
+
+        $baris++;
+
+         $this->excel->getActiveSheet()->mergeCells('a'.$baris.':b'.$baris);
+         $this->excel->getActiveSheet()->setCellValue('A' . $baris, "NAMA PEMOHON" )->getStyle('a'.$baris.':b'.$baris)->applyFromArray($SubJudul);
+
+
+         $this->excel->getActiveSheet()->mergeCells('c'.$baris.':f'.$baris);
+         $this->excel->getActiveSheet()->setCellValue('c' . $baris, ": ".$post['nama_pemohon'])->getStyle('c'.$baris.':f'.$baris)->applyFromArray($SubJudul);
+
+
+         $baris++;
+
+         $this->db->select('bbn1.no_rangka, no_mesin, nama_pemilik, d.nama as wilayah, p.nama as vendor');
+
+            $this->db->from("bj_bbn_satu bbn1");
+            
+            $this->db->join('samsat d','bbn1.id_samsat=d.id', 'left');
+            $this->db->join('biro_jasa p','bbn1.id_birojasa=p.id', 'left');
+            $this->db->where('bbn1.id_birojasa', $birojasa);
+      
+
+
+                $post['tgl'] = flipdate($post['tgl']);
+                
+               
+                $this->db->where("bbn1.tgl_pengajuan", $post['tgl'] ); 
+
+              
+                $this->db->like("bbn1.nama_pemilik", $post['nama_pemohon']);
+               
+
+              
+
+
+            $resx = $this->db->get();
+
+            // show_array($resx->result_array());
+            // exit();
+
+            $jumlah_data = $resx->num_rows();
+
+         $this->excel->getActiveSheet()->mergeCells('a'.$baris.':b'.$baris);
+         $this->excel->getActiveSheet()->setCellValue('A' . $baris, "TOTAL / R4" )->getStyle('a'.$baris.':b'.$baris)->applyFromArray($SubJudul);
+
+
+         $this->excel->getActiveSheet()->mergeCells('c'.$baris.':f'.$baris);
+         $this->excel->getActiveSheet()->setCellValue('c' . $baris, ": ".$jumlah_data.' Unit')->getStyle('c'.$baris.':f'.$baris)->applyFromArray($SubJudul);
+
+
+        $baris++; 
+
+        
+          $HeadTable = array(
+                    'font'  => array(
+                          'bold'  => true,
+                          'size'  => 11,
+                          'name'  => 'Calibri'
+
+                      ),
+                      'alignment' => array(
+                            'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                        ),
+                      'borders' => array(
+                            'allborders' => array(
+                            'style' => PHPExcel_Style_Border::BORDER_THIN
+                            )
+                          )
+                    );
+
+
+          // $this->db->select('p.*')
+          // $this->db->where("no_kk",$row->no_kk);
+           $this->excel->getActiveSheet()
+                ->setCellValue('A' . $baris, "NO")
+                ->setCellValue('B' . $baris, "NO. RANGKA")
+                ->setCellValue('C' . $baris, "NO. MESIN")
+                ->setCellValue('D' . $baris, "NAMA")    
+                ->setCellValue('E' . $baris, "WILAYAH")
+                ->setCellValue('F' . $baris, "VENDOR")
+                ->getStyle('a'.$baris.':f'.$baris)
+                ->applyFromArray($HeadTable);   
+          // $this->format_header($arr_kolom,$baris);
+          $baris++;
+
+           
+           
+           $BodyCenter = array(
+                    'font'  => array(
+                          'bold'  => false,
+                          'size'  => 11,
+                          'name'  => 'Calibri'
+
+                      ),
+                      'alignment' => array(
+                            'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                        ),
+                      'borders' => array(
+                            'allborders' => array(
+                            'style' => PHPExcel_Style_Border::BORDER_THIN
+                            )
+                          )
+                    );
+            $xx = 0;
+            foreach($resx->result_array() as  $rowx) : 
+              $xx++;
+
+                
+
+                 $this->excel->getActiveSheet()
+                ->setCellValue('A' . $baris, $xx)
+                ->setCellValue('B' . $baris, $rowx['no_rangka'])
+                ->setCellValue('C' . $baris, $rowx['no_mesin'])
+                ->setCellValue('D' . $baris, $rowx['nama_pemilik'])      
+                ->setCellValue('E' . $baris, $rowx['wilayah'])
+                ->setCellValue('F' . $baris, $rowx['vendor'])
+                ->getStyle('a'.$baris.':f'.$baris)
+                ->applyFromArray($BodyCenter);  
+
+                // $this->format_baris($arr_kolom,$baris);
+                $baris++;
+            endforeach;
+
+            
+
+
+        $filename = 'DAFTARAN STCK TGL. '.tgl_indo($tgl).' '.$post['nama_pemohon'].'.xls';
+
+        //exit;
+
+        header('Content-Type: application/vnd.ms-excel'); //mime type
+        header('Content-Disposition: attachment;filename="'.$filename.'"'); //tell browser what's the file name
+        header('Cache-Control: max-age=0'); //no cache
+                     
+        //save it to Excel5 format (excel 2003 .XLS file), change this to 'Excel2007' (and adjust the filename extension, also the header mime type)
+        //if you want to save it as .XLSX Excel 2007 format
+        $objWriter = PHPExcel_IOFactory::createWriter($this->excel, 'Excel2007');  
+        //force user to download the Excel file without writing it to server's HD
+        $objWriter->save('php://output');
+
+
+
+
+}
+
 
 
 

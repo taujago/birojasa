@@ -61,7 +61,16 @@
             <div class="col-md-1">
               <div class="form-group">
                 <label></label>
-                <button type="button" class="btn btn-success form-control" id="cetak" style="border-radius: 5px"><i class="fa">Cetak</i></button>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-success dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Cetak
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a id="cetak_excel" onclick="modal_excel()">Excel</a></li>
+                    <li><a id="cetak">PDF</a></li>
+                  </ul>
+                  </div>
               </div>
             </div>
             <div class="col-md-1">
@@ -134,14 +143,14 @@
               <tr>
                 <td width="30%" >Tanggal Serah Dealer</td>
                 <TD>
-                  <input name="tgl_serah_dealer" id="tgl" type="text" class="form-control tanggal" placeholder="Tanggal Serah Dealer" data-date-format="dd-mm-yyyy"></input>
+                  <input name="tgl_serah_dealer" id="tgl" type="text" class="form-control tanggal" placeholder="Tanggal Serah Dealer" data-date-format="dd-mm-yyyy">
                   <input type="hidden" class="form-control" name="id" id="id"  />
                 </TD>
               </tr>
               <tr>
                 <td width="30%" >Nama Penerima</td>
                 <TD>
-                  <input name="nama_penerima_dealer" id="nama_penerima_dealer" type="text" class="form-control" placeholder="Nama Penerima" ></input>
+                  <input name="nama_penerima_dealer" id="nama_penerima_dealer" type="text" class="form-control" placeholder="Nama Penerima" >
                   
                 </TD>
               </tr>  
@@ -151,6 +160,42 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
           <button type="button" id="btn_simpan_serah_dealer" class="btn btn-primary" onclick="return serah_dealer_simpan()">Simpan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="excel" tabindex="-1" role="dialog" aria-labelledby="excelModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="excelModal">Serah Dealer</h4>
+      </div>
+      <div class="modal-body">
+        <form action="" id="form_cetak_excel" method="post">
+          <table width="100%"  class='table table-bordered'>
+             
+              <tr>
+                <td width="30%" >Tanggal</td>
+                <TD>
+                  <input name="tgl" id="tgl" type="text" class="form-control tanggal" placeholder="Tanggal" data-date-format="dd-mm-yyyy">
+                </TD>
+              </tr>
+              <tr>
+                <td width="30%" >Nama Pemohon</td>
+                <TD>
+                  <input name="nama_pemohon" id="nama_pemohon" type="text" class="form-control" placeholder="Nama Pemohon" >
+                  
+                </TD>
+              </tr>  
+            </table>   
+          </form>   
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+          <button type="button" id="btn_simpan_serah_dealer" class="btn btn-primary" onclick="return print_excel()">Simpan</button>
         </div>
       </div>
     </div>

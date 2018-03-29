@@ -3,7 +3,7 @@
 class bj_bbn_satu_model extends CI_Model {
 
 
-	function bj_bbn_satu_model(){
+	function __construct(){
 		parent::__construct();
 	}
 
@@ -27,7 +27,7 @@ class bj_bbn_satu_model extends CI_Model {
   $info = curl_getinfo($ch);
 
   $error = ($info['http_code']=="200")?false:true;
-  // show_array($info);
+  // show_array($info);exit;
   // show_array($array); exit;
   curl_close($ch);
   return array("data"=>$array,"error"=>$error);
