@@ -33,6 +33,32 @@ class bj_bbn_satu_model extends CI_Model {
   return array("data"=>$array,"error"=>$error);
 }
 
+function execute_service_baru($url,$json_data) {
+
+  $req_url = $url;
+    $ch = curl_init();
+
+  //set the url, number of POST vars, POST data
+  curl_setopt($ch,CURLOPT_URL, $req_url);
+  curl_setopt($ch,CURLOPT_POST, 1);
+  curl_setopt($ch,CURLOPT_POSTFIELDS, $json_data);
+  curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+
+  //execute post
+  $result = curl_exec($ch);
+  // echo $result; exit; 
+  $obj  = json_decode($result);
+  $array = (array) $obj;
+
+  $info = curl_getinfo($ch);
+
+  $error = ($info['http_code']=="200")?false:true;
+  show_array($info);exit;
+  // show_array($array); exit;
+  curl_close($ch);
+  return array("data"=>$array,"error"=>$error);
+}
+
 
  function data($param)
 	{		
@@ -42,7 +68,7 @@ class bj_bbn_satu_model extends CI_Model {
 
 		 extract($param);
 
-		 $kolom = array(0=>"bbn1.id",
+		 $kolom = array(0=>	"bbn1.id",
 							"no_rangka",
 							"no_faktur",
 							"tgl_faktur",
@@ -53,6 +79,7 @@ class bj_bbn_satu_model extends CI_Model {
 							"rp_admin_fee",
 							"ps.nama as nm_pengurus_bpkb",
 							"pb.nama as nm_pengurus_stnk",
+							'status'
 							
 		 	);
 

@@ -52,6 +52,40 @@ function serah_dealer_simpan(){
     return false;
 }
 
+function updatedata(){
+        
+  $.ajax({
+        url:'<?php echo site_url("$this->controller/check_data_kepolda"); ?>',
+        data : $('#form_check_data_polda').serialize(),
+        type : 'post',
+        dataType : 'json',
+        success : function(obj){
+
+            console.log(obj.error);
+
+            if(obj.error == false) { // berhasil 
+               BootstrapDialog.alert({
+                            type: BootstrapDialog.TYPE_PRIMARY,
+                            title: 'Error',
+                            message: obj.message 
+                             
+                        }); 
+             
+            }
+            else {
+                 BootstrapDialog.alert({
+                            type: BootstrapDialog.TYPE_DANGER,
+                            title: 'Error',
+                            message: obj.message 
+                             
+                        }); 
+            }
+        }
+    });
+
+    return false;
+}
+
 
 
 function print_excel(){
@@ -112,6 +146,22 @@ $(document).ready(function(){
   // $(".datepicker").datepicker().on('changeDate', function(ev){                 
   //        $('.datepicker').datepicker('hide');
   //   });
+
+
+$("#selall").click(function(){
+    
+    if(this.checked) { // check select status
+            $('.ck_data').each(function() { //loop through each checkbox
+                this.checked = true;  //select all checkboxes with class "checkbox1"              
+            });
+        }else{
+            $('.ck_data').each(function() { //loop through each checkbox
+                this.checked = false; //deselect all checkboxes with class "checkbox1"                      
+            });        
+        }
+
+    
+});
 
 $("#cetak").click(function() {
   
@@ -180,7 +230,47 @@ $("#cetak").click(function() {
 
 
 });
-    
+ 
+
+function CheckDatadiPolda(){
+  $('#check').modal('show');
+}
+
+function KirimDatakePolda(){
+  $.ajax({
+        url:'<?php echo site_url("$this->controller/kirim_data_kepolda"); ?>',
+        data : $('#form_kirim_data').serialize(),
+        type : 'post',
+        dataType : 'json',
+        success : function(obj){
+
+            console.log(obj.error);
+
+            if(obj.error == false) { // berhasil 
+
+              BootstrapDialog.alert({
+                            type: BootstrapDialog.TYPE_PRIMARY,
+                            title: 'Berhasil',
+                            message: obj.message 
+                             
+                        });
+
+
+              
+            }
+            else {
+                 BootstrapDialog.alert({
+                            type: BootstrapDialog.TYPE_DANGER,
+                            title: 'Error',
+                            message: obj.message 
+                             
+                        }); 
+            }
+        }
+    });
+
+    return false; 
+}   
 
 function printkwitansi(id){
   open('<?php echo site_url("$this->controller/printkwitansi?"); ?>'+'id='+ id);

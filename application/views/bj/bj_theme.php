@@ -122,6 +122,10 @@ $userdata = $this->session->userdata('bj_login');
                   <ul class="nav child_menu" style="display: none">
                     <li><a href="<?php echo site_url('bj_bbn_satu'); ?>">BBN 1</a>
                     </li>
+                    <li><a href="<?php echo site_url('bj_invoice_stnk'); ?>">Serah STNK Dealer</a>
+                    </li>
+                    <li><a href="<?php echo site_url('bj_invoice_bpkb'); ?>">Serah BPKB Dealer</a>
+                    </li>
                     
                   </ul>
                 </li>

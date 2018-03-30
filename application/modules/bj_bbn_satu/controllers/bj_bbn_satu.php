@@ -179,6 +179,14 @@ function baru(){
 
         $data_array['arr_warna'] = $this->cm->arr_dropdown3("m_warna", "WARNA_ID", "WARNA_NAMA", "WARNA_NAMA", "id_birojasa", $id_birojasa);
 
+        $data_array['arr_pengadaan'] = array('CKD' => 'CKD',
+                                            'CBU' => 'CBU',);
+
+        $data_array['arr_ct'] = array('1' => 'PERORANGAN',
+                                        '2' => 'PERUSAHAAN',
+                                        '3' => 'YAYASAN',
+                                        '4' => 'NOTARIS');
+
 
         $data_array['arr_warna_tnkb'] = $this->cm->arr_dropdown("m_warna_tnkb", "id_warna_tnkb", "warna_tnkb", "warna_tnkb");
         
@@ -227,6 +235,14 @@ function baru(){
         $data['rp_total'] = rupiah($data['rp_daftar_bpkb'] + $data['rp_daftar_stnk'] + $data['rp_daftar_stck'] + $data['rp_pajak_kendaraan'] + $data['rp_admin_fee'] );
 
         $data['arr_warna_tnkb'] = $this->cm->arr_dropdown("m_warna_tnkb", "id_warna_tnkb", "warna_tnkb", "warna_tnkb");
+        $data['arr_pengadaan'] = array('CKD' => 'CKD',
+                                            'CBU' => 'CBU',);
+
+        $data['arr_ct'] = array('1' => 'PERORANGAN',
+                                        '2' => 'PERUSAHAAN',
+                                        '3' => 'YAYASAN',
+                                        '4' => 'NOTARIS');
+
 
 
          $id_birojasa = $userdata['birojasa_id'];
@@ -362,6 +378,8 @@ function simpan(){
         $this->form_validation->set_rules('id_merek','Merek','required');
         $this->form_validation->set_rules('type','Type','required'); 
         $this->form_validation->set_rules('jenis','Jenis','required');
+        $this->form_validation->set_rules('customer_type','Customer Type','required');
+        $this->form_validation->set_rules('jenis_pengadaan','Jenis Pengadaan','required');
         $this->form_validation->set_rules('model','Model','required');
         $this->form_validation->set_rules('warna','Warna Kendaraan','required');
         $this->form_validation->set_rules('silinder','Silinder','required');  
@@ -667,45 +685,55 @@ else {
                             </div>";            
                           }else{
 
+                $action = '<div class="btn-group" role="group">
+                        <button type="button" class="btn btn-success dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Serah Dealer
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><a href="#" onclick=\'modal_dealer("$id")\'><i class="fa fa-file"></i> Serah Dealer</a></li>
+                      </ul>
+                      </div>';
 
-            $action = "<div class='btn-group'>
-                              <button type='button' class='btn btn-success'>Done</button>
-                              <button type='button' class='btn btn-success dropdown-toggle' data-toggle='dropdown'>
-                                <span class='caret'></span>
-                                <span class='sr-only'>Toggle Dropdown</span>
-                              </button>
-                              <ul class='dropdown-menu' role='menu'>
-                                <li><a href='#' onclick=\"modal_dealer('$id')\" ><i class='fa fa-edit'></i> Serah Dealer</a></li>
-                              </ul>
-                            </div>"; 
                 }         
               }else{
-                $action = "<div class='btn-group'>
-                              <button type='button' class='btn btn-primary'>Kwitansi</button>
-                              <button type='button' class='btn btn-primary dropdown-toggle' data-toggle='dropdown'>
-                                <span class='caret'></span>
-                                <span class='sr-only'>Toggle Dropdown</span>
-                              </button>
-                              <ul class='dropdown-menu' role='menu'>
-                                <li><a href='#' onclick=\"printkwitansi('$id')\" ><i class='fa fa-trash'></i> Cetak Kwitansi</a></li>
-                              </ul>
-                            </div>";   
+
+                $action = '<div class="btn-group" role="group">
+                        <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Print Kwitansi
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><a href="#" onclick=\'printkwitansi("$id")\'><i class="fa fa-print"></i> Cetak Kwitansi</a></li>
+                      </ul>
+                      </div>';
+
+                
           }
           
         }else{
-        $action = "<div class='btn-group'>
-                              <button type='button' class='btn btn-danger'>Pending</button>
-                              <button type='button' class='btn btn-danger dropdown-toggle' data-toggle='dropdown'>
-                                <span class='caret'></span>
-                                <span class='sr-only'>Toggle Dropdown</span>
-                              </button>
-                              <ul class='dropdown-menu' role='menu'>
-                                <li><a href='#' onclick=\"hapus('$id')\" ><i class='fa fa-trash'></i> Hapus</a></li>
-                                <li><a href='bj_bbn_satu/editdata?id=$id'><i class='fa fa-edit'></i> Edit</a></li>
-                              </ul>
-                            </div>";
+
+          $action = '<div class="btn-group" role="group">
+                        <button type="button" class="btn btn-danger dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Pending
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><a href="bj_bbn_satu/editdata?id=$id"><i class="fa fa-edit"></i> Excel</a></li>
+                        <li><a href="#" onclick=\'hapus("$id")\'><i class="fa fa-trash"></i> Hapus</a></li>
+                      </ul>
+                      </div>';
+       
 
           }
+
+
+          if ($row['status_kirim_polda']==1) {
+            $checkbox = '';
+          }else{
+            $checkbox = '<input type="checkbox" name="id[]" class="ck_data" value="'.$id.'">';            
+          }
+
 
           $pengurus = '<b>BPKB :</b> <a href='. site_url('bj_add_user/editdata?id='.$id_pengurus_bpkb).' >'.$row['nm_pengurus_bpkb'].'</a><br />'.
                       '<b>STNK :</b> <a href='. site_url('bj_add_user/editdata?id='.$id_pengurus_stnk).' >'.$row['nm_pengurus_stnk'].'</a><br />';
@@ -716,7 +744,11 @@ else {
                 </a>
                 ";
 
-
+        if ($row['status_kirim_polda']==0) {
+          $status_polda = 'Belum Dikirim';
+        }else if ($row['status_kirim_polda']==1) {
+          $status_polda = 'Dikirim';
+        }
 
         $tgl_entri = flipdate($row['tgl_entri']);
             
@@ -724,7 +756,7 @@ else {
             $arr_data[] = array(
 
                 
-                
+                $checkbox,
                 $tgl_entri,
                 $nama,
                 rupiah($row['rp_daftar_bpkb']),
@@ -733,6 +765,7 @@ else {
                 rupiah($row['rp_pajak_kendaraan']),
                 rupiah($row['rp_admin_fee']),
                 $pengurus,
+                $status_polda,
                 $action
                 
                      
@@ -749,12 +782,14 @@ else {
 
           $arr_data[]  = array(
               '',
+              '',
               $spasi1,
               rupiah($totalbpkb),
               rupiah($totalstnk),
               rupiah($totalstck),
               rupiah($totalpajak),
               rupiah($totaladmin),
+              '',
               '',
               '',
 
@@ -768,6 +803,108 @@ else {
          
         echo json_encode($responce); 
     }
+
+function check_data_kepolda(){
+    $post = $this->input->post();
+
+
+
+    $tanggal_awal = flipdate($post['tgl_awal']);
+    $tanggal_akhir = flipdate($post['tgl_akhir']);
+
+    $awal = date("Ymdhis", strtotime($tanggal_awal));
+    $akhir = date("Ymdhis", strtotime($tanggal_awal));
+
+      $userdata = $this->session->userdata('bj_login');
+  // show_array($userdata);
+  // exit();
+
+
+  $data['ClientId'] = 'DEVEXT01';
+  $data['OperatorId'] = $userdata['id'];
+  $data['Salt'] = 'LaryJ39URjre';
+  $data['Signature'] = sha1('11a708727032a8bf29a29168aeae67e4LaryJ39URjre');
+
+  $data['ReqData'] = array('RequestType' => 1, 'StartDate' => $awal, 'EndDate' => $akhir);
+
+  $json_data = json_encode($data);
+  echo $json_data; 
+   $url = 'https://appservice.bpkb.net/sol/reqstatbpkb.php';
+       
+  $ret_service = $this->dm->execute_service_baru($url, $json_data);
+
+
+    show_array($ret_service);
+    exit();
+
+
+
+}
+
+
+
+function kirim_data_kepolda(){
+  $post = $this->input->post();
+
+
+  // show_array($post);
+  // exit();
+  // $this->db->where('polda_id', '10');
+  // $polda = $this->db->get('m_polda')->row_array();
+
+  // show_array($polda);
+  // exit();
+
+  $userdata = $this->session->userdata('bj_login');
+  // show_array($userdata);
+  // exit();
+
+
+  $data['ClientId'] = 'DEVEXT01';
+  $data['OperatorId'] = $userdata['id'];
+  $data['Salt'] = 'LaryJ39URjre';
+  $data['Signature'] = sha1('11a708727032a8bf29a29168aeae67e4LaryJ39URjre');
+
+
+  if (!empty($post['id'])) {
+    # code...
+  $data_id = $post['id'];  
+  foreach ($data_id as $key) {
+    $this->db->select('bbn1.no_rangka, jenis_pengadaan, customer_type, id_birojasa')->from('bj_bbn_satu bbn1');
+    $this->db->where('id', $key);
+    $res = $this->db->get()->row_array();
+
+
+    $data['Files'][] = array('NoRangka' => $res['no_rangka'],
+                              'JenisPengadaan' => $res['jenis_pengadaan'],
+                              'CustomerType' => $res['customer_type'],
+                              'KodeCabang' => $res['id_birojasa'], 
+                              'Remark' => '',
+                              'UrusanNomor' => NULL);
+
+
+    
+  }
+
+   $json_data = json_encode($data); 
+   $url = 'https://appservice.bpkb.net/sol/inqbpkb.php';
+       
+  $ret_service = $this->dm->execute_service_baru($url, $json_data);
+
+  // $ret = json_decode($ret_service);
+  show_array($ret_service);
+  exit();
+  // $res = array('error' => false, 'message' => 'good data boys');
+
+}else{
+  $res = array('error' => true, 'message' => 'pilih salah satu data');
+}
+
+
+
+  // echo json_encode($res);
+  // show_array($data);
+}
 
 
     // Update

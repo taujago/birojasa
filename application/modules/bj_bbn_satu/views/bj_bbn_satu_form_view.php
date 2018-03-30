@@ -63,7 +63,20 @@
                   
                   <form id="form_data" data-parsley-validate class="form-horizontal form-label-left" action="<?php echo site_url("$this->controller/$action"); ?>" method="post" enctype="multipart/form-data">
 
-
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Jenis pengadaan
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <?php echo form_dropdown("jenis_pengadaan",$arr_pengadaan,isset($jenis_pengadaan)?$jenis_pengadaan:"",'id="jenis_pengadaan" class="form-control input-style"'); ?>
+                       </div> 
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Customer Type
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                        <?php echo form_dropdown("customer_type",$arr_ct,isset($customer_type)?$customer_type:"",'id="customer_type" class="form-control input-style"'); ?>
+                       </div> 
+                    </div>
 
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Polda
