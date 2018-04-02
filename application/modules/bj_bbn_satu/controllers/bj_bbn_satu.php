@@ -804,6 +804,7 @@ else {
         echo json_encode($responce); 
     }
 
+
 function check_data_kepolda(){
     $post = $this->input->post();
 
@@ -813,17 +814,28 @@ function check_data_kepolda(){
     $tanggal_akhir = flipdate($post['tgl_akhir']);
 
     $awal = date("Ymdhis", strtotime($tanggal_awal));
-    $akhir = date("Ymdhis", strtotime($tanggal_awal));
+    $akhir = date("Ymdhis", strtotime($tanggal_akhir));
 
       $userdata = $this->session->userdata('bj_login');
   // show_array($userdata);
   // exit();
 
 
+  // $data['ClientID'] = 'DEVEXT01';
+  // $data['OperatorID'] = $userdata['id'];
+  // $data['Salt'] = 'LaryJ39URjre';
+  // $data['Signature'] = sha1('11a708727032a8bf29a29168aeae67e4LaryJ39URjre');
+
   $data['ClientId'] = 'DEVEXT01';
   $data['OperatorId'] = $userdata['id'];
   $data['Salt'] = 'LaryJ39URjre';
-  $data['Signature'] = sha1('11a708727032a8bf29a29168aeae67e4LaryJ39URjre');
+  $client_key = '11a708727032a8bf29a29168aeae67e4';
+
+
+  $data['Signature'] = sha1( $client_key.$data['Salt']);
+
+
+  
 
   $data['ReqData'] = array('RequestType' => 1, 'StartDate' => $awal, 'EndDate' => $akhir);
 
@@ -863,7 +875,12 @@ function kirim_data_kepolda(){
   $data['ClientId'] = 'DEVEXT01';
   $data['OperatorId'] = $userdata['id'];
   $data['Salt'] = 'LaryJ39URjre';
-  $data['Signature'] = sha1('11a708727032a8bf29a29168aeae67e4LaryJ39URjre');
+  $client_key = '11a708727032a8bf29a29168aeae67e4';
+
+
+  $data['Signature'] = sha1( $client_key.$data['Salt']);
+
+
 
 
   if (!empty($post['id'])) {
@@ -880,13 +897,14 @@ function kirim_data_kepolda(){
                               'CustomerType' => $res['customer_type'],
                               'KodeCabang' => $res['id_birojasa'], 
                               'Remark' => '',
-                              'UrusanNomor' => NULL);
+                              'UrusNomor' => NULL);
 
 
     
   }
 
    $json_data = json_encode($data); 
+   echo $json_data;
    $url = 'https://appservice.bpkb.net/sol/inqbpkb.php';
        
   $ret_service = $this->dm->execute_service_baru($url, $json_data);
