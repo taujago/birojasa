@@ -101,14 +101,13 @@ function print_excel(){
 
             if(obj.error == false) { // berhasil 
 
-              nama = $('#form_cetak_excel input[name=nama_pemohon]').val();
               tgl = $('#form_cetak_excel input[name=tgl]').val();
 
 
 
               $('#excel').modal('hide');
 
-                open('<?php echo site_url("$this->controller/cetak_excel?"); ?>'+'tgl='+ tgl +'&nama_pemohon='+nama);
+                open('<?php echo site_url("$this->controller/cetak_excel?"); ?>'+'tgl='+ tgl);
             }
             else {
                  BootstrapDialog.alert({
@@ -255,6 +254,7 @@ function KirimDatakePolda(){
                              
                         });
 
+              $('#bj_bbn_satu').DataTable().ajax.reload(); 
 
               
             }

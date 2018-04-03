@@ -1750,11 +1750,14 @@ function printkwitansi(){
 function cek_data_bbn(){
   $post = $this->input->post();
 
+  $userdata = $this->session->userdata('bj_login');
+  $birojasa = $userdata['birojasa_id'];
+
   // show_array($post);
   // exit();
 
-  $this->db->like('nama_pemilik', $post['nama_pemohon']);
-  $this->db->where('tgl_pengajuan', flipdate($post['tgl']));
+  $this->db->where('id_birojasa', $birojasa);
+  $this->db->where('tgl_entri', flipdate($post['tgl']));
   $data = $this->db->get('bj_bbn_satu');
 
   // echo $this->db->last_query();
@@ -1783,7 +1786,7 @@ function cetak_excel(){
          $userdata = $this->session->userdata('bj_login');
         $birojasa = $userdata['birojasa_id'];
 
-    // show_array($post);
+    // show_array($userdata);
     // exit();
        
     
@@ -1869,7 +1872,7 @@ function cetak_excel(){
 
 
          $this->excel->getActiveSheet()->mergeCells('c'.$baris.':f'.$baris);
-         $this->excel->getActiveSheet()->setCellValue('c' . $baris, ": ".$post['nama_pemohon'])->getStyle('c'.$baris.':f'.$baris)->applyFromArray($SubJudul);
+         $this->excel->getActiveSheet()->setCellValue('c' . $baris, ": ".$userdata['birojasa'])->getStyle('c'.$baris.':f'.$baris)->applyFromArray($SubJudul);
 
 
          $baris++;
@@ -1887,10 +1890,9 @@ function cetak_excel(){
                 $post['tgl'] = flipdate($post['tgl']);
                 
                
-                $this->db->where("bbn1.tgl_pengajuan", $post['tgl'] ); 
+                $this->db->where("bbn1.tgl_entri", $post['tgl'] ); 
 
               
-                $this->db->like("bbn1.nama_pemilik", $post['nama_pemohon']);
                
 
               
@@ -1987,7 +1989,7 @@ function cetak_excel(){
             
 
 
-        $filename = 'DAFTARAN STCK TGL. '.tgl_indo($tgl).' '.$post['nama_pemohon'].'.xls';
+        $filename = 'DAFTARAN STCK TGL. '.tgl_indo($tgl).' '.$userdata['birojasa'].'.xls';
 
         //exit;
 

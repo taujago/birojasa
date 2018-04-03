@@ -198,7 +198,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="excelModal">Serah Dealer</h4>
+        <h4 class="modal-title" id="excelModal">EXPORT EXCEL</h4>
       </div>
       <div class="modal-body">
         <form action="" id="form_cetak_excel" method="post">
@@ -208,13 +208,6 @@
                 <td width="30%" >Tanggal</td>
                 <TD>
                   <input name="tgl" id="tgl" type="text" class="form-control tanggal" placeholder="Tanggal" data-date-format="dd-mm-yyyy">
-                </TD>
-              </tr>
-              <tr>
-                <td width="30%" >Nama Pemohon</td>
-                <TD>
-                  <input name="nama_pemohon" id="nama_pemohon" type="text" class="form-control" placeholder="Nama Pemohon" >
-                  
                 </TD>
               </tr>  
             </table>   
