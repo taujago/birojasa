@@ -2,7 +2,7 @@
 class biro_jasa_controller extends CI_Controller {
 
  
-	function biro_jasa_controller() {
+	function __construct() {
 		parent::__construct();  
 
 		 $datalogin = $this->session->userdata("bj_login");

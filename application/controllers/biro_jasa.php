@@ -4,7 +4,7 @@
 class biro_jasa extends biro_jasa_controller {
 	
 	var $controller;
-	public function biro_jasa(){
+	public function __construct(){
 		parent::__construct();
 		$this->controller = get_class($this);
 	}

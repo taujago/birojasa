@@ -1,0 +1,30 @@
+{
+   "Success":true,
+   "Message":"OK",
+   "ErrCode":0,
+   "Data":{
+      "NoMesin":"4D56UCFW4659",
+      "Warna":"PUTIH MUTIARA",
+      "Pemilik1":"NY. INDRAINI",
+      "Pemilik2":null,
+      "NoIdentitas":"317404470767000",
+      "Pekerjaan":null,
+      "NoPonsel":null,
+      "Alamat1":null,
+      "Alamat2":"GG. PONDOK NO.51 RT.006 RW.005",
+      "Alamat3":"KEL. KEBAGUSAN KEC. PASAR MINGGU",
+      "Alamat4":null,
+      "KodePos":null,
+      "NoFaktur":"000929\/0616\/02",
+      "TglFaktur":"13-06-2016",
+      "NamaAtpm":"PT. KRAMA YUDHA TIGA BERLIAN MOTORS",
+      "NoKK":null,
+      "KodeDealer":null,
+      "NamaDealer":null,
+      "Pemohon":null,
+      "NoPabean":"FA-054476\/KPU.01\/BD.02\/M\/2015",
+      "NoPIB":"276760",
+      "SUT":"AJ.402\/46\/6\/DJPD\/2013",
+      "TPT":"796\/IUBTT\/TPT\/4\/2015"
+   }
+}

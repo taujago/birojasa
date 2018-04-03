@@ -43,17 +43,20 @@ function execute_service_baru($url,$json_data) {
   curl_setopt($ch,CURLOPT_POST, 1);
   curl_setopt($ch,CURLOPT_POSTFIELDS, $json_data);
   curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
 
   //execute post
   $result = curl_exec($ch);
-  // echo $result; exit; 
+  echo $result; 
+
   $obj  = json_decode($result);
   $array = (array) $obj;
 
   $info = curl_getinfo($ch);
 
   $error = ($info['http_code']=="200")?false:true;
-  show_array($info);exit;
+  // show_array($info); 
+  // exit;
   // show_array($array); exit;
   curl_close($ch);
   return array("data"=>$array,"error"=>$error);
